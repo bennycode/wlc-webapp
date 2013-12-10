@@ -23,3 +23,10 @@ This is an attempt to make **www.welovecoding.com** a better place...
 
 - [Best Practices for Developing Web Apps](https://developer.amazon.com/sdk/webapps/Best-Practices.html)
 
+**Rules:**
+
+- [Apache Maven: Guide to naming conventions](http://maven.apache.org/guides/mini/guide-naming-conventions.html)
+- [Should package names be singular or plural?](http://programmers.stackexchange.com/a/75929)
+- [Which XHTML files do I need to put in /WEB-INF and which not?](http://stackoverflow.com/a/9033567/451634)
+
+
