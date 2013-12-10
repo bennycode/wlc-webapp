@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+  <ui:composition template="/template.xhtml">
+    <ui:define name="title">
+      <h:outputText value="#{adminPages.ViewLanguageTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+      <h:panelGroup id="messagePanel" layout="block">
+        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+      </h:panelGroup>
+      <h:form>
+        <h:panelGrid columns="2">
+          <h:outputText value="#{adminPages.ViewLanguageLabel_id}"/>
+          <h:outputText value="#{languageController.selected.id}" title="#{adminPages.ViewLanguageTitle_id}"/>
+          <h:outputText value="#{adminPages.ViewLanguageLabel_created}"/>
+          <h:outputText value="#{languageController.selected.created}" title="#{adminPages.ViewLanguageTitle_created}">
+            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+          </h:outputText>
+          <h:outputText value="#{adminPages.ViewLanguageLabel_lastmodified}"/>
+          <h:outputText value="#{languageController.selected.lastmodified}" title="#{adminPages.ViewLanguageTitle_lastmodified}">
+            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+          </h:outputText>
+          <h:outputText value="#{adminPages.ViewLanguageLabel_name}"/>
+          <h:outputText value="#{languageController.selected.name}" title="#{adminPages.ViewLanguageTitle_name}"/>
+        </h:panelGrid>
+        <br />
+        <h:commandLink action="#{languageController.destroyAndView}" value="#{adminPages.ViewLanguageDestroyLink}"/>
+        <br />
+        <br />
+        <h:link outcome="Edit" value="#{adminPages.ViewLanguageEditLink}"/>
+        <br />
+        <h:commandLink action="#{languageController.prepareCreate}" value="#{adminPages.ViewLanguageCreateLink}" />
+        <br />
+        <h:commandLink action="#{languageController.prepareList}" value="#{adminPages.ViewLanguageShowAllLink}"/>
+        <br />
+        <br />
+        <h:link outcome="/index" value="#{adminPages.ViewLanguageIndexLink}"/>
+
+      </h:form>
+    </ui:define>
+  </ui:composition>
+
+</html>

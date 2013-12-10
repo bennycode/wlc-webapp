@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+  <ui:composition template="/template.xhtml">
+    <ui:define name="title">
+      <h:outputText value="#{adminPages.EditVideosTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+      <h:panelGroup id="messagePanel" layout="block">
+        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+      </h:panelGroup>
+      <h:form>
+        <h:panelGrid columns="2">
+          <h:outputLabel value="#{adminPages.EditVideosLabel_id}" for="id" />
+          <h:inputText id="id" value="#{videosController.selected.id}" title="#{adminPages.EditVideosTitle_id}" required="true" requiredMessage="#{adminPages.EditVideosRequiredMessage_id}"/>
+          <h:outputLabel value="#{adminPages.EditVideosLabel_code}" for="code" />
+          <h:inputText id="code" value="#{videosController.selected.code}" title="#{adminPages.EditVideosTitle_code}" required="true" requiredMessage="#{adminPages.EditVideosRequiredMessage_code}"/>
+          <h:outputLabel value="#{adminPages.EditVideosLabel_created}" for="created" />
+          <h:inputText id="created" value="#{videosController.selected.created}" title="#{adminPages.EditVideosTitle_created}" >
+            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+          </h:inputText>
+          <h:outputLabel value="#{adminPages.EditVideosLabel_description}" for="description" />
+          <h:inputText id="description" value="#{videosController.selected.description}" title="#{adminPages.EditVideosTitle_description}" />
+          <h:outputLabel value="#{adminPages.EditVideosLabel_lastmodified}" for="lastmodified" />
+          <h:inputText id="lastmodified" value="#{videosController.selected.lastmodified}" title="#{adminPages.EditVideosTitle_lastmodified}" >
+            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+          </h:inputText>
+          <h:outputLabel value="#{adminPages.EditVideosLabel_title}" for="title" />
+          <h:inputText id="title" value="#{videosController.selected.title}" title="#{adminPages.EditVideosTitle_title}" required="true" requiredMessage="#{adminPages.EditVideosRequiredMessage_title}"/>
+          <h:outputLabel value="#{adminPages.EditVideosLabel_playlistId}" for="playlistId" />
+          <h:selectOneMenu id="playlistId" value="#{videosController.selected.playlistId}" title="#{adminPages.EditVideosTitle_playlistId}" required="true" requiredMessage="#{adminPages.EditVideosRequiredMessage_playlistId}">
+            <f:selectItems value="#{playlistController.itemsAvailableSelectOne}"/>
+          </h:selectOneMenu>
+        </h:panelGrid>
+        <h:commandLink action="#{videosController.update}" value="#{adminPages.EditVideosSaveLink}"/>
+        <br />
+        <br />
+        <h:link outcome="View" value="#{adminPages.EditVideosViewLink}"/>
+        <br />
+        <h:commandLink action="#{videosController.prepareList}" value="#{adminPages.EditVideosShowAllLink}" immediate="true"/>
+        <br />
+        <br />
+        <h:link outcome="/index" value="#{adminPages.EditVideosIndexLink}" />
+      </h:form>
+    </ui:define>
+  </ui:composition>
+
+</html>

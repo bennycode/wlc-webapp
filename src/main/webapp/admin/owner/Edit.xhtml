@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+  <ui:composition template="/template.xhtml">
+    <ui:define name="title">
+      <h:outputText value="#{adminPages.EditOwnerTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="body">
+      <h:panelGroup id="messagePanel" layout="block">
+        <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+      </h:panelGroup>
+      <h:form>
+        <h:panelGrid columns="2">
+          <h:outputLabel value="#{adminPages.EditOwnerLabel_id}" for="id" />
+          <h:inputText id="id" value="#{ownerController.selected.id}" title="#{adminPages.EditOwnerTitle_id}" required="true" requiredMessage="#{adminPages.EditOwnerRequiredMessage_id}"/>
+          <h:outputLabel value="#{adminPages.EditOwnerLabel_channelUrl}" for="channelUrl" />
+          <h:inputText id="channelUrl" value="#{ownerController.selected.channelUrl}" title="#{adminPages.EditOwnerTitle_channelUrl}" />
+          <h:outputLabel value="#{adminPages.EditOwnerLabel_created}" for="created" />
+          <h:inputText id="created" value="#{ownerController.selected.created}" title="#{adminPages.EditOwnerTitle_created}" >
+            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+          </h:inputText>
+          <h:outputLabel value="#{adminPages.EditOwnerLabel_description}" for="description" />
+          <h:inputTextarea rows="4" cols="30" id="description" value="#{ownerController.selected.description}" title="#{adminPages.EditOwnerTitle_description}" />
+          <h:outputLabel value="#{adminPages.EditOwnerLabel_lastmodified}" for="lastmodified" />
+          <h:inputText id="lastmodified" value="#{ownerController.selected.lastmodified}" title="#{adminPages.EditOwnerTitle_lastmodified}" >
+            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+          </h:inputText>
+          <h:outputLabel value="#{adminPages.EditOwnerLabel_name}" for="name" />
+          <h:inputText id="name" value="#{ownerController.selected.name}" title="#{adminPages.EditOwnerTitle_name}" required="true" requiredMessage="#{adminPages.EditOwnerRequiredMessage_name}"/>
+          <h:outputLabel value="#{adminPages.EditOwnerLabel_type}" for="type" />
+          <h:inputText id="type" value="#{ownerController.selected.type}" title="#{adminPages.EditOwnerTitle_type}" />
+          <h:outputLabel value="#{adminPages.EditOwnerLabel_website}" for="website" />
+          <h:inputText id="website" value="#{ownerController.selected.website}" title="#{adminPages.EditOwnerTitle_website}" />
+        </h:panelGrid>
+        <h:commandLink action="#{ownerController.update}" value="#{adminPages.EditOwnerSaveLink}"/>
+        <br />
+        <br />
+        <h:link outcome="View" value="#{adminPages.EditOwnerViewLink}"/>
+        <br />
+        <h:commandLink action="#{ownerController.prepareList}" value="#{adminPages.EditOwnerShowAllLink}" immediate="true"/>
+        <br />
+        <br />
+        <h:link outcome="/index" value="#{adminPages.EditOwnerIndexLink}" />
+      </h:form>
+    </ui:define>
+  </ui:composition>
+
+</html>
