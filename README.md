@@ -1,6 +1,16 @@
-wlc-webapp
+We Love Coding — Web App
 ==========
 This is an attempt to make **www.welovecoding.com** a better place...
+
+## Accounts: ##
+
+**MySQL:**
+
+- Database: welovecoding
+- Host: localhost
+- User: welovecoding
+- Password: 123456
+
 
 ## Useful resources: ##
 
@@ -12,3 +22,4 @@ This is an attempt to make **www.welovecoding.com** a better place...
 **Mobile Web Apps:**
 
 - [Best Practices for Developing Web Apps](https://developer.amazon.com/sdk/webapps/Best-Practices.html)
+
