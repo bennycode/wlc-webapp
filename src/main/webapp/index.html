@@ -1,10 +1,86 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+  <head>
+    <title>Hello World!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/sidebar-widgets.css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+  </head>
+  <body>
+    <!-- Facebook JavaScript SDK -->
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1&appId=245151515509317";
+
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- Apps Widget -->
+    <div id="apps-widget" class="sidebar-widget">
+      <div id="apps-widget-icon" class="sidebar-icon">    
+        <i class="fa fa-mobile"></i>
+      </div>
+      <div id="apps-widget-content" class="sidebar-content">
+        <p>
+          <strong>Informatik Tutorials</strong><br/>
+          <b>Apps</b>
+        </p>
+        <br/>
+        <p>
+          <a href="https://play.google.com/store/apps/details?id=com.welovecoding.android"
+             target="_blank">
+            <img alt="Android app on Google Play"
+                 src="images/apps/badges/google/en_generic_rgb_wo_45.png" />
+          </a>
+        </p>
+        <p>
+          <a href="https://itunes.apple.com/app/informatik-tutorials/id659282498"
+             target="_blank">
+            <img alt="Available on the AppStore" 
+                 src="images/apps/badges/apple/apple-app-store-135-40.svg" />
+          </a>
+        </p>
+        <p>
+          <a href="http://apps.microsoft.com/windows/app/programming-tutorials/4632a265-4d8c-416f-b718-085aca0f9322"
+             target="_blank">
+            <img alt="Download from Windows Store" 
+                 src="images/apps/badges/microsoft/WindowsStore_badge_en_English_Black_small_154x40.png" />
+          </a>
+        </p>
+        <p>
+          <a href="http://www.windowsphone.com/s?appid=b993e26b-45b0-40a0-8d29-2220e084966c"
+             target="_blank">
+            <img alt="Download from Windows Phone Store" 
+                 src="images/apps/badges/microsoft/154x40_WPS_Download_blk.png" />
+          </a>
+        </p>
+      </div>
+    </div>
+    <!-- Facebook Widget -->
+    <div id="facebook-widget" class="sidebar-widget">
+      <div id="facebook-widget-icon" class="sidebar-icon"></div>
+      <div id="facebook-widget-content" class="sidebar-content">
+        <!-- Facebook Like Box -->
+        <div class="fb-like-box" 
+             data-href="https://www.facebook.com/welovecoding" 
+             data-width="237" 
+             data-height="389" 
+             data-colorscheme="light" 
+             data-show-faces="true"
+             data-header="false"
+             data-stream="false"
+             data-show-border="false">
+        </div>
+      </div>
+    </div>
+    <script src="js/lib/jquery-2.0.3.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>

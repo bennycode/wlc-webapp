@@ -1,0 +1,121 @@
+/* Variables */
+
+@appsWidgetColor: #F2412E;
+@facebookWidgetColor: #3B5998;
+@white: #FFF;
+@sidebarWidgetIconHolderHeight: 60px;
+
+/* Mixins */
+
+.sidebar-widget-content-border (@color: @appsWidgetColor) {
+  border: 4px solid @color;
+}
+
+body.desktop .sidebar-widget:hover {
+  right: 0px;
+}
+
+body.mobile .sidebar-widget.hover {
+  right: 0px;
+}
+
+body.desktop .sidebar-widget .sidebar-icon {
+  width: 34px;
+  left: -34px;
+}
+
+body.mobile .sidebar-widget .sidebar-icon {
+  width: 54px;
+  left: -54px;
+}
+
+.sidebar-widget {
+  // Position
+  position: fixed;
+  right: -245px;
+  top: 220px;
+
+  // Dimension
+  width: 245px;
+
+  // Transition
+  transition: right 0.8s;
+  -o-transition: right 0.8s;
+  -ms-transition: right 0.8s;
+  -moz-transition: right 0.8s;
+  -webkit-transition: right 0.8s;
+
+  .sidebar-icon {
+    // Position
+    float: left;
+    position: relative;
+
+    // Dimension
+    height: @sidebarWidgetIconHolderHeight;
+
+    // Layout
+    cursor: pointer;       
+    -webkit-user-select: none;
+  }
+
+  .sidebar-content {
+    // Position
+    float: right;
+    position: relative;
+
+    .fb_iframe_widget span {
+      max-width: 285px !important;
+      overflow: hidden;
+    }
+  }
+}
+
+#facebook-widget.sidebar-widget {
+  top: 220px;
+  height: 389px;
+
+  #facebook-widget-icon {
+    background: @facebookWidgetColor url("../images/facebook-button.png") no-repeat center;
+  }
+
+  #facebook-widget-content {
+    top: -60px;
+    width: 237px; 
+    height: 389px;
+    background-color: @white;
+    .sidebar-widget-content-border(@facebookWidgetColor);
+  }
+}
+
+#apps-widget.sidebar-widget {
+  top: 300px;
+  height: 399px;
+
+  #apps-widget-icon {
+    // Layout
+    background-color: @appsWidgetColor;
+
+    // Text
+    text-align: center;
+    color: @white;
+    line-height: @sidebarWidgetIconHolderHeight;
+    font-size: 48px;
+  }
+
+  #apps-widget-content{
+    // Position 
+    float: right;
+    position: relative;
+    top: -60px;
+
+    // Layout
+    background-color: @white;
+    .sidebar-widget-content-border;
+    text-align: center;
+
+    // Dimension
+    width: 217px;
+    height: auto;
+    padding: 10px
+  }
+}

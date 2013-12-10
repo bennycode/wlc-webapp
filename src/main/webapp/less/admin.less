@@ -1,0 +1,169 @@
+/* Variables */
+@imagePath: "../images/admin";
+
+/* Mixins */
+.box-sizing-border-box () {
+  -webkit-box-sizing: border-box; 
+  -moz-box-sizing: border-box; 
+  box-sizing: border-box;
+}
+
+body.admin {
+  background: #f7f7f7 url("@{imagePath}/gray_jean.png");
+
+  .loginwrapper {
+    width: 400px;
+    margin: 80px auto 0 auto;
+
+    @media screen and (max-width: 479px) {
+      width: 280px; 
+    }
+
+    a { 
+      color: #999; 
+    }
+
+    button.btn { 
+      padding: 12px 0; 
+      border: 0; 
+      text-transform: uppercase; 
+      font-size: 13px; 
+      text-shadow: 1px 1px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 3px rgba(0,0,0,0.3); 
+    }
+
+    input { 
+      width: 100%; 
+      .box-sizing-border-box;
+      padding: 10px; 
+      min-height: 44px; 
+      font-size: 14px !important; 
+      border: 0; 
+      border-radius: 2px;
+      color: #999;
+      background: #eee; 
+      padding-left: 30px; 
+      .error {
+        background-color: #ffeaea; color: #ff0000;
+      }
+      &:focus { 
+        background-color: #fff;
+        color: #666 !important; 
+        box-shadow: 0 0 8px rgba(0,0,0,0.8) !important;
+      }
+    }
+
+    input#username { 
+      background: #eee url("@{imagePath}/icons/username.png") no-repeat 8px 12px; 
+    }
+
+    input#password { 
+      background: #eee url("@{imagePath}/icons/password.png") no-repeat 8px 12px; 
+    }
+
+    p { 
+      margin: 20px 0; 
+      &:first-child { margin-top: 0; }
+      &:last-child { margin-bottom: 0; }
+    }
+  }
+}
+
+.loginwrapper input, 
+.loginwrapper a { 
+  -moz-transition: all 0.2s ease-out 0s; 
+  -webkit-transition: all 0.2s ease-out 0s; 
+  transition: all 0.2s ease-out 0s; 
+}
+
+.loginwrapperinner { 
+  padding: 20px; 
+  background: #444; 
+  -moz-border-radius: 0 0 2px 2px; 
+  -webkit-border-radius: 0 0 2px 2px; 
+  border-radius: 0 0 2px 2px;
+  .forgotPassword {
+    font-size: 14px;
+    color: #999;
+  }
+}
+
+.loginwrapper button.btn { 
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 2px;
+  width: 100%;
+  padding: 12px 0; 
+  border: 0; 
+  text-transform: uppercase; 
+  font-size: 13px; 
+  text-shadow: 1px 1px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.3); 
+}
+
+.btn-default {
+  background: #3b6998; color: #fff; text-shadow: 1px 1px rgba(0,0,0,0.1);
+  background: -moz-linear-gradient(top,  #3b6998 0%, #0b4073 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3b6998), color-stop(100%,#0b4073));
+  background: -webkit-linear-gradient(top,  #3b6998 0%,#0b4073 100%);
+  background: -o-linear-gradient(top,  #3b6998 0%,#0b4073 100%);
+  background: -ms-linear-gradient(top,  #3b6998 0%,#0b4073 100%);
+  background: linear-gradient(to bottom,  #3b6998 0%,#0b4073 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b6998', endColorstr='#0b4073',GradientType=0 );
+}
+
+.btn-default:hover {
+  background: #4e86b7; color: #fff; text-shadow: 1px 1px rgba(0,0,0,0.1);
+  background: -moz-linear-gradient(top,  #4e86b7 0%, #035f9a 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4e86b7), color-stop(100%,#035f9a));
+  background: -webkit-linear-gradient(top,  #4e86b7 0%,#035f9a 100%);
+  background: -o-linear-gradient(top,  #4e86b7 0%,#035f9a 100%);
+  background: -ms-linear-gradient(top,  #4e86b7 0%,#035f9a 100%);
+  background: linear-gradient(to bottom,  #4e86b7 0%,#035f9a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e86b7', endColorstr='#035f9a',GradientType=0 );
+}
+
+.loginwrap {
+  .header {
+    padding: 15px;
+    border: 1px solid #bbb;
+    font-size: 18px;
+    border-bottom: 0;
+
+    -moz-border-radius: 2px 2px 0 0;
+    -webkit-border-radius: 2px 2px 0 0;
+    border-radius: 2px 2px 0 0;
+
+    color: #666;
+
+    background: rgb(237,237,237);
+    background: -moz-linear-gradient(top, rgba(237,237,237,1) 0%, rgba(222,222,222,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(237,237,237,1)), color-stop(100%,rgba(222,222,222,1)));
+    background: -webkit-linear-gradient(top, rgba(237,237,237,1) 0%,rgba(222,222,222,1) 100%);
+    background: -o-linear-gradient(top, rgba(237,237,237,1) 0%,rgba(222,222,222,1) 100%);
+    background: -ms-linear-gradient(top, rgba(237,237,237,1) 0%,rgba(222,222,222,1) 100%);
+    background: linear-gradient(to bottom, rgba(237,237,237,1) 0%,rgba(222,222,222,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#dedede',GradientType=0 );
+
+    .lock {
+      margin-right: 14px;
+    }
+    .title {
+      line-height: 20px;
+      font-weight: bold;
+      display: block;
+    }
+    .subTitle {      
+      font-size: 14px;      
+    }
+    .left {
+      float: left;
+    }
+  }
+}
+
+.loginshadow {
+  background: url("@{imagePath}/loginshadow.png") no-repeat center center;
+  width: 400px;
+  height: 30px;
+}
