@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <!-- Persistence Unit for MySQL -->
   <persistence-unit name="com.welovecoding.web_wlc-webapp_war_1.0-SNAPSHOTPU" transaction-type="JTA">
     <jta-data-source>jdbc/welovecoding</jta-data-source>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties/>
+  </persistence-unit>
+  <!-- Persistence Unit for H2 -->
+  <persistence-unit 
+    name="com.welovecoding.web_h2_unit" 
+    transaction-type="JTA"
+  >
+    <jta-data-source>java:app/jdbc/jdbc/welovecoding_h2</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>
