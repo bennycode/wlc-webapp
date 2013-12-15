@@ -1,3 +1,5 @@
+/assets/sql/production/*.sql
+
 *.class
 
 # Package Files #
