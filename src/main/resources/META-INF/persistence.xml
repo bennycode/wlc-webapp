@@ -6,13 +6,4 @@
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>
-  <!-- Persistence Unit for H2 -->
-  <persistence-unit 
-    name="com.welovecoding.web_h2_unit" 
-    transaction-type="JTA"
-  >
-    <jta-data-source>java:app/jdbc/jdbc/welovecoding_h2</jta-data-source>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
-  </persistence-unit>
 </persistence>
