@@ -36,6 +36,16 @@
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/admin/*</url-pattern>
   </filter-mapping>
+  <!-- Security Constraints -->
+  <!-- http://stackoverflow.com/a/9033567/451634 -->
+  <security-constraint>
+    <display-name>Restrict direct access to the /resources folder.</display-name>
+    <web-resource-collection>
+      <web-resource-name>The /resources folder.</web-resource-name>
+      <url-pattern>/resources/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint />
+  </security-constraint> 
   <!-- Homepages -->
   <welcome-file-list>
     <welcome-file>index.xhtml</welcome-file>
