@@ -1,15 +1,19 @@
 package com.welovecoding.web.security;
 
 import com.welovecoding.web.navigation.Pages;
+import com.welovecoding.web.session.SessionValues;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
 @Named
 @RequestScoped
 public class LoginBean implements Serializable {
+
+  private final FacesContext context;
 
   private static final String[] users = {
     "anna:qazwsx",
@@ -19,16 +23,22 @@ public class LoginBean implements Serializable {
   private String username;
   private String password;
 
-  private boolean loggedIn;
+  public LoginBean() {
+    context = FacesContext.getCurrentInstance();
+  }
 
-  public String doLogin() {
+  private void saveLoginInSession() {
+    context.getExternalContext().getSessionMap().put(SessionValues.LOGGED_IN, true);
+  }
+
+  public String login() {
     for (String user : users) {
       String dbUsername = user.split(":")[0];
       String dbPassword = user.split(":")[1];
 
       if (dbUsername.equals(username) && dbPassword.equals(password)) {
-        loggedIn = true;
-        return Pages.ADMIN_INDEX.toString();
+        saveLoginInSession();
+        return Pages.ADMIN_INDEX;
       }
     }
 
@@ -36,7 +46,13 @@ public class LoginBean implements Serializable {
     message.setSeverity(FacesMessage.SEVERITY_ERROR);
     FacesContext.getCurrentInstance().addMessage(null, message);
 
-    return Pages.LOGIN.toString();
+    return Pages.JSF_LOGIN;
+  }
+
+  public String logout() {
+    context.getExternalContext().invalidateSession();
+    HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+    return request.getContextPath() + Pages.INDEX;
   }
 
   public String getUsername() {
@@ -55,12 +71,8 @@ public class LoginBean implements Serializable {
     this.password = password;
   }
 
-  public boolean isLoggedIn() {
-    return loggedIn;
-  }
-
-  public void setLoggedIn(boolean loggedIn) {
-    this.loggedIn = loggedIn;
+  boolean isLoggedIn() {
+    return (boolean) context.getExternalContext().getSessionMap().get(SessionValues.LOGGED_IN);
   }
 
 }

@@ -1,5 +1,6 @@
 /* Variables */
 
+@imagePath: "/images";
 @appsWidgetColor: #F2412E;
 @facebookWidgetColor: #3B5998;
 @white: #FFF;
@@ -17,6 +18,12 @@ body.desktop .sidebar-widget:hover {
 
 body.mobile .sidebar-widget.hover {
   right: 0px;
+}
+
+body.desktop .sidebar-widget .sidebar-icon {
+  color: white;
+  font-size: 48px;
+  text-align: center;
 }
 
 body.desktop .sidebar-widget .sidebar-icon {
@@ -75,7 +82,7 @@ body.mobile .sidebar-widget .sidebar-icon {
   height: 389px;
 
   #facebook-widget-icon {
-    background: @facebookWidgetColor url("../images/facebook-button.png") no-repeat center;
+    background: @facebookWidgetColor url("@{imagePath}/facebook-button.png") no-repeat center;
   }
 
   #facebook-widget-content {
