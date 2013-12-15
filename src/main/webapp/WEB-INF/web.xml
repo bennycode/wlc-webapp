@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<web-app 
+  version="3.1" 
+  xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+  <display-name>We Love Coding - Web App</display-name>
+  <!-- Project -->
   <context-param>
     <param-name>javax.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
   </context-param>
+  <!-- Servlet declarations -->
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  <!-- Servlet mappings -->
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
@@ -18,6 +26,17 @@
       30
     </session-timeout>
   </session-config>
+  <!-- Filter declarations -->
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>com.welovecoding.web.security.LoginFilter</filter-class>
+  </filter>
+  <!-- Filter mappings -->
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+  <!-- Homepages -->
   <welcome-file-list>
     <welcome-file>index.xhtml</welcome-file>
     <welcome-file>List.xhtml</welcome-file>
