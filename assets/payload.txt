@@ -1,0 +1,12 @@
+﻿jquery-2.0.3.min.js		 			 82,0 KB
+jquery-2.0.3.min.map				114,0 KB
+font-awesome.min.css	 			 17,7 KB
+fontawesome-webfont.woff?v=4.0.3	 43,7 KB
+bootstrap.min.css?v=3.0.3			 97,6 KB
+
+Consider to reduce the payload with:
+http://zeptojs.com/
+http://icomoon.io/
+
+LESS compiler options:
+--clean-css
