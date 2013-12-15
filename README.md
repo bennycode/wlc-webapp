@@ -4,7 +4,7 @@ This is an attempt to make **www.welovecoding.com** a better place...
 
 ## Accounts: ##
 
-**MySQL:**
+**MySQL**
 
 - Database: welovecoding
 - Host: localhost
@@ -14,17 +14,17 @@ This is an attempt to make **www.welovecoding.com** a better place...
 
 ## Useful resources: ##
 
-**Java:**
+**Java**
 
 - [Generating a JavaServer Faces 2.x CRUD Application from a Database](https://netbeans.org/kb/docs/web/jsf20-crud.html)
 - [From database to RESTful web service to HTML5 in FIVE minutes](http://jaxenter.com/from-database-to-restful-web-service-to-html5-in-five-minutes-48908.html)
 - [How to use a JEE Filter to secure JSF 2 application resources](http://www.itcuties.com/j2ee/jsf-2-login-filter-example/)
 
-**Mobile Web Apps:**
+**Mobile Web Apps**
 
 - [Best Practices for Developing Web Apps](https://developer.amazon.com/sdk/webapps/Best-Practices.html)
 
-**Rules:**
+**Rules**
 
 - [Apache Maven: Guide to naming conventions](http://maven.apache.org/guides/mini/guide-naming-conventions.html)
 - [Should package names be singular or plural?](http://programmers.stackexchange.com/a/75929)
