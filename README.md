@@ -30,4 +30,7 @@ This is an attempt to make **www.welovecoding.com** a better place...
 - [Should package names be singular or plural?](http://programmers.stackexchange.com/a/75929)
 - [Which XHTML files do I need to put in /WEB-INF and which not?](http://stackoverflow.com/a/9033567/451634)
 
+##Cool projects:##
+[Pebble - A lightweight, open source, Java EE blogging tool](https://github.com/pebbleblog/pebble)
+
 
