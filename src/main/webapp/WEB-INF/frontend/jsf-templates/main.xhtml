@@ -8,65 +8,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title><ui:insert name="title">Hello World</ui:insert></title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <!--<link rel="stylesheet" href="css/generated/main.css" />-->
-    <style>
-      .container {
-        padding-left: 15px;
-        padding-right: 15px;
-      }
-
-      h4 {
-        margin-top: 25px;
-      }
-      .row {
-        margin-bottom: 20px;
-      }
-      .row .row {
-        margin-top: 10px;
-        margin-bottom: 0;
-      }
-      [class*="col-"] {
-        padding-top: 15px;
-        padding-bottom: 15px;
-        background-color: #eee;
-        border: 1px solid #ddd;
-        background-color: rgba(86,61,124,.15);
-        border: 1px solid rgba(86,61,124,.2);
-      }
-
-      hr {
-        margin-top: 40px;
-        margin-bottom: 40px;
-      }
-    </style>
+    <title><ui:insert name="title">Informatik Tutorials</ui:insert></title>
+    <h:outputStylesheet library="css/pure-0.3.0" name="base-min.css" />
+    <h:outputStylesheet library="css/pure-0.3.0" name="grids-min.css" />
   </h:head>
 
   <h:body>
-    <div class="container">
-      <div class="page-header">
-        <h1>Bootstrap grid examples</h1>
-        <p class="lead">Basic grid layouts to get you familiar with building within the Bootstrap grid system.</p>
-      </div>
-      <h3>Three equal columns</h3>
-      <p>Get three equal-width columns <strong>starting at desktops and scaling to large desktops</strong>. On mobile devices, tablets and below, the columns will automatically stack.</p>
-      <div class="row">
-        <div class="col-md-4">.col-md-4</div>
-        <div class="col-md-4">.col-md-4</div>
-        <div class="col-md-4">.col-md-4</div>
-      </div>
-
-      <h3>Three unequal columns</h3>
-      <p>Get three columns <strong>starting at desktops and scaling to large desktops</strong> of various widths. Remember, grid columns should add up to twelve for a single horizontal block. More than that, and columns start stacking no matter the viewport.</p>
-      <div class="row">
-        <div class="col-md-3">
-          <ui:insert name="bodyContent">Default Body</ui:insert>
+    <div class="pure-g-r" id="wlc">
+      <div class="pure-u-1" id="main">
+        <div class="pure-g-r" id="header">
+          <div class="pure-u-1-5" id="title">We Love Coding.</div>
+          <div class="pure-u-4-5" id="navi">Home | Tutorials | About | Support</div>
         </div>
-        <div class="col-md-6">.col-md-6</div>
-        <div class="col-md-3">.col-md-3</div>
+        <div class="pure-g-r" id="teaser">
+          <div class="pure-u-1-2" id="hello">Register</div>
+          <div class="pure-u-1-2" id="logo">Nerd</div>
+        </div>
+        <div class="pure-g-r" id="content">
+          <div class="pure-u-1-3" id="sidebar">
+            <ui:insert name="bodyContent">Default Body</ui:insert>
+          </div>
+          <div class="pure-u-2-3" id="text">Lorem ipsum...</div>
+        </div>
+        <div class="pure-g" id="footer">
+          <div class="pure-u-1-2" id="copy">Copyright</div>
+          <div class="pure-u-1-2" id="links">Imprint | Contact</div>          
+        </div>
       </div>
-
     </div>
   </h:body>
 

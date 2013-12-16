@@ -1,4 +1,5 @@
-/assets/sql/production/*.sql
+/assets/sql/production/
+/assets/photoshop
 
 *.class
 
