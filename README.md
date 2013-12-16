@@ -2,7 +2,7 @@ We Love Coding — Web App
 ==========
 This is an attempt to make **www.welovecoding.com** a better place...
 
-## Accounts: ##
+## Configuration: ##
 
 **MySQL**
 
@@ -11,6 +11,10 @@ This is an attempt to make **www.welovecoding.com** a better place...
 - User: welovecoding
 - Password: 123456
 
+**LESS preprocessor**
+
+- **Input:** /WEB-INF/frontend/less
+- **Output:** ../resources/META-INF/resources/css/generated
 
 ## Useful resources: ##
 
@@ -19,7 +23,6 @@ This is an attempt to make **www.welovecoding.com** a better place...
 - [Generating a JavaServer Faces 2.x CRUD Application from a Database](https://netbeans.org/kb/docs/web/jsf20-crud.html)
 - [From database to RESTful web service to HTML5 in FIVE minutes](http://jaxenter.com/from-database-to-restful-web-service-to-html5-in-five-minutes-48908.html)
 - [How to use a JEE Filter to secure JSF 2 application resources](http://www.itcuties.com/j2ee/jsf-2-login-filter-example/)
-- [Project Lombok & JEE](http://javalabor.blogspot.de/2012/01/java-verbosity-jee-and-lombok.html)
 
 **Mobile Web Apps**
 
@@ -32,6 +35,9 @@ This is an attempt to make **www.welovecoding.com** a better place...
 - [Which XHTML files do I need to put in /WEB-INF and which not?](http://stackoverflow.com/a/9033567/451634)
 
 ##Cool projects:##
-[Pebble - A lightweight, open source, Java EE blogging tool](https://github.com/pebbleblog/pebble)
+- [Pebble - A lightweight, open source, Java EE blogging tool](https://github.com/pebbleblog/pebble)
+- [Project Lombok](http://projectlombok.org/), [Project Lombok & JEE](http://javalabor.blogspot.de/2012/01/java-verbosity-jee-and-lombok.html)
+- [Pure CSS modules](http://purecss.io/)
+
 
 
