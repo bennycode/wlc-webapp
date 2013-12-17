@@ -32,20 +32,21 @@ body,
   /* TODO: Bind text-shadow to .desktop class */
   text-shadow: 1px -1px 1px rgba(0, 0, 0, 0.22);
 }
-#wlc #main #top #header #navi ul {
+#wlc #main #top #header #navi {
+  float: right;
   list-style: none;
 }
-#wlc #main #top #header #navi ul li {
+#wlc #main #top #header #navi li {
   float: left;
   margin-right: 6px;
 }
-#wlc #main #top #header #navi ul li a {
+#wlc #main #top #header #navi li a {
   color: white;
   padding: 3px;
   padding-left: 12px;
   padding-right: 12px;
 }
-#wlc #main #top #header #navi ul li.current-menu-item a {
+#wlc #main #top #header #navi li.current-menu-item a {
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) inset;
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) inset;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) inset;
@@ -53,6 +54,9 @@ body,
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+}
+#wlc #main #top #header #navi:after {
+  clear: right;
 }
 #wlc #main #top #teaser {
   max-width: 960px;
@@ -176,8 +180,30 @@ body,
   font-weight: bold;
   text-transform: uppercase;
 }
-/* */
+/* FEATURES */
+#features i {
+  color: #fffefe;
+  background-color: #f2412e;
+  border: 1px solid #f2412e;
+  border-radius: 50%;
+  padding: 5px;
+}
+#features h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #303030;
+  padding-right: 40px;
+}
+#features p {
+  padding-right: 40px;
+  font-size: 14px;
+  color: #2d2d2d;
+  text-align: justify;
+}
 /* General */
+.float-right {
+  float: right;
+}
 .float-left {
   float: left;
 }

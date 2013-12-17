@@ -61,29 +61,31 @@ body,
           text-shadow: 1px -1px 1px rgba(0,0,0,.22);
         }
         #navi {
-          ul {
-            list-style: none;
-            li {
-              float: left;
-              margin-right: 6px;
+          float: right;
+          list-style: none;
+          li {
+            float: left;
+            margin-right: 6px;
+            a {
+              color: white;
+              padding: 3px;
+              padding-left: 12px;
+              padding-right: 12px;
+            }
+            &.current-menu-item {
               a {
-                color: white;
-                padding: 3px;
-                padding-left: 12px;
-                padding-right: 12px;
-              }
-              &.current-menu-item {
-                a {
-                  -webkit-box-shadow:0 1px 1px rgba(0,0,0,0.15) inset;
-                  -moz-box-shadow:0 1px 1px rgba(0,0,0,0.15) inset;
-                  box-shadow:0 1px 1px rgba(0,0,0,0.15) inset;
-                  background: #3d4e5b;
-                  -webkit-border-radius: 3px;
-                  -moz-border-radius: 3px;
-                  border-radius: 3px;
-                }
+                -webkit-box-shadow:0 1px 1px rgba(0,0,0,0.15) inset;
+                -moz-box-shadow:0 1px 1px rgba(0,0,0,0.15) inset;
+                box-shadow:0 1px 1px rgba(0,0,0,0.15) inset;
+                background: #3d4e5b;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
               }
             }
+          }
+          &:after {
+            clear: right;
           }
         }
       }
@@ -201,9 +203,34 @@ body,
   }
 }
 
-/* */
+/* FEATURES */
+#features {
+  i {
+    color: @white;
+    background-color: @red;
+    border: 1px solid @red;
+    border-radius: 50%; 
+    padding: 5px;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #303030;  
+    padding-right: 40px;
+  }
+  p {
+    padding-right: 40px;
+    font-size: 14px;
+    color: #2d2d2d;
+    text-align: justify;
+  }
+}
 
 /* General */
+.float-right {
+  float: right;
+}
+
 .float-left {
   float: left;
 }
