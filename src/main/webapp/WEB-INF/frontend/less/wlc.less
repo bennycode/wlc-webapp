@@ -44,6 +44,10 @@ body,
   font-family: 'Open Sans', sans-serif;
 }
 
+html {
+  background-image: url("#{resource['images:chalkboard-gray-500.png']}");
+}
+
 #wlc {
   #main {
     #top {      
@@ -101,11 +105,16 @@ body,
       }
     }
     #center {
-      .maximum-width;
+      background-color: white;
+      #features {
+        .maximum-width;
+      }
+      #content {
+        .maximum-width;
+      }
     }
     #bottom {
       border-top: 1px solid rgba(255,255,255,0.2);
-      background-image: url("#{resource['images:chalkboard-gray-500.png']}");
       #footer {
         color: @white-text;
         .maximum-width;

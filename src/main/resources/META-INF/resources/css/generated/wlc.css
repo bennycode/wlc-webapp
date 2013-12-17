@@ -14,6 +14,9 @@ body,
   /* http://purecss.io/grids/#using-grids-with-custom-fonts */
   font-family: 'Open Sans', sans-serif;
 }
+html {
+  background-image: url("#{resource['images:chalkboard-gray-500.png']}");
+}
 #wlc #main #top {
   /* TODO: Apply lower resolution for mobile devices */
   background-image: url("#{resource['images:chalkboard-gray-500.png']}");
@@ -69,12 +72,18 @@ body,
   /*padding: 1em;*/
 }
 #wlc #main #center {
+  background-color: white;
+}
+#wlc #main #center #features {
+  max-width: 960px;
+  margin: 0 auto;
+}
+#wlc #main #center #content {
   max-width: 960px;
   margin: 0 auto;
 }
 #wlc #main #bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  background-image: url("#{resource['images:chalkboard-gray-500.png']}");
 }
 #wlc #main #bottom #footer {
   color: #f8f8f8;
