@@ -104,7 +104,10 @@ body,
       .maximum-width;
     }
     #bottom {
+      border-top: 1px solid rgba(255,255,255,0.2);
+      background-image: url("#{resource['images:chalkboard-gray-500.png']}");
       #footer {
+        color: @white-text;
         .maximum-width;
       }
     }
@@ -226,6 +229,12 @@ body,
   }
 }
 
+/**/
+#hello-categories-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
 /* General */
 .float-right {
   float: right;
@@ -240,6 +249,10 @@ body,
 }
 
 /* HELLO CONTENT */
+#hello-intro  {
+  margin-bottom: 20px;
+}
+
 #hello-categories {
   float: right;
   list-style: none;
@@ -249,7 +262,7 @@ body,
   li {
     float: left;
     min-width: 150px;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
     text-align: center;
     cursor: pointer;
     height: 42px;
@@ -260,10 +273,34 @@ body,
       min-width: 130px;
       max-width: 130px;
       display: block;
-      .hello-button-outline;
+      .border-radius(20px);
+      background-color: lightgray;
+      box-shadow: 0 3px 7px rgba(0,0,0,.8);
       &:hover{ 
-        background-color: lighten(#d94636, 10%);
+        background-color: lighten(rgba(0,0,0,.8), 90%);
       }
     }
   }
+}
+
+/* FOOTER */
+#copy {
+  a {
+    color: @white;
+    border-bottom: 1px @white dotted;
+  }
+}
+
+#links  {
+  a {
+    color: @white;
+  }
+}
+
+hr {
+  background-image: url("#{resource['images:divider.png']}");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 16px;
+  border: 0;
 }
