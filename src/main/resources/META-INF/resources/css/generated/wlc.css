@@ -11,6 +11,10 @@ body,
   /* Header */
   /* Teaser */
 }
+#wlc #main #top #header {
+  max-width: 960px;
+  margin: 0 auto;
+}
 #wlc #main #top #header #title {
   color: #fffefe;
   font-family: "Open Sans";
@@ -20,26 +24,68 @@ body,
   text-shadow: 1px -1px 1px rgba(0, 0, 0, 0.22);
 }
 #wlc #main #top #header #navi ul {
-  margin: 0.5em 0 0 0;
-  padding: 0;
   list-style: none;
 }
 #wlc #main #top #header #navi ul li {
   float: left;
-  padding-bottom: 0.5em;
+  margin-right: 6px;
 }
 #wlc #main #top #header #navi ul li a {
   color: white;
+  padding: 3px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+#wlc #main #top #header #navi ul li.current-menu-item a {
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) inset;
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) inset;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) inset;
+  background: #3d4e5b;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 #wlc #main #top #teaser {
+  max-width: 960px;
+  margin: 0 auto;
   color: white;
 }
 #wlc #main #top #teaser #nerd {
+  margin-top: 1em;
+  margin-bottom: 1em;
   /*padding: 1em;*/
+}
+#wlc #main #center {
+  max-width: 960px;
+  margin: 0 auto;
+}
+#wlc #main #bottom #footer {
+  max-width: 960px;
+  margin: 0 auto;
 }
 #wlc a {
   text-decoration: none;
 }
 #wlc span.highlight {
   color: #f2412e;
+}
+.button {
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+}
+.button.highlight {
+  color: white;
+  background-color: #f3715d;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+.button span {
+  font-size: 13px;
+  margin-left: 10px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.17);
 }
