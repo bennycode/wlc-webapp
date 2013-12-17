@@ -210,3 +210,37 @@ body,
 .inline-block {
   display: inline-block;
 }
+/* HELLO CONTENT */
+#hello-categories {
+  float: right;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
+}
+#hello-categories li {
+  float: left;
+  min-width: 150px;
+  margin-bottom: 12px;
+  text-align: center;
+  cursor: pointer;
+  height: 42px;
+  line-height: 42px;
+}
+#hello-categories li a {
+  color: #2d2d2d;
+  background-color: red;
+  min-width: 130px;
+  max-width: 130px;
+  display: block;
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0);
+  -webkit-box-shadow: inset 0 2px 32px rgba(0, 0, 0, 0.93);
+  -moz-box-shadow: inset 0 2px 32px rgba(0, 0, 0, 0.93);
+  box-shadow: inset 0 2px 32px rgba(0, 0, 0, 0.93);
+}
+#hello-categories li a:hover {
+  background-color: #e16d61;
+}

@@ -3,7 +3,7 @@
 @red: #f2412e;
 @white: #fffefe;
 @white-text: #f8f8f8;
-
+@text-color: #2d2d2d;
 
 .maximum-width () {
   max-width: 960px;
@@ -239,3 +239,31 @@ body,
   display: inline-block;
 }
 
+/* HELLO CONTENT */
+#hello-categories {
+  float: right;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
+  li {
+    float: left;
+    min-width: 150px;
+    margin-bottom: 12px;
+    text-align: center;
+    cursor: pointer;
+    height: 42px;
+    line-height: 42px;
+    a {
+      color: @text-color;
+      background-color: red;
+      min-width: 130px;
+      max-width: 130px;
+      display: block;
+      .hello-button-outline;
+      &:hover{ 
+        background-color: lighten(#d94636, 10%);
+      }
+    }
+  }
+}

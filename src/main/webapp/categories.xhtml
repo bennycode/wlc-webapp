@@ -6,9 +6,10 @@
   <h:body>
     <ui:composition template="/WEB-INF/frontend/jsf-templates/main.xhtml">
       <ui:define name="bodyContent">
-        <ul>
+        <p><strong>Kategorien</strong></p>
+        <ul id="hello-categories">
           <ui:repeat value="#{categoryService.getCategoriesOrderedByTitle()}" var="category">
-            <li><h:outputText value="#{category.title}"/></li>
+            <li><a href="#"><h:outputText value="#{category.title}"/></a></li>
           </ui:repeat>
         </ul>
       </ui:define>
