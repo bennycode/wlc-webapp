@@ -1,0 +1,7 @@
+#teaser {
+  background: url('chalkboard.png.xhtml?ln=images');
+  color: white;
+}
+#teaser #nerd {
+  padding: 1em;
+}

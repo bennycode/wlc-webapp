@@ -17,22 +17,40 @@
   <h:body>
     <div class="pure-g-r" id="wlc">
       <div class="pure-u-1" id="main">
-        <div class="pure-g-r" id="header">
-          <div class="pure-u-1-5" id="title">We Love Coding.</div>
-          <div class="pure-u-4-5" id="navi">Home | Tutorials | About | Support</div>
-        </div>
-        <div class="pure-g-r" id="teaser">
-          <div class="pure-u-1-2" id="hello">Register</div>
-          <div class="pure-u-1-2 l-centered" id="logo">
-            <h:graphicImage id="nerd" name="/images/nerd.png" width="456" height="355" alt="Nerd" />
+        <!-- Top -->
+        <div class="pure-g-r" id="top">
+          <div class="pure-u-1">
+            <!-- Header -->
+            <div class="pure-g-r" id="header">
+              <div class="pure-u-1-5" id="title">We Love Coding<span class="highlight">.</span></div>
+              <div class="pure-u-4-5" id="navi">
+                <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Tutorials</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Support</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="pure-u-1">
+            <!-- Teaser -->
+            <div class="pure-g-r" id="teaser">
+              <div class="pure-u-1-2" id="hello">Register!!!!</div>
+              <div class="pure-u-1-2 l-centered" id="logo">
+                <h:graphicImage id="nerd" name="/images/nerd.png" width="456" height="355" alt="Nerd" />
+              </div>
+            </div>
           </div>
         </div>
+        <!-- Content -->
         <div class="pure-g-r" id="content">
           <div class="pure-u-1-3" id="sidebar">
             <ui:insert name="bodyContent">Default Body</ui:insert>
           </div>
           <div class="pure-u-2-3" id="text">Lorem ipsum...</div>
         </div>
+        <!-- Footer -->
         <div class="pure-g" id="footer">
           <div class="pure-u-1-2" id="copy">Copyright</div>
           <div class="pure-u-1-2" id="links">Imprint | Contact</div>          

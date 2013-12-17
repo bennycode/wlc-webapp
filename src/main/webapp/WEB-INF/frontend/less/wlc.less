@@ -1,8 +1,59 @@
-#teaser {
-  background: url('chalkboard.png.xhtml?ln=images');
-  color: white;
-  
-  #nerd {
-    padding: 1em;
-  } 
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:600,700,400");
+
+@red: #f2412e;
+@white: #fffefe;
+
+body,
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"] {
+  /* http://purecss.io/grids/#using-grids-with-custom-fonts */
+  font-family: 'Open Sans', sans-serif;
 }
+
+#wlc {
+  #main {
+    #top {
+      /* TODO: Apply lower resolution for mobile devices */
+      background-image: url("#{resource['images:chalkboard-gray-500.png']}");
+      /* Header */
+      #header {
+        #title {
+          color: @white;
+          font-family: "Open Sans";
+          font-size: 34px;
+          font-weight: bold;
+          /* TODO: Bind text-shadow to .desktop class */
+          text-shadow: 1px -1px 1px rgba(0,0,0,.22);
+        }
+        #navi {
+          ul {
+            margin: 0.5em 0 0 0;
+            padding: 0;
+            list-style: none;
+            li {
+              float: left;
+              padding-bottom: 0.5em;
+              a {
+                color: white;
+              }
+            }
+          }
+        }
+      }
+      /* Teaser */
+      #teaser {
+        color: white;
+        #nerd {
+          /*padding: 1em;*/
+        } 
+      }
+    }
+  }
+  a {
+    text-decoration: none;
+  }
+  span.highlight {
+    color: @red;
+  }
+}
+

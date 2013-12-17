@@ -1,7 +1,45 @@
-#teaser {
-  background: url('chalkboard.png.xhtml?ln=images');
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:600,700,400");
+body,
+.pure-g [class*="pure-u"],
+.pure-g-r [class*="pure-u"] {
+  /* http://purecss.io/grids/#using-grids-with-custom-fonts */
+  font-family: 'Open Sans', sans-serif;
+}
+#wlc #main #top {
+  /* TODO: Apply lower resolution for mobile devices */
+  background-image: url("#{resource['images:chalkboard-gray-500.png']}");
+  /* Header */
+  /* Teaser */
+}
+#wlc #main #top #header #title {
+  color: #fffefe;
+  font-family: "Open Sans";
+  font-size: 34px;
+  font-weight: bold;
+  /* TODO: Bind text-shadow to .desktop class */
+  text-shadow: 1px -1px 1px rgba(0, 0, 0, 0.22);
+}
+#wlc #main #top #header #navi ul {
+  margin: 0.5em 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+#wlc #main #top #header #navi ul li {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#wlc #main #top #header #navi ul li a {
   color: white;
 }
-#teaser #nerd {
-  padding: 1em;
+#wlc #main #top #teaser {
+  color: white;
+}
+#wlc #main #top #teaser #nerd {
+  /*padding: 1em;*/
+}
+#wlc a {
+  text-decoration: none;
+}
+#wlc span.highlight {
+  color: #f2412e;
 }
