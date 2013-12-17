@@ -2,8 +2,10 @@
 
 @red: #f2412e;
 @white: #fffefe;
+@white-text: #f8f8f8;
 
-.maximum-width() {
+
+.maximum-width () {
   max-width: 960px;
   margin: 0 auto;
 }
@@ -12,6 +14,27 @@
   border-radius: @radius;
   -moz-border-radius: @radius;
   -webkit-border-radius: @radius;
+}
+
+.margin-bottom (@length) {
+  margin: 0 0 @length;
+}
+
+.font-size(@size) {
+  font-size: @size;
+  line-height: @size;
+}
+
+.margin(@top, @right, @bottom, @left) {
+  margin: @top @right @bottom @left;
+}
+
+.hello-button-outline {
+  .border-radius(20px);
+  background-color: rgba(255,255,255,0);
+  -webkit-box-shadow: inset 0 2px 32px rgba(0,0,0,.93);
+  -moz-box-shadow: inset 0 2px 32px rgba(0,0,0,.93);
+  box-shadow: inset 0 2px 32px rgba(0,0,0,.93);
 }
 
 body,
@@ -110,3 +133,82 @@ body,
     text-shadow: 0 -1px 0 rgba(0,0,0,0.17);
   }
 }
+
+/* HELLO CONTENT */
+
+#hello-content {
+  margin-top: 80px;
+}
+
+#description {
+  color: @white-text;
+  font-weight: 600;
+  .font-size(20px);
+  .margin-bottom(22px);
+}
+
+#title-text {
+  color: @white-text;
+  font-weight: bold;
+  .font-size(72px);
+  .margin-bottom(36px);
+}
+
+.hello-button {
+  height: 42px;
+  line-height: 42px;
+  text-align: center;
+  color: @white-text;
+  &#quickstart {
+    width: 141px;
+    /* Text */
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    /* Styling */
+    cursor: pointer;
+    .hello-button-outline;
+  }
+  &#or {
+    font-size: 16px;
+    font-style: italic;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+  &#register-outline {
+    width: 139px;
+    .hello-button-outline;
+    #register {
+      width: 126px;
+      height: 31px;
+      line-height: 31px;
+      .margin(6px,0px,0px,6px);
+      /* Background */
+      .border-radius(14px);      
+      background-color: #d94636;
+      box-shadow: 0 3px 7px rgba(0,0,0,.2);
+      -moz-box-shadow: 0 3px 7px rgba(0,0,0,.2);
+      -webkit-box-shadow: 0 3px 7px rgba(0,0,0,.2);
+      background-image: -webkit-linear-gradient(bottom, #ed1810, #f74d37);
+      background-image: -moz-linear-gradient(bottom, #ed1810, #f74d37);
+      background-image: -o-linear-gradient(bottom, #ed1810, #f74d37);
+      background-image: linear-gradient(to top, #ed1810, #f74d37);
+      /* Font */
+      cursor: pointer;
+      font-weight: bold;      
+      text-transform: uppercase;
+    }
+  }
+}
+
+/* */
+
+/* General */
+.float-left {
+  float: left;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
