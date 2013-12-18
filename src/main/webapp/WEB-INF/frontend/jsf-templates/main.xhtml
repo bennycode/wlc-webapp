@@ -9,51 +9,53 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title><ui:insert name="title">Informatik Tutorials</ui:insert></title>
-    <!--
-    <h:outputStylesheet library="css/pure-0.3.0" name="base-min.css" />
-    <h:outputStylesheet library="css/pure-0.3.0" name="grids-min.css" />
-    -->
     <h:outputStylesheet library="css/pure-0.3.0" name="pure-min.css" />
     <h:outputStylesheet library="css/generated" name="wlc.css" />
     <h:outputStylesheet library="css" name="font-awesome-4.0.3.min.css" />
   </h:head>
 
   <h:body>
-    <div class="pure-g-r" id="wlc">
-      <div class="pure-u-1" id="main">
-        <!-- TOP -->
-        <div class="pure-g-r" id="top">
-          <div class="pure-u-1">
+
+    <div id="top">
+      <div id="top-wrapper" class="layout-wrapper">
+        <div id="top-grid" class="pure-g-r">
+          <div id="top-unit-1" class="pure-u-1">
             <!-- Header -->
-            <div class="pure-g-r" id="header">
-              <div class="pure-u-1-3" id="title">We Love Coding<span class="highlight">.</span></div>
-              <div class="pure-u-2-3">
-                <ul id="navi">
-                  <li class="current-menu-item"><a href="#">Home</a></li>
-                  <li><a href="#">Tutorials</a></li>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Support</a></li>
-                  <li><a href="#"><i class="fa fa-user"></i> Register</a></li>
-                  <li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
-                </ul>
+            <div id="header-grid" class="pure-g-r">
+              <div id="header-unit-1" class="pure-u-1-3">
+                <!-- Title -->
+                <a id="title" href="#{facesContext.externalContext.requestContextPath}">We Love Coding<span class="dot">.</span></a>
+              </div>
+              <div id="header-unit-2" class="pure-u-2-3">
+                <!-- Navigation -->
+                <div id="navigation">
+                  <ul>
+                    <li><a href="#" class="current-menu-item">Home</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#"><i class="fa fa-user"></i> Register</a></li>
+                    <li><a href="#{facesContext.externalContext.requestContextPath}/admin"><i class="fa fa-sign-in"></i> Login</a></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-          <div class="pure-u-1">
-            <!-- Teaser -->
-            <div class="pure-g-r" id="teaser">
-              <div class="pure-u-1-2" id="hello">
-                <div id="hello-content">
-                  <p id="description">Spielend einfach Programmieren lernen.</p>
-                  <h1 id="title-text">Informatik Tutorials</h1>
-                  <div class="inline-block hello-button" id="quickstart">Schnellstart</div>
-                  <div class="inline-block hello-button" id="or">oder</div>
-                  <div class="inline-block hello-button" id="register-outline">
+          <div id="top-unit-2" class="pure-u-1">
+            <!-- Welcome teaser -->
+            <div id="welcome-teaser-grid" class="pure-g-r">
+              <div id="welcome-teaser-unit-1" class="pure-u-1-2">
+                <div id="welcome-teaser">
+                  <p>Spielend einfach Programmieren lernen.</p>
+                  <h1>Informatik Tutorials</h1>
+                  <div class="button" id="quickstart">Schnellstart</div>
+                  <div class="button" id="or">oder</div>
+                  <div class="button" id="register-outline">
                     <div id="register">registrieren</div>
                   </div>
                 </div>
               </div>
-              <div class="pure-u-1-2 l-centered" id="logo">
+              <div id="welcome-teaser-unit-2" class="pure-u-1-2 l-centered">
                 <div id="nerd">
                   <h:graphicImage id="nerd" name="/images/nerd.png" width="456" height="355" alt="Nerd" />
                 </div>
@@ -61,25 +63,30 @@
             </div>
           </div>
         </div>
-        <!-- CENTER -->
-        <div class="pure-g-r" id="center">
-          <div class="pure-u-1">
-            <div class="pure-g-r" id="features">
-              <div class="pure-u-1-3">
+      </div>
+    </div> <!-- /top -->
+
+    <div id="center">
+      <div id="center-wrapper" class="layout-wrapper">
+        <div id="center-grid" class="pure-g-r">
+          <div id="center-unit-1" class="pure-u-1">
+            <!-- Features -->
+            <div id="features-grid" class="pure-g-r">
+              <div id="features-unit-1" class="pure-u-1-3">
                 <!-- Learn everything online -->
                 <h2><i class="fa fa-book"></i> Knackige Screencasts</h2>
                 <p>
                   Suspendisse ante mi, iaculis ac eleifend id, venenatis non eros. Sed rhoncus gravida elit, eu sollicitudin sem iaculis. Proin scelerisque, ipsum mollis posuere metus.
                 </p>
               </div>
-              <div class="pure-u-1-3">
+              <div id="features-unit-2" class="pure-u-1-3">
                 <!-- Download our apps -->
                 <h2><i class="fa fa-cloud-download"></i> Apps für dein Handy</h2>
                 <p>
                   Nullam viverra, magna vitae mollis venenatis, leo mi dignissim quam, et lacinia purus diam nec sapien. Cras aliquet, purus non rhoncus aliquet, dapibus.
                 </p>
               </div>
-              <div class="pure-u-1-3">
+              <div id="features-unit-3" class="pure-u-1-3">
                 <!-- Join the community -->
                 <h2><i class="fa fa-group"></i> Antworten auf Fragen!</h2>
                 <p>
@@ -88,23 +95,28 @@
               </div>
             </div>
           </div>
-          <div class="pure-u-1">
-            <div class="pure-g-r" id="content">
-              <div class="pure-u-1" id="hello-intro">                
+          <div id="center-unit-2" class="pure-u-1">
+            <!-- Main content -->
+            <div id="main-content-grid" class="pure-g-r">
+              <div id="main-content-unit-1" class="pure-u-1">
                 <ui:insert name="bodyContent">Please define this area...</ui:insert>
               </div>
             </div>
           </div>
         </div>
-        <!-- BOTTOM -->
-        <div class="pure-g-r" id="bottom">
-          <div class="pure-u-1">
+      </div>
+    </div> <!-- /center -->
+
+    <div id="bottom">
+      <div id="bottom-wrapper" class="layout-wrapper">
+        <div id="bottom-grid" class="pure-g-r">
+          <div id="bottom-unit-1" class="pure-u-1">
             <!-- Footer -->
-            <div class="pure-g" id="footer">
-              <div class="pure-u-1-2" id="copy">
+            <div id="footer-grid" class="pure-g">
+              <div id="footer-unit-1" class="pure-u-1-2">
                 <p>© 2013 <a href="http://www.bennyn.de/" target="_blank">Benny Neugebauer</a></p>
               </div>
-              <div class="pure-u-1-2" id="links">
+              <div id="footer-unit-2" class="pure-u-1-2">
                 <div class="float-right">
                   <p><a href="#">Impressum</a> | <a href="#">Kontakt</a></p>
                 </div>
@@ -113,7 +125,8 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> <!-- /bottom -->
+
   </h:body>
 
 </html>
