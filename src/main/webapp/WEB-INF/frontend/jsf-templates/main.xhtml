@@ -24,9 +24,7 @@
           <div id="top-unit-1" class="pure-u-1">
             <ui:include src="/WEB-INF/frontend/jsf-templates/main/top/header.xhtml" />
           </div>
-          <div id="top-unit-2" class="pure-u-1">
-            <ui:include src="/WEB-INF/frontend/jsf-templates/main/top/welcome-teaser.xhtml" />
-          </div>
+          <ui:insert name="top-unit-2"></ui:insert>
         </div>
       </div>
     </div> <!-- /top -->
@@ -34,12 +32,8 @@
     <div id="center">
       <div id="center-wrapper" class="layout-wrapper">
         <div id="center-grid" class="pure-g-r">
-          <div id="center-unit-1" class="pure-u-1">
-            <ui:include src="/WEB-INF/frontend/jsf-templates/main/center/features.xhtml" />
-          </div>
-          <div id="center-unit-2" class="pure-u-1">
-            <ui:include src="/WEB-INF/frontend/jsf-templates/main/center/main-content.xhtml" />
-          </div>
+          <ui:insert name="center-unit-1"></ui:insert>
+          <ui:insert name="center-unit-2"></ui:insert>
         </div>
       </div>
     </div> <!-- /center -->
@@ -47,9 +41,11 @@
     <div id="bottom">
       <div id="bottom-wrapper" class="layout-wrapper">
         <div id="bottom-grid" class="pure-g-r">
-          <div id="bottom-unit-1" class="pure-u-1">
-            <ui:include src="/WEB-INF/frontend/jsf-templates/main/bottom/footer.xhtml" />
-          </div>
+          <ui:insert name="bottom-unit-1">
+            <div id="bottom-unit-1" class="pure-u-1">
+              <ui:include src="/WEB-INF/frontend/jsf-templates/main/bottom/footer.xhtml" />
+            </div>
+          </ui:insert>
         </div>
       </div>
     </div> <!-- /bottom -->

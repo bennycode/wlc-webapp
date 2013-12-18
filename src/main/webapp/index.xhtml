@@ -5,9 +5,26 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
   <h:body>
     <ui:composition template="/WEB-INF/frontend/jsf-templates/main.xhtml">
-      <ui:define name="bodyContent">
-        
+
+      <ui:define name="top-unit-2">
+        <div id="top-unit-2" class="pure-u-1">
+          <ui:include src="/WEB-INF/frontend/jsf-templates/main/top/welcome-teaser.xhtml" />
+        </div>
       </ui:define>
+
+      <ui:define name="center-unit-1">
+        <div id="center-unit-1" class="pure-u-1">
+          <ui:include src="/WEB-INF/frontend/jsf-templates/main/center/features.xhtml" />
+        </div>
+      </ui:define>
+
+      <ui:define name="center-unit-2">
+        <div id="center-unit-2" class="pure-u-1">
+          <ui:include src="/WEB-INF/frontend/jsf-templates/main/center/main-content.xhtml" />
+        </div>
+      </ui:define>
+
+
     </ui:composition>
   </h:body>
 </html>
