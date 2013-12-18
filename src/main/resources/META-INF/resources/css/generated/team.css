@@ -1,3 +1,7 @@
+#team-grid .images {
+  width: 106px;
+  overflow: hidden;
+}
 #team-grid .image img {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
@@ -29,6 +33,8 @@
 }
 #team-grid .description {
   padding-left: 3.8%;
+  padding-right: 3.8%;
+  text-align: justify;
 }
 #team-grid .description h3 {
   margin: 0;
@@ -36,5 +42,7 @@
 }
 #team-grid .description .sub {
   color: #777;
+}
+#team-grid .description p {
   font-size: 14px;
 }
