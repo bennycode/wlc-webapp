@@ -1,0 +1,40 @@
+#team-grid .image img {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background: #fff;
+  border: 1px solid #e1e1e1;
+  padding: 3px 3px 6px 3px;
+}
+#team-grid .links {
+  width: 106px;
+  text-align: center;
+}
+#team-grid .link-icon {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.17) inset;
+  -moz-box-shadow: 0 0 7px rgba(0, 0, 0, 0.17) inset;
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.17) inset;
+  background: #f0f0f0;
+  color: #999999;
+  display: inline-block;
+  height: 20px;
+  text-align: center;
+  width: 20px;
+}
+#team-grid .description {
+  padding-left: 3.8%;
+}
+#team-grid .description h3 {
+  margin: 0;
+  padding: 0;
+}
+#team-grid .description .sub {
+  color: #777;
+  font-size: 14px;
+}

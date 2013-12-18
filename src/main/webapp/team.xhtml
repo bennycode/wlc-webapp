@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+  <h:body>
+    <ui:composition template="/WEB-INF/frontend/jsf-templates/main.xhtml">
+
+      <ui:define name="extra-stylesheets">
+        <h:outputStylesheet library="css/generated" name="team.css" />
+      </ui:define>
+
+      <ui:define name="center-unit-1">
+        <div id="center-unit-1" class="pure-u-1">
+          <div id="team">
+            <h1>Backstage</h1>
+            <h2>Entwickler</h2>
+            <div class="pure-g-r">
+              <!-- Left -->
+              <div class="pure-u-1-2">
+                <div id="team-grid" class="pure-g-r">
+                  <div class="pure-u-1">
+                    <div class="float-left">
+                      <div class="image">
+                        <h:graphicImage name="/images/team/benny-neugebauer.png" width="96" height="96" alt="Benny Neugebauer" />
+                      </div>
+                      <div class="links">
+                        <a class="link-icon" href="http://www.bennyn.de/" target="_blank">
+                          <i class="fa fa-1 fa-home"></i>
+                        </a>
+                        <a class="link-icon" href="https://www.facebook.com/benny.neugebauer" target="_blank">
+                          <i class="fa fa-1 fa-facebook"></i>
+                        </a>
+                        <a class="link-icon" href="https://twitter.com/apfelbenny" target="_blank">
+                          <i class="fa fa-1 fa-twitter"></i>
+                        </a>
+                        <a class="link-icon" href="https://plus.google.com/+BennyNeugebauer/posts" target="_blank">
+                          <i class="fa fa-1 fa-google-plus"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="float-left description">
+                      <h3>Benny Neugebauer</h3>
+                      <span class="sub">Initiator</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Right -->
+              <div class="pure-u-1-2">
+                <!-- Learn everything online -->
+                <h2><i class="fa fa-book"></i> Knackige Screencasts</h2>
+                <p>
+                  Suspendisse ante mi, iaculis ac eleifend id, venenatis non eros. Sed rhoncus gravida elit, eu sollicitudin sem iaculis. Proin scelerisque, ipsum mollis posuere metus.
+                </p>
+              </div>
+            </div>
+            <h2>Autoren</h2>
+          </div>
+        </div>
+      </ui:define>
+
+    </ui:composition>
+  </h:body>
+</html>
