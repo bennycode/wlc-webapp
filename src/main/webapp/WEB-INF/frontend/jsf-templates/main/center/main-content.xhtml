@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      >
+  <body>
+    <ui:composition>
+      <!-- Main content -->
+      <div id="main-content-grid" class="pure-g-r">
+        <div id="main-content-unit-1" class="pure-u-1">
+          <div id="welcome-categories">
+            <br/>
+            <hr/>
+            <p id="welcome-categories-title">
+              <strong>Kategorien</strong>
+              <span id="ordered">geordnet</span> | <span class="unordered">wild durcheinander</span>
+            </p>
+            <ul>
+              <ui:repeat value="#{categoryService.getCategoriesOrderedByTitle()}" var="category">
+                <li><a href="#"><h:outputText value="#{category.title}"/></a></li>
+              </ui:repeat>
+            </ul>
+          </div> <!-- /welcome-categories -->
+        </div>
+      </div>
+    </ui:composition>
+  </body>
+</html>

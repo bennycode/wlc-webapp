@@ -6,23 +6,7 @@
   <h:body>
     <ui:composition template="/WEB-INF/frontend/jsf-templates/main.xhtml">
       <ui:define name="bodyContent">
-        <div id="welcome-categories">
-
-          <br/>
-          <hr/>
-
-          <p id="welcome-categories-title">
-            <strong>Kategorien</strong>
-            <span id="ordered">geordnet</span> | <span class="unordered">wild durcheinander</span>
-          </p>
-
-          <ul>
-            <ui:repeat value="#{categoryService.getCategoriesOrderedByTitle()}" var="category">
-              <li><a href="#"><h:outputText value="#{category.title}"/></a></li>
-            </ui:repeat>
-          </ul>
-
-        </div> <!-- welcome-categories -->
+        
       </ui:define>
     </ui:composition>
   </h:body>

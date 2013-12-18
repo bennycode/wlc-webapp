@@ -34,6 +34,7 @@ This is an attempt to make **www.welovecoding.com** a better place...
 - [Apache Maven: Guide to naming conventions](http://maven.apache.org/guides/mini/guide-naming-conventions.html)
 - [Should package names be singular or plural?](http://programmers.stackexchange.com/a/75929)
 - [Which XHTML files do I need to put in /WEB-INF and which not?](http://stackoverflow.com/a/9033567/451634)
+- [New JSF 2.2 namespaces](http://jsflive.wordpress.com/2013/05/16/jsf22-namespaces/)
 
 ##Cool projects:##
 - [Pebble - A lightweight, open source, Java EE blogging tool](https://github.com/pebbleblog/pebble)
