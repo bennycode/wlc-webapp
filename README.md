@@ -23,7 +23,8 @@ This is an attempt to make **www.welovecoding.com** a better place...
 - [Generating a JavaServer Faces 2.x CRUD Application from a Database](https://netbeans.org/kb/docs/web/jsf20-crud.html)
 - [From database to RESTful web service to HTML5 in FIVE minutes](http://jaxenter.com/from-database-to-restful-web-service-to-html5-in-five-minutes-48908.html)
 - [How to use a JEE Filter to secure JSF 2 application resources](http://www.itcuties.com/j2ee/jsf-2-login-filter-example/)
-- [GZIp Compression for JEE Web Application](hirenscafe.blogspot.de/2010/02/gzip-compression-for-web-application.html)
+- [Composite Components In JSF 2.0](http://www.mkyong.com/jsf2/composite-components-in-jsf-2-0/)
+- [GZip Compression for JEE Web Application](hirenscafe.blogspot.de/2010/02/gzip-compression-for-web-application.html)
 
 **Mobile Web Apps**
 
@@ -34,7 +35,7 @@ This is an attempt to make **www.welovecoding.com** a better place...
 - [Apache Maven: Guide to naming conventions](http://maven.apache.org/guides/mini/guide-naming-conventions.html)
 - [Should package names be singular or plural?](http://programmers.stackexchange.com/a/75929)
 - [Which XHTML files do I need to put in /WEB-INF and which not?](http://stackoverflow.com/a/9033567/451634)
-- [New JSF 2.2 namespaces](http://jsflive.wordpress.com/2013/05/16/jsf22-namespaces/)
+- [New JSF 2.2 namespaces](http://jsflive.wordpress.com/2013/05/16/jsf22-namespaces/) <- At the moment we should use THE OLD namespaces ([reason](http://stackoverflow.com/questions/17361528/uirepeat-in-jsf-2-2-is-working-but-rendered))
 
 ##Cool projects:##
 - [Pebble - A lightweight, open source, Java EE blogging tool](https://github.com/pebbleblog/pebble)
