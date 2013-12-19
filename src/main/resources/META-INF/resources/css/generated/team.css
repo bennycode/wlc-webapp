@@ -32,8 +32,8 @@
   width: 20px;
 }
 #team-grid .description {
-  padding-left: 3.8%;
-  padding-right: 3.8%;
+  margin-left: 125px;
+  padding-right: 5.5%;
   text-align: justify;
 }
 #team-grid .description h3 {
