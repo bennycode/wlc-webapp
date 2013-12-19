@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+  <h:body>
+    <ui:composition template="/WEB-INF/frontend/jsf-templates/main.xhtml">
+
+      <ui:define name="extra-stylesheets">
+        <h:outputStylesheet library="css/generated" name="team.css" />
+      </ui:define>
+
+      <ui:define name="center-unit-1">
+        <div id="center-unit-1" class="pure-u-1">
+          <div id="register-grid" class="pure-g-r">
+            <div id="register-unit-1" class="pure-u-1">
+
+              <h:form class="pure-form pure-form-aligned">
+                <fieldset>
+
+                  <div class="pure-control-group">
+                    <label for="register-user-name">Name</label>
+                    <h:inputText id="register-user-name" value="#{userBackingBean.name}" p:placeholder="John Doe" />
+                  </div>
+
+                  <div class="pure-control-group">
+                    <label for="register-user-email">Email Address</label>
+                    <h:inputText id="register-user-email" value="#{userBackingBean.email}" p:placeholder="Email Address" />
+                  </div>
+
+                  <div class="pure-control-group">
+                    <label for="password">Password</label>
+                    <h:inputText id="register-user-password" value="#{userBackingBean.password}" p:placeholder="Password" />
+                  </div>
+
+                  <div class="pure-control-group">
+                    <label for="submit">&#160;</label>
+                    <h:commandButton value="Register" action="#{userBackingBean.submit}" class="pure-button pure-button-primary" />
+                  </div>
+
+                </fieldset>
+              </h:form>
+
+            </div>
+          </div>
+        </div>
+      </ui:define>
+
+    </ui:composition>
+  </h:body>
+</html>

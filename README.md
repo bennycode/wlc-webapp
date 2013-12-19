@@ -37,6 +37,11 @@ This is an attempt to make **www.welovecoding.com** a better place...
 - [Which XHTML files do I need to put in /WEB-INF and which not?](http://stackoverflow.com/a/9033567/451634)
 - [New JSF 2.2 namespaces](http://jsflive.wordpress.com/2013/05/16/jsf22-namespaces/) <- At the moment we should use THE OLD namespaces ([reason](http://stackoverflow.com/questions/17361528/uirepeat-in-jsf-2-2-is-working-but-rendered))
 
+## Reference: ##
+- [Bean Scopes](http://stackoverflow.com/a/17683041/451634)
+- [Managed Bean types](http://stackoverflow.com/a/1030196/451634)
+- [Communication in JSF 2.0](http://balusc.blogspot.de/2011/09/communication-in-jsf-20.html)
+
 ##Cool projects:##
 - [Pebble - A lightweight, open source, Java EE blogging tool](https://github.com/pebbleblog/pebble)
 - [Project Lombok](http://projectlombok.org/), [Project Lombok & JEE](http://javalabor.blogspot.de/2012/01/java-verbosity-jee-and-lombok.html)
