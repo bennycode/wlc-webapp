@@ -1,8 +1,8 @@
-#team-grid .images {
+#team-grid .team-member .images {
   width: 106px;
   overflow: hidden;
 }
-#team-grid .image img {
+#team-grid .team-member .picture {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
@@ -13,11 +13,11 @@
   border: 1px solid #e1e1e1;
   padding: 3px 3px 6px 3px;
 }
-#team-grid .links {
+#team-grid .team-member .links {
   width: 106px;
   text-align: center;
 }
-#team-grid .link-icon {
+#team-grid .team-member .links .link-icon {
   border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -31,18 +31,18 @@
   text-align: center;
   width: 20px;
 }
-#team-grid .description {
+#team-grid .team-member .description {
   margin-left: 125px;
   padding-right: 5.5%;
   text-align: justify;
 }
-#team-grid .description h3 {
+#team-grid .team-member .description h3 {
   margin: 0;
   padding: 0;
 }
-#team-grid .description .sub {
+#team-grid .team-member .description .sub {
   color: #777;
 }
-#team-grid .description p {
+#team-grid .team-member .description p {
   font-size: 14px;
 }
