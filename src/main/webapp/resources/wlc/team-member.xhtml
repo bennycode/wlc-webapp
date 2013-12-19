@@ -1,11 +1,91 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:composite="http://java.sun.com/jsf/composite">
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
   <composite:interface>
-    <composite:attribute name="anything" />
+    <!-- Required -->
+    <composite:attribute name="name" required="true" type="java.lang.String" />
+    <composite:attribute name="position" required="true" type="java.lang.String" />
+    <!-- Optional -->
+    <composite:attribute name="about" required="false" type="java.lang.String" />
+    <composite:attribute name="picture" required="false" type="java.lang.String" />
+    <composite:attribute name="homepage" required="false" type="java.lang.String" />
+    <composite:attribute name="facebook" required="false" type="java.lang.String" />
+    <composite:attribute name="twitter" required="false" type="java.lang.String" />
+    <composite:attribute name="google" required="false" type="java.lang.String" />
   </composite:interface>
 
   <composite:implementation>
-    Hello #{cc.attrs.anything}!
+    <div class="pure-u-1-2">
+      <div class="team-member">
+        <div class="float-left images">
+
+          <h:graphicImage class="picture" 
+                          name="/images/team/#{cc.attrs.picture}" 
+                          width="96" 
+                          height="96" 
+                          alt="#{cc.attrs.name}" 
+                          title="#{cc.attrs.name}" 
+                          />
+
+          <div class="links">
+
+            <h:panelGroup rendered="#{not empty cc.attrs.homepage}">
+              <a class="link-icon" 
+                 href="#{cc.attrs.homepage}" 
+                 target="_blank" 
+                 alt="Die Webseite von #{cc.attrs.name}" 
+                 title="Die Webseite von #{cc.attrs.name}"
+                 >
+                <i class="fa fa-1 fa-home"></i>
+              </a>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{not empty cc.attrs.facebook}">
+              <a class="link-icon" 
+                 href="https://www.facebook.com/#{cc.attrs.facebook}" 
+                 target="_blank" 
+                 alt="Finde #{cc.attrs.name} bei Facebook" 
+                 title="Finde #{cc.attrs.name} bei Facebook" 
+                 >
+                <i class="fa fa-1 fa-facebook"></i>
+              </a>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{not empty cc.attrs.google}">
+              <a class="link-icon" 
+                 href="https://plus.google.com/+#{cc.attrs.google}/posts" 
+                 target="_blank" 
+                 alt="Finde #{cc.attrs.name} bei Google+" 
+                 title="Finde #{cc.attrs.name} bei Google+" 
+                 >
+                <i class="fa fa-1 fa-google-plus"></i>
+              </a>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{not empty cc.attrs.twitter}">
+              <a class="link-icon" 
+                 href="https://twitter.com/#{cc.attrs.twitter}" 
+                 target="_blank" 
+                 alt="Folge #{cc.attrs.name} bei Twitter" 
+                 title="Folge #{cc.attrs.name} bei Twitter"
+                 >
+                <i class="fa fa-1 fa-twitter"></i>
+              </a>
+            </h:panelGroup>
+
+          </div> <!-- /links -->
+        </div> <!-- /images -->
+        <div class="description">
+          <h3>#{cc.attrs.name}</h3>
+          <span class="sub">#{cc.attrs.position}</span>
+          <h:panelGroup rendered="#{empty cc.attrs.about}">
+            <p>
+              Cras a neque diam. Aenean dapibus accumsan velit eget imperdiet. Quisque sapien neque, fermentum ac pharetra ac, iaculis a elit. Morbi tincidunt, lectus et dignissim pharetra, elit leo lacinia purus, eu porta. Aenean adipiscing, sed lacinia sapien tincidunt.
+            </p>
+          </h:panelGroup>
+        </div>
+      </div>
+    </div>
   </composite:implementation>
 </html>
