@@ -41,6 +41,7 @@ This is an attempt to make **www.welovecoding.com** a better place...
 - [Bean Scopes](http://stackoverflow.com/a/17683041/451634)
 - [Managed Bean types](http://stackoverflow.com/a/1030196/451634)
 - [Communication in JSF 2.0](http://balusc.blogspot.de/2011/09/communication-in-jsf-20.html)
+- [Maven Default Lifecycle Phases](http://www.avajava.com/tutorials/lessons/what-are-the-phases-of-the-maven-default-lifecycle.html)
 
 ##Cool projects:##
 - [Pebble - A lightweight, open source, Java EE blogging tool](https://github.com/pebbleblog/pebble)
