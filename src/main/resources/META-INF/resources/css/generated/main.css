@@ -256,3 +256,11 @@ html {
 #footer-grid #footer-unit-1 a {
   border-bottom: 1px dotted #f8f8f8;
 }
+/* Pure Forms */
+.pure-control-group span {
+  padding-left: 8px;
+  line-height: 32px;
+}
+.pure-control-group span.error {
+  color: #f2412e;
+}

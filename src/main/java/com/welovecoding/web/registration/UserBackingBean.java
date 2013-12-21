@@ -50,7 +50,8 @@ public class UserBackingBean implements Serializable {
 
   public void checkName(FacesContext context, UIComponent component, Object value) {
     if (name == null || name != null && name.length() < 1) {
-      FacesContext.getCurrentInstance().addMessage(component.getClientId(), new FacesMessage("Please enter your name."));
+      String summary = "Please enter your name.";
+      FacesContext.getCurrentInstance().addMessage(component.getClientId(), new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, ""));
     }
   }
 
