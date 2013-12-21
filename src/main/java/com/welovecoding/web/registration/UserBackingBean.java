@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class UserBackingBean implements Serializable {
 
   @EJB
@@ -42,7 +45,13 @@ public class UserBackingBean implements Serializable {
       redirect = "/success?faces-redirect=true";
     }
 
-    return redirect;
+    return "";
+  }
+
+  public void checkName(FacesContext context, UIComponent component, Object value) {
+    if (name == null || name != null && name.length() < 1) {
+      FacesContext.getCurrentInstance().addMessage(component.getClientId(), new FacesMessage("Please enter your name."));
+    }
   }
 
   public boolean validate() {
