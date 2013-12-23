@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
-      >
+
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
   <h:head>
     <title>Login form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
@@ -26,23 +27,24 @@
           <div class="clearfix"></div>
         </div>
         <div class="loginwrapperinner">
-          <h:form id="loginform">
+          <form jsf:id="loginform">
             <p class="animate4 bounceIn">
-              <h:inputText id="username" value="#{loginBean.username}" />
+              <input type="text" jsf:id="username" jsf:value="#{loginBean.username}" />
             </p>
             <p class="animate5 bounceIn">
-              <h:inputSecret id="password" value="#{loginBean.password}" />
+              <input type="password" jsf:id="password" jsf:value="#{loginBean.password}"  />
             </p>
             <p class="animate6 bounceIn">
-              <h:commandButton value="Submit" class="btn btn-default btn-block" action="#{loginBean.login}"/>
+              <input 
+                class="btn btn-default btn-block" 
+                type="submit" 
+                value="Submit" 
+                jsf:action="#{loginBean.login}" />
             </p>
             <p class="animate7 fadeIn forgotPassword">
               <i class="fa fa-question-circle"></i> Forgot Password?
             </p>
-            <p>
-              <h:messages />
-            </p>
-          </h:form>
+          </form>
         </div>
       </div>
       <div class="loginshadow animate3 fadeInUp"></div>
