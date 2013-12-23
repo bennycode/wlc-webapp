@@ -7,9 +7,9 @@
   <h:head>
     <title>Login form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/animate.delay.css" />
-    <link rel="stylesheet" href="css/animate.min.css" />
+    <h:outputStylesheet library="css" name="font-awesome-4.0.3.min.css" />
+    <h:outputStylesheet library="css/lib" name="animate.delay.css" />
+    <h:outputStylesheet library="css/lib" name="animate.min.css" />
     <link rel="stylesheet" href="css/generated/main.css" />
     <link rel="stylesheet" href="css/generated/admin/admin.css" />
   </h:head>
@@ -63,6 +63,7 @@
           }
         });
 
+        /* TODO: Wird nie ausgeführt, da JSF zuvorkommt! */
         $('#loginform button').click(function() {
           if ($('#username').val() === '' || $('#password').val() === '') {
             if ($('#username').val() === '') {
