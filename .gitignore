@@ -1,12 +1,43 @@
 /assets/sql/production/
 /assets/photoshop
+/src/main/webapp/inspiration/
+/src/main/webapp/test.*
 
+### Mac OS ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+### Windows ###
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+### NetBeans ###
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+/nb-configuration.xml
+build.xml
+build.properties
+
+### IntelliJ ###
+*.iml
+*.ipr
+*.iws
+.idea/
+
+### Java ###
 *.class
-
-# Package Files #
 *.jar
 *.war
 *.ear
 /target/
-/nb-configuration.xml
-/wlc-webapp/target/
