@@ -10,8 +10,23 @@
     <h:outputStylesheet library="css" name="font-awesome-4.0.3.min.css" />
     <h:outputStylesheet library="css/lib" name="animate.delay.css" />
     <h:outputStylesheet library="css/lib" name="animate.min.css" />
-    <link rel="stylesheet" href="css/generated/main.css" />
-    <link rel="stylesheet" href="css/generated/admin/admin.css" />
+    <h:outputStylesheet library="css/generated/admin" name="admin.css" />
+    <style>
+      * {
+        border: 0;
+        padding: 0;
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      .clearfix {
+        clear: both;
+      }
+    </style>
   </h:head>
   <h:body class="admin">
     <div class="loginwrapper">
