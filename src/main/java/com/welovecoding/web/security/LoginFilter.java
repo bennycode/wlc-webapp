@@ -1,8 +1,11 @@
 package com.welovecoding.web.security;
 
 import com.welovecoding.web.navigation.Pages;
+import com.welovecoding.web.registration.UserSessionBean;
 import com.welovecoding.web.session.SessionValues;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -14,11 +17,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginFilter implements Filter {
+  private static final Logger LOGGER = Logger.getLogger(LoginFilter.class.getName());
 
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
     HttpSession session = ((HttpServletRequest) request).getSession();
     Object attribute = session.getAttribute(SessionValues.LOGGED_IN);
+
+    // Note: JSF stores session scoped managed beans as attributes of HttpSession
+    UserSessionBean userSessionBean = (UserSessionBean) session.getAttribute("userSessionBean");
+
+    if (userSessionBean != null) {
+      LOGGER.log(Level.INFO, "BEAN IS THERE");
+    } else {
+      LOGGER.log(Level.INFO, "BEAN ISN'T THERE");
+    }
 
     if (attribute != null && (boolean) attribute == true) {
       // User is logged-in

@@ -1,6 +1,7 @@
 package com.welovecoding.web.security;
 
 import com.welovecoding.web.navigation.Pages;
+import com.welovecoding.web.registration.UserSessionBean;
 import com.welovecoding.web.session.SessionValues;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
@@ -29,6 +30,8 @@ public class LoginBean implements Serializable {
 
   private void saveLoginInSession() {
     context.getExternalContext().getSessionMap().put(SessionValues.LOGGED_IN, true);
+     UserSessionBean userSessionBean = new UserSessionBean();
+     userSessionBean.setLoggedIn(true);
   }
 
   public String login() {

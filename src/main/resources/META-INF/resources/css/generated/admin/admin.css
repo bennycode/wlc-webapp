@@ -1,7 +1,7 @@
 /* Variables */
 /* Mixins */
 body.admin {
-  background: #f7f7f7 url("../../../images/admin/gray_jean.png");
+  background: #f7f7f7 url("../images/admin/gray_jean.png");
 }
 body.admin .loginwrapper {
   width: 400px;
@@ -47,10 +47,10 @@ body.admin .loginwrapper input:focus {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.8) !important;
 }
 body.admin .loginwrapper input#username {
-  background: #eeeeee url("../../../images/admin/icons/username.png") no-repeat 8px 12px;
+  background: #eeeeee url("../images/admin/icons/username.png") no-repeat 8px 12px;
 }
 body.admin .loginwrapper input#password {
-  background: #eeeeee url("../../../images/admin/icons/password.png") no-repeat 8px 12px;
+  background: #eeeeee url("../images/admin/icons/password.png") no-repeat 8px 12px;
 }
 body.admin .loginwrapper p {
   margin: 20px 0;
@@ -147,7 +147,7 @@ body.admin .loginwrapper p:last-child {
   float: left;
 }
 .loginshadow {
-  background: url("../../../images/admin/loginshadow.png") no-repeat center center;
+  background: url("../images/admin/loginshadow.png") no-repeat center center;
   width: 400px;
   height: 30px;
 }
