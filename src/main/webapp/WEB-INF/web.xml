@@ -26,11 +26,6 @@
       30
     </session-timeout>
   </session-config>
-  <!-- Filter declarations -->
-  <filter>
-    <filter-name>LoginFilter</filter-name>
-    <filter-class>com.welovecoding.web.security.LoginFilter</filter-class>
-  </filter>
   <!-- Security Constraints -->
   <!-- http://stackoverflow.com/a/9033567/451634 -->
   <security-constraint>
