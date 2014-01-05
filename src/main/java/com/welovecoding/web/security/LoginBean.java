@@ -3,7 +3,6 @@ package com.welovecoding.web.security;
 import com.welovecoding.web.navigation.Pages;
 import com.welovecoding.web.registration.UserSessionBean;
 import com.welovecoding.web.session.SessionValues;
-import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
