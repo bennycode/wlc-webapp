@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestScoped
 public class LoginBean {
   @Inject
-  HttpServletRequest request;
+  UserSessionBean userSessionBean;
 
   private static final Logger LOGGER = Logger.getLogger(LoginBean.class.getName());
 
@@ -42,11 +42,8 @@ public class LoginBean {
   }
 
   private void saveLoginInSession() {
-    String get = (String) context.getExternalContext().getSessionMap().get(SessionValues.LOGGED_IN);
-    LOGGER.log(Level.INFO, "Schon was da: {0}", get);
-
     LOGGER.log(Level.INFO, "User logged-in successfully. Saving login to the session...");
-    context.getExternalContext().getSessionMap().put(SessionValues.LOGGED_IN, "yes");
+    userSessionBean.setLoggedIn(true);
   }
 
   public String login() {

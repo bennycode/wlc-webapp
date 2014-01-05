@@ -3,9 +3,9 @@ package com.welovecoding.web.security;
 import com.welovecoding.web.navigation.Pages;
 import com.welovecoding.web.session.SessionValues;
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -17,12 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author MacYser
- */
 @WebFilter(urlPatterns = {"/admin/*"})
 public class AdminPagesFilter implements Filter {
+  @Inject
+  UserSessionBean userSessionBean;
 
   private static final Logger LOGGER = Logger.getLogger(AdminPagesFilter.class.getName());
 
@@ -35,7 +33,7 @@ public class AdminPagesFilter implements Filter {
 
     HttpSession session = ((HttpServletRequest) request).getSession();
 
-    boolean isAdmin = false;
+    boolean isAdmin = userSessionBean.isLoggedIn();
 
     Object attribute = session.getAttribute(SessionValues.LOGGED_IN);
     if (attribute != null) {
