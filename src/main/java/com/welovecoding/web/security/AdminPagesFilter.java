@@ -19,47 +19,51 @@ import javax.servlet.http.HttpSession;
 
 @WebFilter(urlPatterns = {"/admin/*"})
 public class AdminPagesFilter implements Filter {
-  @Inject
-  UserSessionBean userSessionBean;
 
-  private static final Logger LOGGER = Logger.getLogger(AdminPagesFilter.class.getName());
+	@Inject
+	private UserSessionBean userSessionBean;
+	private static final Logger LOGGER = Logger.getLogger(AdminPagesFilter.class.getName());
 
-  public AdminPagesFilter() {
-  }
+	public AdminPagesFilter() {
+	}
 
-  @Override
-  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-          throws IOException, ServletException {
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 
-    HttpSession session = ((HttpServletRequest) request).getSession();
+//		HttpSession session = ((HttpServletRequest) request).getSession();
 
-    boolean isAdmin = userSessionBean.isLoggedIn();
+		boolean isAdmin = false;
+		if (userSessionBean != null) {
+			isAdmin = userSessionBean.isLoggedIn();
+		}
 
-    Object attribute = session.getAttribute(SessionValues.LOGGED_IN);
-    if (attribute != null) {
-      LOGGER.log(Level.INFO, "There is an attribute called {0}.", SessionValues.LOGGED_IN);
-      if (attribute.equals("yes")) {
-        isAdmin = true;
-      }
-    }
 
-    if (!isAdmin) {
-      // Deny Access
-      String contextPath = ((HttpServletRequest) request).getContextPath();
-      ((HttpServletResponse) response).sendRedirect(contextPath + Pages.LOGIN);
-    }
+//		Object attribute = session.getAttribute(SessionValues.LOGGED_IN);
+//		if (attribute != null) {
+//			LOGGER.log(Level.INFO, "There is an attribute called {0}.", SessionValues.LOGGED_IN);
+//			if (attribute.equals("yes")) {
+//				isAdmin = true;
+//			}
+//		}
 
-    // Continue filtering...
-    chain.doFilter(request, response);
-  }
+		if (!isAdmin) {
+			// Deny Access
+			String contextPath = ((HttpServletRequest) request).getContextPath();
+			((HttpServletResponse) response).sendRedirect(contextPath + Pages.LOGIN);
+		}
 
-  @Override
-  public void init(FilterConfig config) throws ServletException {
-    // Nothing to do here!
-  }
+		// Continue filtering...
+		chain.doFilter(request, response);
+	}
 
-  @Override
-  public void destroy() {
-    // Nothing to do here!
-  }
+	@Override
+	public void init(FilterConfig config) throws ServletException {
+		// Nothing to do here!
+	}
+
+	@Override
+	public void destroy() {
+		// Nothing to do here!
+	}
 }

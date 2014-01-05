@@ -1,9 +1,6 @@
 package com.welovecoding.web.security;
 
 import com.welovecoding.web.navigation.Pages;
-import com.welovecoding.web.registration.UserSessionBean;
-import com.welovecoding.web.session.SessionValues;
-import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -17,77 +14,74 @@ import javax.servlet.http.HttpServletRequest;
  * http://stackoverflow.com/a/10691832/451634
  * <p>
  * </p>
+ *
  * @author Benny
  */
 @Named
 @RequestScoped
 public class LoginBean {
-  @Inject
-  UserSessionBean userSessionBean;
 
-  private static final Logger LOGGER = Logger.getLogger(LoginBean.class.getName());
+	@Inject
+	private UserSessionBean userSessionBean;
+	private static final Logger LOGGER = Logger.getLogger(LoginBean.class.getName());
+//	private final FacesContext context;
+	private static final String[] users = {
+		"anna:qazwsx",
+		"kate:123456"
+	};
+	private String username;
+	private String password;
 
-  private final FacesContext context;
+	public LoginBean() {
+//		context = FacesContext.getCurrentInstance();
+	}
 
-  private static final String[] users = {
-    "anna:qazwsx",
-    "kate:123456"
-  };
+	private void saveLoginInSession() {
+		LOGGER.log(Level.INFO, "User logged-in successfully. Saving login to the session...");
+		userSessionBean.setIsLoggedIn(true);
+	}
 
-  private String username;
-  private String password;
+	public String login() {
+		for (String user : users) {
+			String dbUsername = user.split(":")[0];
+			String dbPassword = user.split(":")[1];
 
-  public LoginBean() {
-    context = FacesContext.getCurrentInstance();
-  }
+			if (dbUsername.equals(username) && dbPassword.equals(password)) {
+				saveLoginInSession();
+				return Pages.ADMIN_INDEX;
+			}
+		}
 
-  private void saveLoginInSession() {
-    LOGGER.log(Level.INFO, "User logged-in successfully. Saving login to the session...");
-    userSessionBean.setLoggedIn(true);
-  }
+		FacesMessage message = new FacesMessage("Login error!", "ERROR MSG");
+		message.setSeverity(FacesMessage.SEVERITY_ERROR);
+		FacesContext.getCurrentInstance().addMessage(null, message);
 
-  public String login() {
-    for (String user : users) {
-      String dbUsername = user.split(":")[0];
-      String dbPassword = user.split(":")[1];
+		return Pages.JSF_LOGIN;
+	}
 
-      if (dbUsername.equals(username) && dbPassword.equals(password)) {
-        saveLoginInSession();
-        return Pages.ADMIN_INDEX;
-      }
-    }
+	public String logout() {
+//		context.getExternalContext().invalidateSession();
+//		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+//		return request.getContextPath() + Pages.INDEX;
+		return "";
+	}
 
-    FacesMessage message = new FacesMessage("Login error!", "ERROR MSG");
-    message.setSeverity(FacesMessage.SEVERITY_ERROR);
-    FacesContext.getCurrentInstance().addMessage(null, message);
+	public String getUsername() {
+		return username;
+	}
 
-    return Pages.JSF_LOGIN;
-  }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-  public String logout() {
-    context.getExternalContext().invalidateSession();
-    HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-    return request.getContextPath() + Pages.INDEX;
-  }
+	public String getPassword() {
+		return password;
+	}
 
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  boolean isLoggedIn() {
-    return (boolean) context.getExternalContext().getSessionMap().get(SessionValues.LOGGED_IN);
-  }
-
+	public void setPassword(String password) {
+		this.password = password;
+	}
+//	boolean isLoggedIn() {
+//		return (boolean) context.getExternalContext().getSessionMap().get(SessionValues.LOGGED_IN);
+//	}
 }
