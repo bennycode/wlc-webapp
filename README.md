@@ -7,9 +7,9 @@ This is an attempt to make **www.welovecoding.com** a better place...
 **MySQL**
 
 - Database: welovecoding
-- Host: localhost
 - User: welovecoding
 - Password: 123456
+- Host: localhost
 
 **LESS preprocessor**
 
