@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
-
       xmlns:jsf="http://xmlns.jcp.org/jsf">
   <h:head>
     <title>Login form</title>
@@ -42,12 +41,25 @@
           <div class="clearfix"></div>
         </div>
         <div class="loginwrapperinner">
-          <form jsf:id="loginform">
+
+          <form 
+            jsf:id="loginform"
+            >
             <p class="animate4 bounceIn">
-              <input type="text" jsf:id="username" jsf:value="#{loginBean.username}" />
+              <input 
+                type="text" 
+                name="j_username"
+                jsf:id="username" 
+                jsf:value="#{loginBean.username}" 
+                />
             </p>
             <p class="animate5 bounceIn">
-              <input type="password" jsf:id="password" jsf:value="#{loginBean.password}"  />
+              <input 
+                type="password" 
+                name="j_password"
+                jsf:id="password" 
+                jsf:value="#{loginBean.password}"  
+                />
             </p>
             <p class="animate6 bounceIn">
               <input 
@@ -60,6 +72,7 @@
               <i class="fa fa-question-circle"></i> Forgot Password?
             </p>
           </form>
+
         </div>
       </div>
       <div class="loginshadow animate3 fadeInUp"></div>

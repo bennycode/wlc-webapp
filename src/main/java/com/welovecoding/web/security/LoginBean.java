@@ -4,15 +4,28 @@ import com.welovecoding.web.navigation.Pages;
 import com.welovecoding.web.registration.UserSessionBean;
 import com.welovecoding.web.session.SessionValues;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * http://stackoverflow.com/a/10691832/451634
+ * <p>
+ * </p>
+ * @author Benny
+ */
 @Named
 @RequestScoped
-public class LoginBean implements Serializable {
+public class LoginBean {
+  @Inject
+  HttpServletRequest request;
+
+  private static final Logger LOGGER = Logger.getLogger(LoginBean.class.getName());
 
   private final FacesContext context;
 
@@ -29,9 +42,11 @@ public class LoginBean implements Serializable {
   }
 
   private void saveLoginInSession() {
-    context.getExternalContext().getSessionMap().put(SessionValues.LOGGED_IN, true);
-     UserSessionBean userSessionBean = new UserSessionBean();
-     userSessionBean.setLoggedIn(true);
+    String get = (String) context.getExternalContext().getSessionMap().get(SessionValues.LOGGED_IN);
+    LOGGER.log(Level.INFO, "Schon was da: {0}", get);
+
+    LOGGER.log(Level.INFO, "User logged-in successfully. Saving login to the session...");
+    context.getExternalContext().getSessionMap().put(SessionValues.LOGGED_IN, "yes");
   }
 
   public String login() {

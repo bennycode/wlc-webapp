@@ -31,11 +31,6 @@
     <filter-name>LoginFilter</filter-name>
     <filter-class>com.welovecoding.web.security.LoginFilter</filter-class>
   </filter>
-  <!-- Filter mappings -->
-  <filter-mapping>
-    <filter-name>LoginFilter</filter-name>
-    <url-pattern>/admin/*</url-pattern>
-  </filter-mapping>
   <!-- Security Constraints -->
   <!-- http://stackoverflow.com/a/9033567/451634 -->
   <security-constraint>
