@@ -1,7 +1,6 @@
 package com.welovecoding.web.security;
 
 import java.io.Serializable;
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
@@ -9,17 +8,17 @@ import javax.inject.Named;
 @SessionScoped
 public class UserSessionBean implements Serializable {
 
-	private boolean isLoggedIn;
+  private boolean isLoggedIn;
 
-	public UserSessionBean() {
-		isLoggedIn = false;
-	}
+  public UserSessionBean() {
+    isLoggedIn = false;
+  }
 
-	public boolean isLoggedIn() {
-		return isLoggedIn;
-	}
+  public boolean isLoggedIn() {
+    return isLoggedIn;
+  }
 
-	public void setIsLoggedIn(boolean isLoggedIn) {
-		this.isLoggedIn = isLoggedIn;
-	}
+  public void setIsLoggedIn(boolean isLoggedIn) {
+    this.isLoggedIn = isLoggedIn;
+  }
 }

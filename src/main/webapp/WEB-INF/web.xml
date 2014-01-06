@@ -26,6 +26,16 @@
       30
     </session-timeout>
   </session-config>
+  <!-- Filters -->
+  <filter>
+    <filter-name>AdminPagesFilter</filter-name>
+    <filter-class>com.welovecoding.web.security.AdminPagesFilter</filter-class>
+  </filter>
+  <!-- Filter mappings -->
+  <filter-mapping>
+    <filter-name>AdminPagesFilter</filter-name>
+    <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
   <!-- Security Constraints -->
   <!-- http://stackoverflow.com/a/9033567/451634 -->
   <security-constraint>

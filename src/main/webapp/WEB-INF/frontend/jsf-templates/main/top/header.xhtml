@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
   <body>
     <ui:composition>
       <!-- Header -->
@@ -20,7 +20,14 @@
               <li><a href="#{facesContext.externalContext.requestContextPath}/team.xhtml">Team</a></li>
               <li><a href="#">Support</a></li>
               <li><a href="#{facesContext.externalContext.requestContextPath}/register.xhtml"><i class="fa fa-user"></i> Register</a></li>
-              <li><a href="#{facesContext.externalContext.requestContextPath}/admin"><i class="fa fa-sign-in"></i> Login</a></li>
+              <h:panelGroup rendered="#{userSessionBean.loggedIn eq true}">
+                <li>
+                  <h:form><h:commandLink value="Logout" action="#{loginBean.logout}"/></h:form>
+                </li>
+              </h:panelGroup>
+              <h:panelGroup rendered="#{userSessionBean.loggedIn eq false}">
+                <li><a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><i class="fa fa-sign-in"></i> Login</a></li>
+              </h:panelGroup>
             </ul>
           </div>
         </div>

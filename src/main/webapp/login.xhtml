@@ -3,120 +3,118 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
-	<h:head>
-		<title>Login form</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-		<h:outputStylesheet library="css" name="font-awesome-4.0.3.min.css" />
-		<h:outputStylesheet library="css/lib" name="animate.delay.css" />
-		<h:outputStylesheet library="css/lib" name="animate.min.css" />
-		<h:outputStylesheet library="css/generated/admin" name="admin.css" />
-		<style>
-			* {
-				border: 0;
-				padding: 0;
-				margin: 0;
-				font-family: 'Open Sans', sans-serif;
-			}
-			html,
-			body {
-				width: 100%;
-				height: 100%;
-			}
-			.clearfix {
-				clear: both;
-			}
-		</style>
-	</h:head>
-	<h:body class="admin">
-		<div class="loginwrapper">
-			<div class="loginwrap zindex100 animate2 bounceInDown">
-				<div class="header">
-					<div class="left lock">
-						<i class="fa fa-lock fa-3x"></i>
-					</div>
-					<div class="left">
-						<span class="title">LOGIN</span>
-						<span class="subTitle">Sign in to manage the website!</span>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="loginwrapperinner">
+  <h:head>
+    <title>Login form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <h:outputStylesheet library="css" name="font-awesome-4.0.3.min.css" />
+    <h:outputStylesheet library="css/lib" name="animate.delay.css" />
+    <h:outputStylesheet library="css/lib" name="animate.min.css" />
+    <h:outputStylesheet library="css/generated/admin" name="admin.css" />
+    <style>
+      * {
+        border: 0;
+        padding: 0;
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      .clearfix {
+        clear: both;
+      }
+    </style>
+  </h:head>
+  <h:body class="admin">
+    <div class="loginwrapper">
+      <div class="loginwrap zindex100 animate2 bounceInDown">
+        <div class="header">
+          <div class="left lock">
+            <i class="fa fa-lock fa-3x"></i>
+          </div>
+          <div class="left">
+            <span class="title">LOGIN</span>
+            <span class="subTitle">Sign in to manage the website!</span>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="loginwrapperinner">
 
-					<form
-						jsf:id="loginform"
-						>
-						<p class="animate4 bounceIn">
-							<input
-								type="text"
-								jsf:id="username"
-								jsf:value="#{loginBean.username}"
-								/>
-						</p>
-						<p class="animate5 bounceIn">
-							<input
-								type="password"
-								jsf:id="password"
-								jsf:value="#{loginBean.password}"
-								/>
-						</p>
-						<p class="animate6 bounceIn">
-							<input
-								class="btn btn-default btn-block"
-								type="submit"
-								value="Submit"
-								jsf:action="#{loginBean.login}" />
-						</p>
-						<p class="animate7 fadeIn forgotPassword">
-							<i class="fa fa-question-circle"></i> Forgot Password?
-						</p>
-					</form>
+          <form jsf:id="loginform">
+            <p class="animate4 bounceIn">
+              <input
+                type="text"
+                jsf:id="username"
+                jsf:value="#{loginBean.username}"
+                />
+            </p>
+            <p class="animate5 bounceIn">
+              <input
+                type="password"
+                jsf:id="password"
+                jsf:value="#{loginBean.password}"
+                />
+            </p>
+            <p class="animate6 bounceIn">
+              <input
+                class="btn btn-default btn-block"
+                type="submit"
+                value="Submit"
+                jsf:action="#{loginBean.login}" />
+            </p>
+            <p class="animate7 fadeIn forgotPassword">
+              <i class="fa fa-question-circle"></i> Forgot Password?
+            </p>
+          </form>
 
-				</div>
-			</div>
-			<div class="loginshadow animate3 fadeInUp"></div>
-		</div>
-		<script src="js/lib/jquery-2.0.3.min.js"></script>
-		<script>
-			jQuery(document).ready(function($) {
-				var animationEnd = 'animationend oAnimationEnd MSAnimationEnd webkitAnimationEnd';
-				$('.loginwrap').bind(animationEnd, function() {
-					$(this).removeClass('animate2 bounceInDown');
-				});
+        </div>
+      </div>
+      <div class="loginshadow animate3 fadeInUp"></div>
+    </div>
+    <script src="js/lib/jquery-2.0.3.min.js"></script>
+    <script>
+      jQuery(document).ready(function($) {
+        var animationEnd = 'animationend oAnimationEnd MSAnimationEnd webkitAnimationEnd';
+        $('.loginwrap').bind(animationEnd, function() {
+          $(this).removeClass('animate2 bounceInDown');
+        });
 
-				$('#username,#password').focus(function() {
-					if ($(this).hasClass('error')) {
-						$(this).removeClass('error');
-					}
-				});
+        $('#username,#password').focus(function() {
+          if ($(this).hasClass('error')) {
+            $(this).removeClass('error');
+          }
+        });
 
-				/* TODO: Wird nie ausgeführt, da JSF zuvorkommt! */
-				$('#loginform button').click(function() {
-					if ($('#username').val() === '' || $('#password').val() === '') {
-						if ($('#username').val() === '') {
-							$('#username').addClass('error');
-						}
-						else {
-							$('#username').removeClass('error');
-						}
-						if ($('#password').val() === '') {
-							$('#password').addClass('error');
-						}
-						else {
-							$('#password').removeClass('error');
-						}
+        /* TODO: Wird nie ausgeführt, da JSF zuvorkommt! */
+        $('#loginform button').click(function() {
+          if ($('#username').val() === '' || $('#password').val() === '') {
+            if ($('#username').val() === '') {
+              $('#username').addClass('error');
+            }
+            else {
+              $('#username').removeClass('error');
+            }
+            if ($('#password').val() === '') {
+              $('#password').addClass('error');
+            }
+            else {
+              $('#password').removeClass('error');
+            }
 
-						$('.loginwrap').addClass('animate0 wobble').bind(animationEnd, function() {
-							$(this).removeClass('animate0 wobble');
-						});
-					} else {
-						$('.loginwrapper').addClass('animate0 fadeOutUp').bind(animationEnd, function() {
-							$('#loginform').submit();
-						});
-					}
-					return false;
-				});
-			});
-		</script>
-	</h:body>
+            $('.loginwrap').addClass('animate0 wobble').bind(animationEnd, function() {
+              $(this).removeClass('animate0 wobble');
+            });
+          } else {
+            $('.loginwrapper').addClass('animate0 fadeOutUp').bind(animationEnd, function() {
+              $('#loginform').submit();
+            });
+          }
+          return false;
+        });
+      });
+    </script>
+  </h:body>
 </html>
 
