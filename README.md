@@ -13,8 +13,24 @@ This is an attempt to make **www.welovecoding.com** a better place...
 
 **LESS preprocessor**
 
+Istallation
+
+1. [Install NodeJS](http://nodejs.org/)
+2. On command line: 
+**npm install -g less**
+3. Add **lessc.cmd** (for Windows) to the LESS path in NetBeans:
+**C:\Users\username\AppData\Roaming\npm\lessc.cmd**
+
+Project configuration:
+
 - **Input:** /WEB-INF/frontend/less
 - **Output:** ../resources/META-INF/resources/css/generated
+
+[Disable debug info](https://netbeans.org/bugzilla/show_bug.cgi?id=237855#c1) 
+
+**CoffeeScript**
+
+[CoffeeScript in NetBeans](https://blogs.oracle.com/geertjan/entry/coffeescript_rocks_in_netbeans_ide)
 
 ## Useful resources: ##
 
@@ -30,7 +46,7 @@ This is an attempt to make **www.welovecoding.com** a better place...
 
 - [Best Practices for Developing Web Apps](https://developer.amazon.com/sdk/webapps/Best-Practices.html)
 
-**Rules**
+**Rules & Conventions**
 
 - [Apache Maven: Guide to naming conventions](http://maven.apache.org/guides/mini/guide-naming-conventions.html)
 - [Should package names be singular or plural?](http://programmers.stackexchange.com/a/75929)
