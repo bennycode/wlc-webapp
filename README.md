@@ -52,6 +52,7 @@ Project configuration:
 - [Should package names be singular or plural?](http://programmers.stackexchange.com/a/75929)
 - [Which XHTML files do I need to put in /WEB-INF and which not?](http://stackoverflow.com/a/9033567/451634)
 - [New JSF 2.2 namespaces](http://jsflive.wordpress.com/2013/05/16/jsf22-namespaces/) <- At the moment we should use THE OLD namespaces ([reason](http://stackoverflow.com/questions/17361528/uirepeat-in-jsf-2-2-is-working-but-rendered))
+- [How to Write Doc Comments for the Javadoc Tool](http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html)
 
 ## Reference: ##
 - [Bean Scopes](http://stackoverflow.com/a/17683041/451634)
