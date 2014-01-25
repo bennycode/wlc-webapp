@@ -35,8 +35,8 @@ public class AuthorController implements Serializable {
     this.author = author;
   }
   
-  public void edit(Long id) {
-    LOG.log(Level.INFO, id.toString());
+  public void edit() {
+    LOG.log(Level.INFO, author.getId().toString());
   }
 
   public String save() {

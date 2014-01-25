@@ -52,7 +52,7 @@
                 <td>#{author.name}</td>
                 <td>
                   <h:form>
-                    <h:commandLink value="bearbeiten" action="#{authorController.edit(author.id)}">
+                    <h:commandLink value="bearbeiten" action="#{authorController.edit}">
                       <f:setPropertyActionListener value="#{author}"
                                                    target="#{authorController.author}" />
                     </h:commandLink>
