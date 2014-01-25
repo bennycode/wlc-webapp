@@ -11,7 +11,7 @@ import javax.inject.Named;
 @Named
 public class AuthorProducer implements Serializable {
 
-  private final List<Author> authors;
+  private List<Author> authors;
 
   public AuthorProducer() {
     this.authors = mockAuthors();
@@ -29,6 +29,14 @@ public class AuthorProducer implements Serializable {
     mockedAuthors.add(thomassPreuss);
 
     return mockedAuthors;
+  }
+
+  public List<Author> getAuthors() {
+    return authors;
+  }
+
+  public void setAuthors(List<Author> authors) {
+    this.authors = authors;
   }
 
 }
