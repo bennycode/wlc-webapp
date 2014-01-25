@@ -20,7 +20,12 @@ public class AuthorRepository {
   }
 
   public void save(Author author) {
-    em.persist(author);
+    em.merge(author);
+  }
+
+  public void delete(Author author) {
+    Author managedAuthor = em.getReference(Author.class, author.getId());
+    em.remove(managedAuthor);
   }
 
 }

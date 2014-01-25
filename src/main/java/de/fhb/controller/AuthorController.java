@@ -34,10 +34,6 @@ public class AuthorController implements Serializable {
   public void setAuthor(Author author) {
     this.author = author;
   }
-  
-  public void edit() {
-    LOG.log(Level.INFO, author.getId().toString());
-  }
 
   public String save() {
     // Log
@@ -47,6 +43,17 @@ public class AuthorController implements Serializable {
     this.authorRepository.save(author);
     this.author = new Author();
     // Navigate
-    return Pages.ADMIN_INDEX;
+    return Pages.ADMIN_AUTHORS;
+  }
+
+  public String delete() {
+    // Log
+    String template = "Deleting author: {0}";
+    LOG.log(Level.INFO, template, author.getName());
+    // Save
+    this.authorRepository.delete(author);
+    this.author = new Author();
+    // Navigate
+    return Pages.ADMIN_AUTHORS;
   }
 }

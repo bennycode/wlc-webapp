@@ -31,7 +31,7 @@
               <button type="submit" 
                       class="pure-button pure-button-primary"
                       jsf:action="#{authorController.save}"
-                      >Anlegen</button>
+                      >Speichern</button>
             </div>
           </fieldset>
         </form>
@@ -43,6 +43,7 @@
               <th>#</th>
               <th>Name</th>
               <th>Editieren</th>
+              <th>Löschen</th>
             </tr>
           </thead>
           <tbody>
@@ -52,7 +53,15 @@
                 <td>#{author.name}</td>
                 <td>
                   <h:form>
-                    <h:commandLink value="bearbeiten" action="#{authorController.edit}">
+                    <h:commandLink value="bearbeiten">
+                      <f:setPropertyActionListener value="#{author}"
+                                                   target="#{authorController.author}" />
+                    </h:commandLink>
+                  </h:form>
+                </td>
+                <td>
+                  <h:form>
+                    <h:commandLink value="löschen" action="#{authorController.delete}">
                       <f:setPropertyActionListener value="#{author}"
                                                    target="#{authorController.author}" />
                     </h:commandLink>
