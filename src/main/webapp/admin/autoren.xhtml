@@ -35,6 +35,25 @@
             </div>
           </fieldset>
         </form>
+
+        <!-- List authors -->
+        <table class="pure-table pure-table-horizontal">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ui:repeat value="#{authorService.authors}" var="author">
+              <tr>
+                <td>#{author.id}</td>
+                <td>#{author.name}</td>
+              </tr>
+            </ui:repeat>
+          </tbody>
+        </table>
+
       </ui:define>
     </ui:composition>
   </h:body>
