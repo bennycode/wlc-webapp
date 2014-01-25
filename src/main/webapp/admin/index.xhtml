@@ -1,79 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-  <h:head>
-    <title>Admin Pages</title>
-  </h:head>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
   <h:body>
-    <h:form acceptcharset="ISO-8859-1">
-      <h:dataTable 
-        value="#{aktionListProducer.aktionen}"
-        var="aktion"
-        >
-        <h:column>
-          <h:commandLink value="x" actionListener="#{aktionListController.doDeleteAktion(aktion)}" />
-        </h:column>
-
-        <h:column>
-          <!-- Header -->
-          <f:facet name="header">
-            <h:outputText value="Name" />
-          </f:facet>
-          <!-- Value -->
-          <h:outputText value="#{aktion.name}" />
-        </h:column>
-
-        <h:column>
-          <!-- Header -->
-          <f:facet name="header">
-            <h:outputText value="Spendenziel" />
-          </f:facet>
-          <!-- Value -->
-          <h:outputText value="#{aktion.spendenZiel}">
-            <f:convertNumber type="currency" currencyCode="EUR" />
-          </h:outputText>
-        </h:column>
-
-        <h:column>
-          <!-- Header -->
-          <f:facet name="header">
-            <h:outputText value="bisher gespendet" />
-          </f:facet>
-          <!-- Value -->
-          <h:outputText value="#{aktion.bisherGespendet}">
-            <f:convertNumber type="currency" currencyCode="EUR" />
-          </h:outputText>
-        </h:column>
-
-        <h:column>
-          <h:commandLink 
-            value="Editieren" 
-            action="#{aktionListController.doEditAktion(aktion)}" 
-            />
-        </h:column>
-
-        <h:column>
-          <h:commandLink 
-            value="Spendenliste" 
-            action="#{aktionListController.doListSpende(aktion)}" 
-            />
-        </h:column>
-
-        <h:column>
-          <h:commandLink 
-            value="Formular" 
-            action="#{aktionListController.doEditSpendeForm(aktion)}" 
-            />
-        </h:column>
-
-      </h:dataTable>
-      
-      <h:commandButton 
-        value="Aktion hinzufügen" 
-        action="#{aktionListController.doAddAktion}"
-        />
-    </h:form>
+    <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
+      <ui:define name="content">
+        <p>Bitte ein Menü aus der Seitenleiste auswählen.</p>
+      </ui:define>
+    </ui:composition>
   </h:body>
 </html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+  <h:body>
+    <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
+      <ui:define name="content">
+        <form class="pure-form pure-form-aligned"
+              autocomplete="off"
+              jsf:id="create-author" 
+              jsf:prependId="false"
+              >
+          <fieldset>
+            <div class="pure-control-group">
+              <label for="name">Name</label>
+              <input 
+                id="name" 
+                type="text" 
+                placeholder="Konrad Zuse" 
+                required="required"
+                jsf:id="name"
+                jsf:value="#{authorController.author.name}"
+                />
+            </div>
+
+            <div class="pure-controls">
+              <button type="submit" 
+                      class="pure-button pure-button-primary"
+                      jsf:action="#{authorController.save}"
+                      >Anlegen</button>
+            </div>
+          </fieldset>
+        </form>
+      </ui:define>
+    </ui:composition>
+  </h:body>
+</html>

@@ -1,79 +1,42 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
   <h:head>
-    <title>Admin Pages</title>
+    <title>TODO supply a title</title>
+    <meta name="viewport" content="width=device-width"/>
+    <h:outputStylesheet library="css/pure-0.3.0" name="pure-min.css" />
+    <style>
+      #content p {
+        padding: 20px;
+      }
+    </style>
   </h:head>
   <h:body>
-    <h:form acceptcharset="ISO-8859-1">
-      <h:dataTable 
-        value="#{aktionListProducer.aktionen}"
-        var="aktion"
-        >
-        <h:column>
-          <h:commandLink value="x" actionListener="#{aktionListController.doDeleteAktion(aktion)}" />
-        </h:column>
 
-        <h:column>
-          <!-- Header -->
-          <f:facet name="header">
-            <h:outputText value="Name" />
-          </f:facet>
-          <!-- Value -->
-          <h:outputText value="#{aktion.name}" />
-        </h:column>
+    <!-- Website -->
+    <div id="website-grid" class="pure-g-r">
 
-        <h:column>
-          <!-- Header -->
-          <f:facet name="header">
-            <h:outputText value="Spendenziel" />
-          </f:facet>
-          <!-- Value -->
-          <h:outputText value="#{aktion.spendenZiel}">
-            <f:convertNumber type="currency" currencyCode="EUR" />
-          </h:outputText>
-        </h:column>
+      <div id="sidebar-unit" class="pure-u-1-6">
+        <div class="pure-menu pure-menu-open">
+          <a class="pure-menu-heading">Verwaltung</a>
+          <ul>
+            <li><a href="autoren.xhtml">Autoren</a></li>
+            <li><a href="#">Playlisten</a></li>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Kategorien</a></li>
+          </ul>
+        </div>
+      </div>
 
-        <h:column>
-          <!-- Header -->
-          <f:facet name="header">
-            <h:outputText value="bisher gespendet" />
-          </f:facet>
-          <!-- Value -->
-          <h:outputText value="#{aktion.bisherGespendet}">
-            <f:convertNumber type="currency" currencyCode="EUR" />
-          </h:outputText>
-        </h:column>
+      <div id="content" class="pure-u-5-6">
+        <ui:insert name="content">
+          <p>Template erfolgreich geladen. Bitte mit Inhalt füllen. ;)</p>
+        </ui:insert>
+      </div>
+    </div>
 
-        <h:column>
-          <h:commandLink 
-            value="Editieren" 
-            action="#{aktionListController.doEditAktion(aktion)}" 
-            />
-        </h:column>
-
-        <h:column>
-          <h:commandLink 
-            value="Spendenliste" 
-            action="#{aktionListController.doListSpende(aktion)}" 
-            />
-        </h:column>
-
-        <h:column>
-          <h:commandLink 
-            value="Formular" 
-            action="#{aktionListController.doEditSpendeForm(aktion)}" 
-            />
-        </h:column>
-
-      </h:dataTable>
-      
-      <h:commandButton 
-        value="Aktion hinzufügen" 
-        action="#{aktionListController.doAddAktion}"
-        />
-    </h:form>
   </h:body>
 </html>
