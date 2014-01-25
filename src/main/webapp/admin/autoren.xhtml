@@ -42,13 +42,22 @@
             <tr>
               <th>#</th>
               <th>Name</th>
+              <th>Editieren</th>
             </tr>
           </thead>
           <tbody>
-            <ui:repeat value="#{authorProducer.authors}" var="author">
+            <ui:repeat value="#{authorService.authors}" var="author">
               <tr>
                 <td>#{author.id}</td>
                 <td>#{author.name}</td>
+                <td>
+                  <h:form>
+                    <h:commandLink value="bearbeiten" action="#{authorController.edit(author.id)}">
+                      <f:setPropertyActionListener value="#{author}"
+                                                   target="#{authorController.author}" />
+                    </h:commandLink>
+                  </h:form>
+                </td>
               </tr>
             </ui:repeat>
           </tbody>
