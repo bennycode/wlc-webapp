@@ -12,7 +12,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "authors")
 @NamedQueries({
-  @NamedQuery(name = "Author.findAll", query = "SELECT a FROM Author a")
+  @NamedQuery(name = "Author.findAll", query = "SELECT a FROM Author a"),
+  @NamedQuery(name = "Author.getCount", query = "SELECT COUNT(a) FROM Author a")
 })
 public class Author implements Serializable {
 

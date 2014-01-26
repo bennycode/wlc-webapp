@@ -8,7 +8,8 @@
       >
   <h:body>
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
-      <ui:define name="content">
+      <ui:define name="content">        
+        <!-- Form -->
         <form class="pure-form pure-form-aligned"
               autocomplete="off"
               jsf:id="create-author" 
@@ -36,7 +37,10 @@
           </fieldset>
         </form>
 
-        <!-- List authors -->
+        <!-- Overview -->
+        <p>Autoren in Datenbank: #{authorService.authorCount}</p>
+
+        <!-- List -->
         <table class="pure-table pure-table-horizontal">
           <thead>
             <tr>

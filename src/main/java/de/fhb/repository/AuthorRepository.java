@@ -14,6 +14,10 @@ public class AuthorRepository {
   @PersistenceContext(unitName = Names.PERSISTENCE_UNIT_NAME)
   EntityManager em;
 
+  public long getAuthorCount() {
+    return em.createNamedQuery("Author.getCount", Long.class).getSingleResult().intValue();
+  }
+
   public List<Author> getCategories() {
     TypedQuery<Author> query = em.createNamedQuery("Author.findAll", Author.class);
     return query.getResultList();

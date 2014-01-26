@@ -17,4 +17,8 @@ public class AuthorService {
   public List<Author> getAuthors() {
     return authorRepository.getCategories();
   }
+  
+  public long getAuthorCount() {
+    return authorRepository.getAuthorCount();
+  }
 }
