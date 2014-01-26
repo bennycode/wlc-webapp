@@ -17,7 +17,8 @@ import javax.inject.Named;
 public class AuthorService {
 
   private int offset = 0;
-  private int amount = 0;
+  private int amount = 1;
+  private int currentPage = 0;
   private static final Logger LOG = Logger.getLogger(AuthorService.class.getName());
 
   @EJB
@@ -26,12 +27,9 @@ public class AuthorService {
   @PostConstruct
   public void init() {
     Map<String, String> requestParameterMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-
     String offsetParam = requestParameterMap.get("offset");
-    String amountParam = requestParameterMap.get("amount");
-
     this.offset = (offsetParam == null) ? 0 : Integer.valueOf(offsetParam);
-    this.amount = (amountParam == null) ? 0 : Integer.valueOf(amountParam);
+    this.currentPage = (this.offset / this.amount) + 1;
   }
 
   public List<Author> getAuthors() {
@@ -64,4 +62,12 @@ public class AuthorService {
     this.amount = amount;
   }
 
+  public int getCurrentPage() {
+    return currentPage;
+  }
+
+  public void setCurrentPage(int currentPage) {
+    this.currentPage = currentPage;
+  }
+  
 }
