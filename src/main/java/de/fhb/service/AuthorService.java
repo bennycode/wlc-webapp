@@ -17,7 +17,7 @@ import javax.inject.Named;
 public class AuthorService {
 
   private int offset = 0;
-  private int amount = 1;
+  private int amount = 20;
   private int currentPage = 0;
   private static final Logger LOG = Logger.getLogger(AuthorService.class.getName());
 
