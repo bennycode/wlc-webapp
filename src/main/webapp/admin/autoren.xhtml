@@ -6,7 +6,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       >
-  <h:body>
+  <h:body>    
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
       <ui:define name="content">        
         <!-- Form -->
@@ -75,6 +75,21 @@
             </ui:repeat>
           </tbody>
         </table>
+
+        <div id="pagination-holder"></div>
+
+        <!-- http://flaviusmatis.github.io/simplePagination.js/ -->
+        <script>
+          //<![CDATA[ 
+          $(function() {
+            $('#pagination-holder').pagination({
+              items: #{authorService.authorCount},
+              itemsOnPage: 20,
+              cssStyle: 'light-theme'
+            });
+          });
+          //]]>
+        </script>
 
       </ui:define>
     </ui:composition>
