@@ -6,7 +6,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 @Stateless
 public class AuthorRepository {
@@ -18,9 +17,15 @@ public class AuthorRepository {
     return em.createNamedQuery("Author.getCount", Long.class).getSingleResult().intValue();
   }
 
-  public List<Author> getCategories() {
-    TypedQuery<Author> query = em.createNamedQuery("Author.findAll", Author.class);
-    return query.getResultList();
+  public List<Author> getAuthors() {
+    return em.createNamedQuery("Author.findAll", Author.class).getResultList();
+  }
+
+  public List<Author> getAuthors(int offset, int amount) {
+    return em.createNamedQuery("Author.findAll", Author.class)
+            .setFirstResult(offset)
+            .setMaxResults(amount)
+            .getResultList();
   }
 
   public void save(Author author) {
