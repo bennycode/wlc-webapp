@@ -1,38 +1,24 @@
-package de.fhb.repository;
+package com.welovecoding.web.jpa.session;
 
 import de.fhb.entities.Category;
-import com.welovecoding.web.config.Names;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-
+/**
+ * @author Benny Neugebauer (bn@bennyn.de)
+ */
 @Stateless
-public class CategoryRepository {
+public class CategoryFacade extends AbstractFacade<Category> {
+  @PersistenceContext(unitName = "com.welovecoding.web_wlc-webapp_war_1.0-SNAPSHOTPU")
+  private EntityManager em;
 
-  @PersistenceContext(unitName = Names.PERSISTENCE_UNIT_NAME)
-  EntityManager em;
-
-  public CategoryRepository() {
+  @Override
+  protected EntityManager getEntityManager() {
+    return em;
   }
 
-  public List<Category> getCategories() {
-    TypedQuery<Category> query = em.createNamedQuery("Category.findAll", Category.class);
-    return query.getResultList();
+  public CategoryFacade() {
+    super(Category.class);
   }
 
-  public List<Category> getCategoriesOrderedByTitle() {
-    TypedQuery<Category> query = em.createQuery("SELECT c FROM Category c ORDER BY c.title", Category.class);
-    return query.getResultList();
-  }
-
-  public void save(Category item) {
-    em.merge(item);
-  }
-
-  public void delete(Category item) {
-    Category managedItem = em.getReference(Category.class, item.getId());
-    em.remove(managedItem);
-  }
 }
