@@ -1,4 +1,4 @@
-package com.welovecoding.web.data;
+package de.fhb.repository;
 
 import com.welovecoding.web.entities.Category;
 import com.welovecoding.web.config.Names;

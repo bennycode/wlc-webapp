@@ -1,7 +1,7 @@
 package de.fhb.controller;
 
 import de.fhb.navigation.Pages;
-import com.welovecoding.web.data.CategoryRepository;
+import de.fhb.repository.CategoryRepository;
 import com.welovecoding.web.entities.Category;
 import java.io.Serializable;
 import java.util.logging.Level;
