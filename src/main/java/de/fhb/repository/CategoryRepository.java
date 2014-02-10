@@ -1,24 +1,33 @@
-package com.welovecoding.web.jpa.session;
+package de.fhb.repository;
 
+import com.welovecoding.web.config.Names;
 import de.fhb.entities.Category;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 /**
  * @author Benny Neugebauer (bn@bennyn.de)
  */
 @Stateless
-public class CategoryFacade extends AbstractFacade<Category> {
-  @PersistenceContext(unitName = "com.welovecoding.web_wlc-webapp_war_1.0-SNAPSHOTPU")
-  private EntityManager em;
+public class CategoryRepository extends AbstractRepository<Category> {
+
+  @PersistenceContext(unitName = Names.PERSISTENCE_UNIT_NAME)
+  EntityManager em;
 
   @Override
   protected EntityManager getEntityManager() {
     return em;
   }
 
-  public CategoryFacade() {
+  public CategoryRepository() {
     super(Category.class);
   }
 
+  /*
+   public List<Category> getCategoriesOrderedByTitle() {
+   TypedQuery<Category> query = em.createQuery("SELECT c FROM Category c ORDER BY c.title", Category.class);
+   return query.getResultList();
+   }
+   */
 }

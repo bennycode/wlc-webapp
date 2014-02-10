@@ -2,7 +2,6 @@ package de.fhb.service;
 
 import de.fhb.repository.CategoryRepository;
 import de.fhb.entities.Category;
-import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -19,12 +18,12 @@ public class CategoryService {
   }
 
   public List<Category> getCategories() {
-    return repository.getCategories();
+    return repository.findAll();
   }
 
-  public List<Category> getCategoriesOrderedByTitle() {
-    return repository.getCategoriesOrderedByTitle();
-  }
+//  public List<Category> getCategoriesOrderedByTitle() {
+//    return repository.getCategoriesOrderedByTitle();
+//  }
 //  public String getUrlSlug(Category category) {
 //    return Slugify.slugify(category.getTitle());
 //  }
