@@ -1,6 +1,6 @@
 package com.welovecoding.web.jpa.session;
 
-import com.welovecoding.web.entities.Category;
+import de.fhb.entities.Category;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -1,7 +1,7 @@
 package de.fhb.controller;
 
 import de.fhb.navigation.Pages;
-import de.fhb.model.Author;
+import de.fhb.entities.Author;
 import de.fhb.repository.AuthorRepository;
 import java.io.Serializable;
 import java.util.logging.Level;
@@ -15,33 +15,32 @@ import javax.inject.Named;
 @Named
 public class AuthorController implements Serializable {
 
-  @EJB
-  private AuthorRepository authorRepository;
-
   private static final Logger LOG = Logger.getLogger(AuthorController.class.getName());
 
-  private Author author;
+  @EJB
+  private AuthorRepository repository;
+  private Author item;
 
   @PostConstruct
   public void init() {
-    this.author = new Author();
+    this.item = new Author();
   }
 
   public Author getAuthor() {
-    return author;
+    return item;
   }
 
   public void setAuthor(Author author) {
-    this.author = author;
+    this.item = author;
   }
 
   public String save() {
     // Log
     String template = "Saving author: {0}";
-    LOG.log(Level.INFO, template, author.getName());
+    LOG.log(Level.INFO, template, item.getName());
     // Save
-    this.authorRepository.save(author);
-    this.author = new Author();
+    this.repository.save(item);
+    this.item = new Author();
     // Navigate
     return Pages.ADMIN_AUTHORS;
   }
@@ -49,10 +48,10 @@ public class AuthorController implements Serializable {
   public String delete() {
     // Log
     String template = "Deleting author: {0}";
-    LOG.log(Level.INFO, template, author.getName());
+    LOG.log(Level.INFO, template, item.getName());
     // Save
-    this.authorRepository.delete(author);
-    this.author = new Author();
+    this.repository.delete(item);
+    this.item = new Author();
     // Navigate
     return Pages.ADMIN_AUTHORS;
   }

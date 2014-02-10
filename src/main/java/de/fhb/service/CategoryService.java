@@ -1,7 +1,7 @@
 package de.fhb.service;
 
 import de.fhb.repository.CategoryRepository;
-import com.welovecoding.web.entities.Category;
+import de.fhb.entities.Category;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;

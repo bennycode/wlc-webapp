@@ -1,7 +1,7 @@
 package de.fhb.repository;
 
 import com.welovecoding.web.config.Names;
-import de.fhb.model.Author;
+import de.fhb.entities.Author;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

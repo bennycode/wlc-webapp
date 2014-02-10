@@ -1,4 +1,4 @@
-package de.fhb.model;
+package de.fhb.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;

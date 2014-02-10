@@ -1,6 +1,6 @@
 package de.fhb.service;
 
-import de.fhb.model.Author;
+import de.fhb.entities.Author;
 import de.fhb.repository.AuthorRepository;
 import java.util.List;
 import java.util.Map;

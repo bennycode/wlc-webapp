@@ -1,5 +1,6 @@
-package com.welovecoding.web.entities;
+package de.fhb.entities;
 
+import com.welovecoding.web.entities.Playlist;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

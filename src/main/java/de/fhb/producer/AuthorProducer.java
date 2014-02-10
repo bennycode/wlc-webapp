@@ -1,6 +1,6 @@
 package de.fhb.producer;
 
-import de.fhb.model.Author;
+import de.fhb.entities.Author;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

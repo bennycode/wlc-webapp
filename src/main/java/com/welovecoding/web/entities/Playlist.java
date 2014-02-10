@@ -1,5 +1,6 @@
 package com.welovecoding.web.entities;
 
+import de.fhb.entities.Category;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

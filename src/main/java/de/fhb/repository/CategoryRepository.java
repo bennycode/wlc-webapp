@@ -1,6 +1,6 @@
 package de.fhb.repository;
 
-import com.welovecoding.web.entities.Category;
+import de.fhb.entities.Category;
 import com.welovecoding.web.config.Names;
 import java.util.List;
 import javax.ejb.Stateless;
