@@ -21,9 +21,10 @@ public class CategoryService {
     return repository.findAll();
   }
 
-//  public List<Category> getCategoriesOrderedByTitle() {
-//    return repository.getCategoriesOrderedByTitle();
-//  }
+  public List<Category> getCategoriesOrderedByTitle() {
+    return repository.getCategoriesOrderedByTitle();
+  }
+
 //  public String getUrlSlug(Category category) {
 //    return Slugify.slugify(category.getTitle());
 //  }
