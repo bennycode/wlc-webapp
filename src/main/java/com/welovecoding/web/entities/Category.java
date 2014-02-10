@@ -66,6 +66,8 @@ public class Category implements Serializable {
   private List<Playlist> playlistList;
 
   public Category() {
+    this.created = new Date();
+    this.lastmodified = new Date();
   }
 
   public Category(Integer id) {
