@@ -9,7 +9,7 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class CategoryService implements Serializable {
+public class CategoryService {
 
   @EJB
   private CategoryRepository repository;

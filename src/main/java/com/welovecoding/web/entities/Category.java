@@ -19,6 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 /**
  * @author Benny Neugebauer (bn@bennyn.de)
  */
@@ -33,6 +34,7 @@ import javax.validation.constraints.Size;
   @NamedQuery(name = "Category.findBySlug", query = "SELECT c FROM Category c WHERE c.slug = :slug"),
   @NamedQuery(name = "Category.findByTitle", query = "SELECT c FROM Category c WHERE c.title = :title")})
 public class Category implements Serializable {
+
   private static final long serialVersionUID = 1L;
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -147,10 +149,7 @@ public class Category implements Serializable {
       return false;
     }
     Category other = (Category) object;
-    if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-      return false;
-    }
-    return true;
+    return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
   }
 
   @Override
