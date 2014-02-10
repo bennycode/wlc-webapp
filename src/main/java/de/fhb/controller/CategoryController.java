@@ -1,8 +1,8 @@
 package de.fhb.controller;
 
 import de.fhb.navigation.Pages;
-import de.fhb.model.Author;
-import de.fhb.repository.AuthorRepository;
+import com.welovecoding.web.data.CategoryRepository;
+import com.welovecoding.web.entities.Category;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,47 +13,47 @@ import javax.inject.Named;
 
 @SessionScoped
 @Named
-public class AuthorController implements Serializable {
+public class CategoryController implements Serializable {
 
   @EJB
-  private AuthorRepository authorRepository;
+  private CategoryRepository repository;
 
-  private static final Logger LOG = Logger.getLogger(AuthorController.class.getName());
+  private static final Logger LOG = Logger.getLogger(CategoryController.class.getName());
 
-  private Author author;
+  private Category item;
 
   @PostConstruct
   public void init() {
-    this.author = new Author();
+    this.item = new Category();
   }
 
-  public Author getAuthor() {
-    return author;
+  public Category getItem() {
+    return item;
   }
 
-  public void setAuthor(Author author) {
-    this.author = author;
+  public void setItem(Category item) {
+    this.item = item;
   }
 
   public String save() {
     // Log
-    String template = "Saving author: {0}";
-    LOG.log(Level.INFO, template, author.getName());
+    String template = "Saving item: {0}";
+    LOG.log(Level.INFO, template, item.toString());
     // Save
-    this.authorRepository.save(author);
-    this.author = new Author();
+    this.repository.save(item);
+    this.item = new Category();
     // Navigate
-    return Pages.ADMIN_AUTHORS;
+    return Pages.ADMIN_CATEGORY;
   }
 
   public String delete() {
     // Log
-    String template = "Deleting author: {0}";
-    LOG.log(Level.INFO, template, author.getName());
+    String template = "Deleting item: {0}";
+    LOG.log(Level.INFO, template, item.toString());
     // Save
-    this.authorRepository.delete(author);
-    this.author = new Author();
+    this.repository.delete(item);
+    this.item = new Category();
     // Navigate
-    return Pages.ADMIN_AUTHORS;
+    return Pages.ADMIN_CATEGORY;
   }
 }

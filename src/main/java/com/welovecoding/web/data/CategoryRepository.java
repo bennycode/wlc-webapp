@@ -27,4 +27,12 @@ public class CategoryRepository {
     return query.getResultList();
   }
 
+  public void save(Category item) {
+    em.merge(item);
+  }
+
+  public void delete(Category item) {
+    Category managedItem = em.getReference(Category.class, item.getId());
+    em.remove(managedItem);
+  }
 }
