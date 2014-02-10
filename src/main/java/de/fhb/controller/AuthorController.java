@@ -34,12 +34,12 @@ public class AuthorController implements Serializable {
     this.item = author;
   }
 
-  public String save() {
+  public String edit() {
     // Log
     String template = "Saving author: {0}";
     LOG.log(Level.INFO, template, item.getName());
     // Save
-    this.repository.save(item);
+    this.repository.edit(item);
     this.item = new Author();
     // Navigate
     return Pages.ADMIN_AUTHORS;

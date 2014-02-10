@@ -8,10 +8,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class AuthorRepository {
+public class AuthorRepository extends AbstractRepository<Author> {
 
   @PersistenceContext(unitName = Names.PERSISTENCE_UNIT_NAME)
   EntityManager em;
+
+  @Override
+  protected EntityManager getEntityManager() {
+    return em;
+  }
+
+  public AuthorRepository() {
+    super(Author.class);
+  }
 
   public long getAuthorCount() {
     return em.createNamedQuery("Author.getCount", Long.class).getSingleResult().intValue();
@@ -26,10 +35,6 @@ public class AuthorRepository {
             .setFirstResult(offset)
             .setMaxResults(amount)
             .getResultList();
-  }
-
-  public void save(Author author) {
-    em.merge(author);
   }
 
   public void delete(Author author) {
