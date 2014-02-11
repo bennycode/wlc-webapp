@@ -42,7 +42,8 @@ public class CategoryService extends BaseService<Category> {
     return repository.getCategoriesOrderedByTitle();
   }
 
-//  public String getUrlSlug(Category category) {
-//    return Slugify.slugify(category.getTitle());
-//  }
+  @Override
+  public List<Category> getItems() {
+    return repository.findAll();
+  }
 }

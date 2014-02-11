@@ -5,8 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
   <composite:interface>
-    <!-- Required -->
-    <composite:attribute name="name" required="false" type="java.lang.String" />
+    <composite:attribute name="service" required="true" type="de.fhb.service.BaseService" />
   </composite:interface>
 
   <composite:implementation>
@@ -21,16 +20,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>ID</td>
-          <td>Name</td>
-          <td>
-            Bearbeiten
-          </td>
-          <td>
-            Löschen
-          </td>
-        </tr>
+        <ui:repeat value="#{cc.attrs.service.items}" var="item">
+          <!-- TODO: Show correct values! -->
+          <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>
+              Bearbeiten
+            </td>
+            <td>
+              Löschen
+            </td>
+          </tr>
+        </ui:repeat>
       </tbody>
     </table>
   </composite:implementation>

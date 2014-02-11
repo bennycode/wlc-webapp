@@ -1,6 +1,7 @@
 package de.fhb.service;
 
 import de.fhb.repository.AbstractRepository;
+import java.util.List;
 import javax.annotation.PostConstruct;
 
 public abstract class BaseService<T> {
@@ -16,6 +17,8 @@ public abstract class BaseService<T> {
 
   public BaseService() {
   }
+
+  public abstract List<T> getItems();
 
   public int getOffset() {
     return offset;

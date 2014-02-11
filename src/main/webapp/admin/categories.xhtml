@@ -38,40 +38,9 @@
         </form>
 
         <!-- List -->
-        <table class="pure-table pure-table-horizontal">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Editieren</th>
-              <th>Löschen</th>
-            </tr>
-          </thead>
-          <tbody>
-            <ui:repeat value="#{categoryService.categories}" var="category">
-              <tr>
-                <td>#{category.id}</td>
-                <td>#{category.title}</td>
-                <td>
-                  <h:form>
-                    <h:commandLink value="bearbeiten">
-                      <f:setPropertyActionListener value="#{category}"
-                                                   target="#{categoryController.item}" />
-                    </h:commandLink>
-                  </h:form>
-                </td>
-                <td>
-                  <h:form>
-                    <h:commandLink value="löschen" action="#{categoryController.delete}">
-                      <f:setPropertyActionListener value="#{category}"
-                                                   target="#{categoryController.item}" />
-                    </h:commandLink>
-                  </h:form>
-                </td>
-              </tr>
-            </ui:repeat>
-          </tbody>
-        </table>
+        <wlc:admin-item-table
+          service="#{categoryService}"
+          /> 
       </ui:define>
     </ui:composition>
   </h:body>
