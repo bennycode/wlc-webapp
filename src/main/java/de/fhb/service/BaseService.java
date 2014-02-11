@@ -1,13 +1,18 @@
 package de.fhb.service;
 
 import de.fhb.repository.AbstractRepository;
+import javax.annotation.PostConstruct;
 
 public abstract class BaseService<T> {
 
-  private int offset = 0;
-  private int amount = 20;
-  private int currentPage = 0;
+  int offset = 0;
+  int amount = 20;
+  int currentPage = 0;
+
   protected abstract AbstractRepository getRepository();
+
+  @PostConstruct
+  public abstract void init();
 
   public BaseService() {
   }
