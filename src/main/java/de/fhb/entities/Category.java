@@ -1,11 +1,11 @@
 package de.fhb.entities;
 
+import com.github.slugify.Slugify;
 import com.welovecoding.web.entities.Playlist;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
@@ -43,11 +43,18 @@ public class Category extends BaseEntity implements Serializable {
   private List<Playlist> playlistList;
 
   public Category() {
+    this.color = "#000000";
   }
 
   public Category(String color, String slug) {
     this.color = color;
     this.slug = slug;
+  }
+
+  @Override
+  public void setName(String name) {
+    super.setName(name);
+    this.slug = new Slugify().slugify(name);
   }
 
   public String getColor() {

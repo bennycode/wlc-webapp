@@ -1,5 +1,6 @@
 package de.fhb.repository;
 
+import de.fhb.entities.BaseEntity;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -18,6 +19,11 @@ public abstract class AbstractRepository<T> {
 
   public void create(T entity) {
     getEntityManager().persist(entity);
+  }
+
+  public void delete(BaseEntity entity) {
+    BaseEntity managedEntity = getEntityManager().getReference(BaseEntity.class, entity.getId());
+    getEntityManager().remove(managedEntity);
   }
 
   public void edit(T entity) {
