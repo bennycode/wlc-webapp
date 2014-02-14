@@ -38,8 +38,8 @@ public class CategoryService extends BaseService<Category> {
     return repository.findAll();
   }
 
-  public List<Category> getCategoriesOrderedByTitle() {
-    return repository.getCategoriesOrderedByTitle();
+  public List<Category> getCategoriesOrderedByName() {
+    return repository.getCategoriesOrderedByName();
   }
 
   @Override

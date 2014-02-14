@@ -2,11 +2,14 @@ package de.fhb.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Basic;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
 public class BaseEntity implements Serializable {
@@ -17,6 +20,9 @@ public class BaseEntity implements Serializable {
   @Id
   private Long id;
 
+  @NotNull
+  @Size(min = 1, max = 255)
+  @Basic(optional = false)
   private String name;
 
   @Temporal(value = TemporalType.TIMESTAMP)
@@ -26,6 +32,15 @@ public class BaseEntity implements Serializable {
   private Date lastModified;
 
   public BaseEntity() {
+    this.created = new Date();
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getName() {

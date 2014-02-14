@@ -11,6 +11,7 @@
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
       <ui:define name="content">        
         <!-- Form -->
+        <!-- TODO: categoryController must be written -->
         <form class="pure-form pure-form-aligned"
               autocomplete="off"
               jsf:id="create-category" 
@@ -25,7 +26,7 @@
                 placeholder="Java" 
                 required="required"
                 jsf:id="name"
-                jsf:value="#{categoryController.item.title}"
+                jsf:value="#{categoryController.item.name}"
                 />
             </div>
             <div class="pure-controls">
@@ -38,9 +39,7 @@
         </form>
 
         <!-- List -->
-        <wlc:admin-item-table
-          service="#{categoryService}"
-          /> 
+        <wlc:admin-item-table service="#{categoryService}" /> 
       </ui:define>
     </ui:composition>
   </h:body>

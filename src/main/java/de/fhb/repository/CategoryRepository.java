@@ -26,8 +26,8 @@ public class CategoryRepository extends AbstractRepository<Category> {
     super(Category.class);
   }
 
-  public List<Category> getCategoriesOrderedByTitle() {
-    TypedQuery<Category> query = em.createQuery("SELECT c FROM Category c ORDER BY c.title", Category.class);
+  public List<Category> getCategoriesOrderedByName() {
+    TypedQuery<Category> query = em.createQuery("SELECT c FROM Category c ORDER BY c.name", Category.class);
     return query.getResultList();
   }
 }
