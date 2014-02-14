@@ -1,10 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
   <composite:interface>
+    <composite:attribute name="controller" required="false" type="de.fhb.controller.BaseController" />
     <composite:attribute name="service" required="true" type="de.fhb.service.BaseService" />
   </composite:interface>
 
@@ -23,13 +24,23 @@
         <ui:repeat value="#{cc.attrs.service.items}" var="item">
           <!-- TODO: Show correct values! -->
           <tr>
-            <td>ID</td>
-            <td>Name</td>
+            <td>#{item.id}</td>
+            <td>#{item.name}</td>
             <td>
-              Bearbeiten
+              <h:form>
+                <h:commandLink value="bearbeiten">
+                  <f:setPropertyActionListener value="#{item}"
+                                               target="#{controller.item}" />
+                </h:commandLink>
+              </h:form>
             </td>
             <td>
-              Löschen
+              <h:form>
+                <h:commandLink value="löschen" action="#{controller.delete}">
+                  <f:setPropertyActionListener value="#{item}"
+                                               target="#{controller.item}" />
+                </h:commandLink>
+              </h:form>
             </td>
           </tr>
         </ui:repeat>

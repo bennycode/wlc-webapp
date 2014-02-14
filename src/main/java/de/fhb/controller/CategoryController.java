@@ -16,9 +16,9 @@ import javax.inject.Named;
  *
  * @author Benny
  */
-@SessionScoped
 @Named
-public class CategoryController implements Serializable {
+@SessionScoped
+public class CategoryController extends BaseController implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(CategoryController.class.getName());
 

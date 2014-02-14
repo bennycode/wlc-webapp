@@ -13,7 +13,7 @@ import javax.inject.Named;
 
 @SessionScoped
 @Named
-public class AuthorController implements Serializable {
+public class AuthorController extends BaseController implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(AuthorController.class.getName());
 

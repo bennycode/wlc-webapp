@@ -33,6 +33,7 @@ public class BaseEntity implements Serializable {
 
   public BaseEntity() {
     this.created = new Date();
+    this.lastModified = new Date();
   }
 
   public Long getId() {
