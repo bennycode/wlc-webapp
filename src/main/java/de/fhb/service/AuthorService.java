@@ -28,4 +28,8 @@ public class AuthorService extends BaseService<Author, AuthorRepository> {
     return repository;
   }
 
+  public long getAuthorCount() {
+    return repository.getAuthorCount();
+  }
+
 }

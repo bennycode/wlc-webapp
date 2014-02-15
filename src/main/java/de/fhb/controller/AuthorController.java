@@ -38,4 +38,8 @@ public class AuthorController extends BaseController<Author, AuthorService> {
   public AuthorService getService() {
     return authorService;
   }
+
+  public long getAuthorCount() {
+    return authorService.getAuthorCount();
+  }
 }
