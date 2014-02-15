@@ -1,45 +1,38 @@
 package de.fhb.service;
 
-import de.fhb.repository.AbstractRepository;
+import de.fhb.entities.BaseEntity;
+import de.fhb.repository.BaseEntityRepository;
 import java.util.List;
-import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.persistence.MappedSuperclass;
 
-public abstract class BaseService<T> {
+@MappedSuperclass
+public abstract class BaseService<T extends BaseEntity> {
 
-  int offset = 0;
-  int amount = 20;
-  int currentPage = 0;
+	@EJB
+	private BaseEntityRepository repository;
 
-  @PostConstruct
-  public abstract void init();
+	public BaseService() {
+	}
 
-  public BaseService() {
-  }
+	public void create(T entity) {
+		repository.create(entity);
+	}
 
-  public abstract List<T> getItems();
+	public void edit(T entity) {
+		repository.edit(entity);
+	}
 
-  public int getOffset() {
-    return offset;
-  }
+	public void remove(T entity) {
+		repository.remove(entity);
+	}
 
-  public void setOffset(int offset) {
-    this.offset = offset;
-  }
+	public T find(Long id) {
+		return (T) repository.find(id);
+	}
 
-  public int getAmount() {
-    return amount;
-  }
-
-  public void setAmount(int amount) {
-    this.amount = amount;
-  }
-
-  public int getCurrentPage() {
-    return currentPage;
-  }
-
-  public void setCurrentPage(int currentPage) {
-    this.currentPage = currentPage;
-  }
+	public List<T> findAll() {
+		return (List<T>) repository.findAll();
+	}
 
 }

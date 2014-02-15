@@ -1,44 +1,25 @@
 package de.fhb.service;
 
-import de.fhb.repository.CategoryRepository;
 import de.fhb.entities.Category;
-import de.fhb.repository.AbstractRepository;
-import java.util.List;
-import java.util.Map;
+import de.fhb.logging.interceptor.ServiceLoggerInterceptor;
+import de.fhb.repository.CategoryRepository;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
-import javax.inject.Named;
+import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 
-@Named
-@RequestScoped
+@Stateless
+@Interceptors({ServiceLoggerInterceptor.class})
 public class CategoryService extends BaseService<Category> {
 
-  @EJB
-  private CategoryRepository repository;
+	@EJB
+	private CategoryRepository repository;
 
-  public CategoryService() {
-  }
+	public CategoryService() {
+	}
 
-  @Override
-  public void init() {
-    /* TODO: Should be done by the "BaseService" */
-    Map<String, String> requestParameterMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-    String offsetParam = requestParameterMap.get("offset");
-    this.offset = (offsetParam == null) ? 0 : Integer.valueOf(offsetParam);
-    this.currentPage = (this.offset / this.amount) + 1;
-  }
+	@PostConstruct
+	public void init() {
+	}
 
-  public List<Category> getCategories() {
-    return repository.findAll();
-  }
-
-  public List<Category> getCategoriesOrderedByName() {
-    return repository.getCategoriesOrderedByName();
-  }
-
-  @Override
-  public List<Category> getItems() {
-    return repository.findAll();
-  }
 }

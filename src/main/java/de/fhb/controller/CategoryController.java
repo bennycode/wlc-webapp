@@ -1,9 +1,8 @@
 package de.fhb.controller;
 
-import de.fhb.navigation.Pages;
 import de.fhb.entities.Category;
+import de.fhb.navigation.Pages;
 import de.fhb.repository.CategoryRepository;
-import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -18,44 +17,44 @@ import javax.inject.Named;
  */
 @Named
 @SessionScoped
-public class CategoryController extends BaseController<Category> implements Serializable {
+public class CategoryController extends BaseController<Category> {
 
-  private static final Logger LOG = Logger.getLogger(CategoryController.class.getName());
+	private static final Logger LOG = Logger.getLogger(CategoryController.class.getName());
 
-  @EJB
-  private CategoryRepository repository;
+	@EJB
+	private CategoryRepository repository;
 
-  @PostConstruct
-  public void init() {
-    super.item = new Category();
-  }
+	@PostConstruct
+	public void init() {
+		super.item = new Category();
+	}
 
-  /**
-   * Saves or edits an item/entity
-   *
-   * @return
-   */
-  @Override
-  public String edit() {
-    // Log
-    String template = "Saving item: {0}";
-    LOG.log(Level.INFO, template, item.getName());
-    // Save
-    this.repository.edit(item);
-    this.item = new Category();
-    // Navigate
-    return Pages.ADMIN_CATEGORY;
-  }
+	/**
+	 * Saves or edits an item/entity
+	 *
+	 * @return
+	 */
+	@Override
+	public String edit() {
+		// Log
+		String template = "Saving item: {0}";
+		LOG.log(Level.INFO, template, item.getName());
+		// Save
+		this.repository.edit(item);
+		this.item = new Category();
+		// Navigate
+		return Pages.ADMIN_CATEGORY;
+	}
 
-  @Override
-  public String remove() {
-    // Log
-    String template = "Deleting item: {0}";
-    LOG.log(Level.INFO, template, item.getName());
-    // Save
-    this.repository.remove(item);
-    this.item = new Category();
-    // Navigate
-    return Pages.ADMIN_CATEGORY;
-  }
+	@Override
+	public String remove() {
+		// Log
+		String template = "Deleting item: {0}";
+		LOG.log(Level.INFO, template, item.getName());
+		// Save
+		this.repository.remove(item);
+		this.item = new Category();
+		// Navigate
+		return Pages.ADMIN_CATEGORY;
+	}
 }
