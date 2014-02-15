@@ -11,16 +11,21 @@ import javax.interceptor.Interceptors;
 
 @Stateless
 @Interceptors({ServiceLoggerInterceptor.class})
-public class AuthorService extends BaseService<Author> {
+public class AuthorService extends BaseService<Author, AuthorRepository> {
 
-	private static final Logger LOG = Logger.getLogger(AuthorService.class.getName());
+  private static final Logger LOG = Logger.getLogger(AuthorService.class.getName());
 
-	@EJB
-	private AuthorRepository repository;
+  @EJB
+  private AuthorRepository repository;
 
-	@PostConstruct
-	public void init() {
+  @PostConstruct
+  public void init() {
 
-	}
+  }
+
+  @Override
+  protected AuthorRepository getRepository() {
+    return repository;
+  }
 
 }

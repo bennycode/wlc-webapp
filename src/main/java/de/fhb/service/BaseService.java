@@ -1,38 +1,37 @@
 package de.fhb.service;
 
 import de.fhb.entities.BaseEntity;
-import de.fhb.repository.BaseEntityRepository;
+import de.fhb.repository.AbstractRepository;
+
 import java.util.List;
-import javax.ejb.EJB;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class BaseService<T extends BaseEntity> {
+public abstract class BaseService<T extends BaseEntity, E extends AbstractRepository<T>> {
 
-	@EJB
-	private BaseEntityRepository repository;
+  protected abstract E getRepository();
 
-	public BaseService() {
-	}
+  public BaseService() {
+  }
 
-	public void create(T entity) {
-		repository.create(entity);
-	}
+  public void create(T entity) {
+    getRepository().create(entity);
+  }
 
-	public void edit(T entity) {
-		repository.edit(entity);
-	}
+  public void edit(T entity) {
+    getRepository().edit(entity);
+  }
 
-	public void remove(T entity) {
-		repository.remove(entity);
-	}
+  public void remove(T entity) {
+    getRepository().remove(entity);
+  }
 
-	public T find(Long id) {
-		return (T) repository.find(id);
-	}
+  public T find(Long id) {
+    return (T) getRepository().find(id);
+  }
 
-	public List<T> findAll() {
-		return (List<T>) repository.findAll();
-	}
+  public List<T> findAll() {
+    return (List<T>) getRepository().findAll();
+  }
 
 }

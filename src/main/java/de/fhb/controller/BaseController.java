@@ -1,56 +1,59 @@
 package de.fhb.controller;
 
 import de.fhb.entities.BaseEntity;
-import de.fhb.service.BaseEntityService;
 import java.io.Serializable;
-import javax.ejb.EJB;
+import java.util.List;
 import javax.enterprise.context.Dependent;
 
 @Dependent
 public abstract class BaseController<T extends BaseEntity> implements Serializable {
 
-	private int offset = 0;
-	private int amount = 20;
-	private int currentPage = 0;
+  private int offset = 0;
+  private int amount = 20;
+  private int currentPage = 0;
 
-	protected T item;
+  protected T item;
+  private List<T> items;
 
-	@EJB
-	private BaseEntityService service;
+  public abstract String remove();
 
-	public abstract String remove();
+  public abstract String edit();
 
-	public abstract String edit();
+  public abstract List<T> getItems();
 
-	public int getOffset() {
-		return offset;
-	}
+  public void setItems(List<T> items) {
+    this.items = items;
+  }
 
-	public void setOffset(int offset) {
-		this.offset = offset;
-	}
+  public int getOffset() {
+    return offset;
+  }
 
-	public int getAmount() {
-		return amount;
-	}
+  public void setOffset(int offset) {
+    this.offset = offset;
+  }
 
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
+  public int getAmount() {
+    return amount;
+  }
 
-	public int getCurrentPage() {
-		return currentPage;
-	}
+  public void setAmount(int amount) {
+    this.amount = amount;
+  }
 
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
-	}
+  public int getCurrentPage() {
+    return currentPage;
+  }
 
-	public T getItem() {
-		return item;
-	}
+  public void setCurrentPage(int currentPage) {
+    this.currentPage = currentPage;
+  }
 
-	public void setItem(T item) {
-		this.item = item;
-	}
+  public T getItem() {
+    return item;
+  }
+
+  public void setItem(T item) {
+    this.item = item;
+  }
 }

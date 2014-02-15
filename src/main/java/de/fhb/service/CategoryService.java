@@ -10,16 +10,21 @@ import javax.interceptor.Interceptors;
 
 @Stateless
 @Interceptors({ServiceLoggerInterceptor.class})
-public class CategoryService extends BaseService<Category> {
+public class CategoryService extends BaseService<Category, CategoryRepository> {
 
-	@EJB
-	private CategoryRepository repository;
+  @EJB
+  private CategoryRepository repository;
 
-	public CategoryService() {
-	}
+  public CategoryService() {
+  }
 
-	@PostConstruct
-	public void init() {
-	}
+  @PostConstruct
+  public void init() {
+  }
+
+  @Override
+  protected CategoryRepository getRepository() {
+    return repository;
+  }
 
 }

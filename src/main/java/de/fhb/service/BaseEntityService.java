@@ -11,16 +11,21 @@ import javax.interceptor.Interceptors;
 
 @Stateless
 @Interceptors({ServiceLoggerInterceptor.class})
-public class BaseEntityService extends BaseService<BaseEntity> {
+public class BaseEntityService extends BaseService<BaseEntity, BaseEntityRepository> {
 
-	private static final Logger LOG = Logger.getLogger(BaseEntityService.class.getName());
+  private static final Logger LOG = Logger.getLogger(BaseEntityService.class.getName());
 
-	@EJB
-	private BaseEntityRepository repository;
+  @EJB
+  private BaseEntityRepository repository;
 
-	@PostConstruct
-	public void init() {
+  @PostConstruct
+  public void init() {
 
-	}
+  }
+
+  @Override
+  protected BaseEntityRepository getRepository() {
+    return repository;
+  }
 
 }
