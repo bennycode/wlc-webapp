@@ -15,7 +15,7 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
 
   private int offset = 0;
   private int amount = 20;
-  private int currentPage = 0;
+  private int currentPage = 1;
 
   protected T item;
   private List<T> items;
