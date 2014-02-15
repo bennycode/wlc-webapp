@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
@@ -16,7 +17,7 @@ public class BaseEntity implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   private Long id;
 
