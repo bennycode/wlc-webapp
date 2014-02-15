@@ -3,9 +3,6 @@ package de.fhb.controller;
 import de.fhb.entities.Author;
 import de.fhb.navigation.Pages;
 import de.fhb.service.AuthorService;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -13,9 +10,7 @@ import javax.inject.Named;
 
 @SessionScoped
 @Named
-public class AuthorController extends BaseController<Author> {
-
-  private static final Logger LOG = Logger.getLogger(AuthorController.class.getName());
+public class AuthorController extends BaseController<Author, AuthorService> {
 
   @EJB
   private AuthorService authorService;
@@ -27,30 +22,20 @@ public class AuthorController extends BaseController<Author> {
 
   @Override
   public String edit() {
-    // Log
-    String template = "Saving author: {0}";
-    LOG.log(Level.INFO, template, item.getName());
-    // Save
-    this.authorService.edit(item);
+    super.edit();
     this.item = new Author();
-    // Navigate
     return Pages.ADMIN_AUTHORS;
   }
 
   @Override
   public String remove() {
-    // Log
-    String template = "Deleting author: {0}";
-    LOG.log(Level.INFO, template, item.getName());
-    // Save
-    this.authorService.remove(item);
+    super.remove();
     this.item = new Author();
-    // Navigate
     return Pages.ADMIN_AUTHORS;
   }
 
   @Override
-  public List<Author> getItems() {
-    return this.authorService.findAll();
+  public AuthorService getService() {
+    return authorService;
   }
 }

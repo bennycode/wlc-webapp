@@ -1,12 +1,17 @@
 package de.fhb.controller;
 
 import de.fhb.entities.BaseEntity;
+import de.fhb.service.BaseService;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.Dependent;
 
 @Dependent
-public abstract class BaseController<T extends BaseEntity> implements Serializable {
+public abstract class BaseController<T extends BaseEntity, E extends BaseService> implements Serializable {
+
+  private static final Logger LOG = Logger.getLogger(BaseController.class.getName());
 
   private int offset = 0;
   private int amount = 20;
@@ -15,11 +20,25 @@ public abstract class BaseController<T extends BaseEntity> implements Serializab
   protected T item;
   private List<T> items;
 
-  public abstract String remove();
+  public abstract E getService();
 
-  public abstract String edit();
+  public String remove() {
+    String template = "Deleting item: {0}";
+    LOG.log(Level.INFO, template, item.getName());
+    getService().remove(item);
+    return "";
+  }
 
-  public abstract List<T> getItems();
+  public String edit() {
+    String template = "Saving item: {0}";
+    LOG.log(Level.INFO, template, item.getName());
+    getService().edit(item);
+    return "";
+  }
+
+  public List<T> getItems() {
+    return getService().findAll();
+  }
 
   public void setItems(List<T> items) {
     this.items = items;
