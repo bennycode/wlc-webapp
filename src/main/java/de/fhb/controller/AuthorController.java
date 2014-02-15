@@ -13,27 +13,19 @@ import javax.inject.Named;
 
 @SessionScoped
 @Named
-public class AuthorController extends BaseController implements Serializable {
+public class AuthorController extends BaseController<Author> implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(AuthorController.class.getName());
 
   @EJB
   private AuthorRepository repository;
-  private Author item;
 
   @PostConstruct
   public void init() {
     this.item = new Author();
   }
 
-  public Author getAuthor() {
-    return item;
-  }
-
-  public void setAuthor(Author author) {
-    this.item = author;
-  }
-
+  @Override
   public String edit() {
     // Log
     String template = "Saving author: {0}";
@@ -45,12 +37,13 @@ public class AuthorController extends BaseController implements Serializable {
     return Pages.ADMIN_AUTHORS;
   }
 
-  public String delete() {
+  @Override
+  public String remove() {
     // Log
     String template = "Deleting author: {0}";
     LOG.log(Level.INFO, template, item.getName());
     // Save
-    this.repository.delete(item);
+    this.repository.remove(item);
     this.item = new Author();
     // Navigate
     return Pages.ADMIN_AUTHORS;

@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      >
+      xmlns:wlc="http://xmlns.jcp.org/jsf/composite/wlc">
   <h:body>    
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
       <ui:define name="content">        
@@ -24,7 +24,7 @@
                 placeholder="Konrad Zuse" 
                 required="required"
                 jsf:id="name"
-                jsf:value="#{authorController.author.name}"
+                jsf:value="#{authorController.item.name}"
                 />
             </div>
 
@@ -44,40 +44,7 @@
         </p>
 
         <!-- List -->
-        <table class="pure-table pure-table-horizontal">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Editieren</th>
-              <th>Löschen</th>
-            </tr>
-          </thead>
-          <tbody>
-            <ui:repeat value="#{authorService.authors}" var="author">
-              <tr>
-                <td>#{author.id}</td>
-                <td>#{author.name}</td>
-                <td>
-                  <h:form>
-                    <h:commandLink value="bearbeiten">
-                      <f:setPropertyActionListener value="#{author}"
-                                                   target="#{authorController.author}" />
-                    </h:commandLink>
-                  </h:form>
-                </td>
-                <td>
-                  <h:form>
-                    <h:commandLink value="löschen" action="#{authorController.delete}">
-                      <f:setPropertyActionListener value="#{author}"
-                                                   target="#{authorController.author}" />
-                    </h:commandLink>
-                  </h:form>
-                </td>
-              </tr>
-            </ui:repeat>
-          </tbody>
-        </table>
+        <wlc:admin-item-table service="#{authorService}" controller="#{authorController}" /> 
 
         <div id="pagination-holder"></div>
 

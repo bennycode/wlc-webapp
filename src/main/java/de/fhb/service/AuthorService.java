@@ -14,17 +14,15 @@ import javax.inject.Named;
 
 @RequestScoped
 @Named
-public class AuthorService {
+public class AuthorService extends BaseService<Author> {
 
-  private int offset = 0;
-  private int amount = 20;
-  private int currentPage = 0;
   private static final Logger LOG = Logger.getLogger(AuthorService.class.getName());
 
   @EJB
-  private AuthorRepository authorRepository;
+  private AuthorRepository repository;
 
   @PostConstruct
+  @Override
   public void init() {
     Map<String, String> requestParameterMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
     String offsetParam = requestParameterMap.get("offset");
@@ -38,36 +36,16 @@ public class AuthorService {
       this.amount
     };
     LOG.log(Level.INFO, "Offset: {0}, Amount: {1}", logValues);
-    return authorRepository.getAuthors(this.offset, this.amount);
+    return repository.getAuthors(this.offset, this.amount);
   }
 
   public long getAuthorCount() {
-    return authorRepository.getAuthorCount();
+    return repository.getAuthorCount();
   }
 
-  /* VIEW PARAMS */
-  public int getOffset() {
-    return offset;
+  @Override
+  public List<Author> getItems() {
+    return repository.findAll();
   }
 
-  public void setOffset(int offset) {
-    this.offset = offset;
-  }
-
-  public int getAmount() {
-    return amount;
-  }
-
-  public void setAmount(int amount) {
-    this.amount = amount;
-  }
-
-  public int getCurrentPage() {
-    return currentPage;
-  }
-
-  public void setCurrentPage(int currentPage) {
-    this.currentPage = currentPage;
-  }
-  
 }

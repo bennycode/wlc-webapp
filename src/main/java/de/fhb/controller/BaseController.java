@@ -2,8 +2,20 @@ package de.fhb.controller;
 
 import java.io.Serializable;
 
-public class BaseController implements Serializable {
+public abstract class BaseController<T> implements Serializable {
 
-  public BaseController() {
+  protected T item;
+
+  public T getItem() {
+    return item;
   }
+
+  public void setItem(T item) {
+    this.item = item;
+  }
+
+  public abstract String remove();
+
+  public abstract String edit();
+
 }

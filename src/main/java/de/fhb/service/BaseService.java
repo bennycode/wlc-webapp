@@ -10,8 +10,6 @@ public abstract class BaseService<T> {
   int amount = 20;
   int currentPage = 0;
 
-  protected abstract AbstractRepository getRepository();
-
   @PostConstruct
   public abstract void init();
 

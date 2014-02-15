@@ -18,25 +18,16 @@ import javax.inject.Named;
  */
 @Named
 @SessionScoped
-public class CategoryController extends BaseController implements Serializable {
+public class CategoryController extends BaseController<Category> implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(CategoryController.class.getName());
 
   @EJB
   private CategoryRepository repository;
-  private Category item;
 
   @PostConstruct
   public void init() {
-    this.item = new Category();
-  }
-
-  public Category getItem() {
-    return item;
-  }
-
-  public void setItem(Category item) {
-    this.item = item;
+    super.item = new Category();
   }
 
   /**
@@ -44,6 +35,7 @@ public class CategoryController extends BaseController implements Serializable {
    *
    * @return
    */
+  @Override
   public String edit() {
     // Log
     String template = "Saving item: {0}";
@@ -55,12 +47,13 @@ public class CategoryController extends BaseController implements Serializable {
     return Pages.ADMIN_CATEGORY;
   }
 
-  public String delete() {
+  @Override
+  public String remove() {
     // Log
     String template = "Deleting item: {0}";
     LOG.log(Level.INFO, template, item.getName());
     // Save
-    this.repository.delete(item);
+    this.repository.remove(item);
     this.item = new Category();
     // Navigate
     return Pages.ADMIN_CATEGORY;

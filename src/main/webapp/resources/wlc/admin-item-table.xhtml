@@ -22,7 +22,6 @@
       </thead>
       <tbody>
         <ui:repeat value="#{cc.attrs.service.items}" var="item">
-          <!-- TODO: Show correct values! -->
           <tr>
             <td>#{item.id}</td>
             <td>#{item.name}</td>
@@ -30,15 +29,15 @@
               <h:form>
                 <h:commandLink value="bearbeiten">
                   <f:setPropertyActionListener value="#{item}"
-                                               target="#{controller.item}" />
+                                               target="#{cc.attrs.controller.item}" />
                 </h:commandLink>
               </h:form>
             </td>
             <td>
               <h:form>
-                <h:commandLink value="löschen" action="#{controller.delete}">
+                <h:commandLink value="löschen" action="#{cc.attrs.controller.remove}">
                   <f:setPropertyActionListener value="#{item}"
-                                               target="#{controller.item}" />
+                                               target="#{cc.attrs.controller.item}" />
                 </h:commandLink>
               </h:form>
             </td>

@@ -29,11 +29,6 @@ public class CategoryService extends BaseService<Category> {
     this.currentPage = (this.offset / this.amount) + 1;
   }
 
-  @Override
-  protected AbstractRepository getRepository() {
-    return repository;
-  }
-
   public List<Category> getCategories() {
     return repository.findAll();
   }
