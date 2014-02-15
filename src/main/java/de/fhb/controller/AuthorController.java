@@ -5,11 +5,11 @@ import de.fhb.navigation.Pages;
 import de.fhb.service.AuthorService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-@SessionScoped
 @Named
+@RequestScoped
 public class AuthorController extends BaseController<Author, AuthorService> {
 
   @EJB

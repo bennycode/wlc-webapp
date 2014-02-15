@@ -44,5 +44,26 @@
         </ui:repeat>
       </tbody>
     </table>
+
+    <div id="pagination-holder"></div>
+
+    <!-- http://flaviusmatis.github.io/simplePagination.js/ -->
+    <script>
+      //<![CDATA[ 
+      $(function() {
+        $('#pagination-holder').pagination({
+          currentPage: #{cc.attrs.controller.currentPage},
+          items: 200,
+          itemsOnPage: 20,
+          cssStyle: 'light-theme',
+          onPageClick: function(pageNumber, event) {
+            var offset = (pageNumber - 1) * #{cc.attrs.controller.amount};
+            window.location.href = window.location.pathname += '?offset=' + offset;
+          }
+        });
+      });
+      //]]>
+    </script>
+
   </composite:implementation>
 </html>
