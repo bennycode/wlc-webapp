@@ -11,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -19,7 +18,6 @@ import javax.validation.constraints.Size;
  * @author Benny Neugebauer (bn@bennyn.de)
  */
 @Entity
-@Table(name = "categories")
 @NamedQueries({
   @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
   @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id"),
