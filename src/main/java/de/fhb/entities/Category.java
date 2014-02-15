@@ -1,7 +1,6 @@
 package de.fhb.entities;
 
 import com.github.slugify.Slugify;
-import com.welovecoding.web.entities.Playlist;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -11,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -19,7 +17,6 @@ import javax.validation.constraints.Size;
  * @author Benny Neugebauer (bn@bennyn.de)
  */
 @Entity
-@Table(name = "categories")
 @NamedQueries({
   @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
   @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id"),
@@ -39,8 +36,8 @@ public class Category extends BaseEntity implements Serializable {
   @Basic(optional = false)
   private String slug;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId", fetch = FetchType.EAGER)
-  private List<Playlist> playlistList;
+  @OneToMany
+  private List<Playlist> playlists;
 
   public Category() {
     this.color = "#000000";
@@ -73,12 +70,12 @@ public class Category extends BaseEntity implements Serializable {
     this.slug = slug;
   }
 
-  public List<Playlist> getPlaylistList() {
-    return playlistList;
+  public List<Playlist> getPlaylists() {
+    return playlists;
   }
 
-  public void setPlaylistList(List<Playlist> playlistList) {
-    this.playlistList = playlistList;
+  public void setPlaylistList(List<Playlist> playlists) {
+    this.playlists = playlists;
   }
 
   @Override

@@ -16,6 +16,11 @@ public class Author extends BaseEntity implements Serializable {
   }
 
   public Author(String name) {
-    super.setName(name);
+    this.setName(name);
+  }
+
+  @Override
+  public String toString() {
+    return this.getName();
   }
 }
