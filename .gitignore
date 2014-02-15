@@ -25,7 +25,6 @@ nbbuild/
 dist/
 nbdist/
 nbactions.xml
-/nb-configuration.xml
 build.xml
 build.properties
 
