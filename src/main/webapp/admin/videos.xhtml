@@ -8,47 +8,7 @@
   <h:body>    
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
       <ui:define name="content">      
-        <h:form>
-          <fieldset>
-            <h:outputLabel for="category" value="Kategorie:" />
-            <h:selectOneMenu id="category" value="#{playlistController.categoryId}">
-              <f:selectItems 
-                value="#{categoryController.items}" 
-                var="item"
-                itemValue="#{item.id}" 
-                itemLabel="#{item.name}" 
-                />
-            </h:selectOneMenu>
-          </fieldset>
-
-          <fieldset>
-            <h:outputLabel for="author" value="Autor:" />
-            <h:selectOneMenu id="author" value="#{playlistController.authorId}">
-              <f:selectItems 
-                value="#{authorController.items}" 
-                var="item" 
-                itemValue="#{item.id}" 
-                itemLabel="#{item.name}" 
-                />
-            </h:selectOneMenu>
-          </fieldset>
-
-          <fieldset>
-            <h:outputLabel for="name" value="Name der Playlist:" />
-            <h:inputText id="name" value="#{playlistController.item.name}" />
-          </fieldset>
-
-          <fieldset>
-            <h:outputLabel for="code" value="YouTube-ID (Bsp. PLF544CEEC9432BF67):" />
-            <h:inputText id="code" value="#{playlistController.item.code}" />
-          </fieldset>
-
-          <h:commandLink value="Speichern" action="#{playlistController.importPlaylist}" />
-        </h:form>
-
-        <br/>
-
-        <wlc:admin-item-table controller="#{playlistController}" /> 
+        <wlc:admin-item-table controller="#{videoController}" /> 
       </ui:define>
     </ui:composition>
   </h:body>
