@@ -1,7 +1,7 @@
 package de.fhb.service;
 
 import de.fhb.entities.Author;
-import de.fhb.logging.interceptor.ServiceLoggerInterceptor;
+import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import de.fhb.repository.AuthorRepository;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -10,7 +10,7 @@ import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
 
 @Stateless
-@Interceptors({ServiceLoggerInterceptor.class})
+@Interceptors({EJBLoggerInterceptor.class})
 public class AuthorService extends BaseService<Author, AuthorRepository> {
 
   private static final Logger LOG = Logger.getLogger(AuthorService.class.getName());

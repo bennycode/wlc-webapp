@@ -2,7 +2,7 @@ package de.fhb.repository;
 
 import com.welovecoding.web.config.Names;
 import de.fhb.entities.Author;
-import de.fhb.logging.interceptor.ServiceLoggerInterceptor;
+import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-@Interceptors({ServiceLoggerInterceptor.class})
+@Interceptors({EJBLoggerInterceptor.class})
 public class AuthorRepository extends AbstractRepository<Author> {
 
 	@PersistenceContext(unitName = Names.PERSISTENCE_UNIT_NAME)

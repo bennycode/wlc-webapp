@@ -1,7 +1,7 @@
 package de.fhb.service;
 
 import de.fhb.entities.Category;
-import de.fhb.logging.interceptor.ServiceLoggerInterceptor;
+import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import de.fhb.repository.CategoryRepository;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -9,7 +9,7 @@ import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
 
 @Stateless
-@Interceptors({ServiceLoggerInterceptor.class})
+@Interceptors({EJBLoggerInterceptor.class})
 public class CategoryService extends BaseService<Category, CategoryRepository> {
 
   @EJB

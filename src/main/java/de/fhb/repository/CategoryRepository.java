@@ -2,7 +2,7 @@ package de.fhb.repository;
 
 import com.welovecoding.web.config.Names;
 import de.fhb.entities.Category;
-import de.fhb.logging.interceptor.ServiceLoggerInterceptor;
+import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
@@ -14,7 +14,7 @@ import javax.persistence.TypedQuery;
  * @author Benny Neugebauer (bn@bennyn.de)
  */
 @Stateless
-@Interceptors({ServiceLoggerInterceptor.class})
+@Interceptors({EJBLoggerInterceptor.class})
 public class CategoryRepository extends AbstractRepository<Category> {
 
 	@PersistenceContext(unitName = Names.PERSISTENCE_UNIT_NAME)

@@ -29,11 +29,11 @@ import javax.interceptor.InvocationContext;
  *
  * @author Michael Koppen <michael.koppen@googlemail.com>
  */
-public class ServiceLoggerInterceptor {
+public class EJBLoggerInterceptor {
 
-	private static Logger LOG = Logger.getLogger(ServiceLoggerInterceptor.class.getName());
+	private static Logger LOG = Logger.getLogger(EJBLoggerInterceptor.class.getName());
 
-	public ServiceLoggerInterceptor() {
+	public EJBLoggerInterceptor() {
 	}
 
 	/**

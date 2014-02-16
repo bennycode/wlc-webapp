@@ -8,9 +8,18 @@
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
       <ui:define name="content">      
         <h:form>
-          <h:selectOneMenu value="#{authorController.item}">
-            <f:selectItems value="#{authorService.authors}"/>
+          <h:inputText value="#{playlistController.item.name}" />
+
+          <h:selectOneMenu value="#{playlistController.item.author}">
+            <f:selectItems value="#{authorController.items}"/>
           </h:selectOneMenu>
+
+          <h:selectOneMenu value="#{playlistController.item.category}">
+            <f:converter converterId="CategoryConverter" />
+            <f:selectItems value="#{categoryController.items}" />
+          </h:selectOneMenu>
+
+          <h:commandLink value="Speichern" action="#{playlistController.edit}" />
         </h:form>
       </ui:define>
     </ui:composition>
