@@ -41,4 +41,9 @@ public class Video extends BaseEntity {
     this.description = description;
   }
 
+  @Override
+  public String toString() {
+    return super.toString();
+  }
+
 }

@@ -20,8 +20,6 @@ public class Author extends BaseEntity {
 
   @Override
   public String toString() {
-    return this.getName();
+    return super.toString(); //To change body of generated methods, choose Tools | Templates.
   }
-  
-  
 }

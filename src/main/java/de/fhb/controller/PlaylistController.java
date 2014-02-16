@@ -11,11 +11,11 @@ import de.fhb.service.PlaylistService;
 import de.fhb.service.YouTubeCrawlerService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class PlaylistController extends BaseController<Playlist, PlaylistService> {
 
   @EJB

@@ -78,7 +78,7 @@ public class Category extends BaseEntity implements Serializable {
 
   @Override
   public String toString() {
-    return super.getName();
+    return super.toString();
   }
 
 }

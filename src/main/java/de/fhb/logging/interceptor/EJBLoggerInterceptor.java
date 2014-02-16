@@ -76,16 +76,16 @@ public class EJBLoggerInterceptor {
     Object retVal = context.proceed();
 
     log.append(" -       ReturnValue ").append(": ").append(retVal).append("\n");
-    if (retVal != null) {
-      Field[] retValFields = retVal.getClass().getDeclaredFields();
-      for (Field field : retValFields) {
-        System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
-        Object retVal2 = invokeGetter(retVal, field);
-        System.out.println("FieldValue: " + retVal2);
-      }
-    } else {
-      System.out.println("skipping values");
-    }
+//    if (retVal != null) {
+//      Field[] retValFields = retVal.getClass().getDeclaredFields();
+//      for (Field field : retValFields) {
+//        System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
+//        Object retVal2 = invokeGetter(retVal, field);
+//        System.out.println("FieldValue: " + retVal2);
+//      }
+//    } else {
+//      System.out.println("skipping values");
+//    }
 
     LOG.log(Level.INFO, log.toString());
 

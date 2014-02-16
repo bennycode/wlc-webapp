@@ -32,6 +32,7 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
   public String edit() {
     String template = "Saving item: {0}";
     LOG.log(Level.INFO, template, item.getName());
+    System.out.println("EDIT ITEM: " + item.toString());
     getService().edit(item);
     return "";
   }
