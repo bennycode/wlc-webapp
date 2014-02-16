@@ -21,19 +21,18 @@ import javax.interceptor.Interceptors;
 public class YouTubeCrawlerService {
 
   private static final Logger LOG = Logger.getLogger(YouTubeCrawlerService.class.getName());
-  private final YouTubeService youTubeService = new YouTubeService("WeLoveCodingApp");
+  private YouTubeService youTubeService;
 
   @PostConstruct
   public void init() {
+    youTubeService = new YouTubeService("WeLoveCodingApp");
   }
 
   public Playlist createPlaylistByCode(String code) {
     VideoFeed videoFeed = null;
     try {
       videoFeed = youTubeService.getFeed(getPlayListUrlById(code), VideoFeed.class);
-    } catch (IOException ex) {
-      Logger.getLogger(YouTubeCrawlerService.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (ServiceException ex) {
+    } catch (IOException | ServiceException ex) {
       Logger.getLogger(YouTubeCrawlerService.class.getName()).log(Level.SEVERE, null, ex);
     }
 
