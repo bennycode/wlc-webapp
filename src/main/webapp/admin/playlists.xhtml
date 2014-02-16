@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:wlc="http://xmlns.jcp.org/jsf/composite/wlc">
   <h:body>    
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
       <ui:define name="content">      
@@ -12,16 +13,30 @@
 
           <h:selectOneMenu value="#{playlistController.item.author}">
             <f:converter converterId="AuthorConverter" />
-            <f:selectItems value="#{authorController.items}"/>
+            <f:selectItems 
+              value="#{authorController.items}" 
+              var="item" 
+              itemValue="#{item}" 
+              itemLabel="#{item.name}" 
+              />
           </h:selectOneMenu>
 
           <h:selectOneMenu value="#{playlistController.item.category}">
             <f:converter converterId="CategoryConverter" />
-            <f:selectItems value="#{categoryController.items}" />
+            <f:selectItems 
+              value="#{categoryController.items}" 
+              var="item"
+              itemValue="#{item}" 
+              itemLabel="#{item.name}" 
+              />
           </h:selectOneMenu>
 
           <h:commandLink value="Speichern" action="#{playlistController.edit}" />
         </h:form>
+
+        <br/>
+
+        <wlc:admin-item-table controller="#{playlistController}" /> 
       </ui:define>
     </ui:composition>
   </h:body>
