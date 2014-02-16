@@ -37,14 +37,15 @@ public class YouTubeCrawlerService {
       Logger.getLogger(YouTubeCrawlerService.class.getName()).log(Level.SEVERE, null, ex);
     }
 
-    return mapPlaylist(videoFeed);
+    return mapPlaylist(videoFeed, code);
   }
 
-  private Playlist mapPlaylist(VideoFeed ytPlaylist) {
+  private Playlist mapPlaylist(VideoFeed ytPlaylist, String code) {
     Playlist playlist = null;
     if (ytPlaylist != null) {
       playlist = new Playlist();
       playlist.setName(ytPlaylist.getTitle().getPlainText());
+      playlist.setCode(code);
       for (VideoEntry video : ytPlaylist.getEntries()) {
         playlist.getVideoList().add(mapVideo(video));
       }

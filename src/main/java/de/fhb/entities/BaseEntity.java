@@ -2,6 +2,7 @@ package de.fhb.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -68,4 +69,25 @@ public class BaseEntity implements Serializable {
   public void setLastModified(Date lastModified) {
     this.lastModified = lastModified;
   }
+
+  @Override
+  public int hashCode() {
+    int hash = 7;
+    hash = 23 * hash + Objects.hashCode(this.id);
+    hash = 23 * hash + Objects.hashCode(this.name);
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final BaseEntity other = (BaseEntity) obj;
+    return true;
+  }
+
 }

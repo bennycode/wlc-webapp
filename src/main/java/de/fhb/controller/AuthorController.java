@@ -13,7 +13,7 @@ import javax.inject.Named;
 public class AuthorController extends BaseController<Author, AuthorService> {
 
   @EJB
-  private AuthorService authorService;
+  private AuthorService service;
 
   @PostConstruct
   public void init() {
@@ -36,10 +36,10 @@ public class AuthorController extends BaseController<Author, AuthorService> {
 
   @Override
   public AuthorService getService() {
-    return authorService;
+    return service;
   }
 
   public long getAuthorCount() {
-    return authorService.getAuthorCount();
+    return service.getAuthorCount();
   }
 }

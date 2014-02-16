@@ -21,6 +21,7 @@ public class Playlist extends BaseEntity implements Serializable {
 
   @OneToMany
   private List<Video> videoList;
+  private String code;
 
   public Playlist() {
     videoList = new ArrayList<>();
@@ -31,6 +32,7 @@ public class Playlist extends BaseEntity implements Serializable {
   }
 
   public void setCategory(Category category) {
+    System.out.println(category);
     this.category = category;
   }
 
@@ -39,6 +41,7 @@ public class Playlist extends BaseEntity implements Serializable {
   }
 
   public void setAuthor(Author author) {
+    System.out.println(author);
     this.author = author;
   }
 
@@ -48,6 +51,14 @@ public class Playlist extends BaseEntity implements Serializable {
 
   public void setVideoList(List<Video> videoList) {
     this.videoList = videoList;
+  }
+
+  public String getCode() {
+    return code;
+  }
+
+  public void setCode(String code) {
+    this.code = code;
   }
 
 }
