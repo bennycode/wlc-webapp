@@ -27,6 +27,7 @@
       <version>2.5.1</version>
       <scope>provided</scope>
     </dependency>
+    
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-web-api</artifactId>
@@ -39,7 +40,31 @@
       <artifactId>slugify</artifactId>
       <version>2.1.2</version>
     </dependency>
+    <!-- YouTube -->
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4.5</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.collections</groupId>
+      <artifactId>google-collections</artifactId>
+      <version>1.0-rc5</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.gdata</groupId>
+      <artifactId>gdata-youtube-2.0</artifactId>
+      <version>1.41.5</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+      <type>jar</type>
+    </dependency>
   </dependencies>
+  
 
   <build>
     <plugins>
