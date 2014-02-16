@@ -2,6 +2,7 @@ package de.fhb.repository;
 
 import com.welovecoding.web.config.Names;
 import de.fhb.entities.Video;
+import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
