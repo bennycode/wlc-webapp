@@ -10,8 +10,9 @@ import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -36,16 +37,30 @@ public class YouTubeCrawlerService {
     youTubeService = new YouTubeService("WeLoveCodingApp");
   }
 
-  public Playlist updatePlaylist(Playlist playlist) {
+  public Playlist updatePlaylist(Playlist playlist) throws MalformedURLException, IOException, ServiceException {
     VideoFeed videoFeed = null;
+    List<VideoEntry> ytVideos = new ArrayList<>();
+    URL playlistURL = getPlayListUrlById(playlist.getCode());
 
-    try {
-      videoFeed = youTubeService.getFeed(getPlayListUrlById(playlist.getCode()), VideoFeed.class);
-    } catch (IOException | ServiceException ex) {
-      Logger.getLogger(YouTubeCrawlerService.class.getName()).log(Level.SEVERE, null, ex);
+    do {
+      videoFeed = youTubeService.getFeed(playlistURL, VideoFeed.class);
+
+      for (VideoEntry video : videoFeed.getEntries()) {
+        ytVideos.add(video);
+      }
+      if (videoFeed.getNextLink() != null) {
+        playlistURL = new URL(videoFeed.getNextLink().getHref());
+      }
+    } while (videoFeed.getNextLink() != null);
+
+    playlist = mapPlaylist(videoFeed, playlist);
+
+    playlist.getVideos().clear();
+    for (VideoEntry video : ytVideos) {
+      playlist.getVideos().add(mapVideo(video));
     }
 
-    return mapPlaylist(videoFeed, playlist);
+    return playlist;
   }
 
   private Playlist mapPlaylist(VideoFeed ytPlaylist, Playlist playlist) {
@@ -60,10 +75,7 @@ public class YouTubeCrawlerService {
       }
       playlist.setName(ytPlaylist.getTitle().getPlainText());
       playlist.setLastModified(new Date());
-      playlist.getVideos().clear();
-      for (VideoEntry video : ytPlaylist.getEntries()) {
-        playlist.getVideos().add(mapVideo(video));
-      }
+
     }
     return playlist;
   }
