@@ -19,4 +19,8 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
     return repository;
   }
 
+  public Playlist getPlaylistByCode(String code) {
+    return repository.getPlaylistByCode(code);
+  }
+
 }
