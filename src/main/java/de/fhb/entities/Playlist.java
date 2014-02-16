@@ -16,7 +16,17 @@ public class Playlist extends BaseEntity implements Serializable {
   @ManyToOne
   private Author author;
 
+  private String code;
+
   public Playlist() {
+  }
+
+  public String getCode() {
+    return code;
+  }
+
+  public void setCode(String code) {
+    this.code = code;
   }
 
   public Category getCategory() {
