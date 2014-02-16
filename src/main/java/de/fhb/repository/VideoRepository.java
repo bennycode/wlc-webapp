@@ -2,6 +2,8 @@ package de.fhb.repository;
 
 import com.welovecoding.web.config.Names;
 import de.fhb.entities.Video;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
