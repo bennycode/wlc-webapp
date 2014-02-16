@@ -56,6 +56,7 @@ public class YouTubeCrawlerService {
         playlist.setCreated(new Date());
       } else {
         playlist = persistedPlaylist;
+        System.out.println("Found another Playlist with Code " + playlist.getCode() + " and ID " + playlist.getId());
       }
       playlist.setName(ytPlaylist.getTitle().getPlainText());
       playlist.setLastModified(new Date());
@@ -64,7 +65,6 @@ public class YouTubeCrawlerService {
         playlist.getVideos().add(mapVideo(video));
       }
     }
-
     return playlist;
   }
 
@@ -75,6 +75,8 @@ public class YouTubeCrawlerService {
     if (video == null) {
       video = new Video();
       video.setCode(videoID);
+    } else {
+      System.out.println("Found another Video with Code " + video.getCode() + " and ID " + video.getId());
     }
     video.setName(ytVideo.getTitle().getPlainText());
     video.setDescription("");
