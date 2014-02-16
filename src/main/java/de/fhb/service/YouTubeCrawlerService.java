@@ -60,7 +60,7 @@ public class YouTubeCrawlerService {
       }
       playlist.setName(ytPlaylist.getTitle().getPlainText());
       playlist.setLastModified(new Date());
-
+      playlist.getVideos().clear();
       for (VideoEntry video : ytPlaylist.getEntries()) {
         playlist.getVideos().add(mapVideo(video));
       }
