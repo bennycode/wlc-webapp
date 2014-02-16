@@ -19,4 +19,8 @@ public class VideoService extends BaseService<Video, VideoRepository> {
     return repository;
   }
 
+  public Video getVideoByCode(String code) {
+    return repository.getVideoByCode(code);
+  }
+
 }

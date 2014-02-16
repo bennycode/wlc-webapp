@@ -2,8 +2,14 @@ package de.fhb.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+  @NamedQuery(name = "Video.findByCode", query = "SELECT v FROM Video v WHERE v.code = :code"),
+  @NamedQuery(name = "Video.likeName", query = "SELECT v FROM Video v WHERE UPPER(v.name) LIKE UPPER(:keyword)")
+})
 public class Video extends BaseEntity {
 
   @Column(unique = true)

@@ -6,6 +6,7 @@ import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -26,5 +27,15 @@ public class VideoRepository extends AbstractRepository<Video> {
   @Override
   protected EntityManager getEntityManager() {
     return em;
+  }
+
+  public Video getVideoByCode(String code) {
+    Video video = null;
+    try {
+      video = em.createNamedQuery("Video.findByCode", Video.class).setParameter("code", code).getSingleResult();
+    } catch (NoResultException e) {
+    }
+
+    return video;
   }
 }

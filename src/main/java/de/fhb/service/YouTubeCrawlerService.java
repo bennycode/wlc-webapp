@@ -10,6 +10,7 @@ import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -35,25 +36,30 @@ public class YouTubeCrawlerService {
     youTubeService = new YouTubeService("WeLoveCodingApp");
   }
 
-  public Playlist createPlaylistByCode(String code) {
+  public Playlist updatePlaylist(Playlist playlist) {
     VideoFeed videoFeed = null;
 
     try {
-      videoFeed = youTubeService.getFeed(getPlayListUrlById(code), VideoFeed.class);
+      videoFeed = youTubeService.getFeed(getPlayListUrlById(playlist.getCode()), VideoFeed.class);
     } catch (IOException | ServiceException ex) {
       Logger.getLogger(YouTubeCrawlerService.class.getName()).log(Level.SEVERE, null, ex);
     }
 
-    return mapPlaylist(videoFeed, code);
+    return mapPlaylist(videoFeed, playlist);
   }
 
-  private Playlist mapPlaylist(VideoFeed ytPlaylist, String code) {
-    Playlist playlist = null;
+  private Playlist mapPlaylist(VideoFeed ytPlaylist, Playlist playlist) {
+    Playlist persistedPlaylist = playlistService.getPlaylistByCode(playlist.getCode());
 
     if (ytPlaylist != null) {
-      playlist = new Playlist();
+      if (persistedPlaylist == null) {
+        playlist.setCreated(new Date());
+      } else {
+        playlist = persistedPlaylist;
+      }
       playlist.setName(ytPlaylist.getTitle().getPlainText());
-      playlist.setCode(code);
+      playlist.setLastModified(new Date());
+
       for (VideoEntry video : ytPlaylist.getEntries()) {
         playlist.getVideos().add(mapVideo(video));
       }
@@ -63,7 +69,18 @@ public class YouTubeCrawlerService {
   }
 
   private Video mapVideo(VideoEntry ytVideo) {
-    return new Video(getYouTubeId(ytVideo), ytVideo.getTitle().getPlainText(), "");
+    String videoID = getYouTubeId(ytVideo);
+    Video video = videoService.getVideoByCode(videoID);
+
+    if (video == null) {
+      video = new Video();
+      video.setCode(videoID);
+    }
+    video.setName(ytVideo.getTitle().getPlainText());
+    video.setDescription("");
+    video.setCreated(new Date(ytVideo.getPublished().getValue()));
+    video.setLastModified(new Date(ytVideo.getUpdated().getValue()));
+    return video;
   }
 
   // https://gdata.youtube.com/feeds/api/playlists/B83C613AA955A350

@@ -6,6 +6,7 @@ import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -29,7 +30,12 @@ public class PlaylistRepository extends AbstractRepository<Playlist> {
   }
 
   public Playlist getPlaylistByCode(String code) {
-    Playlist playlist = em.createNamedQuery("Playlist.findByCode", Playlist.class).setParameter("code", code).getSingleResult();
+    Playlist playlist = null;
+    try {
+      playlist = em.createNamedQuery("Playlist.findByCode", Playlist.class).setParameter("code", code).getSingleResult();
+    } catch (NoResultException e) {
+    }
+
     return playlist;
   }
 }

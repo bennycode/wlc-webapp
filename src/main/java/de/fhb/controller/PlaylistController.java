@@ -9,7 +9,6 @@ import de.fhb.service.AuthorService;
 import de.fhb.service.CategoryService;
 import de.fhb.service.PlaylistService;
 import de.fhb.service.YouTubeCrawlerService;
-import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -64,9 +63,9 @@ public class PlaylistController extends BaseController<Playlist, PlaylistService
     Author author = authorService.find(authorId);
     Category category = categoryService.find(categoryId);
 
-    this.item = ytService.createPlaylistByCode(item.getCode());
     item.setAuthor(author);
     item.setCategory(category);
+    this.item = ytService.updatePlaylist(item);
 
     System.out.println("Item");
     System.out.println("Name: " + item.getName());
