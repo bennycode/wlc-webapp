@@ -15,6 +15,8 @@ import javax.persistence.PersistenceContext;
 //@Interceptors({EJBLoggerInterceptor.class})
 public class VideoRepository extends AbstractRepository<Video> {
 
+  private static final Logger LOG = Logger.getLogger(VideoRepository.class.getName());
+
   public VideoRepository() {
     super(Video.class);
   }
@@ -32,6 +34,7 @@ public class VideoRepository extends AbstractRepository<Video> {
     try {
       video = em.createNamedQuery("Video.findByCode", Video.class).setParameter("code", code).getSingleResult();
     } catch (NoResultException e) {
+      LOG.log(Level.WARNING, "Video with code {0} cannot be found.", code);
     }
 
     return video;
