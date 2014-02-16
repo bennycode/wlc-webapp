@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.interceptor.Interceptors;
 
@@ -22,6 +23,12 @@ public class YouTubeCrawlerService {
 
   private static final Logger LOG = Logger.getLogger(YouTubeCrawlerService.class.getName());
   private YouTubeService youTubeService;
+
+  @EJB
+  private PlaylistService playlistService;
+
+  @EJB
+  private VideoService videoService;
 
   @PostConstruct
   public void init() {
