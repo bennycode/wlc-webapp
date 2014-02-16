@@ -11,6 +11,7 @@
           <h:inputText value="#{playlistController.item.name}" />
 
           <h:selectOneMenu value="#{playlistController.item.author}">
+            <f:converter converterId="AuthorConverter" />
             <f:selectItems value="#{authorController.items}"/>
           </h:selectOneMenu>
 

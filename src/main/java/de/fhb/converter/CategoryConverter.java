@@ -12,7 +12,7 @@ public class CategoryConverter implements Converter {
   @Override
   public String getAsString(FacesContext context, UIComponent component, Object value) {
     Category item = (Category) value;
-    String key = CategoryConverter.class.getSimpleName() + item.getId();
+    String key = CategoryConverter.class.getName() + item.getId();
     context.getExternalContext().getSessionMap().put(key, item);
     System.out.println("Key: " + key);
     return key;
@@ -24,5 +24,4 @@ public class CategoryConverter implements Converter {
     System.out.println("Value: " + item.getName());
     return item;
   }
-
 }

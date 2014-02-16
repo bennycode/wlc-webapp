@@ -24,6 +24,7 @@ public class Playlist extends BaseEntity implements Serializable {
   }
 
   public void setCategory(Category category) {
+    System.out.println(category);
     this.category = category;
   }
 
@@ -32,6 +33,7 @@ public class Playlist extends BaseEntity implements Serializable {
   }
 
   public void setAuthor(Author author) {
+    System.out.println(author);
     this.author = author;
   }
 }
