@@ -1,15 +1,21 @@
 package de.fhb.entities;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Playlist extends BaseEntity implements Serializable {
+@NamedQueries({
+  @NamedQuery(name = "Playlist.findByCode", query = "SELECT p FROM Playlist p WHERE p.code = :code"),
+  @NamedQuery(name = "Playlist.likeName", query = "SELECT p FROM Playlist p WHERE UPPER(p.name) LIKE UPPER(:keyword)")
+})
+public class Playlist extends BaseEntity {
 
   @NotNull
   @ManyToOne
@@ -20,11 +26,13 @@ public class Playlist extends BaseEntity implements Serializable {
   private Author author;
 
   @OneToMany
-  private List<Video> videoList;
+  private List<Video> videos;
+
+  @Column(unique = true)
   private String code;
 
   public Playlist() {
-    videoList = new ArrayList<>();
+    videos = new ArrayList<>();
   }
 
   public Category getCategory() {
@@ -45,12 +53,12 @@ public class Playlist extends BaseEntity implements Serializable {
     this.author = author;
   }
 
-  public List<Video> getVideoList() {
-    return videoList;
+  public List<Video> getVideos() {
+    return videos;
   }
 
-  public void setVideoList(List<Video> videoList) {
-    this.videoList = videoList;
+  public void setVideos(List<Video> videoList) {
+    this.videos = videoList;
   }
 
   public String getCode() {

@@ -27,4 +27,9 @@ public class PlaylistRepository extends AbstractRepository<Playlist> {
   protected EntityManager getEntityManager() {
     return em;
   }
+
+  public Playlist getPlaylistByCode(String code) {
+    Playlist playlist = em.createNamedQuery("Playlist.findByCode", Playlist.class).setParameter("code", code).getSingleResult();
+    return playlist;
+  }
 }

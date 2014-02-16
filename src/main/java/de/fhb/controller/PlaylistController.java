@@ -9,6 +9,7 @@ import de.fhb.service.AuthorService;
 import de.fhb.service.CategoryService;
 import de.fhb.service.PlaylistService;
 import de.fhb.service.YouTubeCrawlerService;
+import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -27,8 +28,9 @@ public class PlaylistController extends BaseController<Playlist, PlaylistService
   @EJB
   private CategoryService categoryService;
 
-//  @EJB
-//  private YouTubeCrawlerService ytService;
+  @EJB
+  private YouTubeCrawlerService ytService;
+
   private Long authorId;
 
   private Long categoryId;
@@ -41,18 +43,12 @@ public class PlaylistController extends BaseController<Playlist, PlaylistService
   @PostConstruct
   public void init() {
     item = new Playlist();
+    item.setCode("PLF544CEEC9432BF67");
   }
 
   @Override
   public String edit() {
-    Author author = authorService.find(authorId);
-    Category category = categoryService.find(categoryId);
-
-    item.setAuthor(author);
-    item.setCategory(category);
-
     super.edit();
-
     this.item = new Playlist();
     return Pages.ADMIN_PLAYLISTS;
   }
@@ -64,21 +60,31 @@ public class PlaylistController extends BaseController<Playlist, PlaylistService
     return Pages.ADMIN_PLAYLISTS;
   }
 
-//  public String importPlaylist() {
-//    this.item = ytService.createPlaylistByCode(item.getCode());
-//    System.out.println("Item");
-//    System.out.println("Name: " + item.getName());
-//    System.out.println("Code: " + item.getCode());
-//    System.out.println("Author: " + item.getAuthor());
-//    System.out.println("Category: " + item.getCategory());
-//    for (Video video : item.getVideoList()) {
-//      System.out.println("Video");
-//      System.out.println("Title: " + video.getTitle());
-//      System.out.println("Code: " + video.getCode());
-//    }
-//    return Pages.ADMIN_PLAYLISTS;
-//
-//  }
+  public String importPlaylist() {
+    Author author = authorService.find(authorId);
+    Category category = categoryService.find(categoryId);
+
+    this.item = ytService.createPlaylistByCode(item.getCode());
+    item.setAuthor(author);
+    item.setCategory(category);
+
+    System.out.println("Item");
+    System.out.println("Name: " + item.getName());
+    System.out.println("Code: " + item.getCode());
+    System.out.println("Author: " + item.getAuthor());
+    System.out.println("Category: " + item.getCategory());
+
+    for (Video video : item.getVideos()) {
+      System.out.println("Video");
+      System.out.println("Title: " + video.getName());
+      System.out.println("Code: " + video.getCode());
+    }
+
+    this.edit();
+
+    return Pages.ADMIN_PLAYLISTS;
+  }
+
   public Long getCategoryId() {
     return categoryId;
   }

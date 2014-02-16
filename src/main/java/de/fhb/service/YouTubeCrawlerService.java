@@ -30,6 +30,7 @@ public class YouTubeCrawlerService {
 
   public Playlist createPlaylistByCode(String code) {
     VideoFeed videoFeed = null;
+
     try {
       videoFeed = youTubeService.getFeed(getPlayListUrlById(code), VideoFeed.class);
     } catch (IOException | ServiceException ex) {
@@ -41,12 +42,13 @@ public class YouTubeCrawlerService {
 
   private Playlist mapPlaylist(VideoFeed ytPlaylist, String code) {
     Playlist playlist = null;
+
     if (ytPlaylist != null) {
       playlist = new Playlist();
       playlist.setName(ytPlaylist.getTitle().getPlainText());
       playlist.setCode(code);
       for (VideoEntry video : ytPlaylist.getEntries()) {
-        playlist.getVideoList().add(mapVideo(video));
+        playlist.getVideos().add(mapVideo(video));
       }
     }
 
@@ -54,7 +56,7 @@ public class YouTubeCrawlerService {
   }
 
   private Video mapVideo(VideoEntry ytVideo) {
-    return new Video(getYouTubeId(ytVideo), ytVideo.getTitle().getPlainText(), "desc");
+    return new Video(getYouTubeId(ytVideo), ytVideo.getTitle().getPlainText(), "");
   }
 
   // https://gdata.youtube.com/feeds/api/playlists/B83C613AA955A350
