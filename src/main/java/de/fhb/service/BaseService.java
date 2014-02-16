@@ -14,6 +14,14 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
   public BaseService() {
   }
 
+  public void save(T entity) {
+    if (entity.getId() == null) {
+      create(entity);
+    } else {
+      edit(entity);
+    }
+  }
+
   public void create(T entity) {
     getRepository().create(entity);
   }
