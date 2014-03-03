@@ -11,6 +11,8 @@
       <ui:define name="content">        
         <!-- Form -->
         <!-- TODO: categoryController must be written -->
+        <h3 class="page-header">Bearbeiten</h3>
+
         <form class="pure-form pure-form-aligned"
               autocomplete="off"
               jsf:id="create-category" 
@@ -38,7 +40,9 @@
         </form>
 
         <!-- List -->
+        <h3 class="page-header">Übersicht</h3>
         <wlc:admin-item-table controller="#{categoryController}" /> 
+
       </ui:define>
     </ui:composition>
   </h:body>

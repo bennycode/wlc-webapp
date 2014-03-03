@@ -1,5 +1,6 @@
 package de.fhb.controller;
 
+import com.google.gdata.util.ServiceException;
 import de.fhb.entities.Author;
 import de.fhb.entities.Category;
 import de.fhb.entities.Playlist;
@@ -9,6 +10,8 @@ import de.fhb.service.AuthorService;
 import de.fhb.service.CategoryService;
 import de.fhb.service.PlaylistService;
 import de.fhb.service.YouTubeCrawlerService;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -59,7 +62,7 @@ public class PlaylistController extends BaseController<Playlist, PlaylistService
     return Pages.ADMIN_PLAYLISTS;
   }
 
-  public String importPlaylist() {
+  public String importPlaylist() throws IOException, MalformedURLException, ServiceException {
     Author author = authorService.find(authorId);
     Category category = categoryService.find(categoryId);
 

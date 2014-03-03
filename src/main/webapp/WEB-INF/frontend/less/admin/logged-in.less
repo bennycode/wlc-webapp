@@ -1,0 +1,51 @@
+#top-grid {
+  background-color: #f9f9f9;
+  height: 85px;
+  margin-bottom: 15px;
+}
+
+#content {
+  padding-right: 1em;
+} 
+
+#sidebar {
+  ul {
+    list-style: none;  
+    margin: 0;
+    padding: 0;
+    li {
+      &:first-child {
+        background-color: #1f8dd6;
+        a {
+          color: white;
+        }
+      }
+      &:hover {
+        background-color: #8ECDF0;
+        a {
+          color: white;
+        }
+      }
+    }
+    a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #333333;
+    }
+  }
+}
+
+.page-header {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.maximum-width () {
+  max-width: 895px;
+  margin: 0 auto;
+}
+
+.layout-wrapper {
+  .maximum-width;
+}
