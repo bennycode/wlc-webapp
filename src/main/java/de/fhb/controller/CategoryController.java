@@ -10,7 +10,7 @@ import javax.inject.Named;
 
 @Named
 @SessionScoped
-public class CategoryController extends BaseController<Category, CategoryService> {
+public class CategoryController extends GenFormBaseController<Category, CategoryService> {
 
   @EJB
   private CategoryService service;

@@ -8,7 +8,7 @@ import javax.inject.Named;
 
 @Named
 @SessionScoped
-public class VideoController extends BaseController<Video, VideoService> {
+public class VideoController extends GenFormBaseController<Video, VideoService> {
 
   @EJB
   private VideoService service;

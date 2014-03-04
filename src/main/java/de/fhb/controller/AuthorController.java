@@ -10,7 +10,7 @@ import javax.inject.Named;
 
 @Named
 @SessionScoped
-public class AuthorController extends BaseController<Author, AuthorService> {
+public class AuthorController extends GenFormBaseController<Author, AuthorService> {
 
   @EJB
   private AuthorService service;

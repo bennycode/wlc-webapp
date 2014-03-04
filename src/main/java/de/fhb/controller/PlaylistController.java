@@ -19,7 +19,7 @@ import javax.inject.Named;
 
 @Named
 @SessionScoped
-public class PlaylistController extends BaseController<Playlist, PlaylistService> {
+public class PlaylistController extends GenFormBaseController<Playlist, PlaylistService> {
 
   @EJB
   private PlaylistService service;
