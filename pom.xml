@@ -23,20 +23,6 @@
       <id>google-api-services</id>
       <url>http://mavenrepo.google-api-java-client.googlecode.com/hg</url>
     </repository>
-    <repository>
-      <id>maven-own-repo</id>
-      <layout>default</layout>
-      <name>Own Repository</name>
-      <url>https://github.com/Yserz/OwnMavenRepo/raw/master</url>
-      <releases>
-        <enabled>true</enabled>
-        <!--<updatePolicy>always</updatePolicy>-->
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-        <!--<updatePolicy>always</updatePolicy>-->
-      </snapshots>
-    </repository>
   </repositories>
     
   <dependencies>
@@ -52,8 +38,8 @@
       <version>2.5.1</version>
       <scope>provided</scope>
     </dependency>
-    
     <dependency>
+      <!-- Java EE Web Profile -->
       <groupId>javax</groupId>
       <artifactId>javaee-web-api</artifactId>
       <version>7.0</version>
@@ -75,50 +61,11 @@
       <groupId>com.google.gdata</groupId>
       <artifactId>gdata-youtube-2.0</artifactId>
       <version>1.41.5</version>
-      <!--      <exclusions>
-        <exclusion>   declare the exclusion here 
-          <groupId>com.google.collections</groupId>
-          <artifactId>google-collections</artifactId>
-        </exclusion>
-      </exclusions> -->
     </dependency>
-    <!--    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>15.0-SNAPSHOT</version>
-    </dependency>-->
   </dependencies>
-  
 
   <build>
     <plugins>
-      <!--
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.1.1</version>
-        <executions>
-          <execution>
-            <id>start-mysql</id>
-            <phase>validate</phase>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <configuration>
-              <executable>java</executable>
-              <arguments>
-                <argument>-classpath</argument>
-                <classpath />
-                <argument>com.welovecoding.web.debug.StartMySQL</argument>
-              </arguments>
-            </configuration>
-          </execution>
-        </executions>
-        <configuration>
-          <executable>hostname</executable>
-        </configuration>
-      </plugin>
-      -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
