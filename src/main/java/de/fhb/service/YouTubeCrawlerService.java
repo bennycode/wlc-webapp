@@ -19,7 +19,7 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.interceptor.Interceptors;
 
-@Singleton
+@Singleton// could work as stateless bean
 @Interceptors({EJBLoggerInterceptor.class})
 public class YouTubeCrawlerService {
 
