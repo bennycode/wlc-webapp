@@ -24,7 +24,15 @@ import javax.faces.context.FacesContext;
  */
 public abstract class GenFormBaseController<T extends BaseEntity, E extends BaseService> extends BaseController<T, E> {
 
-  private HtmlForm form;
+  private static final long serialVersionUID = 1L;
+
+  private transient HtmlForm form;
+  protected final String FORM_STYLE_CLASS = "pure-form pure-form-aligned";
+  protected final String PANEL_GRID_STYLE_CLASS = "panelgrid";
+  protected final String PANEL_GRID_COLUMN_STYLE_CLASS = "panelgridcolumn";
+  protected final String PANEL_GRID_ROW_STYLE_CLASS = "pure-control-group";
+  protected final String OUTPUT_TEXT_STYLE_CLASS = "outputtext";
+  protected final String INPUT_TEXT_STYLE_CLASS = "inputtext";
 
   public void setForm(HtmlForm form) {
     this.form = form;
@@ -33,18 +41,24 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   public HtmlForm getForm() {
     Application app = FacesContext.getCurrentInstance().getApplication();
     form = (HtmlForm) app.createComponent(HtmlForm.COMPONENT_TYPE);
+    form.setStyleClass(FORM_STYLE_CLASS);
 
     HtmlPanelGrid panelGrid = (HtmlPanelGrid) app.createComponent(HtmlPanelGrid.COMPONENT_TYPE);
+    panelGrid.setStyleClass(PANEL_GRID_STYLE_CLASS);
+    panelGrid.setColumnClasses(PANEL_GRID_COLUMN_STYLE_CLASS);
+    panelGrid.setRowClasses(PANEL_GRID_ROW_STYLE_CLASS);
     form.getChildren().add(panelGrid);
     panelGrid.setColumns(2);
 
     if (item != null) {
       for (Map.Entry<String, Class<?>> entry : getAttributes(item).entrySet()) {
         HtmlOutputText key = (HtmlOutputText) app.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        key.setStyleClass(OUTPUT_TEXT_STYLE_CLASS);
         key.setValue(capitalize(entry.getKey()));
         panelGrid.getChildren().add(key);
 
         HtmlInputText value = (HtmlInputText) app.createComponent(HtmlInputText.COMPONENT_TYPE);
+        value.setStyleClass(INPUT_TEXT_STYLE_CLASS);
         String valueExpression = "#{" + getELClassname() + ".item." + entry.getKey() + "}";
         System.out.println("ValueExpression: " + valueExpression);
         value.setValueExpression("value", createValueExpression(valueExpression, entry.getValue()));

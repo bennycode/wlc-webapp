@@ -11,6 +11,8 @@ import javax.enterprise.context.Dependent;
 @Dependent
 public abstract class BaseController<T extends BaseEntity, E extends BaseService> implements Serializable {
 
+  private static final long serialVersionUID = 1L;
+
   private static final Logger LOG = Logger.getLogger(BaseController.class.getName());
 
   private int offset = 0;
