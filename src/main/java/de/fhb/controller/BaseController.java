@@ -10,7 +10,8 @@ import javax.enterprise.context.Dependent;
 
 @Dependent
 /**
- * TODO: http://stackoverflow.com/questions/197986/what-causes-javac-to-issue-the-uses-unchecked-or-unsafe-operations-warning
+ * TODO:
+ * http://stackoverflow.com/questions/197986/what-causes-javac-to-issue-the-uses-unchecked-or-unsafe-operations-warning
  */
 public abstract class BaseController<T extends BaseEntity, E extends BaseService> implements Serializable {
 
@@ -44,12 +45,18 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
     return "";
   }
 
+  /**
+   * TODO:
+   * http://stackoverflow.com/questions/197986/what-causes-javac-to-issue-the-uses-unchecked-or-unsafe-operations-warning
+   * http://stackoverflow.com/questions/8971954/how-to-avoid-having-to-use-suppresswarningsunchecked
+   *
+   * @return Generic list
+   */
   @SuppressWarnings("unchecked")
   public List<T> getItems() {
     return getService().findAll();
   }
 
-  @SuppressWarnings("unchecked")
   public void setItems(List<T> items) {
     this.items = items;
   }
