@@ -8,8 +8,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
- * TODO: http://stackoverflow.com/questions/197986/what-causes-javac-to-issue-the-uses-unchecked-or-unsafe-operations-warning
- * 
+ * TODO:
+ * http://stackoverflow.com/questions/197986/what-causes-javac-to-issue-the-uses-unchecked-or-unsafe-operations-warning
+ *
  * @author Benny Neugebauer (bn@bennyn.de)
  * @param <T extends BaseEntity>
  */
@@ -60,6 +61,18 @@ public abstract class AbstractRepository<T extends BaseEntity> {
     q.setMaxResults(range[1] - range[0] + 1);
     q.setFirstResult(range[0]);
     return q.getResultList();
+  }
+
+  @SuppressWarnings("unchecked")
+  public List<T> findRange(int startPosition, int maxResult) {
+    List<T> resultList;
+
+    CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+    cq.select(cq.from(entityClass));
+    Query query = getEntityManager().createQuery(cq);
+    resultList = query.setFirstResult(startPosition).setMaxResults(maxResult).getResultList();
+
+    return resultList;
   }
 
   @SuppressWarnings("unchecked")
