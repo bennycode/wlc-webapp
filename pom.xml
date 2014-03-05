@@ -57,6 +57,8 @@
       <artifactId>google-collections</artifactId>
       <version>1.0-rc5</version>
     </dependency>
+    <!-- Jersey (REST) -->
+    <!-- https://jersey.java.net/documentation/latest/modules-and-dependencies.html#d0e565 -->
     <dependency>
       <groupId>com.sun.jersey</groupId>
       <artifactId>jersey-json</artifactId>
@@ -72,16 +74,6 @@
       <groupId>com.sun.jersey</groupId>
       <artifactId>jersey-servlet</artifactId>
       <version>1.18.1</version>
-    </dependency>
-    <dependency>
-      <groupId>com.thetransactioncompany</groupId>
-      <artifactId>java-property-utils</artifactId>
-      <version>1.9.1</version>
-    </dependency>
-    <dependency>
-      <groupId>com.thetransactioncompany</groupId>
-      <artifactId>cors-filter</artifactId>
-      <version>1.9.1</version>
     </dependency>
     <dependency>
       <groupId>com.google.gdata</groupId>

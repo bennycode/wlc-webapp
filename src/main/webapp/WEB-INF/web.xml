@@ -14,9 +14,8 @@
   <!-- Jersey -->
   <servlet>
     <servlet-name>Jersey Web Application</servlet-name>
-    <servlet-class>
-      com.sun.jersey.spi.container.servlet.ServletContainer
-    </servlet-class>
+    <!-- http://stackoverflow.com/a/17772352/451634 -->
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
     <!-- DEBUG -->
     <!--    <init-param>
       <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
@@ -28,12 +27,16 @@
     </init-param>-->
     <init-param>
       <param-name>com.sun.jersey.config.property.packages</param-name>
-      <param-value>de.fhb.rest;</param-value>
+      <param-value>de.fhb.rest</param-value>
+    </init-param>
+    <init-param>
+      <param-name>jersey.config.server.provider.scanning.recursive</param-name>
+      <param-value>false</param-value>
     </init-param>
     <init-param>
       <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
       <param-value>true</param-value>
-    </init-param>
+    </init-param>    
     <load-on-startup>1</load-on-startup>
   </servlet>
   <!-- JSF -->
@@ -63,51 +66,10 @@
     <filter-name>AdminPagesFilter</filter-name>
     <filter-class>com.welovecoding.web.security.AdminPagesFilter</filter-class>
   </filter>
-  <filter>
-    <!-- http://stackoverflow.com/questions/19902514/access-control-allow-origin-in-ajax-call-to-jersey-rest-web-services -->
-    <filter-name>CORS</filter-name>
-    <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
-    <init-param>
-      <param-name>cors.allowGenericHttpRequests</param-name>
-      <param-value>true</param-value>
-    </init-param>
-    <init-param>
-      <param-name>cors.allowOrigin</param-name>
-      <param-value>*</param-value>
-    </init-param>
-    <init-param>
-      <param-name>cors.allowSubdomains</param-name>
-      <param-value>true</param-value>
-    </init-param>
-    <init-param>
-      <param-name>cors.supportedMethods</param-name>
-      <param-value>GET, HEAD, POST, OPTIONS</param-value>
-    </init-param>
-    <init-param>
-      <param-name>cors.supportedHeaders</param-name>
-      <param-value>Content-Type, X-Requested-With</param-value>
-    </init-param>
-    <init-param>
-      <param-name>cors.exposedHeaders</param-name>
-      <param-value>X-Test-1, X-Test-2</param-value>
-    </init-param>
-    <init-param>
-      <param-name>cors.supportsCredentials</param-name>
-      <param-value>true</param-value>
-    </init-param>
-    <init-param>
-      <param-name>cors.maxAge</param-name>
-      <param-value>-1</param-value>
-    </init-param>
-  </filter>
   <!-- Filter mappings -->
   <filter-mapping>
     <filter-name>AdminPagesFilter</filter-name>
     <url-pattern>/admin/*</url-pattern>
-  </filter-mapping>
-  <filter-mapping>
-    <filter-name>CORS</filter-name>
-    <url-pattern>/rest/*</url-pattern>
   </filter-mapping>
   <!-- Security Constraints -->
   <!-- http://stackoverflow.com/a/9033567/451634 -->

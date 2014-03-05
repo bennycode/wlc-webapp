@@ -9,6 +9,9 @@ import java.util.logging.Logger;
 import javax.enterprise.context.Dependent;
 
 @Dependent
+/**
+ * TODO: http://stackoverflow.com/questions/197986/what-causes-javac-to-issue-the-uses-unchecked-or-unsafe-operations-warning
+ */
 public abstract class BaseController<T extends BaseEntity, E extends BaseService> implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -24,6 +27,7 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
 
   public abstract E getService();
 
+  @SuppressWarnings("unchecked")
   public String remove() {
     String template = "Deleting item: {0}";
     LOG.log(Level.INFO, template, item.getName());
@@ -31,6 +35,7 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
     return "";
   }
 
+  @SuppressWarnings("unchecked")
   public String edit() {
     String template = "Saving item: {0}";
     LOG.log(Level.INFO, template, item.getName());
@@ -39,10 +44,12 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
     return "";
   }
 
+  @SuppressWarnings("unchecked")
   public List<T> getItems() {
     return getService().findAll();
   }
 
+  @SuppressWarnings("unchecked")
   public void setItems(List<T> items) {
     this.items = items;
   }
