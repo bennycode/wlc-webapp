@@ -1,74 +1,78 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.fhb.controller;
 
 import de.fhb.entities.BaseEntity;
 import de.fhb.service.BaseService;
+import de.fhb.util.JSFUtils;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
-import javax.el.ValueExpression;
 import javax.faces.application.Application;
+import javax.faces.component.UIOutput;
+import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlForm;
 import javax.faces.component.html.HtmlInputText;
-import javax.faces.component.html.HtmlOutputText;
-import javax.faces.component.html.HtmlPanelGrid;
+import javax.faces.component.html.HtmlOutputLabel;
 import javax.faces.context.FacesContext;
+import org.apache.myfaces.custom.fieldset.Fieldset;
 
 /**
- *
  * @author MacYser
+ * @see http://docs.oracle.com/javaee/7/tutorial/doc/jsf-page002.htm#BNARF
  */
 public abstract class GenFormBaseController<T extends BaseEntity, E extends BaseService> extends BaseController<T, E> {
 
   private static final long serialVersionUID = 1L;
-
   private transient HtmlForm form;
-  protected final String FORM_STYLE_CLASS = "pure-form pure-form-aligned";
-  protected final String PANEL_GRID_STYLE_CLASS = "panelgrid";
-  protected final String PANEL_GRID_COLUMN_STYLE_CLASS = "panelgridcolumn";
-  protected final String PANEL_GRID_ROW_STYLE_CLASS = "pure-control-group";
-  protected final String OUTPUT_TEXT_STYLE_CLASS = "outputtext";
-  protected final String INPUT_TEXT_STYLE_CLASS = "inputtext";
 
   public void setForm(HtmlForm form) {
     this.form = form;
   }
 
   public HtmlForm getForm() {
-    Application app = FacesContext.getCurrentInstance().getApplication();
+    FacesContext context = FacesContext.getCurrentInstance();
+    Application app = context.getApplication();
     form = (HtmlForm) app.createComponent(HtmlForm.COMPONENT_TYPE);
-    form.setStyleClass(FORM_STYLE_CLASS);
+    form.setStyleClass("pure-form pure-form-stacked");
 
-    HtmlPanelGrid panelGrid = (HtmlPanelGrid) app.createComponent(HtmlPanelGrid.COMPONENT_TYPE);
-    panelGrid.setStyleClass(PANEL_GRID_STYLE_CLASS);
-    panelGrid.setColumnClasses(PANEL_GRID_COLUMN_STYLE_CLASS);
-    panelGrid.setRowClasses(PANEL_GRID_ROW_STYLE_CLASS);
-    form.getChildren().add(panelGrid);
-    panelGrid.setColumns(2);
+    UIOutput legend = new UIOutput();
+    legend.setRendererType("javax.faces.Text");
+    legend.getAttributes().put("escape", false);
+    legend.setValue("<legend>Eintrag bearbeiten</legend>");
+
+    // Create form fields from entity (business model) 
+    Fieldset fieldset = new Fieldset();
+    fieldset.getChildren().add(legend);
 
     if (item != null) {
-      for (Map.Entry<String, Class<?>> entry : getAttributes(item).entrySet()) {
-        HtmlOutputText key = (HtmlOutputText) app.createComponent(HtmlOutputText.COMPONENT_TYPE);
-        key.setStyleClass(OUTPUT_TEXT_STYLE_CLASS);
-        key.setValue(capitalize(entry.getKey()));
-        panelGrid.getChildren().add(key);
+      for (Map.Entry<String, Class<?>> property : getAttributes(item).entrySet()) {
+        // Label
+        HtmlOutputLabel label = (HtmlOutputLabel) app.createComponent(HtmlOutputLabel.COMPONENT_TYPE);
+        label.setValue(property.getKey());
+        fieldset.getChildren().add(label);
 
-        HtmlInputText value = (HtmlInputText) app.createComponent(HtmlInputText.COMPONENT_TYPE);
-        value.setStyleClass(INPUT_TEXT_STYLE_CLASS);
-        String valueExpression = "#{" + getELClassname() + ".item." + entry.getKey() + "}";
+        // Input
+        HtmlInputText input = (HtmlInputText) app.createComponent(HtmlInputText.COMPONENT_TYPE);
+        String valueExpression = "#{" + getELClassname() + ".item." + property.getKey() + "}";
         System.out.println("ValueExpression: " + valueExpression);
-        value.setValueExpression("value", createValueExpression(valueExpression, entry.getValue()));
-        panelGrid.getChildren().add(value);
+        input.setValueExpression("value", JSFUtils.createValueExpression(valueExpression, property.getValue()));
+        fieldset.getChildren().add(input);
       }
-    } else {
-      HtmlOutputText error = new HtmlOutputText();
-      error.setValue("No Item is set!");
-      panelGrid.getChildren().add(error);
     }
+
+    /*
+     HtmlCommandButton button = (HtmlCommandButton) app.createComponent(HtmlCommandButton.COMPONENT_TYPE);
+     button.setStyleClass("pure-button pure-button-primary");
+     ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+     MethodExpression expression = app.getExpressionFactory().createMethodExpression(elContext, "#{authorController.edit}", Void.class, new Class[0]);
+     button.setActionExpression(expression);
+    
+     // .setAction(context.getApplication().createMethodBinding("#{Handler.action_replyToComment}", null));
+     */
+//    HtmlCommandButton button = (HtmlCommandButton) app.createComponent(HtmlCommandButton.COMPONENT_TYPE);
+//    button.setAction(context.getApplication().createMethodBinding("#{authorController.edit}", null));
+
+    form.getChildren().add(fieldset);
+//    form.getChildren().add(button);
 
     return form;
   }
@@ -87,6 +91,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
         attributes.put(field.getName(), field.getType());
       }
     }
+
     // check for superclass
     for (Field field : superclassFields) {
       System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
@@ -99,6 +104,12 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     return attributes;
   }
 
+  /**
+   * @deprecated A Property file will translate all keys and provide capital
+   * letters.
+   * @param line
+   * @return
+   */
   private String capitalize(String line) {
     return Character.toUpperCase(line.charAt(0)) + line.substring(1);
   }
@@ -127,22 +138,6 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     } else {
       return type.getPackage().getName().startsWith("java.");
     }
-  }
-
-  /**
-   * Creates a {@link ValueExpression} that wraps an object instance. This
-   * method can be used to pass any object as a {@link ValueExpression}. The
-   * wrapper {@link ValueExpression} is read only, and returns the wrapped
-   * object via its {@code getValue()} method, optionally coerced.
-   *
-   * @param expression The expression to be parsed.
-   * @param expectedType The type the result of the expression will be coerced
-   * to after evaluation.
-   * @return The parsed expression.
-   */
-  private ValueExpression createValueExpression(String expression, Class<?> expectedType) {
-    FacesContext context = FacesContext.getCurrentInstance();
-    return context.getApplication().getExpressionFactory().createValueExpression(context.getELContext(), expression, expectedType);
   }
 
 }
