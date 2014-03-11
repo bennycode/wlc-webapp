@@ -88,16 +88,16 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
      >Speichern</button>
      */
     String jsfAction = String.format("#{%s.edit}", getELClassname());
-    MethodExpression actionExpression = JSFUtils.createMethodExpression(jsfAction, null, new Class[]{});
+    MethodExpression actionExpression = JSFUtils.createMethodExpression(jsfAction, Void.class, new Class<?>[0]);
 
     HtmlCommandButton button = (HtmlCommandButton) app.createComponent(HtmlCommandButton.COMPONENT_TYPE);
+    button.setActionExpression(actionExpression);
+    button.setId("save");
     button.setStyleClass("pure-button pure-button-primary");
     button.setValue("Speichern");
-    button.setActionExpression(actionExpression);
 
     form.getChildren().add(fieldsetEnd);
-    // TODO: Button action does not work yet :(
-    // form.getChildren().add(button);
+    form.getChildren().add(button);
 
     return form;
   }

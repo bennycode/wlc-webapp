@@ -10,13 +10,7 @@
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
       <ui:define name="content">        
         <!-- Form -->
-        <form 
-          jsf:binding="#{authorController.form}">
-          <button type="submit" 
-                  class="pure-button pure-button-primary"
-                  jsf:action="#{authorController.edit}"
-                  >Speichern</button>
-        </form>
+        <form jsf:binding="#{authorController.form}"></form>
 
         <!-- Overview -->
         <p>Autoren in Datenbank: #{authorController.authorCount}</p>
