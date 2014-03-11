@@ -12,6 +12,7 @@ import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlForm;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.component.html.HtmlOutputLabel;
+import javax.faces.component.html.HtmlOutputText;
 import javax.faces.context.FacesContext;
 import org.apache.myfaces.custom.fieldset.Fieldset;
 
@@ -39,6 +40,10 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     legend.getAttributes().put("escape", false);
     legend.setValue("<legend>Eintrag bearbeiten</legend>");
 
+    HtmlOutputText linebreak = new HtmlOutputText();
+    linebreak.setValue("<br/>");
+    linebreak.setEscape(false);
+
     // Create form fields from entity (business model) 
     Fieldset fieldset = new Fieldset();
     fieldset.getChildren().add(legend);
@@ -51,9 +56,19 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
         fieldset.getChildren().add(label);
 
         // Input
-        HtmlInputText input = (HtmlInputText) app.createComponent(HtmlInputText.COMPONENT_TYPE);
+        /*
+         <input 
+         -                id="name" 
+         -                type="text" 
+         -                placeholder="Konrad Zuse" 
+         -                required="required"
+         -                jsf:id="name"
+         -                jsf:value="#{authorController.item.name}"
+         -                />
+         */
         String valueExpression = "#{" + getELClassname() + ".item." + property.getKey() + "}";
-        System.out.println("ValueExpression: " + valueExpression);
+        HtmlInputText input = (HtmlInputText) app.createComponent(HtmlInputText.COMPONENT_TYPE);
+        input.setId(property.getKey());
         input.setValueExpression("value", JSFUtils.createValueExpression(valueExpression, property.getValue()));
         fieldset.getChildren().add(input);
       }
@@ -70,7 +85,6 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
      */
 //    HtmlCommandButton button = (HtmlCommandButton) app.createComponent(HtmlCommandButton.COMPONENT_TYPE);
 //    button.setAction(context.getApplication().createMethodBinding("#{authorController.edit}", null));
-
     form.getChildren().add(fieldset);
 //    form.getChildren().add(button);
 
