@@ -1,6 +1,5 @@
 package de.fhb.controller;
 
-import de.fhb.entities.Author;
 import de.fhb.entities.BaseEntity;
 import de.fhb.service.BaseService;
 import de.fhb.util.JSFUtils;
@@ -43,6 +42,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     legend.getAttributes().put("escape", false);
     legend.setValue("<legend>Eintrag bearbeiten</legend>");
 
+    // Approach to replace fieldset which is actually created with MyFaces
     HtmlOutputText linebreak = new HtmlOutputText();
     linebreak.setValue("<br/>");
     linebreak.setEscape(false);
