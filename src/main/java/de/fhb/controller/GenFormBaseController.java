@@ -1,11 +1,14 @@
 package de.fhb.controller;
 
+import de.fhb.entities.Author;
 import de.fhb.entities.BaseEntity;
 import de.fhb.service.BaseService;
 import de.fhb.util.JSFUtils;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+import javax.el.MethodExpression;
+import javax.el.ValueExpression;
 import javax.faces.application.Application;
 import javax.faces.component.UIOutput;
 import javax.faces.component.html.HtmlCommandButton;
@@ -66,27 +69,34 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
          -                jsf:value="#{authorController.item.name}"
          -                />
          */
-        String valueExpression = "#{" + getELClassname() + ".item." + property.getKey() + "}";
+        String jsfValue = String.format("#{%s.item.%s}", getELClassname(), property.getKey());
+        ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, property.getValue());
+
         HtmlInputText input = (HtmlInputText) app.createComponent(HtmlInputText.COMPONENT_TYPE);
         input.setId(property.getKey());
-        input.setValueExpression("value", JSFUtils.createValueExpression(valueExpression, property.getValue()));
+        input.setValueExpression("value", valueExpression);
+
         fieldset.getChildren().add(input);
       }
     }
 
     /*
-     HtmlCommandButton button = (HtmlCommandButton) app.createComponent(HtmlCommandButton.COMPONENT_TYPE);
-     button.setStyleClass("pure-button pure-button-primary");
-     ELContext elContext = FacesContext.getCurrentInstance().getELContext();
-     MethodExpression expression = app.getExpressionFactory().createMethodExpression(elContext, "#{authorController.edit}", Void.class, new Class[0]);
-     button.setActionExpression(expression);
-    
-     // .setAction(context.getApplication().createMethodBinding("#{Handler.action_replyToComment}", null));
+     <button type="submit" 
+     class="pure-button pure-button-primary"
+     jsf:action="#{authorController.edit}"
+     >Speichern</button>
      */
-//    HtmlCommandButton button = (HtmlCommandButton) app.createComponent(HtmlCommandButton.COMPONENT_TYPE);
-//    button.setAction(context.getApplication().createMethodBinding("#{authorController.edit}", null));
+    String jsfAction = String.format("#{%s.edit}", getELClassname());
+    MethodExpression actionExpression = JSFUtils.createMethodExpression(jsfAction, null, new Class[]{});
+
+    HtmlCommandButton button = (HtmlCommandButton) app.createComponent(HtmlCommandButton.COMPONENT_TYPE);
+    button.setStyleClass("pure-button pure-button-primary");
+    button.setValue("Speichern");
+    button.setActionExpression(actionExpression);
+
     form.getChildren().add(fieldset);
-//    form.getChildren().add(button);
+    // TODO: Button action does not work yet :(
+    // form.getChildren().add(button);
 
     return form;
   }
