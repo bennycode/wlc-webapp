@@ -19,6 +19,8 @@ import javax.faces.context.FacesContext;
 
 /**
  * @author MacYser
+ * @param <T>
+ * @param <E>
  * @see http://docs.oracle.com/javaee/7/tutorial/doc/jsf-page002.htm#BNARF
  */
 public abstract class GenFormBaseController<T extends BaseEntity, E extends BaseService> extends BaseController<T, E> {
@@ -60,16 +62,6 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
         form.getChildren().add(label);
 
         // Input
-        /*
-         <input 
-         -                id="name" 
-         -                type="text" 
-         -                placeholder="Konrad Zuse" 
-         -                required="required"
-         -                jsf:id="name"
-         -                jsf:value="#{authorController.item.name}"
-         -                />
-         */
         String jsfValue = String.format("#{%s.item.%s}", getELClassname(), property.getKey());
         ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, property.getValue());
 
@@ -81,25 +73,31 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       }
     }
 
+    form.getChildren().add(fieldsetEnd);
+
+    HtmlCommandButton submit = createSubmitButton(app);
+    form.getChildren().add(submit);
+
+    return form;
+  }
+
+  private HtmlCommandButton createSubmitButton(Application app) {
+    String jsfAction = String.format("#{%s.edit}", getELClassname());
+    MethodExpression actionExpression = JSFUtils.createMethodExpression(jsfAction, Void.class, new Class<?>[0]);
+
     /*
      <button type="submit" 
      class="pure-button pure-button-primary"
      jsf:action="#{authorController.edit}"
      >Speichern</button>
      */
-    String jsfAction = String.format("#{%s.edit}", getELClassname());
-    MethodExpression actionExpression = JSFUtils.createMethodExpression(jsfAction, Void.class, new Class<?>[0]);
-
     HtmlCommandButton button = (HtmlCommandButton) app.createComponent(HtmlCommandButton.COMPONENT_TYPE);
     button.setActionExpression(actionExpression);
     button.setId("save");
     button.setStyleClass("pure-button pure-button-primary");
     button.setValue("Speichern");
 
-    form.getChildren().add(fieldsetEnd);
-    form.getChildren().add(button);
-
-    return form;
+    return button;
   }
 
   private Map<String, Class<?>> getAttributes(Object obj) {
