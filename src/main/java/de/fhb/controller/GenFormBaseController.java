@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.el.MethodExpression;
 import javax.el.ValueExpression;
 import javax.faces.application.Application;
+import javax.faces.component.UIComponent;
 import javax.faces.component.UIOutput;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlForm;
@@ -18,7 +19,6 @@ import javax.faces.component.html.HtmlOutputText;
 import javax.faces.context.FacesContext;
 
 /**
- * @author MacYser
  * @param <T>
  * @param <E>
  * @see http://docs.oracle.com/javaee/7/tutorial/doc/jsf-page002.htm#BNARF
@@ -27,14 +27,19 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
   private static final long serialVersionUID = 1L;
   private transient HtmlForm form;
+  private final FacesContext context;
+  private final Application app;
+
+  public GenFormBaseController() {
+    this.context = FacesContext.getCurrentInstance();
+    this.app = context.getApplication();
+  }
 
   public void setForm(HtmlForm form) {
     this.form = form;
   }
 
   public HtmlForm getForm() {
-    FacesContext context = FacesContext.getCurrentInstance();
-    Application app = context.getApplication();
     form = (HtmlForm) app.createComponent(HtmlForm.COMPONENT_TYPE);
     form.setStyleClass("pure-form pure-form-stacked");
 
@@ -56,20 +61,13 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
     if (item != null) {
       for (Map.Entry<String, Class<?>> property : getAttributes(item).entrySet()) {
-        // Label
-        HtmlOutputLabel label = (HtmlOutputLabel) app.createComponent(HtmlOutputLabel.COMPONENT_TYPE);
-        label.setValue(property.getKey());
+        // Labels
+        HtmlOutputLabel label = createLabel(property);
         form.getChildren().add(label);
 
-        // Input
-        String jsfValue = String.format("#{%s.item.%s}", getELClassname(), property.getKey());
-        ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, property.getValue());
-
-        HtmlInputText input = (HtmlInputText) app.createComponent(HtmlInputText.COMPONENT_TYPE);
-        input.setId(property.getKey());
-        input.setValueExpression("value", valueExpression);
-
-        form.getChildren().add(input);
+        // Input fields
+        UIComponent component = getComponentByType(property);
+        form.getChildren().add(component);
       }
     }
 
@@ -79,6 +77,47 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     form.getChildren().add(submit);
 
     return form;
+  }
+
+  private HtmlInputText createInputField(Map.Entry<String, Class<?>> property) {
+    String jsfValue = String.format("#{%s.item.%s}", getELClassname(), property.getKey());
+    ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, property.getValue());
+
+    HtmlInputText input = (HtmlInputText) app.createComponent(HtmlInputText.COMPONENT_TYPE);
+    input.setId(property.getKey());
+    input.setValueExpression("value", valueExpression);
+
+    return input;
+  }
+
+  private HtmlOutputLabel createLabel(Map.Entry<String, Class<?>> property) {
+    HtmlOutputLabel label = (HtmlOutputLabel) app.createComponent(HtmlOutputLabel.COMPONENT_TYPE);
+    label.setValue(property.getKey());
+
+    return label;
+  }
+
+  /**
+   * Checks the classname of the property and creates (dependant on the
+   * classname) a corresponding UIComponent (HTML tag / DOM element) for that
+   * property.
+   *
+   * @param property
+   * @return
+   */
+  private UIComponent getComponentByType(Map.Entry<String, Class<?>> property) {
+    UIComponent component;
+    String className = property.getValue().getTypeName();
+
+    switch (className) {
+      case "java.util.Date":
+        component = createInputField(property);
+        break;
+      default:
+        component = createInputField(property);
+    }
+
+    return component;
   }
 
   private HtmlCommandButton createSubmitButton(Application app) {
