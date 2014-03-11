@@ -16,7 +16,6 @@ import javax.faces.component.html.HtmlInputText;
 import javax.faces.component.html.HtmlOutputLabel;
 import javax.faces.component.html.HtmlOutputText;
 import javax.faces.context.FacesContext;
-import org.apache.myfaces.custom.fieldset.Fieldset;
 
 /**
  * @author MacYser
@@ -42,21 +41,23 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     legend.getAttributes().put("escape", false);
     legend.setValue("<legend>Eintrag bearbeiten</legend>");
 
-    // Approach to replace fieldset which is actually created with MyFaces
-    HtmlOutputText linebreak = new HtmlOutputText();
-    linebreak.setValue("<br/>");
-    linebreak.setEscape(false);
+    // Create a <fieldset>
+    HtmlOutputText fieldsetStart = new HtmlOutputText();
+    fieldsetStart.setEscape(false);
+    fieldsetStart.setValue("<fieldset>");
 
-    // Create form fields from entity (business model) 
-    Fieldset fieldset = new Fieldset();
-    fieldset.getChildren().add(legend);
+    HtmlOutputText fieldsetEnd = new HtmlOutputText();
+    fieldsetEnd.setEscape(false);
+    fieldsetEnd.setValue("</fieldset>");
+
+    form.getChildren().add(fieldsetStart);
 
     if (item != null) {
       for (Map.Entry<String, Class<?>> property : getAttributes(item).entrySet()) {
         // Label
         HtmlOutputLabel label = (HtmlOutputLabel) app.createComponent(HtmlOutputLabel.COMPONENT_TYPE);
         label.setValue(property.getKey());
-        fieldset.getChildren().add(label);
+        form.getChildren().add(label);
 
         // Input
         /*
@@ -76,7 +77,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
         input.setId(property.getKey());
         input.setValueExpression("value", valueExpression);
 
-        fieldset.getChildren().add(input);
+        form.getChildren().add(input);
       }
     }
 
@@ -94,7 +95,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     button.setValue("Speichern");
     button.setActionExpression(actionExpression);
 
-    form.getChildren().add(fieldset);
+    form.getChildren().add(fieldsetEnd);
     // TODO: Button action does not work yet :(
     // form.getChildren().add(button);
 
