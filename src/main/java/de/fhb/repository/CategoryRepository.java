@@ -6,11 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
-/**
- * @author Benny Neugebauer (bn@bennyn.de)
- */
 @Stateless
 //@Interceptors({EJBLoggerInterceptor.class})
 public class CategoryRepository extends AbstractRepository<Category> {
@@ -28,7 +24,6 @@ public class CategoryRepository extends AbstractRepository<Category> {
   }
 
   public List<Category> getCategoriesOrderedByName() {
-    TypedQuery<Category> query = em.createQuery("SELECT c FROM Category c ORDER BY c.name", Category.class);
-    return query.getResultList();
+    return em.createNamedQuery(Category.ORDER_BY_NAME, Category.class).getResultList();
   }
 }

@@ -18,6 +18,9 @@ import javax.validation.constraints.NotNull;
 })
 public class Playlist extends BaseEntity {
 
+  public static final String FIND_BY_CODE = "Playlist.findByCode";
+  public static final String LIKE_NAME = "Playlist.likeName";
+
   @NotNull
   @ManyToOne
   private Category category;

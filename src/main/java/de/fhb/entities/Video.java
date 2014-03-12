@@ -12,6 +12,9 @@ import javax.persistence.NamedQuery;
 })
 public class Video extends BaseEntity {
 
+  public static final String FIND_BY_CODE = "Video.findByCode";
+  public static final String LIKE_NAME = "Video.likeName";
+
   @Column(unique = true)
   private String code;
   private String description;

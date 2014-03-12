@@ -3,7 +3,6 @@ package de.fhb.service;
 import de.fhb.entities.Category;
 import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import de.fhb.repository.CategoryRepository;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -30,9 +29,7 @@ public class CategoryService extends BaseService<Category, CategoryRepository> {
   }
 
   public List<Category> getCategoriesOrderedByTitle() {
-    // TODO Implement getCategoriesOrderedByTitle()
-    // Never return null. instead return an empty List
-    return new ArrayList<Category>();
+    // TODO: This list is somehow empty :(
+    return repository.getCategoriesOrderedByName();
   }
-
 }

@@ -2,7 +2,6 @@ package de.fhb.repository;
 
 import com.welovecoding.web.config.Names;
 import de.fhb.entities.Video;
-import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -10,10 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author MacYser
- */
 @Stateless
 //@Interceptors({EJBLoggerInterceptor.class})
 public class VideoRepository extends AbstractRepository<Video> {
@@ -35,7 +30,7 @@ public class VideoRepository extends AbstractRepository<Video> {
   public Video getVideoByCode(String code) {
     Video video = null;
     try {
-      video = em.createNamedQuery("Video.findByCode", Video.class).setParameter("code", code).getSingleResult();
+      video = em.createNamedQuery(Video.FIND_BY_CODE, Video.class).setParameter("code", code).getSingleResult();
     } catch (NoResultException e) {
       LOG.log(Level.WARNING, "Video with code {0} cannot be found.", code);
     }
