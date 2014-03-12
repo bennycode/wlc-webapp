@@ -126,7 +126,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
    */
   private UIComponent getComponentByType(Map.Entry<String, Class<?>> property) {
     UIComponent component;
-    String className = property.getValue().getTypeName();
+    String className = property.getValue().getName();
 
     switch (className) {
       case "java.util.Date":
