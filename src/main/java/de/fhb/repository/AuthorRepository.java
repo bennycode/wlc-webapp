@@ -24,15 +24,15 @@ public class AuthorRepository extends AbstractRepository<Author> {
   }
 
   public long getAuthorCount() {
-    return em.createNamedQuery("Author.getCount", Long.class).getSingleResult().intValue();
+    return em.createNamedQuery(Author.GET_COUNT, Long.class).getSingleResult().intValue();
   }
 
   public List<Author> getAuthors() {
-    return em.createNamedQuery("Author.findAll", Author.class).getResultList();
+    return em.createNamedQuery(Author.FIND_ALL, Author.class).getResultList();
   }
 
   public List<Author> getAuthors(int offset, int amount) {
-    return em.createNamedQuery("Author.findAll", Author.class)
+    return em.createNamedQuery(Author.FIND_ALL, Author.class)
             .setFirstResult(offset)
             .setMaxResults(amount)
             .getResultList();
@@ -42,5 +42,4 @@ public class AuthorRepository extends AbstractRepository<Author> {
     Author managedAuthor = em.getReference(Author.class, author.getId());
     em.remove(managedAuthor);
   }
-
 }

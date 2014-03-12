@@ -11,6 +11,9 @@ import javax.persistence.NamedQuery;
 })
 public class Author extends BaseEntity {
 
+  public static final String FIND_ALL = "Author.findAll";
+  public static final String GET_COUNT = "Author.getCount";
+
   public Author() {
   }
 
