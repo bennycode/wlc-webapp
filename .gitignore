@@ -40,3 +40,4 @@ build.properties
 *.war
 *.ear
 /target/
+/faces-config.NavData

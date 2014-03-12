@@ -9,6 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.el.MethodExpression;
 import javax.el.ValueExpression;
 import javax.faces.application.Application;
@@ -34,10 +37,13 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   private transient HtmlForm form;
   private final FacesContext context;
   private final Application app;
+  private final ResourceBundle backendText;
+  private static final Logger LOG = Logger.getLogger(GenFormBaseController.class.getName());
 
   public GenFormBaseController() {
     this.context = FacesContext.getCurrentInstance();
     this.app = context.getApplication();
+    this.backendText = app.getResourceBundle(context, "backend");
   }
 
   public void setForm(HtmlForm form) {
@@ -96,8 +102,16 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   }
 
   private HtmlOutputLabel createLabel(Map.Entry<String, Class<?>> property) {
+    String text = property.getKey();
+
+    try {
+      text = backendText.getString("admin.form.label." + property.getKey());
+    } catch (java.util.MissingResourceException ex) {
+      LOG.log(Level.WARNING, "Missing property key for: admin.form.label.{0}", property.getKey());
+    }
+
     HtmlOutputLabel label = (HtmlOutputLabel) app.createComponent(HtmlOutputLabel.COMPONENT_TYPE);
-    label.setValue(property.getKey());
+    label.setValue(text);
 
     return label;
   }
