@@ -91,12 +91,18 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   }
 
   private HtmlInputText createInputField(Map.Entry<String, Class<?>> property) {
-    String jsfValue = String.format("#{%s.item.%s}", getELClassname(), property.getKey());
+    String key = property.getKey();
+
+    String jsfValue = String.format("#{%s.item.%s}", getELClassname(), key);
     ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, property.getValue());
 
     HtmlInputText input = (HtmlInputText) app.createComponent(HtmlInputText.COMPONENT_TYPE);
-    input.setId(property.getKey());
+    input.setId(key);
     input.setValueExpression("value", valueExpression);
+
+    if (key.equals("id") || key.equals("created") || key.equals("lastModified")) {
+      input.setReadonly(true);
+    }
 
     return input;
   }
