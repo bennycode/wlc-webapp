@@ -4,7 +4,10 @@ import de.fhb.entities.BaseEntity;
 import de.fhb.service.BaseService;
 import de.fhb.util.JSFUtils;
 import java.lang.reflect.Field;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import javax.el.MethodExpression;
 import javax.el.ValueExpression;
@@ -17,6 +20,8 @@ import javax.faces.component.html.HtmlInputText;
 import javax.faces.component.html.HtmlOutputLabel;
 import javax.faces.component.html.HtmlOutputText;
 import javax.faces.context.FacesContext;
+import javax.faces.convert.DateTimeConverter;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @param <T>
@@ -111,13 +116,32 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
     switch (className) {
       case "java.util.Date":
-        component = createInputField(property);
+        component = createDateInputField(property);
         break;
       default:
         component = createInputField(property);
     }
 
     return component;
+  }
+
+  private HtmlInputText createDateInputField(Map.Entry<String, Class<?>> property) {
+    HtmlInputText input = createInputField(property);
+
+    // Get locale to display locale date format
+    DateTimeConverter converter = (DateTimeConverter) app.createConverter(DateTimeConverter.CONVERTER_ID);
+    // TODO: Use local date time pattern
+    converter.setPattern("dd.MM.yyyy");
+    input.setConverter(converter);
+
+    return input;
+  }
+
+  private String getLocalDateTimePattern() {
+    HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+    Locale locale = request.getLocale();
+    DateFormat formatter = DateFormat.getDateInstance(DateFormat.SHORT, locale);
+    return ((SimpleDateFormat) formatter).toPattern();
   }
 
   private HtmlCommandButton createSubmitButton(Application app) {
