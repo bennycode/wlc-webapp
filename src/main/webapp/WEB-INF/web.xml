@@ -66,12 +66,11 @@
       30
     </session-timeout>
   </session-config>
-  <!-- Filters -->
+  <!-- Admin page filter -->
   <filter>
     <filter-name>AdminPagesFilter</filter-name>
     <filter-class>com.welovecoding.web.security.AdminPagesFilter</filter-class>
   </filter>
-  <!-- Filter mappings -->
   <filter-mapping>
     <filter-name>AdminPagesFilter</filter-name>
     <url-pattern>/admin/*</url-pattern>

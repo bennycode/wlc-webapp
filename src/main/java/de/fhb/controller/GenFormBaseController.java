@@ -3,6 +3,8 @@ package de.fhb.controller;
 import de.fhb.entities.BaseEntity;
 import de.fhb.service.BaseService;
 import de.fhb.util.JSFUtils;
+import de.fhb.view.forms.AuthorForm;
+import de.fhb.view.forms.FormInput;
 import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -52,6 +54,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
   public HtmlForm getForm() {
     form = (HtmlForm) app.createComponent(HtmlForm.COMPONENT_TYPE);
+    form.setAcceptcharset("ISO-8859-1");
     form.setStyleClass("pure-form pure-form-stacked");
 
     UIOutput legend = new UIOutput();
@@ -70,15 +73,15 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
     form.getChildren().add(fieldsetStart);
 
-    if (item != null) {
-      for (Map.Entry<String, Class<?>> property : getAttributes(item).entrySet()) {
-        // Labels
-        HtmlOutputLabel label = createLabel(property);
-        form.getChildren().add(label);
+    // Add labels and properies
+    Map<String, Class<?>> properties = getProperties(item);
+    if (properties.size() > 0) {
+      // TODO: Make AuthorForm generic!
+      FormInput[] parsedProperties = AuthorForm.parseProperties(properties);
 
-        // Input fields
-        UIComponent component = getComponentByType(property);
-        form.getChildren().add(component);
+      for (FormInput property : parsedProperties) {
+        form.getChildren().add(createLabel(property));
+        form.getChildren().add(createComponentByType(property));
       }
     }
 
@@ -90,7 +93,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     return form;
   }
 
-  private HtmlInputText createInputField(Map.Entry<String, Class<?>> property) {
+  private HtmlInputText createInputField(FormInput property) {
     String key = property.getKey();
 
     String jsfValue = String.format("#{%s.item.%s}", getELClassname(), key);
@@ -100,14 +103,14 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     input.setId(key);
     input.setValueExpression("value", valueExpression);
 
-    if (key.equals("id") || key.equals("created") || key.equals("lastModified")) {
+    if (property.isReadOnly()) {
       input.setReadonly(true);
     }
 
     return input;
   }
 
-  private HtmlOutputLabel createLabel(Map.Entry<String, Class<?>> property) {
+  private HtmlOutputLabel createLabel(FormInput property) {
     String text = property.getKey();
 
     try {
@@ -130,7 +133,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
    * @param property
    * @return
    */
-  private UIComponent getComponentByType(Map.Entry<String, Class<?>> property) {
+  private UIComponent createComponentByType(FormInput property) {
     UIComponent component;
     String className = property.getValue().getName();
 
@@ -145,7 +148,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     return component;
   }
 
-  private HtmlInputText createDateInputField(Map.Entry<String, Class<?>> property) {
+  private HtmlInputText createDateInputField(FormInput property) {
     HtmlInputText input = createInputField(property);
 
     // Get locale to display locale date format
@@ -183,27 +186,30 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     return button;
   }
 
-  private Map<String, Class<?>> getAttributes(Object obj) {
+  private Map<String, Class<?>> getProperties(Object obj) {
     Map<String, Class<?>> attributes = new HashMap<>();
 
-    Field[] objectFields = obj.getClass().getDeclaredFields();
-    Field[] superclassFields = obj.getClass().getSuperclass().getDeclaredFields();
+    if (obj != null) {
 
-    // check for class
-    for (Field field : objectFields) {
-      System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
+      Field[] objectFields = obj.getClass().getDeclaredFields();
+      Field[] superclassFields = obj.getClass().getSuperclass().getDeclaredFields();
 
-      if (checkGetterPresent(obj.getClass(), field) && isJavaLang(field.getType())) {
-        attributes.put(field.getName(), field.getType());
+      // check for class
+      for (Field field : objectFields) {
+        System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
+
+        if (checkGetterPresent(obj.getClass(), field) && isJavaLang(field.getType())) {
+          attributes.put(field.getName(), field.getType());
+        }
       }
-    }
 
-    // check for superclass
-    for (Field field : superclassFields) {
-      System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
+      // check for superclass
+      for (Field field : superclassFields) {
+        System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
 
-      if (checkGetterPresent(obj.getClass().getSuperclass(), field) && isJavaLang(field.getType())) {
-        attributes.put(field.getName(), field.getType());
+        if (checkGetterPresent(obj.getClass().getSuperclass(), field) && isJavaLang(field.getType())) {
+          attributes.put(field.getName(), field.getType());
+        }
       }
     }
 
