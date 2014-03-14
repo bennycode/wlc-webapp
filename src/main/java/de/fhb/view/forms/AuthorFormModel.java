@@ -2,9 +2,12 @@ package de.fhb.view.forms;
 
 import java.util.Map;
 
-public class AuthorForm {
+// Convention: FormModels have to be called <EntityName>FormModel.java and extends abstract class FormModel
+public class AuthorFormModel extends FormModel {
 
-  public static FormInput[] parseProperties(Map<String, Class<?>> properties) {
+  // probably a List would be a better returnvalue.
+  @Override
+  public FormInput[] parseProperties(Map<String, Class<?>> properties) {
     FormInput[] formFields = new FormInput[4];
 
     for (Map.Entry<String, Class<?>> property : properties.entrySet()) {
