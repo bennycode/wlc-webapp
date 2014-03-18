@@ -43,9 +43,8 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   private final ResourceBundle backendText;
   private static final Logger LOG = Logger.getLogger(GenFormBaseController.class.getName());
   // FormModel naming convention: <EntityName>FormModel.java
-  private final String FORM_MODEL_SUFFIX = "FormModel";
-  // TODO: define std package for forms
   private final String FORM_MODEL_PACKAGE = "de.fhb.view.forms";
+  private final String FORM_MODEL_SUFFIX = "FormModel";
 
   public GenFormBaseController() {
     this.context = FacesContext.getCurrentInstance();
@@ -81,10 +80,8 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     // Add labels and properies
     Map<String, Class<?>> properties = getProperties(item);
     if (properties.size() > 0) {
-      FormInput[] parsedProperties = new FormInput[0];
-      ClassLoader cl = item.getClass().getClassLoader();
-
       // Find Form model with reflection
+      ClassLoader cl = item.getClass().getClassLoader();
       FormModel formModel;
 
       try {
@@ -94,7 +91,8 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
         formModel = new DefaultFormModel();
       }
 
-      parsedProperties = formModel.parseProperties(properties);
+      // Parse form properties
+      FormInput[] parsedProperties = formModel.parseProperties(properties);
 
       for (FormInput property : parsedProperties) {
         form.getChildren().add(createLabel(property));
