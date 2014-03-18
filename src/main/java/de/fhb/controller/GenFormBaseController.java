@@ -171,6 +171,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     // TODO: Use local date time pattern
     converter.setPattern("dd.MM.yyyy");
     input.setConverter(converter);
+    input.setStyleClass("date-time-field");
 
     return input;
   }

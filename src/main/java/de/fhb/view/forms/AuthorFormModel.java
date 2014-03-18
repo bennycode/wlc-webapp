@@ -21,22 +21,8 @@ public class AuthorFormModel extends FormModel {
 
       String key = input.getKey();
 
-      if (key.equals("id") || key.equals("created") || key.equals("lastModified")) {
+      if (key.equals("id")) {
         input.setReadOnly(true);
-      }
-
-      switch (key) {
-        case "id":
-          input.setReadOnly(true);
-          break;
-        case "name":
-          break;
-        case "created":
-          input.setReadOnly(true);
-          break;
-        case "lastModified":
-          input.setReadOnly(true);
-          break;
       }
 
       inputs.put(key, input);
