@@ -14,11 +14,14 @@
     <h:outputStylesheet library="css" name="font-awesome-4.0.3.min.css" />
     <h:outputStylesheet library="css/pure-0.3.0" name="pure-min.css" />
     <h:outputStylesheet library="css/generated" name="main.css" />
+    <!-- jQuery -->
+    <h:outputScript name="js/jquery-2.1.0.min.js" />
+    <!-- We Love Coding -->
+    <h:outputScript name="js/wlc/DocumentHandler.js" />
     <ui:insert name="extra-stylesheets"></ui:insert>
   </h:head>
 
   <h:body>
-
     <div id="top">
       <div id="top-wrapper" class="layout-wrapper">
         <div id="top-grid" class="pure-g-r">
@@ -50,7 +53,6 @@
         </div>
       </div>
     </div> <!-- /bottom -->
-
+    <h:outputScript name="js/wlc/main.js" />
   </h:body>
-
 </html>

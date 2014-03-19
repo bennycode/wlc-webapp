@@ -3,6 +3,7 @@ package de.fhb.controller;
 import de.fhb.entities.BaseEntity;
 import de.fhb.service.BaseService;
 import de.fhb.util.JSFUtils;
+import de.fhb.view.forms.DefaultFormModel;
 import de.fhb.view.forms.FormInput;
 import de.fhb.view.forms.FormModel;
 import java.lang.reflect.Field;
@@ -41,10 +42,9 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   private final Application app;
   private final ResourceBundle backendText;
   private static final Logger LOG = Logger.getLogger(GenFormBaseController.class.getName());
-  // FormModel naming convention: <EntityName>Form.java
+  // FormModel naming convention: <EntityName>FormModel.java
+  private final String FORM_MODEL_PACKAGE = "de.fhb.view.forms";
   private final String FORM_MODEL_SUFFIX = "FormModel";
-  // TODO: define std package for forms
-  private final String FORM_MODEL_PACKAGE = "de.fhb.view.forms.";
 
   public GenFormBaseController() {
     this.context = FacesContext.getCurrentInstance();
@@ -80,24 +80,19 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     // Add labels and properies
     Map<String, Class<?>> properties = getProperties(item);
     if (properties.size() > 0) {
-
-      FormInput[] parsedProperties = new FormInput[0];
+      // Find Form model with reflection
       ClassLoader cl = item.getClass().getClassLoader();
+      FormModel formModel;
+
       try {
-
-        // FormModel naming convention: <EntityName>Form.java
-        // TODO: define std package for forms
-        //loads the corresponding formmodel class of the entity
-        Class clazz = cl.loadClass(FORM_MODEL_PACKAGE + item.getClass().getSimpleName() + FORM_MODEL_SUFFIX);
-        // instanciates the FormModel
-        FormModel formModel = (FormModel) clazz.newInstance();
-        // calls "abstract" #parseProperties() of FormModel
-        parsedProperties = formModel.parseProperties(properties);
-
+        Class clazz = cl.loadClass(FORM_MODEL_PACKAGE + "." + item.getClass().getSimpleName() + FORM_MODEL_SUFFIX);
+        formModel = (FormModel) clazz.newInstance();
       } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-        // thrown if corresponding FormModel of Entity is not present
-        Logger.getLogger(GenFormBaseController.class.getName()).log(Level.SEVERE, null, ex);
+        formModel = new DefaultFormModel();
       }
+
+      // Parse form properties
+      FormInput[] parsedProperties = formModel.parseProperties(properties);
 
       for (FormInput property : parsedProperties) {
         form.getChildren().add(createLabel(property));
@@ -176,6 +171,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     // TODO: Use local date time pattern
     converter.setPattern("dd.MM.yyyy");
     input.setConverter(converter);
+    input.setStyleClass("date-time-field");
 
     return input;
   }

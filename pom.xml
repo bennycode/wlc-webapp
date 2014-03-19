@@ -8,6 +8,22 @@
   <packaging>war</packaging>
 
   <name>wlc-webapp</name>
+  
+  <developers>
+    <developer>
+      <name>Benny Neugebauer</name>
+      <url>http://www.bennyn.de</url>
+      <roles>
+        <role>Original Author</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Michael Koppen</name>
+      <roles>
+        <role>Original Author</role>
+      </roles>
+    </developer>
+  </developers>
 
   <properties>
     <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -240,5 +256,5 @@
       </plugin>
     </plugins>
   </build>
-
+   
 </project>
