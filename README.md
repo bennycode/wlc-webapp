@@ -54,6 +54,10 @@ Project configuration:
 - [New JSF 2.2 namespaces](http://jsflive.wordpress.com/2013/05/16/jsf22-namespaces/) <- At the moment we should use THE OLD namespaces ([reason](http://stackoverflow.com/questions/17361528/uirepeat-in-jsf-2-2-is-working-but-rendered))
 - [How to Write Doc Comments for the Javadoc Tool](http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html)
 
+**UI & UX**
+
+- [A Good User Interface](http://www.goodui.org/)
+
 ## Reference: ##
 - [Bean Scopes](http://stackoverflow.com/a/17683041/451634)
 - [Managed Bean types](http://stackoverflow.com/a/1030196/451634)
