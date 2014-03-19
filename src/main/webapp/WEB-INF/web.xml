@@ -16,30 +16,6 @@
     <param-value>true</param-value>
   </context-param>
   <!-- Servlet declarations -->
-  <!-- Jersey -->
-  <servlet>
-    <servlet-name>Jersey Web Application</servlet-name>
-    <!-- http://stackoverflow.com/a/17772352/451634 -->
-    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
-    <!-- DEBUG -->
-    <!--    <init-param>
-      <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
-      <param-value>com.sun.jersey.api.container.filter.LoggingFilter</param-value>
-    </init-param>
-    <init-param>
-      <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
-      <param-value>com.sun.jersey.api.container.filter.LoggingFilter</param-value>
-    </init-param>-->
-    <init-param>
-      <param-name>com.sun.jersey.config.property.packages</param-name>
-      <param-value>de.fhb.rest;</param-value>
-    </init-param>
-    <init-param>
-      <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
-      <param-value>true</param-value>
-    </init-param>    
-    <load-on-startup>1</load-on-startup>
-  </servlet>
   <!-- JSF -->
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
@@ -51,11 +27,6 @@
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
-  </servlet-mapping>
-  <!-- Jersey -->
-  <servlet-mapping>
-    <servlet-name>Jersey Web Application</servlet-name>
-    <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>
