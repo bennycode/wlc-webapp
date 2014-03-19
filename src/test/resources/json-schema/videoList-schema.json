@@ -14,12 +14,12 @@
         "required": true
       },
       "description": {
-        "type": "null",
+        "type": "string",
         "id": "http://jsonschema.net/0/description",
         "required": true
       },
       "downloadUrl": {
-        "type": "null",
+        "type": "string",
         "id": "http://jsonschema.net/0/downloadUrl",
         "required": true
       },

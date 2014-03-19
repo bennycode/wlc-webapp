@@ -4,7 +4,6 @@ import de.fhb.rest.v1.dto.VideoDTO;
 import de.fhb.rest.v1.mapping.ToDTOMapper;
 import de.fhb.service.VideoService;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -38,15 +37,21 @@ public class VideoResource {
   @Produces(MediaType.APPLICATION_JSON)
   public List<VideoDTO> getVideos(@PathParam("id") int id) {
     List<VideoDTO> videoListStub = new ArrayList<>();
-    for (int k = 0; k < 5; k++) {
+    for (int k = 0; k < 1; k++) {
       VideoDTO v = new VideoDTO();
       v.setId(k);
-      v.setCreated(new Date());
-      v.setLastModified(new Date());
+//          v.setCreated(new Date());
+//          v.setLastModified(new Date());
       v.setCode("Code" + k);
       v.setDescription("Desc" + k);
       v.setTitle("Title" + k);
+      v.setDownloadUrl("DownloadURL" + k);
+      v.setPermalink("PermaLink" + k);
+      //    v.setPlaylist(null);//Note this is null to prevent circular dependencies
+      v.setPreviewImageUrl("PreviewImageURL" + k);
+
       videoListStub.add(v);
+
     }
     List<VideoDTO> videoList = toDTOMapper.mapVideoList(videoService.getAllVideosByPlaylist(id));
     return videoListStub;

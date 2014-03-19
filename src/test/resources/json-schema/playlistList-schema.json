@@ -44,9 +44,9 @@
         "required": true,
         "properties": {
           "description": {
-            "type": "null",
+            "type": ["string", "null"],
             "id": "http://jsonschema.net/0/owner/description",
-            "required": true
+            "required": false
           },
           "name": {
             "type": "string",
@@ -54,9 +54,9 @@
             "required": true
           },
           "website": {
-            "type": "null",
+            "type": ["string", "null"],
             "id": "http://jsonschema.net/0/owner/website",
-            "required": true
+            "required": false
           }
         }
       },
