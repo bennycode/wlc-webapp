@@ -42,7 +42,6 @@ public class CategoryResourceTest {
 
   @BeforeClass
   public static void setUpClass() throws Exception {
-    GFInstance.startInstance();
 
     JsonSchemaValidator.settings = settings().with().jsonSchemaFactory(
             JsonSchemaFactory.newBuilder().setValidationConfiguration(ValidationConfiguration.newBuilder().setDefaultVersion(DRAFTV3).freeze()).freeze()).
@@ -51,7 +50,7 @@ public class CategoryResourceTest {
 
   @AfterClass
   public static void tearDownClass() throws Exception {
-    GFInstance.stopInstance();
+
   }
 
   @Before
