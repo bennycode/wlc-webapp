@@ -154,6 +154,8 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
     switch (className) {
       case "java.util.Date":
+        // TODO: If we run this, then we get "com.sun.faces.context.FacesContextImpl.assertNotReleased"
+        // initDateTimePicker();
         component = createDateInputField(property);
         break;
       default:
@@ -174,6 +176,16 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     input.setStyleClass("date-time-field");
 
     return input;
+  }
+
+  /**
+   * @see http://stackoverflow.com/a/12451778/451634
+   */
+  private void initDateTimePicker() {
+    UIOutput js = new UIOutput();
+    js.setRendererType("javax.faces.resource.Script");
+    js.getAttributes().put("name", "libs/pikaday/pikaday-init.js");
+    context.getViewRoot().addComponentResource(context, js, "body");
   }
 
   private String getLocalDateTimePattern() {
