@@ -3,11 +3,11 @@ package de.fhb.controller;
 import de.fhb.entities.Video;
 import de.fhb.service.VideoService;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class VideoController extends GenFormBaseController<Video, VideoService> {
 
   @EJB

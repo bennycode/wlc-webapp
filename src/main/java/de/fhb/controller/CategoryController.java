@@ -5,11 +5,11 @@ import de.fhb.navigation.Pages;
 import de.fhb.service.CategoryService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class CategoryController extends GenFormBaseController<Category, CategoryService> {
 
   @EJB

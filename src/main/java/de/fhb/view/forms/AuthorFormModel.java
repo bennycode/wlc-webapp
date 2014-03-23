@@ -7,13 +7,22 @@ import java.util.Map;
 public class AuthorFormModel extends FormModel {
 
   public AuthorFormModel() {
-    super.PROPERTY_ORDER = new String[]{"id", "name", "created", "lastModified"};
+    super.PROPERTY_ORDER = new String[]{
+      "id",
+      "name",
+      "description",
+      "channelUrl",
+      "website",
+      "created",
+      "lastModified"
+    };
   }
 
   @Override
   public FormInput[] parseProperties(Map<String, Class<?>> properties) {
-    HashMap<String, FormInput> inputs = new HashMap<>(properties.size());
-    FormInput[] formFields = new FormInput[properties.size()];
+    int size = PROPERTY_ORDER.length;
+    HashMap<String, FormInput> inputs = new HashMap<>(size);
+    FormInput[] formFields = new FormInput[size];
 
     // Parse each property and collect them in a map
     for (Map.Entry<String, Class<?>> property : properties.entrySet()) {
