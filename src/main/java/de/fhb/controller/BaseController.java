@@ -19,9 +19,9 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
 
   private static final Logger LOG = Logger.getLogger(BaseController.class.getName());
 
-  private int offset = 0;
-  private int amount = 20;
-  private int currentPage = 1;
+  protected int offset = 0;
+  protected int amount;
+  protected int currentPage = 1;
 
   protected T item;
   private List<T> items;
@@ -54,7 +54,7 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
    */
   @SuppressWarnings("unchecked")
   public List<T> getItems() {
-    return getService().findAll();
+    return getService().findRange(0, amount);
   }
 
   public void setItems(List<T> items) {

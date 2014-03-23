@@ -43,6 +43,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   // FormModel naming convention: <EntityName>FormModel.java
   private final String FORM_MODEL_PACKAGE = "de.fhb.view.forms";
   private final String FORM_MODEL_SUFFIX = "FormModel";
+  private final int RESULTS_PER_PAGE = 20;
 
   /**
    * Note: You should never assign FacesContext as instance variable of a
@@ -54,6 +55,13 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   public GenFormBaseController() {
     FacesContext context = FacesContext.getCurrentInstance();
     this.backendText = context.getApplication().getResourceBundle(context, "backend");
+    HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+    String amountParameter = request.getParameter("amount");
+    if (amountParameter != null) {
+      this.amount = Integer.valueOf(amountParameter);
+    } else {
+      this.amount = RESULTS_PER_PAGE;
+    }
   }
 
   public void setForm(HtmlForm form) {
