@@ -11,26 +11,6 @@
       <ui:define name="content">    
         <h2>Anlegen / Bearbeiten</h2>
         <form jsf:binding="#{authorController.form}"></form>
-        <script>
-          //<![CDATA[
-          var IDs = [];
-          var dateTimeFields = $('input[class="date-time-field"]').each(function() {
-            IDs.push(this.id);
-          });
-
-          for (var i = 0; i < IDs.length; i++) {
-            var id = IDs[i];
-
-            var picker = new Pikaday({
-              field: document.getElementById(id),
-              format: 'DD.MM.YYYY',
-              onSelect: function() {
-                console.log(this.getMoment().format('DD.MM.YYYY'));
-              }
-            });
-          }
-          //]]>
-        </script>
 
         <h2>Übersicht</h2>
         <p>Autoren in Datenbank: #{authorController.authorCount}</p>

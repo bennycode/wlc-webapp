@@ -38,18 +38,22 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
   private static final long serialVersionUID = 1L;
   private transient HtmlForm form;
-  private final FacesContext context;
-  private final Application app;
   private final ResourceBundle backendText;
   private static final Logger LOG = Logger.getLogger(GenFormBaseController.class.getName());
   // FormModel naming convention: <EntityName>FormModel.java
   private final String FORM_MODEL_PACKAGE = "de.fhb.view.forms";
   private final String FORM_MODEL_SUFFIX = "FormModel";
 
+  /**
+   * Note: You should never assign FacesContext as instance variable of a
+   * view/session/application scoped managed bean, because the FacesContext
+   * instance is request scoped.
+   *
+   * @see http://stackoverflow.com/a/4605163/451634
+   */
   public GenFormBaseController() {
-    this.context = FacesContext.getCurrentInstance();
-    this.app = context.getApplication();
-    this.backendText = app.getResourceBundle(context, "backend");
+    FacesContext context = FacesContext.getCurrentInstance();
+    this.backendText = context.getApplication().getResourceBundle(context, "backend");
   }
 
   public void setForm(HtmlForm form) {
@@ -57,7 +61,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   }
 
   public HtmlForm getForm() {
-    form = (HtmlForm) app.createComponent(HtmlForm.COMPONENT_TYPE);
+    form = (HtmlForm) FacesContext.getCurrentInstance().getApplication().createComponent(HtmlForm.COMPONENT_TYPE);
     form.setAcceptcharset("ISO-8859-1");
     form.setStyleClass("pure-form pure-form-stacked");
 
@@ -102,7 +106,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
     form.getChildren().add(fieldsetEnd);
 
-    HtmlCommandButton submit = createSubmitButton(app);
+    HtmlCommandButton submit = createSubmitButton(FacesContext.getCurrentInstance().getApplication());
     form.getChildren().add(submit);
 
     return form;
@@ -114,7 +118,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     String jsfValue = String.format("#{%s.item.%s}", getELClassname(), key);
     ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, property.getValue());
 
-    HtmlInputText input = (HtmlInputText) app.createComponent(HtmlInputText.COMPONENT_TYPE);
+    HtmlInputText input = (HtmlInputText) FacesContext.getCurrentInstance().getApplication().createComponent(HtmlInputText.COMPONENT_TYPE);
     input.setId(key);
     input.setValueExpression("value", valueExpression);
 
@@ -134,7 +138,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       LOG.log(Level.WARNING, "Missing property key for: admin.form.label.{0}", property.getKey());
     }
 
-    HtmlOutputLabel label = (HtmlOutputLabel) app.createComponent(HtmlOutputLabel.COMPONENT_TYPE);
+    HtmlOutputLabel label = (HtmlOutputLabel) FacesContext.getCurrentInstance().getApplication().createComponent(HtmlOutputLabel.COMPONENT_TYPE);
     label.setValue(text);
 
     return label;
@@ -154,8 +158,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
     switch (className) {
       case "java.util.Date":
-        // TODO: If we run this, then we get "com.sun.faces.context.FacesContextImpl.assertNotReleased"
-        // initDateTimePicker();
+        initDateTimePicker();
         component = createDateInputField(property);
         break;
       default:
@@ -169,7 +172,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     HtmlInputText input = createInputField(property);
 
     // Get locale to display locale date format
-    DateTimeConverter converter = (DateTimeConverter) app.createConverter(DateTimeConverter.CONVERTER_ID);
+    DateTimeConverter converter = (DateTimeConverter) FacesContext.getCurrentInstance().getApplication().createConverter(DateTimeConverter.CONVERTER_ID);
     // TODO: Use local date time pattern
     converter.setPattern("dd.MM.yyyy");
     input.setConverter(converter);
@@ -185,11 +188,11 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     UIOutput js = new UIOutput();
     js.setRendererType("javax.faces.resource.Script");
     js.getAttributes().put("name", "libs/pikaday/pikaday-init.js");
-    context.getViewRoot().addComponentResource(context, js, "body");
+    FacesContext.getCurrentInstance().getViewRoot().addComponentResource(FacesContext.getCurrentInstance(), js, "body");
   }
 
   private String getLocalDateTimePattern() {
-    HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     Locale locale = request.getLocale();
     DateFormat formatter = DateFormat.getDateInstance(DateFormat.SHORT, locale);
     return ((SimpleDateFormat) formatter).toPattern();
@@ -205,7 +208,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
      jsf:action="#{authorController.edit}"
      >Speichern</button>
      */
-    HtmlCommandButton button = (HtmlCommandButton) app.createComponent(HtmlCommandButton.COMPONENT_TYPE);
+    HtmlCommandButton button = (HtmlCommandButton) FacesContext.getCurrentInstance().getApplication().createComponent(HtmlCommandButton.COMPONENT_TYPE);
     button.setActionExpression(actionExpression);
     button.setId("save");
     button.setStyleClass("pure-button pure-button-primary");
