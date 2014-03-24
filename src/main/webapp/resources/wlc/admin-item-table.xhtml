@@ -9,8 +9,18 @@
   </composite:interface>
 
   <composite:implementation>
+    <h2 class="page-header">Übersicht</h2>
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <p>Einträge: #{cc.attrs.controller.getItemSize()}</p>
+      </div>
+      <div class="pure-u-1-2" style="text-align: right;">
+        <p>Einträge pro Seite: #{cc.attrs.controller.amount}</p>
+      </div>
+    </div>
+    <ul id="pagination" class="sync-pagination pagination-sm"></ul>
     <!-- List -->
-    <table class="pure-table pure-table-horizontal">
+    <table class="pure-table pure-table-horizontal" style="width: 100%;">
       <thead>
         <tr>
           <th>#</th>
@@ -44,22 +54,14 @@
         </ui:repeat>
       </tbody>
     </table>
-
-    <div id="pagination-holder"></div>
-
-    <!-- http://flaviusmatis.github.io/simplePagination.js/ -->
+    <ul class="sync-pagination pagination-sm"></ul>
     <script>
       //<![CDATA[ 
-      $(function() {
-        $('#pagination-holder').pagination({
-          currentPage: #{cc.attrs.controller.currentPage},
-          items: 200,
-          itemsOnPage: 20,
-          cssStyle: 'light-theme',
-          onPageClick: function(pageNumber, event) {
-            var offset = (pageNumber - 1) * #{cc.attrs.controller.amount};
-            window.location.href = window.location.pathname += '?offset=' + offset;
-          }
+      $(document).ready(function() {
+        $('.sync-pagination').twbsPagination({
+          href: '?page={{number}}#pagination',
+          startPage: #{cc.attrs.controller.currentPage},
+          totalPages: #{cc.attrs.controller.totalPages}
         });
       });
       //]]>

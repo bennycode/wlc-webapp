@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       >
   <h:head>
     <title>TODO supply a title</title>
-    <meta name="viewport" content="width=device-width"/>
-    <h:outputStylesheet library="css/pure-0.3.0" name="pure-min.css" />
-    <h:outputStylesheet library="css/pure-0.3.0" name="baby-blue.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- http://purecss.io/ -->
+    <h:outputStylesheet library="libs/pure/0.4.2" name="pure-min.css" />
+    <h:outputStylesheet library="libs/pure/themes" name="baby-blue.css" />
+    <!-- WLC -->
     <h:outputStylesheet library="css/generated/admin" name="logged-in.css" />
-
-    <h:outputScript name="js/jquery-2.1.0.min.js" />
-    <h:outputScript name="js/jquery.simplePagination.js" />
-
+    <!-- jQuery -->
+    <h:outputScript library="libs/jquery/2.1.0" name="jquery-2.1.0.min.js" />
+    <!-- http://esimakin.github.io/twbs-pagination/ -->
+    <h:outputStylesheet library="libs/jquery/plugins/twbs-pagination/1.1" name="twbs-pagination.css" />
+    <h:outputScript name="libs/jquery/plugins/twbs-pagination/1.1/jquery.twbsPagination.min.js" />
     <!-- https://github.com/dbushell/Pikaday -->
     <h:outputStylesheet library="libs/pikaday/1.2.0" name="pikaday.css" />
-    <h:outputScript name="libs/moment/2.5.1/moment.min.js" />
+    <h:outputScript library="libs/moment/2.5.1" name="moment.min.js" />
     <h:outputScript library="libs/pikaday/1.2.0" name="pikaday.js" />
   </h:head>
   <h:body>

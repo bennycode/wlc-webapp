@@ -56,11 +56,20 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     FacesContext context = FacesContext.getCurrentInstance();
     this.backendText = context.getApplication().getResourceBundle(context, "backend");
     HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-    String amountParameter = request.getParameter("amount");
-    if (amountParameter != null) {
-      this.amount = Integer.valueOf(amountParameter);
+
+    // Parse pagination from parameter
+    initPagination(request.getParameter("page"));
+  }
+
+  private void initPagination(String page) {
+    this.amount = RESULTS_PER_PAGE;
+
+    if (page != null) {
+      this.currentPage = Integer.valueOf(page);
+      this.offset = (currentPage - 1) * this.amount;
     } else {
-      this.amount = RESULTS_PER_PAGE;
+      this.currentPage = 1;
+      this.offset = 0;
     }
   }
 

@@ -19,10 +19,13 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
 
   private static final Logger LOG = Logger.getLogger(BaseController.class.getName());
 
-  protected int offset = 0;
+  // Pagination
+  protected int offset;
   protected int amount;
-  protected int currentPage = 1;
+  protected int currentPage;
+  protected int totalPages;
 
+  // Data
   protected T item;
   private List<T> items;
 
@@ -46,7 +49,8 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
   }
 
   /**
-   * TODO:
+   * TODO: Getter should be plain! Data should retrived from JPA somewhere else!
+   * 
    * http://stackoverflow.com/questions/197986/what-causes-javac-to-issue-the-uses-unchecked-or-unsafe-operations-warning
    * http://stackoverflow.com/questions/8971954/how-to-avoid-having-to-use-suppresswarningsunchecked
    *
@@ -54,11 +58,17 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
    */
   @SuppressWarnings("unchecked")
   public List<T> getItems() {
-    return getService().findRange(0, amount);
+    this.items = getService().findRange(offset, amount);
+    return this.items;
   }
 
   public void setItems(List<T> items) {
     this.items = items;
+  }
+
+  // TODO: Use MySQL COUNT() statement */
+  public int getItemSize() {
+    return getService().findAll().size();
   }
 
   public int getOffset() {
@@ -93,4 +103,12 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
     this.item = item;
   }
 
+  public int getTotalPages() {
+    // Note: Cast to Double is necessary: http://stackoverflow.com/a/4540700/451634
+    return (int) Math.ceil(getItemSize() / Double.valueOf(amount));
+  }
+
+  public void setTotalPages(int totalPages) {
+    this.totalPages = totalPages;
+  }
 }

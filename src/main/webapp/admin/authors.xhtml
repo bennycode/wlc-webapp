@@ -11,12 +11,7 @@
         <h2 class="page-header">Bearbeiten</h2>
         <form jsf:binding="#{authorController.form}"></form>
 
-        <h2 class="page-header">Übersicht</h2>
-        <p>Autoren in Datenbank: #{authorController.authorCount}</p>
-        <wlc:admin-item-table controller="#{authorController}" /> 
-        <p>
-          Aktuelle Seite: <h:outputText value="#{authorController.currentPage}" />
-        </p>
+        <wlc:admin-item-table controller="#{authorController}" />
       </ui:define>
     </ui:composition>
   </h:body>
