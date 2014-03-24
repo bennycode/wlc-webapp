@@ -2,6 +2,7 @@
 /assets/photoshop
 /src/main/webapp/inspiration/
 /src/main/webapp/test.*
+/src/main/webapp/resources/css/generated
 
 ### Mac OS ###
 .DS_Store
