@@ -11,23 +11,15 @@
   margin: 0;
   padding: 0;
 }
-#sidebar ul li:first-child {
-  background-color: #1f8dd6;
-}
-#sidebar ul li:first-child a {
-  color: white;
-}
-#sidebar ul li:hover {
-  background-color: #8ECDF0;
-}
-#sidebar ul li:hover a {
-  color: white;
-}
-#sidebar ul a {
+#sidebar ul li a {
   display: block;
   padding: 10px 15px;
   text-decoration: none;
   color: #333333;
+}
+#sidebar ul li a.active {
+  color: white;
+  background-color: #1f8dd6;
 }
 #pagination-holder ul {
   display: inline-block;

@@ -8,10 +8,10 @@
   <h:body>    
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
       <ui:define name="content">    
-        <h2>Anlegen / Bearbeiten</h2>
+        <h2 class="page-header">Bearbeiten</h2>
         <form jsf:binding="#{authorController.form}"></form>
 
-        <h2>Übersicht</h2>
+        <h2 class="page-header">Übersicht</h2>
         <p>Autoren in Datenbank: #{authorController.authorCount}</p>
         <wlc:admin-item-table controller="#{authorController}" /> 
         <p>

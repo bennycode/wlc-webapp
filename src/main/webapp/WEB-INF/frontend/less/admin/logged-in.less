@@ -14,24 +14,16 @@
     margin: 0;
     padding: 0;
     li {
-      &:first-child {
-        background-color: #1f8dd6;
-        a {
+      a {
+        display: block;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #333333;
+        &.active {
           color: white;
+          background-color: #1f8dd6;
         }
       }
-      &:hover {
-        background-color: #8ECDF0;
-        a {
-          color: white;
-        }
-      }
-    }
-    a {
-      display: block;
-      padding: 10px 15px;
-      text-decoration: none;
-      color: #333333;
     }
   }
 }
