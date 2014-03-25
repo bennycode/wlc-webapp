@@ -15,11 +15,11 @@ public class Author extends BaseEntity {
   public static final String FIND_ALL = "Author.findAll";
   public static final String GET_COUNT = "Author.getCount";
 
-  @Size(min = 1, max = 255)
+  @Size(min = 0, max = 255)
   private String description;
-  @Size(min = 1, max = 255)
+  @Size(min = 0, max = 255)
   private String website;
-  @Size(min = 1, max = 255)
+  @Size(min = 0, max = 255)
   private String channelUrl;
 
   public Author() {
