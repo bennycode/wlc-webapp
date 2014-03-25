@@ -1,11 +1,10 @@
 window.wlc = window.wlc || {};
 
-wlc.DocumentHandler = (function() {
+wlc.DocumentHandler = (function($) {
 
   // Module
   function DocumentHandler(config) {
-    this.id = config.id;
-    this.favicons = config.favicons;
+    $.extend(this, config);
   }
 
   /**
@@ -23,15 +22,15 @@ wlc.DocumentHandler = (function() {
       favicon.href = this.favicons.inactive;
     }
 
-    if (document.getElementById(this.id)) {
-      document.head.removeChild(document.getElementById(this.id));
-    }
+    $(document.getElementById(this.id)).remove();
     document.head.appendChild(favicon);
   };
 
   DocumentHandler.prototype.init = function() {
     var self = this;
-    var hidden, visibilityChange;
+    var hidden;
+    var visibilityChange;
+
     if (typeof document.hidden !== "undefined") {
       hidden = "hidden";
       visibilityChange = "visibilitychange";
@@ -46,13 +45,13 @@ wlc.DocumentHandler = (function() {
       visibilityChange = "webkitvisibilitychange";
     }
 
-    if (typeof document.addEventListener !== "undefined" && typeof hidden !== "undefined") {
-      document.addEventListener(visibilityChange, function() {
+    if (typeof hidden !== "undefined") {
+      $(document).bind(visibilityChange, function() {
         self.handleVisibilityChange();
-      }, false);
+      });
     }
   };
 
   return DocumentHandler;
 
-})();
+})(jQuery);
