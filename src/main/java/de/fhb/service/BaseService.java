@@ -34,4 +34,8 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
     return (List<T>) getRepository().findAll();
   }
 
+  public List<T> findRange(int startPosition, int maxResult) {
+    return (List<T>) getRepository().findRange(startPosition, maxResult);
+  }
+
 }

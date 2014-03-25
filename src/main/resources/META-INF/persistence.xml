@@ -8,6 +8,7 @@
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
       <property name="javax.persistence.schema-generation.create-source" value="metadata-then-script"/>
+      <!-- Please note: Line breaks are not working in "create-script-source" script -->
       <property name="javax.persistence.schema-generation.create-script-source" value="META-INF/insert.sql"/>
       <property name="javax.persistence.schema-generation.drop-source" value="metadata"/>
       <property name="javax.persistence.schema-generation-target" value="database"/>

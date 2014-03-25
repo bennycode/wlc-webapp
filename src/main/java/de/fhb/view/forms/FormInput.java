@@ -60,4 +60,10 @@ public class FormInput {
   public void setValue(Class<?> value) {
     this.value = value;
   }
+
+  @Override
+  public String toString() {
+    return "FormInput{" + "key=" + key + ", value=" + value + '}';
+  }
+
 }

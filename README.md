@@ -65,10 +65,10 @@ Project configuration:
 - [Maven Default Lifecycle Phases](http://www.avajava.com/tutorials/lessons/what-are-the-phases-of-the-maven-default-lifecycle.html)
 
 ##Cool projects:##
+- [Apache Isis™](http://isis.apache.org/)
 - [Pebble - A lightweight, open source, Java EE blogging tool](https://github.com/pebbleblog/pebble)
 - [Project Lombok](http://projectlombok.org/), [Project Lombok & JEE](http://javalabor.blogspot.de/2012/01/java-verbosity-jee-and-lombok.html)
 - [Pure CSS modules](http://purecss.io/)
-
 
 ##Website Analyzer:##
 - [http://developers.google.com/speed/pagespeed/insights/?url=wwww.welovecoding.com&tab=desktop](http://developers.google.com/speed/pagespeed/insights/?url=wwww.welovecoding.com&tab=desktop)

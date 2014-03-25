@@ -14,11 +14,11 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class PlaylistController extends GenFormBaseController<Playlist, PlaylistService> {
 
   @EJB
