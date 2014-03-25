@@ -3,23 +3,30 @@ window.wlc = window.wlc || {};
 wlc.DocumentHandler = (function() {
 
   // Module
-  function DocumentHandler() {
-    this.originalTitle = '';
+  function DocumentHandler(config) {
+    this.id = config.id;
+    this.favicons = config.favicons;
   }
 
   /**
-   * TODO: Change to a broken heart as favicon:
-   * favicon.change("/favicon.ico");
-   * 
    * @see https://developer.mozilla.org/en-US/docs/Web/Guide/User_experience/Using_the_Page_Visibility_API
    * @returns {undefined}
    */
   DocumentHandler.prototype.handleVisibilityChange = function() {
+    var favicon = document.createElement('link');
+    favicon.id = this.id;
+    favicon.rel = 'shortcut icon';
+
     if (document.visibilityState === 'visible') {
-      document.title = this.originalTitle;
+      favicon.href = this.favicons.active;
     } else {
-      document.title = 'We miss you ♥ | ' + this.originalTitle;
+      favicon.href = this.favicons.inactive;
     }
+
+    if (document.getElementById(this.id)) {
+      document.head.removeChild(document.getElementById(this.id));
+    }
+    document.head.appendChild(favicon);
   };
 
   DocumentHandler.prototype.init = function() {
@@ -40,7 +47,6 @@ wlc.DocumentHandler = (function() {
     }
 
     if (typeof document.addEventListener !== "undefined" && typeof hidden !== "undefined") {
-      this.originalTitle = document.title;
       document.addEventListener(visibilityChange, function() {
         self.handleVisibilityChange();
       }, false);

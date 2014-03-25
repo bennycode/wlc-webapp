@@ -77,7 +77,7 @@
     <display-name>Restrict direct access to the /resources folder.</display-name>
     <web-resource-collection>
       <web-resource-name>The /resources folder.</web-resource-name>
-      <url-pattern>/resources/*</url-pattern>
+      <url-pattern>/resources/wlc</url-pattern>
     </web-resource-collection>
     <auth-constraint />
   </security-constraint> 
