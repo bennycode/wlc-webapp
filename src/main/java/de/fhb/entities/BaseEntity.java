@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @MappedSuperclass
 public class BaseEntity implements Serializable {
@@ -27,9 +28,11 @@ public class BaseEntity implements Serializable {
   @Basic(optional = false)
   private String name;
 
+  @JsonIgnore
   @Temporal(value = TemporalType.TIMESTAMP)
   private Date created;
 
+  @JsonIgnore
   @Temporal(value = TemporalType.TIMESTAMP)
   private Date lastModified;
 
