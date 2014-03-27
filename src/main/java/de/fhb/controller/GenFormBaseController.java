@@ -78,7 +78,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   }
 
   public HtmlForm getForm() {
-    form = (HtmlForm) FacesContext.getCurrentInstance().getApplication().createComponent(HtmlForm.COMPONENT_TYPE);
+    form = new HtmlForm();
     form.setAcceptcharset("ISO-8859-1");
     form.setStyleClass("pure-form pure-form-stacked");
 
