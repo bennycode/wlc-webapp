@@ -4,15 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Convention: FormModels have to be called <EntityName>FormModel.java and extends abstract class FormModel
-public class AuthorFormModel extends FormModel {
+public class VideoFormModel extends FormModel {
 
-  public AuthorFormModel() {
+  public VideoFormModel() {
     super.PROPERTY_ORDER = new String[]{
       "id",
       "name",
       "description",
-      "channelUrl",
-      "website",
       "created",
       "lastModified"
     };
