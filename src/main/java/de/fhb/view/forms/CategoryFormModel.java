@@ -3,16 +3,15 @@ package de.fhb.view.forms;
 import java.util.HashMap;
 import java.util.Map;
 
-// Convention: FormModels have to be called <EntityName>FormModel.java and extends abstract class FormModel
-public class AuthorFormModel extends FormModel {
+public class CategoryFormModel extends FormModel {
 
-  public AuthorFormModel() {
+  public CategoryFormModel() {
     super.PROPERTY_ORDER = new String[]{
       "id",
       "name",
-      "description",
-      "channelUrl",
-      "website",
+      "slug",
+      "color",
+      "playlists",
       "created",
       "lastModified"
     };
@@ -30,7 +29,7 @@ public class AuthorFormModel extends FormModel {
 
       String key = input.getKey();
 
-      if (key.equals("id")) {
+      if (key.equals("id") || key.equals("created") || key.equals("lastModified")) {
         input.setReadOnly(true);
       }
 

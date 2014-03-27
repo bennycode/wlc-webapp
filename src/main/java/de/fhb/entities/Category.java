@@ -2,6 +2,7 @@ package de.fhb.entities;
 
 import com.github.slugify.Slugify;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -41,10 +42,12 @@ public class Category extends BaseEntity implements Serializable {
   private List<Playlist> playlists;
 
   public Category() {
+    this.playlists = new ArrayList<>();
     this.color = "#000000";
   }
 
   public Category(String color, String slug) {
+    this();
     this.color = color;
     this.slug = slug;
   }

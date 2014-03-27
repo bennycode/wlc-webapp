@@ -30,7 +30,7 @@ public class AuthorFormModel extends FormModel {
 
       String key = input.getKey();
 
-      if (key.equals("id")) {
+      if (key.equals("id") || key.equals("created") || key.equals("lastModified")) {
         input.setReadOnly(true);
       }
 
