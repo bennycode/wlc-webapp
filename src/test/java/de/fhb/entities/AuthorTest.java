@@ -18,10 +18,6 @@ public class AuthorTest {
   }
 
   @BeforeClass
-  /**
-   * Please note: Maven copies the contents of "src/test/resources" to
-   * "target/test-classes"
-   */
   public static void setUpClass() throws IOException {
     // Test cases
     String path = "AuthorTest.properties";
@@ -34,10 +30,6 @@ public class AuthorTest {
   }
 
   @Test
-  /**
-   * @see
-   * http://stackoverflow.com/questions/3891375/how-to-read-a-text-file-resource-into-java-unit-test
-   */
   public void testJacksonMapping() throws IOException, URISyntaxException {
     Author instance = new Author("Benny Neugebauer");
     instance.setId(1L);
