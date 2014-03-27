@@ -50,7 +50,7 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
 
   /**
    * TODO: Getter should be plain! Data should retrived from JPA somewhere else!
-   * 
+   *
    * http://stackoverflow.com/questions/197986/what-causes-javac-to-issue-the-uses-unchecked-or-unsafe-operations-warning
    * http://stackoverflow.com/questions/8971954/how-to-avoid-having-to-use-suppresswarningsunchecked
    *
@@ -104,8 +104,13 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
   }
 
   public int getTotalPages() {
-    // Note: Cast to Double is necessary: http://stackoverflow.com/a/4540700/451634
-    return (int) Math.ceil(getItemSize() / Double.valueOf(amount));
+    int pages = getItemSize() / amount;
+    int mod = getItemSize() % amount;
+    if (mod > 0) {
+      pages += 1;
+    }
+
+    return pages;
   }
 
   public void setTotalPages(int totalPages) {
