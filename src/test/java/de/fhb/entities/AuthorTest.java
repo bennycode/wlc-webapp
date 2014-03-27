@@ -18,6 +18,10 @@ public class AuthorTest {
   }
 
   @BeforeClass
+  /**
+   * Please note: Maven copies the contents of "src/test/resources" to
+   * "target/test-classes"
+   */
   public static void setUpClass() throws IOException {
     // Test cases
     String path = "AuthorTest.properties";
