@@ -153,6 +153,43 @@
           </execution>
         </executions>
       </plugin>
+      <!-- SQL Maven Plugin -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>sql-maven-plugin</artifactId>
+        <version>1.5</version>
+        <!-- JDBC driver -->
+        <dependencies>
+          <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.9</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <driver>org.gjt.mm.mysql.Driver</driver>
+          <url>jdbc:mysql://localhost:3306/welovecoding</url>
+          <username>welovecoding</username>
+          <password>123456</password>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <orderFile>ascending</orderFile>
+              <fileset>
+                <basedir>${basedir}/src/test/resources</basedir>
+                <includes>
+                  <include>welovecoding.sql</include>
+                </includes>
+              </fileset>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
    
