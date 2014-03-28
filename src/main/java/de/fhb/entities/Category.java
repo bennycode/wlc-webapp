@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -38,7 +39,7 @@ public class Category extends BaseEntity implements Serializable {
   @Basic(optional = false)
   private String slug;
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
   private List<Playlist> playlists;
 
   public Category() {
@@ -78,7 +79,7 @@ public class Category extends BaseEntity implements Serializable {
     return playlists;
   }
 
-  public void setPlaylistList(List<Playlist> playlists) {
+  public void setPlaylists(List<Playlist> playlists) {
     this.playlists = playlists;
   }
 
