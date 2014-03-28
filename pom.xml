@@ -28,6 +28,10 @@
   <properties>
     <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jdbc.url>jdbc:mysql://localhost:3306/welovecoding</jdbc.url>
+    <jdbc.username>welovecoding</jdbc.username>
+    <jdbc.password>123456</jdbc.password>
+    <sql.script.insert>welovecoding.sql</sql.script.insert>
   </properties>
   
   <repositories>
@@ -42,6 +46,7 @@
   </repositories>
     
   <dependencies>
+    <!-- JPA -->
     <dependency>
       <groupId>org.eclipse.persistence</groupId>
       <artifactId>eclipselink</artifactId>
@@ -54,14 +59,15 @@
       <version>2.5.1</version>
       <scope>provided</scope>
     </dependency>
+    <!-- JUnit -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <!-- Java EE Web Profile -->
     <dependency>
-      <!-- Java EE Web Profile -->
       <groupId>javax</groupId>
       <artifactId>javaee-web-api</artifactId>
       <version>7.0</version>
@@ -78,6 +84,11 @@
       <groupId>com.google.collections</groupId>
       <artifactId>google-collections</artifactId>
       <version>1.0-rc5</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.gdata</groupId>
+      <artifactId>gdata-youtube-2.0</artifactId>
+      <version>1.41.5</version>
     </dependency>
     <!-- Jersey (REST) -->
     <!-- https://jersey.java.net/documentation/latest/modules-and-dependencies.html#d0e565 -->
@@ -97,10 +108,11 @@
       <artifactId>jersey-servlet</artifactId>
       <version>1.18.1</version>
     </dependency>
+    <!-- OmniFaces -->
     <dependency>
-      <groupId>com.google.gdata</groupId>
-      <artifactId>gdata-youtube-2.0</artifactId>
-      <version>1.41.5</version>
+      <groupId>org.omnifaces</groupId>
+      <artifactId>omnifaces</artifactId>
+      <version>1.7</version>
     </dependency>
   </dependencies>
 
@@ -168,9 +180,9 @@
         </dependencies>
         <configuration>
           <driver>org.gjt.mm.mysql.Driver</driver>
-          <url>jdbc:mysql://localhost:3306/welovecoding</url>
-          <username>welovecoding</username>
-          <password>123456</password>
+          <url>${jdbc.url}</url>
+          <username>${jdbc.username}</username>
+          <password>${jdbc.password}</password>
         </configuration>
         <executions>
           <execution>
@@ -183,7 +195,7 @@
               <fileset>
                 <basedir>${basedir}/src/test/resources</basedir>
                 <includes>
-                  <include>welovecoding.sql</include>
+                  <include>${sql.script.insert}</include>
                 </includes>
               </fileset>
             </configuration>
