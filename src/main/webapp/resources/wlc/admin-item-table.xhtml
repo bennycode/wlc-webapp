@@ -2,14 +2,20 @@
       xmlns:composite="http://xmlns.jcp.org/jsf/composite"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
 
   <composite:interface>
-    <composite:attribute name="controller" required="true" type="de.fhb.controller.BaseController" />
+    <composite:attribute name="controller" required="true" type="de.fhb.controller.GenFormBaseController" />
   </composite:interface>
 
   <composite:implementation>
+    <h2 class="page-header">Bearbeiten</h2>
+
+    <form jsf:binding="#{cc.attrs.controller.form}"></form>
+
     <h2 class="page-header">Übersicht</h2>
+
     <div class="pure-g">
       <div class="pure-u-1-2">
         <p>Einträge: #{cc.attrs.controller.getItemSize()}</p>
@@ -66,6 +72,5 @@
       });
       //]]>
     </script>
-
   </composite:implementation>
 </html>
