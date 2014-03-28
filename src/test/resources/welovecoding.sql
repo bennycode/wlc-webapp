@@ -63,3 +63,16 @@ VALUES
 	(20,'#0099CC',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'visual-basic','Visual Basic'),
 	(21,'#7B9FCF',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'delphi','Delphi')
 	;
+	
+-- Playlists
+
+SET foreign_key_checks = 0;
+TRUNCATE TABLE `playlist`;
+SET foreign_key_checks = 1;
+
+INSERT INTO  `playlist` 
+	(`ID`, `CODE`, `CREATED`, `LASTMODIFIED`, `NAME`, `AUTHOR_ID`, `CATEGORY_ID`)
+VALUES 
+	(1, '406285BEFEA47E54z', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Windows Phone Workshop (MMT30)', 7, 1),
+	(2, '5EA5B1829771349A',	CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'Windows Phone 7 Dev Speedruns', 5, 1)
+	;
