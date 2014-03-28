@@ -7,7 +7,9 @@ import de.fhb.view.forms.DefaultFormModel;
 import de.fhb.view.forms.FormInput;
 import de.fhb.view.forms.FormModel;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -27,6 +29,7 @@ import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
 import javax.servlet.http.HttpServletRequest;
+import org.omnifaces.converter.SelectItemsConverter;
 
 /**
  * @param <T>
@@ -34,7 +37,7 @@ import javax.servlet.http.HttpServletRequest;
  * @see http://docs.oracle.com/javaee/7/tutorial/doc/jsf-page002.htm#BNARF
  */
 public abstract class GenFormBaseController<T extends BaseEntity, E extends BaseService> extends BaseController<T, E> {
-
+  
   private static final long serialVersionUID = 1L;
   private transient HtmlForm form;
   private final ResourceBundle backendText;
@@ -59,10 +62,10 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     // Parse pagination from parameter
     initPagination(request.getParameter("page"));
   }
-
+  
   private void initPagination(String page) {
     this.amount = RESULTS_PER_PAGE;
-
+    
     if (page != null) {
       this.currentPage = Integer.valueOf(page);
       this.offset = (currentPage - 1) * this.amount;
@@ -71,16 +74,16 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       this.offset = 0;
     }
   }
-
+  
   public void setForm(HtmlForm form) {
     this.form = form;
   }
-
+  
   public HtmlForm getForm() {
     form = new HtmlForm();
     form.setAcceptcharset("ISO-8859-1");
     form.setStyleClass("pure-form pure-form-stacked");
-
+    
     UIOutput legend = new UIOutput();
     legend.setRendererType("javax.faces.Text");
     legend.getAttributes().put("escape", false);
@@ -90,11 +93,11 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     HtmlOutputText fieldsetStart = new HtmlOutputText();
     fieldsetStart.setEscape(false);
     fieldsetStart.setValue("<fieldset>");
-
+    
     HtmlOutputText fieldsetEnd = new HtmlOutputText();
     fieldsetEnd.setEscape(false);
     fieldsetEnd.setValue("</fieldset>");
-
+    
     form.getChildren().add(fieldsetStart);
 
     // Add labels and properies
@@ -103,7 +106,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       // Find Form model with reflection
       ClassLoader cl = item.getClass().getClassLoader();
       FormModel formModel;
-
+      
       try {
         Class clazz = cl.loadClass(FORM_MODEL_PACKAGE + "." + item.getClass().getSimpleName() + FORM_MODEL_SUFFIX);
         formModel = (FormModel) clazz.newInstance();
@@ -113,50 +116,50 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
       // Parse form properties
       FormInput[] parsedProperties = formModel.parseProperties(properties);
-
+      
       for (FormInput property : parsedProperties) {
         form.getChildren().add(createLabel(property));
         form.getChildren().add(createComponentByType(property));
       }
     }
-
+    
     form.getChildren().add(fieldsetEnd);
-
+    
     HtmlCommandButton submit = createSubmitButton(FacesContext.getCurrentInstance().getApplication());
     form.getChildren().add(submit);
-
+    
     return form;
   }
-
+  
   private HtmlInputText createInputField(FormInput property) {
     String key = property.getKey();
-
+    
     String jsfValue = String.format("#{%s.item.%s}", getELClassname(), key);
     ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, property.getValue());
-
+    
     HtmlInputText input = new HtmlInputText();
     input.setId(key);
     input.setValueExpression("value", valueExpression);
-
+    
     if (property.isReadOnly()) {
       input.setReadonly(true);
     }
-
+    
     return input;
   }
-
+  
   private HtmlOutputLabel createLabel(FormInput property) {
     String text = property.getKey();
-
+    
     try {
       text = backendText.getString("admin.form.label." + property.getKey());
     } catch (java.util.MissingResourceException ex) {
       LOG.log(Level.WARNING, "Missing property key for: admin.form.label.{0}", property.getKey());
     }
-
+    
     HtmlOutputLabel label = new HtmlOutputLabel();
     label.setValue(text);
-
+    
     return label;
   }
 
@@ -171,7 +174,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   private UIComponent createComponentByType(FormInput property) {
     UIComponent component;
     String className = property.getValue().getName();
-
+    
     switch (className) {
       case "java.util.Date":
         initDateTimePicker();
@@ -183,10 +186,10 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       default:
         component = createInputField(property);
     }
-
+    
     return component;
   }
-
+  
   private HtmlInputText createDateInputField(FormInput property) {
     HtmlInputText input = createInputField(property);
 
@@ -196,21 +199,35 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     converter.setPattern("dd.MM.yyyy");
     input.setConverter(converter);
     input.setStyleClass("date-time-field");
-
+    
     return input;
   }
 
+  // http://showcase.omnifaces.org/converters/SelectItemsConverter
   private UIComponent createSelection(FormInput property) {
     String key = property.getKey();
-    Class<?> value = property.getValue();
-
+    
     HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
+    menu.setConverter(new SelectItemsConverter());
     menu.setId(key);
 
-    UISelectItems items = new UISelectItems();
-    // items.setValue(value);
-    menu.getChildren().add(items);
+    // Unknown type
+    Class<?> value = property.getValue();
+    Class<ArrayList> list = (Class<ArrayList>) value;
 
+    // Try to use the generic list items
+    // as select values
+    try {
+      ArrayList castedList = list.newInstance();
+      
+      UISelectItems items = new UISelectItems();
+      items.setValue(castedList.toArray());
+      menu.getChildren().add(items);
+      
+    } catch (InstantiationException | IllegalAccessException ex) {
+      Logger.getLogger(GenFormBaseController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
     return menu;
   }
 
@@ -223,32 +240,32 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     js.getAttributes().put("name", "libs/pikaday/pikaday-init.js");
     FacesContext.getCurrentInstance().getViewRoot().addComponentResource(FacesContext.getCurrentInstance(), js, "body");
   }
-
+  
   private HtmlCommandButton createSubmitButton(Application app) {
     String jsfAction = String.format("#{%s.edit}", getELClassname());
     MethodExpression actionExpression = JSFUtils.createMethodExpression(jsfAction, Void.class, new Class<?>[0]);
-
+    
     HtmlCommandButton button = new HtmlCommandButton();
     button.setActionExpression(actionExpression);
     button.setId("save");
     button.setStyleClass("pure-button pure-button-primary");
     button.setValue("Speichern");
-
+    
     return button;
   }
-
+  
   private Map<String, Class<?>> getProperties(Object obj) {
     Map<String, Class<?>> attributes = new HashMap<>();
-
+    
     if (obj != null) {
-
+      
       Field[] objectFields = obj.getClass().getDeclaredFields();
       Field[] superclassFields = obj.getClass().getSuperclass().getDeclaredFields();
 
       // check for class
       for (Field field : objectFields) {
         System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
-
+        
         if (checkGetterPresent(obj.getClass(), field) && isJavaLang(field.getType())) {
           attributes.put(field.getName(), field.getType());
         }
@@ -257,26 +274,26 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       // check for superclass
       for (Field field : superclassFields) {
         System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
-
+        
         if (checkGetterPresent(obj.getClass().getSuperclass(), field) && isJavaLang(field.getType())) {
           attributes.put(field.getName(), field.getType());
         }
       }
     }
-
+    
     return attributes;
   }
-
+  
   private String capitalize(String line) {
     return Character.toUpperCase(line.charAt(0)) + line.substring(1);
   }
-
+  
   private String getELClassname() {
     String classname = this.getClass().getSimpleName();
     classname = Character.toLowerCase(classname.charAt(0)) + classname.substring(1);
     return classname;
   }
-
+  
   private boolean checkGetterPresent(Class<?> clazz, Field field) {
     Class<?>[] emptyParamObjects = new Class<?>[]{};
     boolean isPresent = false;
@@ -288,7 +305,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     }
     return isPresent;
   }
-
+  
   private boolean isJavaLang(Class<?> type) {
     if (type.isPrimitive()) {
       return true;
@@ -296,5 +313,5 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       return type.getPackage().getName().startsWith("java.");
     }
   }
-
+  
 }
