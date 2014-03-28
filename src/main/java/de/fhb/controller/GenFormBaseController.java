@@ -7,10 +7,7 @@ import de.fhb.view.forms.DefaultFormModel;
 import de.fhb.view.forms.FormInput;
 import de.fhb.view.forms.FormModel;
 import java.lang.reflect.Field;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -20,11 +17,13 @@ import javax.el.ValueExpression;
 import javax.faces.application.Application;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIOutput;
+import javax.faces.component.UISelectItems;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlForm;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.component.html.HtmlOutputLabel;
 import javax.faces.component.html.HtmlOutputText;
+import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
 import javax.servlet.http.HttpServletRequest;
@@ -78,7 +77,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   }
 
   public HtmlForm getForm() {
-    form = (HtmlForm) FacesContext.getCurrentInstance().getApplication().createComponent(HtmlForm.COMPONENT_TYPE);
+    form = new HtmlForm();
     form.setAcceptcharset("ISO-8859-1");
     form.setStyleClass("pure-form pure-form-stacked");
 
@@ -135,8 +134,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     String jsfValue = String.format("#{%s.item.%s}", getELClassname(), key);
     ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, property.getValue());
 
-    HtmlInputText input = (HtmlInputText) FacesContext.getCurrentInstance().getApplication().createComponent(HtmlInputText.COMPONENT_TYPE);
-    input.setId(key);
+    HtmlInputText input = new HtmlInputText();
     input.setValueExpression("value", valueExpression);
 
     if (property.isReadOnly()) {
@@ -155,7 +153,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       LOG.log(Level.WARNING, "Missing property key for: admin.form.label.{0}", property.getKey());
     }
 
-    HtmlOutputLabel label = (HtmlOutputLabel) FacesContext.getCurrentInstance().getApplication().createComponent(HtmlOutputLabel.COMPONENT_TYPE);
+    HtmlOutputLabel label = new HtmlOutputLabel();
     label.setValue(text);
 
     return label;
@@ -178,6 +176,9 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
         initDateTimePicker();
         component = createDateInputField(property);
         break;
+      case "java.util.List":
+        component = createSelection(property);
+        break;
       default:
         component = createInputField(property);
     }
@@ -189,13 +190,30 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     HtmlInputText input = createInputField(property);
 
     // Get locale to display locale date format
-    DateTimeConverter converter = (DateTimeConverter) FacesContext.getCurrentInstance().getApplication().createConverter(DateTimeConverter.CONVERTER_ID);
+    DateTimeConverter converter = new DateTimeConverter();
     // TODO: Use local date time pattern
     converter.setPattern("dd.MM.yyyy");
     input.setConverter(converter);
     input.setStyleClass("date-time-field");
 
     return input;
+  }
+
+  // http://showcase.omnifaces.org/converters/SelectItemsConverter
+  private UIComponent createSelection(FormInput property) {
+    String key = property.getKey();
+    Class<?> value = property.getValue();
+
+    String jsfValue = String.format("#{%s.item.%s}", getELClassname(), key);
+    ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, value);
+
+    UISelectItems items = new UISelectItems();
+    items.setValueExpression("value", valueExpression);
+
+    HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
+    menu.getChildren().add(items);
+
+    return menu;
   }
 
   /**
@@ -208,24 +226,11 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     FacesContext.getCurrentInstance().getViewRoot().addComponentResource(FacesContext.getCurrentInstance(), js, "body");
   }
 
-  private String getLocalDateTimePattern() {
-    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-    Locale locale = request.getLocale();
-    DateFormat formatter = DateFormat.getDateInstance(DateFormat.SHORT, locale);
-    return ((SimpleDateFormat) formatter).toPattern();
-  }
-
   private HtmlCommandButton createSubmitButton(Application app) {
     String jsfAction = String.format("#{%s.edit}", getELClassname());
     MethodExpression actionExpression = JSFUtils.createMethodExpression(jsfAction, Void.class, new Class<?>[0]);
 
-    /*
-     <button type="submit" 
-     class="pure-button pure-button-primary"
-     jsf:action="#{authorController.edit}"
-     >Speichern</button>
-     */
-    HtmlCommandButton button = (HtmlCommandButton) FacesContext.getCurrentInstance().getApplication().createComponent(HtmlCommandButton.COMPONENT_TYPE);
+    HtmlCommandButton button = new HtmlCommandButton();
     button.setActionExpression(actionExpression);
     button.setId("save");
     button.setStyleClass("pure-button pure-button-primary");
@@ -264,12 +269,6 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     return attributes;
   }
 
-  /**
-   * @deprecated A Property file will translate all keys and provide capital
-   * letters.
-   * @param line
-   * @return
-   */
   private String capitalize(String line) {
     return Character.toUpperCase(line.charAt(0)) + line.substring(1);
   }
