@@ -27,7 +27,6 @@ import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
 import javax.servlet.http.HttpServletRequest;
-import org.omnifaces.converter.SelectItemsConverter;
 
 /**
  * @param <T>
@@ -212,7 +211,6 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     items.setValueExpression("value", valueExpression);
 
     HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
-    menu.setConverter(new SelectItemsConverter());
     menu.getChildren().add(items);
 
     return menu;

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -76,7 +75,7 @@ public class Playlist extends BaseEntity {
 
   @Override
   public String toString() {
-    return super.toString();
+    return this.getName();
   }
 
 }
