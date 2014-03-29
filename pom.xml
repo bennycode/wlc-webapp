@@ -66,12 +66,20 @@
     </dependency>
     <!-- JUnit -->
     <dependency>
+<<<<<<< HEAD
       <groupId>com.google.code.findbugs</groupId>
       <artifactId>jsr305</artifactId>
       <version>2.0.1</version>
     </dependency>
+=======
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- Java EE Web Profile -->
+>>>>>>> refs/heads/master
     <dependency>
-      <!-- Java EE Web Profile -->
       <groupId>javax</groupId>
       <artifactId>javaee-web-api</artifactId>
       <version>7.0</version>
@@ -103,6 +111,11 @@
           <groupId>com.google.collections</groupId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.google.gdata</groupId>
+      <artifactId>gdata-youtube-2.0</artifactId>
+      <version>1.41.5</version>
     </dependency>
     <!-- Jersey (REST) -->
     <dependency>
@@ -155,6 +168,7 @@
       <version>2.2.1</version>
       <scope>test</scope>
     </dependency>
+<<<<<<< HEAD
     <dependency>
       <groupId>com.jayway.restassured</groupId>
       <artifactId>json-path</artifactId>
@@ -179,6 +193,8 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+=======
+>>>>>>> refs/heads/master
   </dependencies>
 
   <build>
@@ -230,6 +246,7 @@
           </execution>
         </executions>
       </plugin>
+<<<<<<< HEAD
       <!-- TESTPLUGINS -->
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
@@ -256,10 +273,46 @@
                   <directory>src/test/resources</directory>
                 </resource>
               </resources>
+=======
+      <!-- SQL Maven Plugin -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>sql-maven-plugin</artifactId>
+        <version>1.5</version>
+        <!-- JDBC driver -->
+        <dependencies>
+          <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.9</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <driver>org.gjt.mm.mysql.Driver</driver>
+          <url>${jdbc.url}</url>
+          <username>${jdbc.username}</username>
+          <password>${jdbc.password}</password>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <orderFile>ascending</orderFile>
+              <fileset>
+                <basedir>${basedir}/src/test/resources</basedir>
+                <includes>
+                  <include>${sql.script.insert}</include>
+                </includes>
+              </fileset>
+>>>>>>> refs/heads/master
             </configuration>
           </execution>
         </executions>
       </plugin>
+<<<<<<< HEAD
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -273,6 +326,8 @@
           </properties>
         </configuration>
       </plugin>
+=======
+>>>>>>> refs/heads/master
     </plugins>
   </build>
    
