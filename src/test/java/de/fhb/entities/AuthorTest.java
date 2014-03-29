@@ -1,10 +1,10 @@
 package de.fhb.entities;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.Properties;
-import org.codehaus.jackson.map.ObjectMapper;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -32,6 +32,7 @@
     <jdbc.username>welovecoding</jdbc.username>
     <jdbc.password>123456</jdbc.password>
     <sql.script.insert>welovecoding.sql</sql.script.insert>
+    <sql.driver.version>5.1.29</sql.driver.version>
   </properties>
   
   <repositories>
@@ -132,7 +133,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.29</version>
+      <version>${sql.driver.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -272,6 +273,43 @@
             </property>
           </properties>
         </configuration>
+      </plugin>
+      <!-- SQL Maven Plugin -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>sql-maven-plugin</artifactId>
+        <version>1.5</version>
+        <!-- JDBC driver -->
+        <dependencies>
+          <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${sql.driver.version}</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <driver>org.gjt.mm.mysql.Driver</driver>
+          <url>${jdbc.url}</url>
+          <username>${jdbc.username}</username>
+          <password>${jdbc.password}</password>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <orderFile>ascending</orderFile>
+              <fileset>
+                <basedir>${basedir}/src/test/resources</basedir>
+                <includes>
+                  <include>${sql.script.insert}</include>
+                </includes>
+              </fileset>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
