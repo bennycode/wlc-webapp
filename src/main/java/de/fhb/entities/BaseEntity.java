@@ -1,5 +1,6 @@
 package de.fhb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -12,7 +13,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 @MappedSuperclass
 public class BaseEntity implements Serializable {
