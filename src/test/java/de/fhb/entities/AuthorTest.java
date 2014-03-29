@@ -1,6 +1,8 @@
 package de.fhb.entities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.fhb.rest.v1.dto.Owner;
+import de.fhb.rest.v1.mapping.DTOMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -30,12 +32,18 @@ public class AuthorTest {
   }
 
   @Test
-  public void testJacksonMapping() throws IOException, URISyntaxException {
-    Author instance = new Author("Benny Neugebauer");
-    instance.setId(1L);
+  public void testRestServiceV1Mapping() throws IOException, URISyntaxException {
+    Author author = new Author();
+    author.setName("Tom Wendel & Felix Rieseberg");
 
-    String actual = mapper.writeValueAsString(instance);
-    String expected = properties.getProperty("testJacksonMapping");
+    Owner dtoAuthor = DTOMapper.mapAuthor(author);
+
+    String actual = mapper.writeValueAsString(dtoAuthor);
+    String expected = properties.getProperty("testRestServiceV1Mapping");
+
+    System.out.println(actual);
+    System.out.println("===");
+    System.out.println(expected);
 
     assertEquals(expected, actual);
   }

@@ -260,7 +260,7 @@
           <sourceDirectory>${project.basedir}/src/main/webapp/WEB-INF/frontend/less</sourceDirectory>
           <outputDirectory>${project.build.directory}/${project.build.finalName}/resources/css</outputDirectory>
           <compress>true</compress>
-          <force>true</force>
+          <force>false</force>
         </configuration>
         <executions>
           <execution>

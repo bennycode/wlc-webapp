@@ -1,9 +1,8 @@
 package de.fhb.entities;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -12,7 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({
@@ -39,7 +40,13 @@ public class Playlist extends BaseEntity {
   private String code;
 
   @Embedded
-  private Language lang;
+  private Language languageCode;
+
+  @Embedded
+  private Provider providerName;
+
+  @Size(min = 0, max = 255)
+  private String description;
 
   public Playlist() {
     videos = new ArrayList<>();
@@ -79,12 +86,28 @@ public class Playlist extends BaseEntity {
     this.code = code;
   }
 
-  public Language getLang() {
-    return lang;
+  public Language getLanguageCode() {
+    return languageCode;
   }
 
-  public void setLang(Language lang) {
-    this.lang = lang;
+  public void setLanguageCode(Language languageCode) {
+    this.languageCode = languageCode;
+  }
+
+  public Provider getProviderName() {
+    return providerName;
+  }
+
+  public void setProviderName(Provider providerName) {
+    this.providerName = providerName;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   @Override

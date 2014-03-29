@@ -1,28 +1,33 @@
 package de.fhb.entities;
 
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 @Embeddable
-@JsonTypeName("language")
-public class Language implements Serializable {
+public class Provider implements Serializable {
 
-  private String lang;
+  public class ProviderName {
 
-  public Language() {
+    static public final String YOUTUBE = "YouTube";
+    static public final String VIMEO = "Vimeo";
+    static public final String CHANNEL9 = "Channel9";
   }
 
-  public Language(String lang) {
-    this.lang = lang;
+  private String providerName;
+
+  public Provider() {
   }
 
-  public String getLang() {
-    return lang;
+  public Provider(String providerName) {
+    this.providerName = providerName;
   }
 
-  public void setLang(String lang) {
-    this.lang = lang;
+  public String getProviderName() {
+    return providerName;
+  }
+
+  public void setProviderName(String providerName) {
+    this.providerName = providerName;
   }
 
 }

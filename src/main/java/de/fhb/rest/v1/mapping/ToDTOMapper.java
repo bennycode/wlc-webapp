@@ -4,7 +4,7 @@ import de.fhb.entities.Category;
 import de.fhb.entities.Ebook;
 import de.fhb.entities.LanguageEntry;
 import de.fhb.entities.Playlist;
-import de.fhb.entities.Status;
+import de.fhb.rest.v1.dto.Status;
 import de.fhb.entities.Video;
 import de.fhb.rest.v1.dto.CategoryDTO;
 import de.fhb.rest.v1.dto.EbookDTO;

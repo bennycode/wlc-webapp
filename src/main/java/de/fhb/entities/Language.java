@@ -6,23 +6,34 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 @JsonTypeName("language")
+/**
+ * ISO 639-1: two-letter codes
+ *
+ * @see http://en.wikipedia.org/wiki/ISO_639-1
+ */
 public class Language implements Serializable {
 
-  private String lang;
+  public class LanguageCode {
+
+    static public final String GERMAN = "de";
+    static public final String ENGLISH = "en";
+  }
+
+  private String languageCode;
 
   public Language() {
   }
 
-  public Language(String lang) {
-    this.lang = lang;
+  public Language(String languageCode) {
+    this.languageCode = languageCode;
   }
 
-  public String getLang() {
-    return lang;
+  public String getLanguageCode() {
+    return languageCode;
   }
 
-  public void setLang(String lang) {
-    this.lang = lang;
+  public void setLanguageCode(String languageCode) {
+    this.languageCode = languageCode;
   }
 
 }
