@@ -3,6 +3,7 @@ package de.fhb.service;
 import de.fhb.entities.Video;
 import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import de.fhb.repository.VideoRepository;
+import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -15,10 +16,21 @@ public class VideoService extends BaseService<Video, VideoRepository> {
 
   @EJB
   private VideoRepository repository;
+  @EJB
+  private OwnCacheServerService cacheService;
+
+  public VideoService() {
+    super(Video.class);
+  }
 
   @Override
   protected VideoRepository getRepository() {
     return repository;
+  }
+
+  @Override
+  protected OwnCacheServerService getCache() {
+    return cacheService;
   }
 
   public Video getVideoByCode(String code) {

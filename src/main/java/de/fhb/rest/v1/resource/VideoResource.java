@@ -3,6 +3,7 @@ package de.fhb.rest.v1.resource;
 import de.fhb.rest.v1.dto.VideoDTO;
 import de.fhb.rest.v1.mapping.ToDTOMapper;
 import de.fhb.service.VideoService;
+import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -32,6 +33,7 @@ public class VideoResource {
   private void init() {
   }
 
+  @RESTCache(genericTypeHint = "de.fhb.rest.v1.dto.VideoDTO")
   @GET
   @Path("playlist/{id}")
   @Produces(MediaType.APPLICATION_JSON)

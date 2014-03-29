@@ -6,6 +6,7 @@ import de.fhb.rest.v1.dto.PlaylistDTO;
 import de.fhb.rest.v1.dto.StatusDTO;
 import de.fhb.rest.v1.mapping.ToDTOMapper;
 import de.fhb.service.PlaylistService;
+import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -35,6 +36,7 @@ public class PlaylistResource {
   private void init() {
   }
 
+  @RESTCache(genericTypeHint = "de.fhb.rest.v1.dto.PlaylistDTO")
   @GET
   @Path("category/{id}")
   @Produces(MediaType.APPLICATION_JSON)

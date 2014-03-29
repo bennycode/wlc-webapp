@@ -3,6 +3,7 @@ package de.fhb.rest.v1.resource;
 import de.fhb.rest.v1.dto.CategoryDTO;
 import de.fhb.rest.v1.mapping.ToDTOMapper;
 import de.fhb.service.CategoryService;
+import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +33,7 @@ public class CategoryResource {
   private void init() {
   }
 
+  @RESTCache(genericTypeHint = "de.fhb.rest.v1.dto.CategoryDTO")
   @GET
   @Path("categories")
   @Produces(MediaType.APPLICATION_JSON)
