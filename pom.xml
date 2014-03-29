@@ -231,6 +231,26 @@
           </execution>
         </executions>
       </plugin>
+      <!-- LESS CSS -->
+      <!-- https://github.com/marceloverdijk/lesscss-maven-plugin -->
+      <plugin>
+        <groupId>org.lesscss</groupId>
+        <artifactId>lesscss-maven-plugin</artifactId>
+        <version>1.3.3</version>
+        <configuration>
+          <sourceDirectory>${project.basedir}/src/main/webapp/WEB-INF/frontend/less</sourceDirectory>
+          <outputDirectory>${project.build.directory}/${project.build.finalName}/resources/css</outputDirectory>
+          <compress>true</compress>
+          <force>true</force>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <!-- TESTPLUGINS -->
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
