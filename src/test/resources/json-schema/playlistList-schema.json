@@ -1,0 +1,92 @@
+{
+  "type": "array",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "http://jsonschema.net",
+  "required": true,
+  "items": {
+    "type": "object",
+    "id": "http://jsonschema.net/0",
+    "required": false,
+    "properties": {
+      "categoryName": {
+        "type": "string",
+        "id": "http://jsonschema.net/0/categoryName",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "id": "http://jsonschema.net/0/description",
+        "required": true
+      },
+      "id": {
+        "type": "number",
+        "id": "http://jsonschema.net/0/id",
+        "required": true
+      },
+      "language": {
+        "type": "string",
+        "id": "http://jsonschema.net/0/language",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "id": "http://jsonschema.net/0/name",
+        "required": true
+      },
+      "numberOfVideos": {
+        "type": "number",
+        "id": "http://jsonschema.net/0/numberOfVideos",
+        "required": true
+      },
+      "owner": {
+        "type": "object",
+        "id": "http://jsonschema.net/0/owner",
+        "required": true,
+        "properties": {
+          "description": {
+            "type": ["string", "null"],
+            "id": "http://jsonschema.net/0/owner/description",
+            "required": false
+          },
+          "name": {
+            "type": "string",
+            "id": "http://jsonschema.net/0/owner/name",
+            "required": true
+          },
+          "website": {
+            "type": ["string", "null"],
+            "id": "http://jsonschema.net/0/owner/website",
+            "required": false
+          }
+        }
+      },
+      "providerName": {
+        "type": "string",
+        "id": "http://jsonschema.net/0/providerName",
+        "required": true
+      },
+      "status": {
+        "type": "object",
+        "id": "http://jsonschema.net/0/status",
+        "required": true,
+        "properties": {
+          "embeddable": {
+            "type": "boolean",
+            "id": "http://jsonschema.net/0/status/embeddable",
+            "required": true
+          },
+          "errorless": {
+            "type": "boolean",
+            "id": "http://jsonschema.net/0/status/errorless",
+            "required": true
+          },
+          "playable": {
+            "type": "boolean",
+            "id": "http://jsonschema.net/0/status/playable",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

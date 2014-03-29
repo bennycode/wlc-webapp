@@ -1,5 +1,6 @@
 package de.fhb.rest.v1.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +18,7 @@ import javax.xml.bind.annotation.XmlType;
 public class CategoryDTO extends BaseDTO {
 
   private Integer id;
+  @JsonProperty("name")//new 
   private String title;
   private String slug;
   private String color;

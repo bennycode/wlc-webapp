@@ -1,0 +1,44 @@
+{
+  "type": "array",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "http://jsonschema.net",
+  "required": true,
+  "items": {
+    "type": "object",
+    "id": "http://jsonschema.net/0",
+    "required": false,
+    "properties": {
+      "availableLanguages": {
+        "type": "array",
+        "id": "http://jsonschema.net/0/availableLanguages",
+        "required": true,
+        "items":
+                {
+                  "type": "string",
+                  "id": "http://jsonschema.net/0/availableLanguages/0",
+                  "required": true
+                }
+      },
+      "color": {
+        "type": "string",
+        "id": "http://jsonschema.net/0/color",
+        "required": true
+      },
+      "id": {
+        "type": "number",
+        "id": "http://jsonschema.net/0/id",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "id": "http://jsonschema.net/0/name",
+        "required": true
+      },
+      "numberOfVideos": {
+        "type": "number",
+        "id": "http://jsonschema.net/0/numberOfVideos",
+        "required": true
+      }
+    }
+  }
+}

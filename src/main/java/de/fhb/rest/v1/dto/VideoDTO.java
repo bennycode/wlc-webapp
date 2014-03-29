@@ -1,5 +1,6 @@
 package de.fhb.rest.v1.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlElement;
@@ -13,6 +14,7 @@ public class VideoDTO extends BaseDTO {
 
   private Integer id;
   private String code;
+  @JsonProperty("name")//new 
   private String title;
   private String description;
   private PlaylistDTO playlist;

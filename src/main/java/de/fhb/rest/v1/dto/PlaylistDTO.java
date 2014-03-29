@@ -1,5 +1,6 @@
 package de.fhb.rest.v1.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import de.fhb.entities.Difficulty;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +16,7 @@ public class PlaylistDTO extends BaseDTO {
 
   private Integer id;
   private String code;
+  @JsonProperty("name")//new 
   private String title;
   private String slug;
   private String description;
@@ -31,7 +33,7 @@ public class PlaylistDTO extends BaseDTO {
   private String providerName;
   @Transient
   private int numberOfVideos;
-  @Transient
+//  @Transient new
   private String language;
   @Transient
   private StatusDTO status;
