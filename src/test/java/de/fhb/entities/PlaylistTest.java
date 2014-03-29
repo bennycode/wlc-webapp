@@ -7,22 +7,20 @@ import java.net.URISyntaxException;
 import java.util.Properties;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
-@Ignore
-public class PlaylistTest {
-  
+public class AuthorTest {
+
   private static ObjectMapper mapper;
   private static Properties properties;
-  
-  public PlaylistTest() {
+
+  public AuthorTest() {
   }
-  
+
   @BeforeClass
   public static void setUpClass() throws IOException {
     // Test cases
-    String path = "PlaylistTest.properties";
+    String path = "AuthorTest.properties";
     InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
     properties = new Properties();
     properties.load(in);
@@ -30,17 +28,15 @@ public class PlaylistTest {
     // Jackson mapper
     mapper = new ObjectMapper();
   }
-  
+
   @Test
   public void testJacksonMapping() throws IOException, URISyntaxException {
-    Playlist instance = new Playlist();
+    Author instance = new Author("Benny Neugebauer");
     instance.setId(1L);
-    instance.setName("Windows Phone Workshop (MMT30)");
-    instance.setLang(new Language("German"));
-    
+
     String actual = mapper.writeValueAsString(instance);
-    String expected = properties.getProperty("testPlaylistMapping");
-    
+    String expected = properties.getProperty("testJacksonMapping");
+
     assertEquals(expected, actual);
   }
 }
