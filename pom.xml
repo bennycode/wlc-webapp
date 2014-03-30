@@ -56,11 +56,11 @@
       <url>https://github.com/Yserz/OwnMavenRepo/raw/master</url>
       <releases>
         <enabled>true</enabled>
-        <!--<updatePolicy>always</updatePolicy>-->
+        <updatePolicy>always</updatePolicy>
       </releases>
       <snapshots>
         <enabled>true</enabled>
-        <!--<updatePolicy>always</updatePolicy>-->
+        <updatePolicy>always</updatePolicy>
       </snapshots>
     </repository>
   </repositories>
@@ -306,7 +306,7 @@
         <version>2.17</version>
         <configuration>
           <excludes>
-            <!--            <exclude>**/CategoryResourceTest.java</exclude>
+            <!--                        <exclude>**/CategoryResourceTest.java</exclude>
             <exclude>**/PlaylistResourceTest.java</exclude>
             <exclude>**/VideoResourceTest.java</exclude>-->
           </excludes>
