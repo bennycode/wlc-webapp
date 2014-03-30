@@ -28,6 +28,9 @@
   <properties>
     <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jdbc.url>jdbc:mysql://localhost:3306/welovecoding</jdbc.url>
+    <jdbc.username>welovecoding</jdbc.username>
+    <jdbc.password>123456</jdbc.password>
     <sql.driver.version>5.1.29</sql.driver.version>
   </properties>
   
@@ -302,9 +305,9 @@
         <version>2.17</version>
         <configuration>
           <excludes>
-            <exclude>**/CategoryResourceTest.java</exclude>
+            <!--            <exclude>**/CategoryResourceTest.java</exclude>
             <exclude>**/PlaylistResourceTest.java</exclude>
-            <exclude>**/VideoResourceTest.java</exclude>
+            <exclude>**/VideoResourceTest.java</exclude>-->
           </excludes>
           <properties>
             <property>
@@ -312,6 +315,11 @@
               <value>util.TestRunListener</value>
             </property>
           </properties>
+          <systemPropertyVariables>
+            <jdbcURL>${jdbc.url}</jdbcURL>
+            <jdbcUsername>${jdbc.username}</jdbcUsername>
+            <jdbcPassword>${jdbc.password}</jdbcPassword>
+          </systemPropertyVariables>
         </configuration>
       </plugin>
     </plugins>

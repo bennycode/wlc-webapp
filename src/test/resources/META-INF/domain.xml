@@ -59,7 +59,7 @@
     <managed-scheduled-executor-service jndi-name="concurrent/__defaultManagedScheduledExecutorService" object-type="system-all"></managed-scheduled-executor-service>
     <managed-thread-factory jndi-name="concurrent/__defaultManagedThreadFactory" object-type="system-all"></managed-thread-factory>
     <context-service jndi-name="concurrent/__defaultContextService" object-type="system-all"></context-service>
-    <jdbc-connection-pool connection-validation-method="auto-commit" datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" wrap-jdbc-objects="false" res-type="javax.sql.DataSource" name="mysql_welovecoding_welovecodingPool" idle-timeout-in-seconds="170">
+    <!--    <jdbc-connection-pool connection-validation-method="auto-commit" datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" wrap-jdbc-objects="false" res-type="javax.sql.DataSource" name="mysql_welovecoding_welovecodingPool" idle-timeout-in-seconds="170">
       <property name="URL" value="jdbc:mysql://localhost:3306/welovecoding"></property>
       <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
       <property name="Password" value="123456"></property>
@@ -67,8 +67,8 @@
       <property name="databaseName" value="welovecoding"></property>
       <property name="User" value="welovecoding"></property>
       <property name="serverName" value="localhost"></property>
-    </jdbc-connection-pool>
-    <jdbc-resource pool-name="mysql_welovecoding_welovecodingPool" jndi-name="jdbc/welovecoding"></jdbc-resource>
+    </jdbc-connection-pool>-->
+    <!--<jdbc-resource pool-name="mysql_welovecoding_welovecodingPool" jndi-name="jdbc/welovecoding"></jdbc-resource>-->
     <admin-object-resource res-adapter="jmsra" res-type="javax.jms.Topic" description="JMS CacheTopic." jndi-name="jms/CacheTopic">
       <property name="Name" value="cacheTopic"></property>
     </admin-object-resource>
