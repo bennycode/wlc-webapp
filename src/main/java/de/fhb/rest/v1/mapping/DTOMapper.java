@@ -9,6 +9,8 @@ import de.fhb.rest.v1.dto.Video;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * This mapper maps the latest entites of the domain model to data transfer
@@ -89,7 +91,8 @@ public class DTOMapper {
 
     dtoCategory.setNumberOfVideos(numberOfVideos);
 
-    for (String key : availableLanguagesMap.keySet()) {
+    SortedSet<String> sortedKeys = new TreeSet<>(availableLanguagesMap.keySet());
+    for (String key : sortedKeys) {
       availableLanguages.add(key);
     }
 
