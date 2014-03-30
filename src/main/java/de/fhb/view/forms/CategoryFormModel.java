@@ -11,7 +11,6 @@ public class CategoryFormModel extends FormModel {
       "name",
       "slug",
       "color",
-      "playlists",
       "created",
       "lastModified"
     };

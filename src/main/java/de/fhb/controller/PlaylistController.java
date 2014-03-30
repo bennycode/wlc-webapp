@@ -45,7 +45,7 @@ public class PlaylistController extends GenFormBaseController<Playlist, Playlist
   @PostConstruct
   public void init() {
     item = new Playlist();
-    item.setCode("PLF544CEEC9432BF67");
+    item.setCode("");
   }
 
   @Override
