@@ -3,14 +3,14 @@ package de.fhb.view.forms;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CategoryFormModel extends FormModel {
+public class PlaylistFormModel extends FormModel {
 
-  public CategoryFormModel() {
+  public PlaylistFormModel() {
     super.PROPERTY_ORDER = new String[]{
       "id",
       "name",
-      "slug",
-      "color",
+      "description",
+      "videos",
       "created",
       "lastModified"
     };

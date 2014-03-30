@@ -1,14 +1,13 @@
 package de.fhb.rest.v1.resource;
 
 import de.fhb.entities.Playlist;
+import de.fhb.rest.v1.dto.PlaylistDTO;
 import de.fhb.rest.v1.mapping.DTOMapper;
 import de.fhb.service.PlaylistService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -17,7 +16,6 @@ import javax.ws.rs.core.MediaType;
 
 @Path("")
 @Stateless
-@Interceptors({})
 public class PlaylistResource {
 
   @EJB
@@ -28,20 +26,12 @@ public class PlaylistResource {
   public PlaylistResource() {
   }
 
-  @RESTCache(genericTypeHint = "de.fhb.rest.v1.dto.Playlist")
+  @RESTCache(genericTypeHint = "de.fhb.rest.v1.dto.PlaylistDTO")
   @GET
   @Path("category/{id}")
   @Produces(MediaType.APPLICATION_JSON)
-  public List<de.fhb.rest.v1.dto.Playlist> getPlaylists(@PathParam("id") int id) {
-
-    List<de.fhb.rest.v1.dto.Playlist> dtoPlaylists = new ArrayList<>();
-
+  public List<PlaylistDTO> getPlaylists(@PathParam("id") int id) {
     List<Playlist> playlists = playlistService.getAllPlaylistsByCategory(id);
-    for (Playlist playlist : playlists) {
-      de.fhb.rest.v1.dto.Playlist dtoPlaylist = DTOMapper.mapPlaylist(playlist);
-      dtoPlaylists.add(dtoPlaylist);
-    }
-
-    return dtoPlaylists;
+    return DTOMapper.mapPlaylists(playlists);
   }
 }

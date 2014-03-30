@@ -8,7 +8,7 @@ import java.io.Serializable;
   "errorless",
   "embeddable"
 })
-public class Status implements Serializable {
+public class StatusDTO implements Serializable {
 
   // If a CERTAIN AMOUT of users send error reports related to a video or playlist then isErrorless is false.
   // Note: 1st & 3rd video of Playlist ID 47 (HTML5 & CSS3 Fundamentals: Development for Absolute Beginners) are faulty.
@@ -20,13 +20,13 @@ public class Status implements Serializable {
   // If a device (e.g. Amazon Kindle) does not support a video codec then isPlayable is false.
   private boolean isPlayable = true;
 
-  public Status() {
+  public StatusDTO() {
     this.isPlayable = true;
     this.isErrorless = true;
     this.isEmbeddable = true;
   }
 
-  public Status(boolean playable, boolean errorless, boolean embeddable) {
+  public StatusDTO(boolean playable, boolean errorless, boolean embeddable) {
     this.isPlayable = playable;
     this.isErrorless = errorless;
     this.isEmbeddable = embeddable;

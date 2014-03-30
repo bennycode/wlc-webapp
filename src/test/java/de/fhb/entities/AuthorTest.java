@@ -1,7 +1,7 @@
 package de.fhb.entities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.fhb.rest.v1.dto.Owner;
+import de.fhb.rest.v1.dto.OwnerDTO;
 import de.fhb.rest.v1.mapping.DTOMapper;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,7 +36,7 @@ public class AuthorTest {
     Author author = new Author();
     author.setName("Tom Wendel & Felix Rieseberg");
 
-    Owner dtoAuthor = DTOMapper.mapAuthor(author);
+    OwnerDTO dtoAuthor = DTOMapper.mapAuthor(author);
 
     String actual = mapper.writeValueAsString(dtoAuthor);
     String expected = properties.getProperty("testRestServiceV1Mapping");
