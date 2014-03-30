@@ -1,11 +1,11 @@
 package de.fhb.rest.v1.resource;
 
-import de.fhb.rest.v1.dto.CategoryDTO;
+import de.fhb.entities.Category;
+import de.fhb.rest.v1.mapping.DTOMapper;
 import de.fhb.rest.v1.mapping.ToDTOMapper;
 import de.fhb.service.CategoryService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -33,28 +33,21 @@ public class CategoryResource {
   private void init() {
   }
 
-  @RESTCache(genericTypeHint = "de.fhb.rest.v1.dto.CategoryDTO")
+  @RESTCache(genericTypeHint = "de.fhb.rest.v1.dto.Category")
   @GET
   @Path("categories")
   @Produces(MediaType.APPLICATION_JSON)
-  public List<CategoryDTO> getCategories() {
-    List<CategoryDTO> categoryListStub = new ArrayList<>();
-    for (int i = 0; i < 1; i++) {
-      CategoryDTO cat = new CategoryDTO();
-      cat.setId(i);
-      cat.setColor("#00000" + i);
-//      cat.setCreated(new Date());
-//      cat.setLastModified(new Date());
-      cat.setTitle("Title" + i);
-//      cat.setEnabled(true);
-//      cat.setSlug("Slug" + i);
-//      cat.setUrl("URL" + 1);
-      cat.setAvailableLanguages(new ArrayList<>(Arrays.asList(new String[]{"de", "en"})));
-      categoryListStub.add(cat);
+  public List<de.fhb.rest.v1.dto.Category> getCategories() {
+    List<de.fhb.rest.v1.dto.Category> dtoCategories = new ArrayList<>();
+
+    List<Category> categories = categoryService.findAll();
+    System.out.println("AAAAAAAAAAAAAAAALTA: " + categories.size());
+    for (Category category : categories) {
+      de.fhb.rest.v1.dto.Category dtoCategory = DTOMapper.mapCategory(category);
+      dtoCategories.add(dtoCategory);
     }
 
-    List<CategoryDTO> categories = toDTOMapper.mapCategoryList(categoryService.getCategoriesOrderedByTitle());
-    return categoryListStub;
+    return dtoCategories;
   }
 
 }

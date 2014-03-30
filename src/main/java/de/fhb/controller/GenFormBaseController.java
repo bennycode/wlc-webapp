@@ -77,7 +77,6 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   }
 
   public HtmlForm getForm() {
-    System.out.println("HALLO-1");
     form = new HtmlForm();
     form.setAcceptcharset("ISO-8859-1");
     form.setStyleClass("pure-form pure-form-stacked");
@@ -126,7 +125,6 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     HtmlCommandButton submit = createSubmitButton(FacesContext.getCurrentInstance().getApplication());
     form.getChildren().add(submit);
 
-    System.out.println("HALLO-2");
     return form;
   }
 
