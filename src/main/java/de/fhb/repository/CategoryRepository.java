@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-//@Interceptors({EJBLoggerInterceptor.class})
 public class CategoryRepository extends AbstractRepository<Category> {
 
   @PersistenceContext(unitName = Names.PERSISTENCE_UNIT_NAME)
@@ -23,7 +22,7 @@ public class CategoryRepository extends AbstractRepository<Category> {
     super(Category.class);
   }
 
-  public List<Category> getCategoriesOrderedByName() {
+  public List<Category> orderByName() {
     return em.createNamedQuery(Category.ORDER_BY_NAME, Category.class).getResultList();
   }
 }
