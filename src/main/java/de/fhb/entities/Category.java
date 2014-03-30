@@ -1,6 +1,6 @@
 package de.fhb.entities;
 
-import com.github.slugify.Slugify;
+import de.fhb.util.Slugify;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class Category extends BaseEntity implements Serializable {
   @Override
   public void setName(String name) {
     super.setName(name);
-    this.slug = new Slugify().slugify(name);
+    this.slug = Slugify.slugify(name);
   }
 
   public String getColor() {
