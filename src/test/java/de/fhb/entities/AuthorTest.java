@@ -41,10 +41,6 @@ public class AuthorTest {
     String actual = mapper.writeValueAsString(dtoAuthor);
     String expected = properties.getProperty("testRestServiceV1Mapping");
 
-    System.out.println(actual);
-    System.out.println("===");
-    System.out.println(expected);
-
     assertEquals(expected, actual);
   }
 }

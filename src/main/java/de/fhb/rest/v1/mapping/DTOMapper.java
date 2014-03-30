@@ -1,9 +1,13 @@
 package de.fhb.rest.v1.mapping;
 
-import de.fhb.entities.Author;
-import de.fhb.rest.v1.dto.Playlist;
+import de.fhb.entities.Language.LanguageCode;
+import de.fhb.rest.v1.dto.Category;
 import de.fhb.rest.v1.dto.Owner;
+import de.fhb.rest.v1.dto.Playlist;
 import de.fhb.rest.v1.dto.Status;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * This mapper maps the latest entites of the domain model to data transfer
@@ -18,7 +22,7 @@ import de.fhb.rest.v1.dto.Status;
  */
 public class DTOMapper {
 
-  public static Owner mapAuthor(Author author) {
+  public static Owner mapAuthor(de.fhb.entities.Author author) {
     Owner dtoAuthor = new Owner();
 
     dtoAuthor.setDescription(author.getDescription());
@@ -33,7 +37,7 @@ public class DTOMapper {
 
     dtoPlaylist.setId(playlist.getId());
     dtoPlaylist.setName(playlist.getName());
-    dtoPlaylist.setLanguage(playlist.getLanguageCode().getLanguageCode());
+    dtoPlaylist.setLanguage(mapLanguage(playlist.getLanguageCode()));
     dtoPlaylist.setCategoryName(playlist.getCategory().getName());
     dtoPlaylist.setProviderName(playlist.getProviderName().getProviderName());
     dtoPlaylist.setNumberOfVideos(playlist.getVideos().size());
@@ -42,5 +46,55 @@ public class DTOMapper {
     dtoPlaylist.setStatus(new Status());
 
     return dtoPlaylist;
+  }
+
+  public static String mapLanguage(de.fhb.entities.Language language) {
+    String dtoLanguage = "English";
+
+    if (language.getLanguageCode() != null) {
+      switch (language.getLanguageCode()) {
+        case LanguageCode.GERMAN:
+          dtoLanguage = "German";
+          break;
+        case LanguageCode.ENGLISH:
+          dtoLanguage = "English";
+          break;
+      }
+    }
+
+    return dtoLanguage;
+  }
+
+  public static Category mapCategory(de.fhb.entities.Category category) {
+    Category dtoCategory = new Category();
+
+    dtoCategory.setId(category.getId());
+    dtoCategory.setName(category.getName());
+    dtoCategory.setColor(category.getColor());
+
+    HashMap<String, String> availableLanguagesMap = new HashMap<>();
+    List<String> availableLanguages = new ArrayList<>();
+    int numberOfVideos = 0;
+
+    if (category.getPlaylists().size() > 0) {
+      for (de.fhb.entities.Playlist playlist : category.getPlaylists()) {
+        numberOfVideos += playlist.getVideos().size();
+        availableLanguagesMap.put(
+                mapLanguage(playlist.getLanguageCode()),
+                mapLanguage(playlist.getLanguageCode())
+        );
+      }
+    }
+
+    dtoCategory.setNumberOfVideos(numberOfVideos);
+
+    for (String key : availableLanguagesMap.keySet()) {
+      availableLanguages.add(key);
+    }
+
+    dtoCategory.setAvailableLanguages(availableLanguages);
+
+//    HashMap<String, Language> availableLanguagesMap = new HashMap<String, Language>();
+    return dtoCategory;
   }
 }

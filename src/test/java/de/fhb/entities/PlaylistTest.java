@@ -59,10 +59,6 @@ public class PlaylistTest {
     String actual = mapper.writeValueAsString(dtoPlaylist);
     String expected = properties.getProperty("bert");
 
-    System.out.println(actual);
-    System.out.println("===");
-    System.out.println(expected);
-
     assertEquals(expected, actual);
   }
 }

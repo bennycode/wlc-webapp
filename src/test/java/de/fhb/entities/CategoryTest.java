@@ -2,7 +2,6 @@ package de.fhb.entities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.fhb.entities.Language.LanguageCode;
-import de.fhb.entities.Provider.ProviderName;
 import de.fhb.rest.v1.mapping.DTOMapper;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,18 +13,18 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class PlaylistTest {
+public class CategoryTest {
 
   private static ObjectMapper mapper;
   private static Properties properties;
 
-  public PlaylistTest() {
+  public CategoryTest() {
   }
 
   @BeforeClass
   public static void setUpClass() throws IOException {
     // Test cases
-    String path = "PlaylistTest.properties";
+    String path = "CategoryTest.properties";
     InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
     properties = new Properties();
     properties.load(in);
@@ -36,28 +35,59 @@ public class PlaylistTest {
 
   @Test
   public void testRestServiceV1Mapping() throws IOException, URISyntaxException {
-    Author author = new Author();
-    author.setName("Tom Wendel & Felix Rieseberg");
+    // Android
+    Category android = new Category();
+    android.setId(8L);
+    android.setName("Android");
+    android.setColor("#8CBE29");
 
-    Category category = new Category();
-    category.setName("Windows Phone");
+    List<Video> androidVideos = new ArrayList<>();
+    androidVideos.add(new Video());
 
-    List<Video> videos = new ArrayList<>();
-    videos.add(new Video());
+    Playlist androidPlaylistEnglish = new Playlist();
+    androidPlaylistEnglish.setCategory(android);
+    androidPlaylistEnglish.setLanguageCode(new Language(LanguageCode.ENGLISH));
+    androidPlaylistEnglish.setVideos(androidVideos);
 
-    Playlist playlist = new Playlist();
-    playlist.setId(1L);
-    playlist.setName("Windows Phone Workshop (MMT30)");
-    playlist.setLanguageCode(new Language(LanguageCode.GERMAN));
-    playlist.setCategory(category);
-    playlist.setProviderName(new Provider(ProviderName.YOUTUBE));
-    playlist.setAuthor(author);
-    playlist.setVideos(videos);
+    Playlist androidPlaylistGerman = new Playlist();
+    androidPlaylistGerman.setCategory(android);
+    androidPlaylistGerman.setLanguageCode(new Language(LanguageCode.GERMAN));
+    androidPlaylistGerman.setVideos(androidVideos);
 
-    de.fhb.rest.v1.dto.Playlist dtoPlaylist = DTOMapper.mapPlaylist(playlist);
+    List<Playlist> androidPlaylists = new ArrayList<>();
+    androidPlaylists.add(androidPlaylistEnglish);
+    androidPlaylists.add(androidPlaylistGerman);
+    
+    android.setPlaylists(androidPlaylists);
 
-    String actual = mapper.writeValueAsString(dtoPlaylist);
-    String expected = properties.getProperty("bert");
+    // C
+    Category c = new Category();
+    c.setId(7L);
+    c.setName("C");
+    c.setColor("#EF9608");
+
+    List<Video> cVideos = new ArrayList<>();
+    cVideos.add(new Video());
+
+    Playlist cPlaylistGerman = new Playlist();
+    cPlaylistGerman.setCategory(c);
+    cPlaylistGerman.setLanguageCode(new Language(LanguageCode.GERMAN));
+    cPlaylistGerman.setVideos(cVideos);
+
+    List<Playlist> cPlaylists = new ArrayList<>();
+    cPlaylists.add(cPlaylistGerman);
+
+    c.setPlaylists(cPlaylists);
+
+    de.fhb.rest.v1.dto.Category dtoAndroid = DTOMapper.mapCategory(android);
+    de.fhb.rest.v1.dto.Category dtoC = DTOMapper.mapCategory(c);
+
+    List<de.fhb.rest.v1.dto.Category> dtoCategories = new ArrayList<>();
+    dtoCategories.add(dtoAndroid);
+    dtoCategories.add(dtoC);
+
+    String actual = mapper.writeValueAsString(dtoCategories);
+    String expected = properties.getProperty("cola");
 
     System.out.println(actual);
     System.out.println("===");

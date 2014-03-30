@@ -55,14 +55,7 @@ public class Playlist {
   public void setLanguage(String language) {
     if (language == null || language.isEmpty()) {
     } else {
-      switch (language) {
-        case LanguageCode.GERMAN:
-          this.language = "German";
-          break;
-        case LanguageCode.ENGLISH:
-          this.language = "English";
-          break;
-      }
+      this.language = language;
     }
   }
 
