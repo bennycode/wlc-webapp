@@ -5,6 +5,7 @@ import de.fhb.rest.v1.dto.Category;
 import de.fhb.rest.v1.dto.Owner;
 import de.fhb.rest.v1.dto.Playlist;
 import de.fhb.rest.v1.dto.Status;
+import de.fhb.rest.v1.dto.Video;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -94,7 +95,20 @@ public class DTOMapper {
 
     dtoCategory.setAvailableLanguages(availableLanguages);
 
-//    HashMap<String, Language> availableLanguagesMap = new HashMap<String, Language>();
     return dtoCategory;
+  }
+
+  public static Video mapVideo(de.fhb.entities.Video video) {
+    Video dtoVideo = new Video();
+
+    dtoVideo.setId(video.getId());
+    dtoVideo.setName(video.getName());
+    dtoVideo.setDescription(video.getDescription());
+    dtoVideo.setCode(video.getCode());
+    dtoVideo.setPreviewImageUrl(video.getPreviewImageUrl());
+    dtoVideo.setDownloadUrl(video.getDownloadUrl());
+    dtoVideo.setPermalink(video.getPermalink());
+
+    return dtoVideo;
   }
 }

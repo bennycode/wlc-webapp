@@ -89,10 +89,6 @@ public class CategoryTest {
     String actual = mapper.writeValueAsString(dtoCategories);
     String expected = properties.getProperty("cola");
 
-    System.out.println(actual);
-    System.out.println("===");
-    System.out.println(expected);
-
     assertEquals(expected, actual);
   }
 }

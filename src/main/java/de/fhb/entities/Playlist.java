@@ -31,7 +31,7 @@ public class Playlist extends BaseEntity {
   @ManyToOne
   private Author author;
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist")
   private List<Video> videos;
 
   @Column(unique = true)

@@ -1,7 +1,6 @@
 package de.fhb.rest.v1.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import de.fhb.entities.Language.LanguageCode;
 
 @JsonPropertyOrder({
   "id",
