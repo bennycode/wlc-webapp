@@ -22,6 +22,8 @@ public class CategoryResource {
   @EJB
   private CategoryService categoryService;
 
+  // http://welovecoding.com/rest/service/v1/categories
+  // http://localhost:8080/wlc-webapp/rest/fhb/v1/categories
   public CategoryResource() {
   }
 

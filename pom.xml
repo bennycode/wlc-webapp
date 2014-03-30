@@ -28,10 +28,6 @@
   <properties>
     <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jdbc.url>jdbc:mysql://localhost:3306/welovecoding</jdbc.url>
-    <jdbc.username>welovecoding</jdbc.username>
-    <jdbc.password>123456</jdbc.password>
-    <sql.script.insert>welovecoding.sql</sql.script.insert>
     <sql.driver.version>5.1.29</sql.driver.version>
   </properties>
   
@@ -161,7 +157,7 @@
       <version>2.3.0</version>
       <scope>test</scope>
       <exclusions>
-        <!-- Exclude Groovy because of classpath issue -->
+        <!-- Exclude Groovy because of classpath issues -->
         <exclusion>
           <groupId>org.codehaus.groovy</groupId>
           <artifactId>groovy</artifactId>
@@ -305,11 +301,11 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.17</version>
         <configuration>
-          <excludes>
-            <!--                        <exclude>**/CategoryResourceTest.java</exclude>
+<!--          <excludes>
+            <exclude>**/CategoryResourceTest.java</exclude>
             <exclude>**/PlaylistResourceTest.java</exclude>
-            <exclude>**/VideoResourceTest.java</exclude>-->
-          </excludes>
+            <exclude>**/VideoResourceTest.java</exclude>
+          </excludes>-->
           <properties>
             <property>
               <name>listener</name>
@@ -317,43 +313,6 @@
             </property>
           </properties>
         </configuration>
-      </plugin>
-      <!-- SQL Maven Plugin -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>sql-maven-plugin</artifactId>
-        <version>1.5</version>
-        <!-- JDBC driver -->
-        <dependencies>
-          <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${sql.driver.version}</version>
-          </dependency>
-        </dependencies>
-        <configuration>
-          <driver>org.gjt.mm.mysql.Driver</driver>
-          <url>${jdbc.url}</url>
-          <username>${jdbc.username}</username>
-          <password>${jdbc.password}</password>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>process-test-resources</phase>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <configuration>
-              <orderFile>ascending</orderFile>
-              <fileset>
-                <basedir>${basedir}/src/test/resources</basedir>
-                <includes>
-                  <include>${sql.script.insert}</include>
-                </includes>
-              </fileset>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>

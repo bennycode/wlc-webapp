@@ -1,15 +1,11 @@
 package de.fhb.rest.v1.resource;
 
-import de.fhb.rest.v1.dto.LanguageDTO;
-import de.fhb.rest.v1.dto.OwnerDTO;
-import de.fhb.rest.v1.dto.PlaylistDTO;
-import de.fhb.rest.v1.dto.StatusDTO;
-import de.fhb.rest.v1.mapping.ToDTOMapper;
+import de.fhb.entities.Playlist;
+import de.fhb.rest.v1.mapping.DTOMapper;
 import de.fhb.service.PlaylistService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
@@ -26,46 +22,26 @@ public class PlaylistResource {
 
   @EJB
   private PlaylistService playlistService;
-  private final ToDTOMapper toDTOMapper;
 
+  // http://welovecoding.com/rest/service/v1/category/1
+  // http://localhost:8080/wlc_webapp/rest/fhb/v1/categories
   public PlaylistResource() {
-    toDTOMapper = new ToDTOMapper();
   }
 
-  @PostConstruct
-  private void init() {
-  }
-
-  @RESTCache(genericTypeHint = "de.fhb.rest.v1.dto.PlaylistDTO")
+  @RESTCache(genericTypeHint = "de.fhb.rest.v1.dto.Playlist")
   @GET
   @Path("category/{id}")
   @Produces(MediaType.APPLICATION_JSON)
-  public List<PlaylistDTO> getPlaylists(@PathParam("id") int id) {
-    List<PlaylistDTO> playlistListStub = new ArrayList<>();
-    for (int j = 0; j < 1; j++) {
-      PlaylistDTO pl = new PlaylistDTO();
-      pl.setId(j);
-//        pl.setCreated(new Date());
-//        pl.setLastModified(new Date());
-//        pl.setCode("Code" + j);
-      pl.setTitle("Title" + j);
-//        pl.setCategoryId(null);//Note this is null to prevent circular dependencies
-      pl.setCategoryName("CategoryTitle");
-      pl.setDescription("Desc" + j);
-//        pl.setDifficulty(Difficulty.EASY);
-//        pl.setEnabled(true);
-      pl.setLanguage("Deutsch");
-      pl.setLanguageId(new LanguageDTO(j, "Deutsch"));
-      pl.setNumberOfVideos(5);
-      pl.setOwner(new OwnerDTO(j, "OwnerName" + j));
-//        pl.setProvider(new ProviderDTO(i, "ProviderName" + i));
-      pl.setProviderName("ProviderName" + j);
-//        pl.setSlug("Slug" + j);
-      pl.setStatus(new StatusDTO());
+  public List<de.fhb.rest.v1.dto.Playlist> getPlaylists(@PathParam("id") int id) {
 
-      playlistListStub.add(pl);
+    List<de.fhb.rest.v1.dto.Playlist> dtoPlaylists = new ArrayList<>();
+
+    List<Playlist> playlists = playlistService.getAllPlaylistsByCategory(id);
+    for (Playlist playlist : playlists) {
+      de.fhb.rest.v1.dto.Playlist dtoPlaylist = DTOMapper.mapPlaylist(playlist);
+      dtoPlaylists.add(dtoPlaylist);
     }
-    List<PlaylistDTO> playlists = toDTOMapper.mapPlaylistList(playlistService.getAllPlaylistsByCategory(id));
-    return playlistListStub;
+
+    return dtoPlaylists;
   }
 }
