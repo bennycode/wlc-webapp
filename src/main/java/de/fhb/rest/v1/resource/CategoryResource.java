@@ -2,12 +2,10 @@ package de.fhb.rest.v1.resource;
 
 import de.fhb.entities.Category;
 import de.fhb.rest.v1.mapping.DTOMapper;
-import de.fhb.rest.v1.mapping.ToDTOMapper;
 import de.fhb.service.CategoryService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
@@ -23,14 +21,8 @@ public class CategoryResource {
 
   @EJB
   private CategoryService categoryService;
-  private final ToDTOMapper toDTOMapper;
 
   public CategoryResource() {
-    toDTOMapper = new ToDTOMapper();
-  }
-
-  @PostConstruct
-  private void init() {
   }
 
   @RESTCache(genericTypeHint = "de.fhb.rest.v1.dto.Category")
@@ -40,8 +32,7 @@ public class CategoryResource {
   public List<de.fhb.rest.v1.dto.Category> getCategories() {
     List<de.fhb.rest.v1.dto.Category> dtoCategories = new ArrayList<>();
 
-    List<Category> categories = categoryService.findAll();
-    System.out.println("AAAAAAAAAAAAAAAALTA: " + categories.size());
+    List<Category> categories = categoryService.orderByName();
     for (Category category : categories) {
       de.fhb.rest.v1.dto.Category dtoCategory = DTOMapper.mapCategory(category);
       dtoCategories.add(dtoCategory);

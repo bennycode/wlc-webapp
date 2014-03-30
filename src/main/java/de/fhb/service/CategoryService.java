@@ -37,8 +37,7 @@ public class CategoryService extends BaseService<Category, CategoryRepository> {
     return cacheService;
   }
 
-  public List<Category> getCategoriesOrderedByTitle() {
-    // TODO: This list is somehow empty :(
-    return repository.getCategoriesOrderedByName();
+  public List<Category> orderByName() {
+    return repository.orderByName();
   }
 }

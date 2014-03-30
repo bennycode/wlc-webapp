@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-//@Interceptors({EJBLoggerInterceptor.class})
 public class AuthorRepository extends AbstractRepository<Author> {
 
   @PersistenceContext(unitName = Names.PERSISTENCE_UNIT_NAME)
