@@ -79,10 +79,10 @@ public class CategoryTest {
 
     c.setPlaylists(cPlaylists);
 
-    de.fhb.rest.v1.dto.Category dtoAndroid = DTOMapper.mapCategory(android);
-    de.fhb.rest.v1.dto.Category dtoC = DTOMapper.mapCategory(c);
+    de.fhb.rest.v1.dto.CategoryDTO dtoAndroid = DTOMapper.mapCategory(android);
+    de.fhb.rest.v1.dto.CategoryDTO dtoC = DTOMapper.mapCategory(c);
 
-    List<de.fhb.rest.v1.dto.Category> dtoCategories = new ArrayList<>();
+    List<de.fhb.rest.v1.dto.CategoryDTO> dtoCategories = new ArrayList<>();
     dtoCategories.add(dtoAndroid);
     dtoCategories.add(dtoC);
 

@@ -10,7 +10,7 @@ import java.util.List;
   "numberOfVideos",
   "availableLanguages"
 })
-public class Category {
+public class CategoryDTO {
 
   private long id;
   private String name;
@@ -18,7 +18,7 @@ public class Category {
   private int numberOfVideos;
   private List<String> availableLanguages;
 
-  public Category() {
+  public CategoryDTO() {
   }
 
   public long getId() {

@@ -41,7 +41,7 @@ public class VideoTest {
     video.setDownloadUrl(null);
     video.setPermalink("http://www.welovecoding.com/tutorials/php/zend-framework-tutorial-fuer-anfaenger?video=0");
 
-    de.fhb.rest.v1.dto.Video dtoVideo = DTOMapper.mapVideo(video);
+    de.fhb.rest.v1.dto.VideoDTO dtoVideo = DTOMapper.mapVideo(video);
 
     String actual = mapper.writeValueAsString(dtoVideo);
     String expected = properties.getProperty("lauri");

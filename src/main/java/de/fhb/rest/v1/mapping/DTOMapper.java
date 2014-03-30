@@ -1,11 +1,16 @@
 package de.fhb.rest.v1.mapping;
 
+import de.fhb.entities.Author;
+import de.fhb.entities.Category;
+import de.fhb.entities.Language;
 import de.fhb.entities.Language.LanguageCode;
-import de.fhb.rest.v1.dto.Category;
-import de.fhb.rest.v1.dto.Owner;
-import de.fhb.rest.v1.dto.Playlist;
-import de.fhb.rest.v1.dto.Status;
-import de.fhb.rest.v1.dto.Video;
+import de.fhb.entities.Playlist;
+import de.fhb.entities.Video;
+import de.fhb.rest.v1.dto.CategoryDTO;
+import de.fhb.rest.v1.dto.OwnerDTO;
+import de.fhb.rest.v1.dto.PlaylistDTO;
+import de.fhb.rest.v1.dto.StatusDTO;
+import de.fhb.rest.v1.dto.VideoDTO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,8 +30,8 @@ import java.util.TreeSet;
  */
 public class DTOMapper {
 
-  public static Owner mapAuthor(de.fhb.entities.Author author) {
-    Owner dtoAuthor = new Owner();
+  public static OwnerDTO mapAuthor(Author author) {
+    OwnerDTO dtoAuthor = new OwnerDTO();
 
     dtoAuthor.setDescription(author.getDescription());
     dtoAuthor.setName(author.getName());
@@ -35,8 +40,8 @@ public class DTOMapper {
     return dtoAuthor;
   }
 
-  public static Playlist mapPlaylist(de.fhb.entities.Playlist playlist) {
-    Playlist dtoPlaylist = new Playlist();
+  public static PlaylistDTO mapPlaylist(Playlist playlist) {
+    PlaylistDTO dtoPlaylist = new PlaylistDTO();
 
     dtoPlaylist.setId(playlist.getId());
     dtoPlaylist.setName(playlist.getName());
@@ -46,12 +51,23 @@ public class DTOMapper {
     dtoPlaylist.setNumberOfVideos(playlist.getVideos().size());
     dtoPlaylist.setDescription(playlist.getDescription());
     dtoPlaylist.setOwner(mapAuthor(playlist.getAuthor()));
-    dtoPlaylist.setStatus(new Status());
+    dtoPlaylist.setStatus(new StatusDTO());
 
     return dtoPlaylist;
   }
 
-  public static String mapLanguage(de.fhb.entities.Language language) {
+  public static List<PlaylistDTO> mapPlaylists(List<Playlist> playlists) {
+    List<PlaylistDTO> dtoPlaylists = new ArrayList<>();
+
+    for (Playlist playlist : playlists) {
+      PlaylistDTO dtoPlaylist = DTOMapper.mapPlaylist(playlist);
+      dtoPlaylists.add(dtoPlaylist);
+    }
+
+    return dtoPlaylists;
+  }
+
+  public static String mapLanguage(Language language) {
     String dtoLanguage = "English";
 
     if (language.getLanguageCode() != null) {
@@ -68,8 +84,8 @@ public class DTOMapper {
     return dtoLanguage;
   }
 
-  public static Category mapCategory(de.fhb.entities.Category category) {
-    Category dtoCategory = new Category();
+  public static CategoryDTO mapCategory(Category category) {
+    CategoryDTO dtoCategory = new CategoryDTO();
 
     dtoCategory.setId(category.getId());
     dtoCategory.setName(category.getName());
@@ -80,7 +96,7 @@ public class DTOMapper {
     int numberOfVideos = 0;
 
     if (category.getPlaylists().size() > 0) {
-      for (de.fhb.entities.Playlist playlist : category.getPlaylists()) {
+      for (Playlist playlist : category.getPlaylists()) {
         numberOfVideos += playlist.getVideos().size();
         availableLanguagesMap.put(
                 mapLanguage(playlist.getLanguageCode()),
@@ -101,8 +117,19 @@ public class DTOMapper {
     return dtoCategory;
   }
 
-  public static Video mapVideo(de.fhb.entities.Video video) {
-    Video dtoVideo = new Video();
+  public static List<CategoryDTO> mapCategories(List<Category> categories) {
+    List<de.fhb.rest.v1.dto.CategoryDTO> dtoCategories = new ArrayList<>();
+
+    for (Category category : categories) {
+      de.fhb.rest.v1.dto.CategoryDTO dtoCategory = DTOMapper.mapCategory(category);
+      dtoCategories.add(dtoCategory);
+    }
+
+    return dtoCategories;
+  }
+
+  public static VideoDTO mapVideo(Video video) {
+    VideoDTO dtoVideo = new VideoDTO();
 
     dtoVideo.setId(video.getId());
     dtoVideo.setName(video.getName());
@@ -113,5 +140,16 @@ public class DTOMapper {
     dtoVideo.setPermalink(video.getPermalink());
 
     return dtoVideo;
+  }
+
+  public static List<VideoDTO> mapVideos(List<Video> videos) {
+    List<VideoDTO> dtoVideos = new ArrayList<>();
+
+    for (Video video : videos) {
+      VideoDTO dtoVideo = DTOMapper.mapVideo(video);
+      dtoVideos.add(dtoVideo);
+    }
+
+    return dtoVideos;
   }
 }

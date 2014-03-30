@@ -7,16 +7,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   "website",
   "description"
 })
-public class Owner {
+public class OwnerDTO {
 
   private String name;
   private String website;
   private String description;
 
-  public Owner() {
+  public OwnerDTO() {
   }
 
-  public Owner(String name, String website, String description) {
+  public OwnerDTO(String name, String website, String description) {
     this.name = name;
     this.website = website;
     this.description = description;

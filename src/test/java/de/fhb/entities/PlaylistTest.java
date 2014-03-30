@@ -54,7 +54,7 @@ public class PlaylistTest {
     playlist.setAuthor(author);
     playlist.setVideos(videos);
 
-    de.fhb.rest.v1.dto.Playlist dtoPlaylist = DTOMapper.mapPlaylist(playlist);
+    de.fhb.rest.v1.dto.PlaylistDTO dtoPlaylist = DTOMapper.mapPlaylist(playlist);
 
     String actual = mapper.writeValueAsString(dtoPlaylist);
     String expected = properties.getProperty("bert");

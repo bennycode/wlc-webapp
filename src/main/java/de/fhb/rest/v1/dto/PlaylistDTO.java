@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   "owner",
   "status"
 })
-public class Playlist {
+public class PlaylistDTO {
 
   private long id;
   private String name;
@@ -22,10 +22,10 @@ public class Playlist {
   private String providerName;
   private int numberOfVideos;
   private String description;
-  private Owner owner;
-  private Status status;
+  private OwnerDTO owner;
+  private StatusDTO status;
 
-  public Playlist() {
+  public PlaylistDTO() {
   }
 
   public long getId() {
@@ -99,19 +99,19 @@ public class Playlist {
     }
   }
 
-  public Owner getOwner() {
+  public OwnerDTO getOwner() {
     return owner;
   }
 
-  public void setOwner(Owner owner) {
+  public void setOwner(OwnerDTO owner) {
     this.owner = owner;
   }
 
-  public Status getStatus() {
+  public StatusDTO getStatus() {
     return status;
   }
 
-  public void setStatus(Status status) {
+  public void setStatus(StatusDTO status) {
     this.status = status;
   }
 

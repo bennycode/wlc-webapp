@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   "downloadUrl",
   "permalink"
 })
-public class Video {
+public class VideoDTO {
 
   private long id;
   private String name;
@@ -22,9 +22,9 @@ public class Video {
   private String downloadUrl;
   private String permalink;
   @JsonIgnore
-  private Playlist playlist;
+  private PlaylistDTO playlist;
 
-  public Video() {
+  public VideoDTO() {
   }
 
   public long getId() {
@@ -101,11 +101,11 @@ public class Video {
     }
   }
 
-  public Playlist getPlaylist() {
+  public PlaylistDTO getPlaylist() {
     return playlist;
   }
 
-  public void setPlaylist(Playlist playlist) {
+  public void setPlaylist(PlaylistDTO playlist) {
     this.playlist = playlist;
   }
 
