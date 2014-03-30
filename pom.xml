@@ -307,10 +307,10 @@
             <exclude>**/VideoResourceTest.java</exclude>
           </excludes>
           <properties>
-<!--            <property>
+            <property>
               <name>listener</name>
               <value>util.TestRunListener</value>
-            </property>-->
+            </property>
           </properties>
         </configuration>
       </plugin>
