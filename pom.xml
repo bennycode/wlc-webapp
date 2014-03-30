@@ -56,11 +56,11 @@
       <url>https://github.com/Yserz/OwnMavenRepo/raw/master</url>
       <releases>
         <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
+        <!--<updatePolicy>always</updatePolicy>-->
       </releases>
       <snapshots>
         <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
+        <!--<updatePolicy>always</updatePolicy>-->
       </snapshots>
     </repository>
   </repositories>
