@@ -16,11 +16,11 @@ public class VideoService extends BaseService<Video, VideoRepository> {
 
   @EJB
   private VideoRepository repository;
-  @EJB
   private OwnCacheServerService cacheService;
 
   public VideoService() {
     super(Video.class);
+    cacheService = OwnCacheServerService.getInstance();
   }
 
   @Override

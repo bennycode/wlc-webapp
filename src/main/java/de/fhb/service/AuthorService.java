@@ -18,11 +18,11 @@ public class AuthorService extends BaseService<Author, AuthorRepository> {
 
   @EJB
   private AuthorRepository repository;
-  @EJB
   private OwnCacheServerService cacheService;
 
   public AuthorService() {
     super(Author.class);
+    cacheService = OwnCacheServerService.getInstance();
   }
 
   @PostConstruct

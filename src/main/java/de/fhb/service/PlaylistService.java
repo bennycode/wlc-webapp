@@ -16,11 +16,11 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
 
   @EJB
   private PlaylistRepository repository;
-  @EJB
   private OwnCacheServerService cacheService;
 
   public PlaylistService() {
     super(Playlist.class);
+    cacheService = OwnCacheServerService.getInstance();
   }
 
   @Override
