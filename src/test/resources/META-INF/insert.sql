@@ -1,6 +1,0 @@
--- Authors
-INSERT INTO `author` (`ID`,`CREATED`,`LASTMODIFIED`,`NAME`) VALUES (1, '2014-02-01 00:00:00', '2014-02-08 00:00:00', 'Konrad Zuse');
-INSERT INTO `author` (`ID`,`CREATED`,`LASTMODIFIED`,`NAME`) VALUES (2, '2014-02-01 00:00:00', '2014-02-08 00:00:00', 'Michael Koppen');
-INSERT INTO `author` (`ID`,`CREATED`,`LASTMODIFIED`,`NAME`) VALUES (3, '2014-02-01 00:00:00', '2014-02-08 00:00:00', 'Benny Neugebauer');
--- Categories
-INSERT INTO  `category` (`ID` ,`COLOR` ,`CREATED` ,`LASTMODIFIED` ,`NAME` ,`SLUG`) VALUES (NULL ,  '#123456',  '2014-02-06 00:00:00',  '2014-02-07 00:00:00','Java',  'java');
