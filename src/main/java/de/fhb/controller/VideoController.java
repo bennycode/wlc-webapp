@@ -24,14 +24,14 @@ public class VideoController extends GenFormBaseController<Video, VideoService> 
   public String edit() {
     super.edit();
     this.item = new Video();
-    return Pages.ADMIN_AUTHORS;
+    return Pages.ADMIN_VIDEOS;
   }
 
   @Override
   public String remove() {
     super.remove();
     this.item = new Video();
-    return Pages.ADMIN_AUTHORS;
+    return Pages.ADMIN_VIDEOS;
   }
 
   @Override
