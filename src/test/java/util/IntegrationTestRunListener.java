@@ -16,9 +16,9 @@ import org.junit.runner.notification.RunListener;
  *
  * @author MacYser
  */
-public class TestRunListener extends RunListener {
+public class IntegrationTestRunListener extends RunListener {
 
-  private static final Logger LOG = Logger.getLogger(TestRunListener.class.getName());
+  private static final Logger LOG = Logger.getLogger(IntegrationTestRunListener.class.getName());
 
   @Override
   public void testIgnored(Description description) throws Exception {
@@ -48,11 +48,13 @@ public class TestRunListener extends RunListener {
   @Override
   public void testRunFinished(Result result) throws Exception {
     LOG.log(Level.INFO, "testRunFinished was called!");
+    GFInstance.stopInstance();
   }
 
   @Override
   public void testRunStarted(Description description) throws Exception {
     LOG.log(Level.INFO, "testRunStarted was called!");
+    GFInstance.startInstance();
   }
 
 }

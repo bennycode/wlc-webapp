@@ -27,7 +27,7 @@ import util.GFInstance;
  *
  * @author MacYser
  */
-public class VideoResourceTest {
+public class VideoResourceIT {
 
   @Rule
   // Get name of actual Test with test.getMethodName()

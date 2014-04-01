@@ -27,7 +27,7 @@ import util.GFInstance;
  *
  * @author MacYser
  */
-public class CategoryResourceTest {
+public class CategoryResourceIT {
 
   @Rule
   // Get name of actual Test with test.getMethodName()

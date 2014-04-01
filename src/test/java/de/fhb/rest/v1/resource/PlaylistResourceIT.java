@@ -27,7 +27,7 @@ import util.GFInstance;
  *
  * @author MacYser
  */
-public class PlaylistResourceTest {
+public class PlaylistResourceIT {
 
   @Rule
   // Get name of actual Test with test.getMethodName()
