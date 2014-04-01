@@ -6,10 +6,11 @@
   <h:head>
     <title>Login form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <h:outputStylesheet library="css" name="font-awesome-4.0.3.min.css" />
-    <h:outputStylesheet library="css/lib" name="animate.delay.css" />
-    <h:outputStylesheet library="css/lib" name="animate.min.css" />
+    <h:outputStylesheet library="libs/font-awesome/4.0.3" name="font-awesome.min.css" />
+    <h:outputStylesheet library="libs/animate-css/3.1.0" name="animate.delay.css" />
+    <h:outputStylesheet library="libs/animate-css/3.1.0" name="animate.min.css" />
     <h:outputStylesheet library="css/generated/admin" name="admin.css" />
+    <h:outputScript library="libs/jquery/2.1.0" name="jquery-2.1.0.min.js" />
     <style>
       * {
         border: 0;
@@ -73,7 +74,6 @@
       </div>
       <div class="loginshadow animate3 fadeInUp"></div>
     </div>
-    <script src="js/lib/jquery-2.0.3.min.js"></script>
     <script>
       jQuery(document).ready(function($) {
         var animationEnd = 'animationend oAnimationEnd MSAnimationEnd webkitAnimationEnd';

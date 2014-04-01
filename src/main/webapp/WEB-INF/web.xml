@@ -15,11 +15,6 @@
     <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
     <param-value>true</param-value>
   </context-param>
-  <!-- http://stackoverflow.com/questions/18789547/viewexpiredexception-when-i-use-viewscoped -->
-  <context-param>
-    <param-name>javax.faces.SERIALIZE_SERVER_STATE</param-name>
-    <param-value>true</param-value>
-  </context-param>
   <!-- Servlet declarations -->
   <!-- JSF -->
   <servlet>
@@ -35,22 +30,16 @@
   </servlet-mapping>
   <session-config>
     <session-timeout>30</session-timeout>
-    <cookie-config>
-      <name>id</name>
-      <http-only>true</http-only>
-      <secure>true</secure>
-    </cookie-config>
-    <tracking-mode>COOKIE</tracking-mode>
   </session-config>
   <!-- Admin page filter -->
-  <!--  <filter>
+  <filter>
     <filter-name>AdminPagesFilter</filter-name>
     <filter-class>com.welovecoding.web.security.AdminPagesFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>AdminPagesFilter</filter-name>
     <url-pattern>/admin/*</url-pattern>
-  </filter-mapping>-->
+  </filter-mapping>
   <!-- Security Constraints -->
   <!-- http://stackoverflow.com/a/9033567/451634 -->
   <security-constraint>

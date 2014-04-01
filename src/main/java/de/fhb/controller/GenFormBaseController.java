@@ -32,6 +32,11 @@ import javax.servlet.http.HttpServletRequest;
  * @param <T>
  * @param <E>
  * @see http://docs.oracle.com/javaee/7/tutorial/doc/jsf-page002.htm#BNARF
+ *
+ * TODO: java.lang.ClassCastException: cannot assign instance of
+ * java.lang.String to field de.fhb.controller.GenFormBaseController.backendText
+ * of type java.util.ResourceBundle in instance of
+ * de.fhb.controller.CategoryController.
  */
 public abstract class GenFormBaseController<T extends BaseEntity, E extends BaseService> extends BaseController<T, E> {
 

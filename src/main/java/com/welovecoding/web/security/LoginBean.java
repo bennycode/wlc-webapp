@@ -1,6 +1,7 @@
 package com.welovecoding.web.security;
 
-import com.welovecoding.web.navigation.Pages;
+import de.fhb.navigation.Pages;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -11,8 +12,6 @@ import javax.inject.Named;
 
 /**
  * http://stackoverflow.com/a/10691832/451634
- * <p>
- * </p>
  *
  * @author Benny
  */
@@ -49,7 +48,7 @@ public class LoginBean {
 
       if (dbUsername.equals(username) && dbPassword.equals(password)) {
         saveLogin();
-        return Pages.ADMIN_INDEX;
+        return Pages.ADMIN_POST_LOGIN;
       }
     }
 
@@ -57,7 +56,7 @@ public class LoginBean {
     message.setSeverity(FacesMessage.SEVERITY_ERROR);
     FacesContext.getCurrentInstance().addMessage(null, message);
 
-    return Pages.JSF_LOGIN;
+    return Pages.ADMIN_LOGIN;
   }
 
   public String logout() {
