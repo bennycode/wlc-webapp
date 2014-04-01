@@ -2,6 +2,7 @@ package de.fhb.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -46,8 +47,16 @@ public class Playlist extends BaseEntity {
   @Size(min = 0, max = 255)
   private String description;
 
+  private boolean enabled;
+
+  @NotNull
+  @Size(min = 1, max = 255)
+  @Basic(optional = false)
+  private String slug;
+
   public Playlist() {
-    videos = new ArrayList<>();
+    this.enabled = true;
+    this.videos = new ArrayList<>();
   }
 
   public Category getCategory() {
@@ -106,6 +115,14 @@ public class Playlist extends BaseEntity {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public boolean isEnabled() {
+    return enabled;
+  }
+
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
   }
 
   @Override

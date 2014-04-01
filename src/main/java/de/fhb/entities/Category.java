@@ -85,6 +85,6 @@ public class Category extends BaseEntity implements Serializable {
 
   @Override
   public String toString() {
-    return this.getName()+"a";
+    return this.getName();
   }
 }
