@@ -5,11 +5,11 @@ import de.fhb.navigation.Pages;
 import de.fhb.service.AuthorService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 @Named
-@ViewScoped
+@SessionScoped
 public class AuthorController extends GenFormBaseController<Author, AuthorService> {
 
   @EJB
