@@ -7,7 +7,6 @@ import de.fhb.view.forms.DefaultFormModel;
 import de.fhb.view.forms.FormInput;
 import de.fhb.view.forms.FormModel;
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -28,6 +27,7 @@ import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
 import javax.servlet.http.HttpServletRequest;
+import de.fhb.config.Packages;
 
 /**
  * @param <T>
@@ -46,7 +46,6 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   private final ResourceBundle backendText;
   private static final Logger LOG = Logger.getLogger(GenFormBaseController.class.getName());
   // FormModel naming convention: <EntityName>FormModel.java
-  private final String FORM_MODEL_PACKAGE = "de.fhb.view.forms";
   private final String FORM_MODEL_SUFFIX = "FormModel";
   private final int RESULTS_PER_PAGE = 20;
 
@@ -111,7 +110,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       FormModel formModel;
 
       try {
-        Class clazz = cl.loadClass(FORM_MODEL_PACKAGE + "." + item.getClass().getSimpleName() + FORM_MODEL_SUFFIX);
+        Class clazz = cl.loadClass(Packages.FORM_MODEL_PACKAGE + "." + item.getClass().getSimpleName() + FORM_MODEL_SUFFIX);
         formModel = (FormModel) clazz.newInstance();
       } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
         formModel = new DefaultFormModel();

@@ -9,7 +9,11 @@ public class PlaylistFormModel extends FormModel {
     super.PROPERTY_ORDER = new String[]{
       "id",
       "name",
+      "category",
       "description",
+      "languageCode",
+      "providerName",
+      "code",
       "videos",
       "created",
       "lastModified"

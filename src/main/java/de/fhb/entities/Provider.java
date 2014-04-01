@@ -30,4 +30,9 @@ public class Provider implements Serializable {
     this.providerName = providerName;
   }
 
+  @Override
+  public String toString() {
+    return this.getProviderName();
+  }
+
 }

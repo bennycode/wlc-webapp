@@ -36,4 +36,9 @@ public class Language implements Serializable {
     this.languageCode = languageCode;
   }
 
+  @Override
+  public String toString() {
+    return this.getLanguageCode();
+  }
+
 }
