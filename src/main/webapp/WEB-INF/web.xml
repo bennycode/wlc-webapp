@@ -29,12 +29,16 @@
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
   <session-config>
-    <session-timeout>
-      30
-    </session-timeout>
+    <session-timeout>30</session-timeout>
+    <cookie-config>
+      <name>id</name>
+      <http-only>true</http-only>
+      <secure>true</secure>
+    </cookie-config>
+    <tracking-mode>COOKIE</tracking-mode>
   </session-config>
   <!-- Admin page filter -->
-<!--  <filter>
+  <!--  <filter>
     <filter-name>AdminPagesFilter</filter-name>
     <filter-class>com.welovecoding.web.security.AdminPagesFilter</filter-class>
   </filter>
