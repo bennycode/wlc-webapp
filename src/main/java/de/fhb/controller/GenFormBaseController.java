@@ -7,6 +7,7 @@ import de.fhb.view.forms.DefaultFormModel;
 import de.fhb.view.forms.FormInput;
 import de.fhb.view.forms.FormModel;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -256,7 +257,8 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       for (Field field : objectFields) {
         System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
 
-        if (checkGetterPresent(obj.getClass(), field) && isJavaLang(field.getType())) {
+        if (checkGetterPresent(obj.getClass(), field)
+                && (isJavaLang(field.getType()) || isDomainType(field.getType()))) {
           attributes.put(field.getName(), field.getType());
         }
       }
@@ -302,6 +304,19 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     } else {
       return type.getPackage().getName().startsWith("java.");
     }
+  }
+
+  /**
+   * TODO: Display dropdown with all possible values from the domain type.
+   *
+   * @param type
+   * @return
+   */
+  private boolean isDomainType(Class<?> type) {
+    String itemPackage = type.getPackage().getName();
+    String domainPackage = BaseEntity.class.getPackage().getName();
+
+    return itemPackage.equals(domainPackage);
   }
 
 }

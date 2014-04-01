@@ -22,6 +22,7 @@ public class VideoResource {
   private VideoService videoService;
 
   // http://welovecoding.com/rest/service/v1/playlist/8
+  // http://localhost:8080/wlc-webapp/rest/fhb/v1/playlist/8
   public VideoResource() {
   }
 

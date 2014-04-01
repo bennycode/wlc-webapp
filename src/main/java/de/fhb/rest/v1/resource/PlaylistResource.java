@@ -22,7 +22,7 @@ public class PlaylistResource {
   private PlaylistService playlistService;
 
   // http://welovecoding.com/rest/service/v1/category/1
-  // http://localhost:8080/wlc_webapp/rest/fhb/v1/categories
+  // http://localhost:8080/wlc-webapp/rest/fhb/v1/category/1
   public PlaylistResource() {
   }
 

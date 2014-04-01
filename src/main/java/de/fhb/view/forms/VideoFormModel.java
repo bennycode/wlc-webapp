@@ -11,6 +11,11 @@ public class VideoFormModel extends FormModel {
       "id",
       "name",
       "description",
+      "playlist",
+      "code",
+      "previewImageUrl",
+      "downloadUrl",
+      "permalink",
       "created",
       "lastModified"
     };
