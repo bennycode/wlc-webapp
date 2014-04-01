@@ -10,9 +10,14 @@
     <param-name>javax.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
   </context-param>
+  <!-- http://docs.oracle.com/javaee/6/tutorial/doc/gircz.html#gkcrg -->
   <context-param>
-    <!-- http://docs.oracle.com/javaee/6/tutorial/doc/gircz.html#gkcrg -->
     <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <!-- http://stackoverflow.com/questions/18789547/viewexpiredexception-when-i-use-viewscoped -->
+  <context-param>
+    <param-name>javax.faces.SERIALIZE_SERVER_STATE</param-name>
     <param-value>true</param-value>
   </context-param>
   <!-- Servlet declarations -->

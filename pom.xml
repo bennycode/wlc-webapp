@@ -330,15 +330,15 @@
         </executions>
         <configuration>
           <excludes>
-            <!--            <exclude>**/CategoryResourceTest.java</exclude>
+            <exclude>**/CategoryResourceTest.java</exclude>
             <exclude>**/PlaylistResourceTest.java</exclude>
-            <exclude>**/VideoResourceTest.java</exclude>-->
+            <exclude>**/VideoResourceTest.java</exclude>
           </excludes>
           <properties>
-            <property>
+<!--            <property>
               <name>listener</name>
-              <value>util.IntegrationTestRunListener</value>
-            </property>
+              <value>util.TestRunListener</value>
+            </property>-->
           </properties>
           <systemPropertyVariables>
             <jdbcURL>${jdbc.url}</jdbcURL>
