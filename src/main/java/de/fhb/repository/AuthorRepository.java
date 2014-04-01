@@ -1,6 +1,7 @@
 package de.fhb.repository;
 
-import com.welovecoding.web.config.Names;
+import de.fhb.config.Packages;
+import static de.fhb.config.Packages.PERSISTENCE_UNIT_NAME;
 import de.fhb.entities.Author;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -10,7 +11,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class AuthorRepository extends AbstractRepository<Author> {
 
-  @PersistenceContext(unitName = Names.PERSISTENCE_UNIT_NAME)
+  @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
   EntityManager em;
 
   @Override

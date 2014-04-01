@@ -1,13 +1,14 @@
 package com.welovecoding.web.registration;
 
-import com.welovecoding.web.config.Names;
+import de.fhb.config.Packages;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
 public class UserRepository {
-  @PersistenceContext(unitName = Names.PERSISTENCE_UNIT_NAME)
+
+  @PersistenceContext(unitName = Packages.PERSISTENCE_UNIT_NAME)
   EntityManager em;
 
   public UserRepository() {

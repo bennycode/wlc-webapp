@@ -1,6 +1,6 @@
 package de.fhb.repository;
 
-import com.welovecoding.web.config.Names;
+import static de.fhb.config.Packages.PERSISTENCE_UNIT_NAME;
 import de.fhb.entities.Category;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class CategoryRepository extends AbstractRepository<Category> {
 
-  @PersistenceContext(unitName = Names.PERSISTENCE_UNIT_NAME)
+  @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
   EntityManager em;
 
   @Override

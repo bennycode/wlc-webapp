@@ -5,7 +5,7 @@ import de.fhb.entities.Author;
 import de.fhb.entities.Category;
 import de.fhb.entities.Playlist;
 import de.fhb.entities.Video;
-import de.fhb.navigation.Pages;
+import de.fhb.config.Pages;
 import de.fhb.service.AuthorService;
 import de.fhb.service.CategoryService;
 import de.fhb.service.PlaylistService;

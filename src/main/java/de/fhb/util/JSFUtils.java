@@ -7,11 +7,13 @@ import javax.el.ELException;
 import javax.el.MethodExpression;
 import javax.el.ValueExpression;
 import javax.faces.application.Application;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlCommandLink;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
 import javax.faces.event.MethodExpressionActionListener;
@@ -26,6 +28,16 @@ import javax.servlet.http.HttpServletRequest;
 public class JSFUtils implements Serializable {
 
   private static final long serialVersionUID = 4005663315445526130L;
+
+  public static void addErrorMessage(String msg) {
+    FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
+    FacesContext.getCurrentInstance().addMessage(null, facesMsg);
+  }
+
+  public static void addSuccessMessage(String msg) {
+    FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg);
+    FacesContext.getCurrentInstance().addMessage("successInfo", facesMsg);
+  }
 
   /**
    * Creates a {@link ValueExpression} that wraps an object instance. This
@@ -130,22 +142,6 @@ public class JSFUtils implements Serializable {
     FacesContext context = FacesContext.getCurrentInstance();
     return context.getApplication().getExpressionFactory()
             .createMethodExpression(context.getELContext(), methodExpression, expectedReturnType, expectedParamTypes);
-  }
-
-  /**
-   * This is a convenience method that produces an {@link MethodExpression} to
-   * handle an {@link ActionEvent}.
-   *
-   * @param expression The expression to be parsed.
-   * @return The parsed expression.
-   * @see JSFUtils#createMethodExpression(java.lang.String, java.lang.Class,
-   * java.lang.Class<?>[])
-   * @see JSFUtils#createActionEventMethodExpression(java.lang.String)
-   * @deprecated
-   */
-  @Deprecated
-  public static MethodExpression createActionEventListenerMethodExpression(final String expression) {
-    return createActionEventMethodExpression(expression);
   }
 
   /**
@@ -285,6 +281,15 @@ public class JSFUtils implements Serializable {
    */
   public static String getImplementationVersion() {
     return FacesContext.getCurrentInstance().getClass().getPackage().getImplementationVersion();
+  }
+
+  public static String getRequestParameter(String key) {
+    return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(key);
+  }
+
+  public static Object getObjectFromRequestParameter(String requestParameterName, Converter converter, UIComponent component) {
+    String theId = getRequestParameter(requestParameterName);
+    return converter.getAsObject(FacesContext.getCurrentInstance(), component, theId);
   }
 
   /**

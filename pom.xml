@@ -38,6 +38,7 @@
     <jdbc.password>123456</jdbc.password>
     <sql.driver.version>5.1.29</sql.driver.version>
     
+    <!-- TODO: Typo -->
     <gf.remote.adress>0.0.0.0</gf.remote.adress>
     <gf.remote.port>4848</gf.remote.port>
     <gf.remote.username>admin</gf.remote.username>

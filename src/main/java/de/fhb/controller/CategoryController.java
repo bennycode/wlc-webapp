@@ -1,7 +1,7 @@
 package de.fhb.controller;
 
 import de.fhb.entities.Category;
-import de.fhb.navigation.Pages;
+import de.fhb.config.Pages;
 import de.fhb.service.CategoryService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

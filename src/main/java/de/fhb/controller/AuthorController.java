@@ -1,7 +1,7 @@
 package de.fhb.controller;
 
 import de.fhb.entities.Author;
-import de.fhb.navigation.Pages;
+import de.fhb.config.Pages;
 import de.fhb.service.AuthorService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

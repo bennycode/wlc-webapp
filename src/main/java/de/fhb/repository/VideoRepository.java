@@ -1,6 +1,6 @@
 package de.fhb.repository;
 
-import com.welovecoding.web.config.Names;
+import static de.fhb.config.Packages.PERSISTENCE_UNIT_NAME;
 import de.fhb.entities.Video;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +19,7 @@ public class VideoRepository extends AbstractRepository<Video> {
     super(Video.class);
   }
 
-  @PersistenceContext(unitName = Names.PERSISTENCE_UNIT_NAME)
+  @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
   EntityManager em;
 
   @Override

@@ -1,4 +1,4 @@
-package de.fhb.navigation;
+package de.fhb.config;
 
 public class Pages {
 

@@ -1,6 +1,6 @@
 package com.welovecoding.web.security;
 
-import de.fhb.navigation.Pages;
+import de.fhb.config.Pages;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.Filter;

@@ -1,7 +1,7 @@
 package de.fhb.rest.v1;
 
-import de.fhb.navigation.Packages;
-import static de.fhb.navigation.Pages.REST_VERSION_1;
+import de.fhb.config.Packages;
+import static de.fhb.config.Pages.REST_VERSION_1;
 import javax.ws.rs.ApplicationPath;
 import org.glassfish.jersey.CommonProperties;
 import org.glassfish.jersey.filter.LoggingFilter;

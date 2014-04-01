@@ -1,16 +1,12 @@
 package de.fhb.repository;
 
-import com.welovecoding.web.config.Names;
+import static de.fhb.config.Packages.PERSISTENCE_UNIT_NAME;
 import de.fhb.entities.Playlist;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author MacYser
- */
 @Stateless
 //@Interceptors({EJBLoggerInterceptor.class})
 public class PlaylistRepository extends AbstractRepository<Playlist> {
@@ -19,7 +15,7 @@ public class PlaylistRepository extends AbstractRepository<Playlist> {
     super(Playlist.class);
   }
 
-  @PersistenceContext(unitName = Names.PERSISTENCE_UNIT_NAME)
+  @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
   EntityManager em;
 
   @Override
