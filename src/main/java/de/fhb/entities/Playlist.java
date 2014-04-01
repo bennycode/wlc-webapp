@@ -35,7 +35,6 @@ public class Playlist extends BaseEntity {
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist")
   private List<Video> videos;
 
-  @Column(unique = true)
   private String code;
 
   @Embedded
