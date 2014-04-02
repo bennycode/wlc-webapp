@@ -16,11 +16,12 @@ public class CategoryService extends BaseService<Category, CategoryRepository> {
 
   @EJB
   private CategoryRepository repository;
+  @EJB
   private OwnCacheServerService cacheService;
 
   public CategoryService() {
     super(Category.class);
-    cacheService = OwnCacheServerService.getInstance();
+//    cacheService = OwnCacheServerService.getInstance();
   }
 
   @PostConstruct
