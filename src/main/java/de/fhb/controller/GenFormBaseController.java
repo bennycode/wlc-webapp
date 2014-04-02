@@ -307,7 +307,8 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
   /**
    * TODO: Display dropdown with all possible values from the domain type.
-   *
+   * TODO: Instead string comparision of package name, we should check if
+   * the type is an extension of "BaseEntity"
    * @param type
    * @return
    */
@@ -315,7 +316,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     String itemPackage = type.getPackage().getName();
     String domainPackage = BaseEntity.class.getPackage().getName();
 
-    return itemPackage.equals(domainPackage);
+    return itemPackage.startsWith(domainPackage);
   }
 
 }
