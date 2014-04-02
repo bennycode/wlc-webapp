@@ -49,13 +49,11 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
   /**
    * TODO: https://github.com/Yserz/OwnSimpleCache/issues/2
    */
-  private void invalidateRelatedCaches() {
-    /*
-     String dtoFullQualifiedName = "de.fhb.rest.v1.dto." + entityClass.getSimpleName() + "DTO";
-     getCache().invalidateCache("javax.ws.rs.core.Response", null);
-     getCache().invalidateCache(dtoFullQualifiedName, null);
-     getCache().invalidateCache("java.util.List", dtoFullQualifiedName);
-     */
+  protected void invalidateRelatedCaches() {
+    String dtoFullQualifiedName = "de.fhb.rest.v1.dto." + entityClass.getSimpleName() + "DTO";
+    getCache().invalidateCache("javax.ws.rs.core.Response", null);
+    getCache().invalidateCache(dtoFullQualifiedName, null);
+    getCache().invalidateCache("java.util.List", dtoFullQualifiedName);
   }
 
 }
