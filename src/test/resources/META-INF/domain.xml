@@ -22,73 +22,31 @@
   </security-configurations>
   <managed-job-config></managed-job-config>
   <system-applications>
-    <!--    <application context-root="" location="${com.sun.aas.installRootURI}/lib/install/applications/__admingui" name="__admingui" directory-deployed="true" object-type="system-admin">
-      <module name="__admingui">
-        <engine sniffer="web"></engine>
-        <engine sniffer="security"></engine>
-      </module>
-    </application>-->
   </system-applications>
   <resources>
-    <!--<jdbc-resource pool-name="SamplePool" jndi-name="jdbc/sample"></jdbc-resource>-->
     <jdbc-resource pool-name="__TimerPool" jndi-name="jdbc/__TimerPool" object-type="system-admin"></jdbc-resource>
     <jdbc-resource pool-name="DerbyPool" jndi-name="jdbc/__default" object-type="system-all"></jdbc-resource>
     <jdbc-connection-pool datasource-classname="org.apache.derby.jdbc.EmbeddedXADataSource" res-type="javax.sql.XADataSource" name="__TimerPool">
       <property name="databaseName" value="${com.sun.aas.instanceRoot}/lib/databases/ejbtimer"></property>
       <property name="connectionAttributes" value=";create=true"></property>
     </jdbc-connection-pool>
-    <!--    <jdbc-connection-pool datasource-classname="org.apache.derby.jdbc.ClientDataSource" is-isolation-level-guaranteed="false" res-type="javax.sql.DataSource" name="DerbyPool">
-      <property name="PortNumber" value="1527"></property>
-      <property name="Password" value="APP"></property>
-      <property name="User" value="APP"></property>
-      <property name="serverName" value="localhost"></property>
-      <property name="DatabaseName" value="sun-appserv-samples"></property>
-      <property name="connectionAttributes" value=";create=true"></property>
-    </jdbc-connection-pool>-->
-    <!--    <jdbc-connection-pool datasource-classname="org.apache.derby.jdbc.ClientDataSource" res-type="javax.sql.DataSource" name="SamplePool">
-      <property name="DatabaseName" value="sample"></property>
-      <property name="User" value="app"></property>
-      <property name="Password" value="app"></property>
-      <property name="URL" value="jdbc:derby://localhost:1527/sample"></property>
-      <property name="PortNumber" value="1527"></property>
-      <property name="serverName" value="localhost"></property>
-    </jdbc-connection-pool>-->
     <connector-connection-pool max-pool-size="250" steady-pool-size="1" name="jms/__defaultConnectionFactory-Connection-Pool" resource-adapter-name="jmsra" connection-definition-name="javax.jms.ConnectionFactory"></connector-connection-pool>
     <connector-resource pool-name="jms/__defaultConnectionFactory-Connection-Pool" jndi-name="jms/__defaultConnectionFactory" object-type="system-all-req"></connector-resource>
     <managed-executor-service jndi-name="concurrent/__defaultManagedExecutorService" object-type="system-all"></managed-executor-service>
     <managed-scheduled-executor-service jndi-name="concurrent/__defaultManagedScheduledExecutorService" object-type="system-all"></managed-scheduled-executor-service>
     <managed-thread-factory jndi-name="concurrent/__defaultManagedThreadFactory" object-type="system-all"></managed-thread-factory>
     <context-service jndi-name="concurrent/__defaultContextService" object-type="system-all"></context-service>
-    <!--    <jdbc-connection-pool connection-validation-method="auto-commit" datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" wrap-jdbc-objects="false" res-type="javax.sql.DataSource" name="mysql_welovecoding_welovecodingPool" idle-timeout-in-seconds="170">
-      <property name="URL" value="jdbc:mysql://localhost:3306/welovecoding"></property>
-      <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
-      <property name="Password" value="123456"></property>
-      <property name="portNumber" value="3306"></property>
-      <property name="databaseName" value="welovecoding"></property>
-      <property name="User" value="welovecoding"></property>
-      <property name="serverName" value="localhost"></property>
-    </jdbc-connection-pool>-->
-    <!--<jdbc-resource pool-name="mysql_welovecoding_welovecodingPool" jndi-name="jdbc/welovecoding"></jdbc-resource>-->
-    <admin-object-resource res-adapter="jmsra" res-type="javax.jms.Topic" description="JMS CacheTopic." jndi-name="jms/CacheTopic">
-      <property name="Name" value="cacheTopic"></property>
-    </admin-object-resource>
-    <connector-connection-pool max-pool-size="250" steady-pool-size="1" name="jms/CacheTopicConnectionFactory-Connection-Pool" resource-adapter-name="jmsra" connection-definition-name="javax.jms.ConnectionFactory" transaction-support=""></connector-connection-pool>
-    <connector-resource pool-name="jms/CacheTopicConnectionFactory-Connection-Pool" jndi-name="jms/CacheTopicConnectionFactory"></connector-resource>
   </resources>
   <servers>
     <server name="server" config-ref="server-config">
       <application-ref ref="__admingui" virtual-servers="__asadmin"></application-ref>
       <resource-ref ref="jdbc/__TimerPool"></resource-ref>
       <resource-ref ref="jdbc/__default"></resource-ref>
-      <!--<resource-ref ref="jdbc/sample"></resource-ref>-->
       <resource-ref ref="jms/__defaultConnectionFactory"></resource-ref>
       <resource-ref ref="concurrent/__defaultManagedExecutorService"></resource-ref>
       <resource-ref ref="concurrent/__defaultManagedScheduledExecutorService"></resource-ref>
       <resource-ref ref="concurrent/__defaultManagedThreadFactory"></resource-ref>
       <resource-ref ref="concurrent/__defaultContextService"></resource-ref>
-      <resource-ref ref="jdbc/welovecoding"></resource-ref>
-      <resource-ref ref="jms/CacheTopic"></resource-ref>
-      <resource-ref ref="jms/CacheTopicConnectionFactory"></resource-ref>
     </server>
   </servers>
   <nodes>
@@ -100,7 +58,6 @@
       <http-service>
         <access-log></access-log>
         <virtual-server id="server" network-listeners="http-listener-1,http-listener-2"></virtual-server>
-        <!--<virtual-server id="__asadmin" network-listeners="admin-listener"></virtual-server>-->
       </http-service>
       <iiop-service>
         <orb use-thread-pool-ids="thread-pool-1"></orb>
@@ -245,16 +202,10 @@
             </http>
             <ssl classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" ssl3-enabled="false" cert-nickname="s1as"></ssl>
           </protocol>
-          <!--          <protocol name="admin-listener">
-            <http default-virtual-server="__asadmin" max-connections="250" encoded-slash-enabled="true">
-              <file-cache></file-cache>
-            </http>
-          </protocol>-->
         </protocols>
         <network-listeners>
           <network-listener port="9090" protocol="http-listener-1" transport="tcp" name="http-listener-1" thread-pool="http-thread-pool"></network-listener>
           <network-listener port="9191" protocol="http-listener-2" transport="tcp" name="http-listener-2" thread-pool="http-thread-pool"></network-listener>
-          <!--<network-listener port="5858" protocol="admin-listener" transport="tcp" name="admin-listener" thread-pool="admin-thread-pool"></network-listener>-->
         </network-listeners>
         <transports>
           <transport name="tcp"></transport>
