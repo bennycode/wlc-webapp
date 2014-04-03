@@ -104,8 +104,13 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
   }
 
   public int getTotalPages() {
+    if (amount == 0) {
+      return 1;
+    }
+
     int pages = getItemSize() / amount;
     int mod = getItemSize() % amount;
+
     if (mod > 0) {
       pages += 1;
     }
