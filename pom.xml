@@ -9,7 +9,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>wlc-webapp</name>
+  <name>${project.artifactId}</name>
   
   <developers>
     <developer>
@@ -225,6 +225,7 @@
 
 
   <build>
+    <finalName>${project.artifactId}</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -235,7 +236,7 @@
           <target>1.7</target>
           <compilerArguments>
             <endorseddirs>${endorsed.dir}</endorseddirs>
-            <!-- http://stackoverflow.com/a/14298133/451634 -->
+            <!--http://stackoverflow.com/a/14298133/451634--> 
             <proc:none/>
           </compilerArguments>
         </configuration>
@@ -245,7 +246,10 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>2.3</version>
         <configuration>
+          <!--<outputFileNameMapping>@{groupId}@-@{artifactId}@-@{baseVersion}@@{dashClassifier?}@.@{extension}@</outputFileNameMapping>-->
+          <outputFileNameMapping>@{artifactId}@.@{extension}@</outputFileNameMapping>
           <failOnMissingWebXml>false</failOnMissingWebXml>
+          <warName>${project.artifactId}</warName>
         </configuration>
       </plugin>
       <plugin>
@@ -294,12 +298,11 @@
         </executions>
       </plugin>
       <!-- TESTPLUGINS -->
-      <plugin>
+      <!--      <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>2.6</version>
         <executions>
           <execution>
-            <!-- Override prod-persistence.xml with test-persistence.xml -->
             <id>copy-classes-to-embedded</id>
             <phase>test-compile</phase>
             <goals>
@@ -322,7 +325,7 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
+      </plugin>-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>

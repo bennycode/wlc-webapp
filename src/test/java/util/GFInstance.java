@@ -50,7 +50,13 @@ public class GFInstance {
 
     deployer = glassfish.getDeployer();
     archive = new ScatteredArchive(APP_NAME, ScatteredArchive.Type.WAR);
-    archive.addClassPath(new File("target", "embedded-classes"));
+//    archive.addClassPath(new File("target", "embedded-classes"));
+    archive.addClassPath(new File("target", "classes"));
+    archive.addClassPath(new File("target", "test-classes"));
+
+    for (File jar : new File("target", "wlc-webapp/WEB-INF/lib/").listFiles()) {
+      archive.addClassPath(jar);
+    }
 
   }
 
