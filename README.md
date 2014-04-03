@@ -76,6 +76,7 @@ Project configuration:
 - [http://developers.google.com/speed/pagespeed/insights/?url=wwww.welovecoding.com&tab=desktop](http://developers.google.com/speed/pagespeed/insights/?url=wwww.welovecoding.com&tab=desktop)
 - [http://validator.w3.org/check?uri=wwww.welovecoding.com](http://validator.w3.org/check?uri=wwww.welovecoding.com)
 - [http://tools.quicksprout.com/analyze/www.welovecoding.com](http://tools.quicksprout.com/analyze/www.welovecoding.com)
+- [Load testing from the cloud (free credits)](https://www.blitz.io/bKjFTlt40QR0nr7aXHFJ0Y)
 
 ##REST service##
 - [http://localhost:8080/wlc_webapp/rest/fhb/v1/categories](http://localhost:8080/wlc_webapp/rest/fhb/v1/categories)
