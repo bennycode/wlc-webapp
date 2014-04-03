@@ -45,14 +45,10 @@ public class GFInstance {
 
     glassfish.start();
 
-    createJDBCConnectionPool(glassfish);
-    createJDBCResourceJNDI(glassfish);
-
     deployer = glassfish.getDeployer();
     archive = new ScatteredArchive(APP_NAME, ScatteredArchive.Type.WAR);
-//    archive.addClassPath(new File("target", "embedded-classes"));
     archive.addClassPath(new File("target", "classes"));
-    archive.addClassPath(new File("target", "test-classes"));
+    archive.addMetadata(new File("target", "wlc-webapp/WEB-INF/glassfish-resources.xml"));
 
     for (File jar : new File("target", "wlc-webapp/WEB-INF/lib/").listFiles()) {
       archive.addClassPath(jar);
@@ -64,6 +60,7 @@ public class GFInstance {
     glassfish.dispose();
   }
 
+  @Deprecated
   public static void createJDBCResourceJNDI(GlassFish glassfish) throws GlassFishException {
     CommandRunner commandRunner = glassfish.getCommandRunner();
     CommandResult result = commandRunner.run(
@@ -79,6 +76,7 @@ public class GFInstance {
     System.out.println(result.getFailureCause());
   }
 
+  @Deprecated
   public static void createJDBCConnectionPool(GlassFish glassfish) throws GlassFishException {
     CommandRunner commandRunner = glassfish.getCommandRunner();
 

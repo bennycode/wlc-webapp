@@ -69,11 +69,11 @@
       <property name="serverName" value="localhost"></property>
     </jdbc-connection-pool>-->
     <!--<jdbc-resource pool-name="mysql_welovecoding_welovecodingPool" jndi-name="jdbc/welovecoding"></jdbc-resource>-->
-    <admin-object-resource res-adapter="jmsra" res-type="javax.jms.Topic" description="JMS CacheTopic." jndi-name="jms/CacheTopic">
+    <!--    <admin-object-resource res-adapter="jmsra" res-type="javax.jms.Topic" description="JMS CacheTopic." jndi-name="jms/CacheTopic">
       <property name="Name" value="cacheTopic"></property>
-    </admin-object-resource>
-    <connector-connection-pool max-pool-size="250" steady-pool-size="1" name="jms/CacheTopicConnectionFactory-Connection-Pool" resource-adapter-name="jmsra" connection-definition-name="javax.jms.ConnectionFactory" transaction-support=""></connector-connection-pool>
-    <connector-resource pool-name="jms/CacheTopicConnectionFactory-Connection-Pool" jndi-name="jms/CacheTopicConnectionFactory"></connector-resource>
+    </admin-object-resource>-->
+    <!--    <connector-connection-pool max-pool-size="250" steady-pool-size="1" name="jms/CacheTopicConnectionFactory-Connection-Pool" resource-adapter-name="jmsra" connection-definition-name="javax.jms.ConnectionFactory" transaction-support=""></connector-connection-pool>
+    <connector-resource pool-name="jms/CacheTopicConnectionFactory-Connection-Pool" jndi-name="jms/CacheTopicConnectionFactory"></connector-resource>-->
   </resources>
   <servers>
     <server name="server" config-ref="server-config">
@@ -86,9 +86,9 @@
       <resource-ref ref="concurrent/__defaultManagedScheduledExecutorService"></resource-ref>
       <resource-ref ref="concurrent/__defaultManagedThreadFactory"></resource-ref>
       <resource-ref ref="concurrent/__defaultContextService"></resource-ref>
-      <resource-ref ref="jdbc/welovecoding"></resource-ref>
-      <resource-ref ref="jms/CacheTopic"></resource-ref>
-      <resource-ref ref="jms/CacheTopicConnectionFactory"></resource-ref>
+      <!--<resource-ref ref="jdbc/welovecoding"></resource-ref>-->
+      <!--      <resource-ref ref="jms/CacheTopic"></resource-ref>
+      <resource-ref ref="jms/CacheTopicConnectionFactory"></resource-ref>-->
     </server>
   </servers>
   <nodes>
