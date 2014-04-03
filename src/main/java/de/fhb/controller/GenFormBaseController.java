@@ -140,6 +140,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, property.getValue());
 
     HtmlInputText input = new HtmlInputText();
+    input.setId(key);
     input.setValueExpression("value", valueExpression);
 
     if (property.isReadOnly()) {

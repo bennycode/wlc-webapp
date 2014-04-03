@@ -42,3 +42,4 @@ build.properties
 *.ear
 /target/
 /faces-config.NavData
+*.log
