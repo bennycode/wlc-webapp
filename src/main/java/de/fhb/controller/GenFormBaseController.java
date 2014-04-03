@@ -1,5 +1,6 @@
 package de.fhb.controller;
 
+import de.fhb.config.Packages;
 import de.fhb.entities.BaseEntity;
 import de.fhb.service.BaseService;
 import de.fhb.util.JSFUtils;
@@ -27,7 +28,6 @@ import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
 import javax.servlet.http.HttpServletRequest;
-import de.fhb.config.Packages;
 
 /**
  * @param <T>
@@ -206,7 +206,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   }
 
   // http://showcase.omnifaces.org/converters/SelectItemsConverter
-  private UIComponent createSelection(FormInput property) {
+  private HtmlSelectOneMenu createSelection(FormInput property) {
     String key = property.getKey();
     Class<?> value = property.getValue();
 
@@ -255,19 +255,17 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
       // check for class
       for (Field field : objectFields) {
-        System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
-
         if (checkGetterPresent(obj.getClass(), field)
                 && (isJavaLang(field.getType()) || isDomainType(field.getType()))) {
+          System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
           attributes.put(field.getName(), field.getType());
         }
       }
 
       // check for superclass
       for (Field field : superclassFields) {
-        System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
-
         if (checkGetterPresent(obj.getClass().getSuperclass(), field) && isJavaLang(field.getType())) {
+          System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
           attributes.put(field.getName(), field.getType());
         }
       }
@@ -307,9 +305,10 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   }
 
   /**
-   * TODO: Display dropdown with all possible values from the domain type.
-   * TODO: Instead string comparision of package name, we should check if
-   * the type is an extension of "BaseEntity"
+   * TODO: Display dropdown with all possible values from the domain type. TODO:
+   * Instead string comparision of package name, we should check if the type is
+   * an extension of "BaseEntity"
+   *
    * @param type
    * @return
    */
