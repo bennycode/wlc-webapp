@@ -2,7 +2,7 @@ We Love Coding — Web App
 ==========
 This is an attempt to make **www.welovecoding.com** a better place...
 
-![](http://93.180.157.228:8080/buildStatus/icon?job=WeLoveCoding)
+![](http://93.180.157.228:8080/buildStatus/icon?job=WeLoveCoding_Test)
 
 ## Configuration: ##
 
