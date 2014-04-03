@@ -5,7 +5,11 @@
  */
 package util;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.glassfish.embeddable.CommandResult;
@@ -48,6 +52,8 @@ public class GFInstance {
     deployer = glassfish.getDeployer();
     archive = new ScatteredArchive(APP_NAME, ScatteredArchive.Type.WAR);
     archive.addClassPath(new File("target", "classes"));
+
+    System.out.println(readFile(new File("target", "wlc-webapp/WEB-INF/glassfish-resources.xml")));
     archive.addMetadata(new File("target", "wlc-webapp/WEB-INF/glassfish-resources.xml"));
 
     for (File jar : new File("target", "wlc-webapp/WEB-INF/lib/").listFiles()) {
@@ -70,7 +76,7 @@ public class GFInstance {
             /*"--description description", */
             /*"--property (property=value):name=value*", */
             /*"--target target", */
-            "jdbc/welovecoding");
+            "java:app/jdbc/welovecoding");
 
     System.out.println("createJDBCResourceJNDI-Result: " + result.getOutput());
     System.out.println(result.getFailureCause());
@@ -130,6 +136,24 @@ public class GFInstance {
 
     System.out.println("createJDBCConnectionPool-Result: " + result.getOutput());
     System.out.println(result.getFailureCause());
+  }
+
+  private static String readFile(File file) throws FileNotFoundException, IOException {
+    BufferedReader br = new BufferedReader(new FileReader(file));
+    String content = "";
+    try {
+      StringBuilder sb = new StringBuilder();
+      String line = br.readLine();
+      while (line != null) {
+        sb.append(line);
+        sb.append(System.lineSeparator());
+        line = br.readLine();
+      }
+      content = sb.toString();
+    } finally {
+      br.close();
+    }
+    return content;
   }
 
 }
