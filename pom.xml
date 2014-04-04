@@ -36,7 +36,7 @@
     <jdbc.url>jdbc:mysql://localhost:3306/welovecoding</jdbc.url>
     <jdbc.username>welovecoding</jdbc.username>
     <jdbc.password>123456</jdbc.password>
-    <sql.driver.version>5.1.29</sql.driver.version>
+    <sql.driver.version>5.1.30</sql.driver.version>
     
     <gf.remote.address>0.0.0.0</gf.remote.address>
     <gf.remote.port>4848</gf.remote.port>
