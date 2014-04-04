@@ -33,9 +33,9 @@
                         steady-pool-size="8"
                         validate-atmost-once-period-in-seconds="0"
                         wrap-jdbc-objects="false">
-    <property name="User" value="${jdbc.username}"/>
-    <property name="Password" value="${jdbc.password}"/>
-    <property name="URL" value="${jdbc.url}"/>
+    <property name="user" value="${jdbc.username}"/>
+    <property name="password" value="${jdbc.password}"/>
+    <property name="url" value="${jdbc.url}"/>
     <property name="driverClass" value="com.mysql.jdbc.Driver"/>
   </jdbc-connection-pool>
   <jdbc-resource enabled="true" jndi-name="java:app/jdbc/welovecoding" object-type="user" pool-name="mysql_welovecoding_welovecodingPool"/>
