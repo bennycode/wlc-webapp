@@ -376,7 +376,7 @@
                   <cargo.remote.port>${gf.remote.port}</cargo.remote.port>
                   <cargo.glassfish.domain.name>/domain1</cargo.glassfish.domain.name>
                   <!--<cargo.jvmargs>-XX:MaxPermSize=256M -Xmx512m</cargo.jvmargs>-->
-                  <cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024 -XX:+UseConcMarkSweepGC -XX:+CMSPermGenSweepingEnabled -XX:+CMSClassUnloadingEnabled</cargo.jvmargs>
+                  <!--<cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024 -XX:+UseConcMarkSweepGC -XX:+CMSPermGenSweepingEnabled -XX:+CMSClassUnloadingEnabled</cargo.jvmargs>-->
                 </properties>
               </configuration>
               <deployables>
