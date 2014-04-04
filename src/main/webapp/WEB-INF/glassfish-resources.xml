@@ -20,7 +20,7 @@
                         max-connection-usage-count="0"
                         max-pool-size="32"
                         max-wait-time-in-millis="60000"
-                        name="mysql_welovecoding_welovecodingPool"
+                        name="java:app/mysql_welovecoding_welovecodingPool"
                         non-transactional-connections="false"
                         ping="false"
                         pool-resize-quantity="2"
@@ -38,7 +38,7 @@
     <property name="url" value="${jdbc.url}"/>
     <property name="driverClass" value="com.mysql.jdbc.Driver"/>
   </jdbc-connection-pool>
-  <jdbc-resource enabled="true" jndi-name="java:app/jdbc/welovecoding" object-type="user" pool-name="mysql_welovecoding_welovecodingPool"/>
+  <jdbc-resource enabled="true" jndi-name="java:app/jdbc/welovecoding" object-type="user" pool-name="java:app/mysql_welovecoding_welovecodingPool"/>
   <!-- JMS for OwnSimpleCache -->
   <admin-object-resource res-adapter="jmsra" res-type="javax.jms.Topic" jndi-name="java:app/jms/CacheTopic">
     <description>JMS CacheTopic.</description>
