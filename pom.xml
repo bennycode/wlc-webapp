@@ -63,7 +63,7 @@
       <id>maven-own-repo</id>
       <layout>default</layout>
       <name>Own Repository</name>
-      <url>https://github.com/Yserz/OwnMavenRepo/raw/master</url>
+      <url>https://bitbucket.org/api/1.0/repositories/Yserz/ownmavenrepo/raw/HEAD/</url>
       <releases>
         <enabled>true</enabled>
         <!--<updatePolicy>always</updatePolicy>-->
