@@ -1,17 +1,14 @@
 package de.fhb.service;
 
 import de.fhb.entities.Playlist;
-import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import de.fhb.repository.PlaylistRepository;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
 
 @Stateless
-@Interceptors({EJBLoggerInterceptor.class})
 public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
 
   @EJB
@@ -41,6 +38,6 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
   public List<Playlist> getAllPlaylistsByCategory(long id) {
     // TODO Implement getAllPlaylistsByCategory(long)
     // Never return null. instead return an empty List
-    return new ArrayList<Playlist>();
+    return new ArrayList<>();
   }
 }

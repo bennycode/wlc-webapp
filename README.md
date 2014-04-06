@@ -80,3 +80,8 @@ Project configuration:
 
 ##REST service##
 - [http://localhost:8080/wlc_webapp/rest/fhb/v1/categories](http://localhost:8080/wlc_webapp/rest/fhb/v1/categories)
+
+##Lessons learned##
+
+- Avoid using component bindings to a bean that has session scope
+- Never assign FacesContext as instance variable of a view/session/application scoped managed bean, because the FacesContext instance is request scoped 

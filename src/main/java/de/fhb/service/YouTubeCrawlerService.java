@@ -6,7 +6,6 @@ import com.google.gdata.data.youtube.VideoFeed;
 import com.google.gdata.util.ServiceException;
 import de.fhb.entities.Playlist;
 import de.fhb.entities.Video;
-import de.fhb.logging.interceptor.EJBLoggerInterceptor;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,10 +16,8 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
-import javax.interceptor.Interceptors;
 
 @Singleton// could work as stateless bean
-@Interceptors({EJBLoggerInterceptor.class})
 public class YouTubeCrawlerService {
 
   private static final Logger LOG = Logger.getLogger(YouTubeCrawlerService.class.getName());

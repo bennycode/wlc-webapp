@@ -10,6 +10,7 @@ public class FormInput {
   private String key; // "lastModified"
   private Class<?> value;
   private boolean readOnly;
+  private String renderType;
 
   public FormInput() {
     this.readOnly = false;
@@ -59,6 +60,14 @@ public class FormInput {
 
   public void setValue(Class<?> value) {
     this.value = value;
+  }
+
+  public String getRenderType() {
+    return renderType;
+  }
+
+  public void setRenderType(String renderType) {
+    this.renderType = renderType;
   }
 
   @Override

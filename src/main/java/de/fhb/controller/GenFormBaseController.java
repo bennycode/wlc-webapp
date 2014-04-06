@@ -2,13 +2,16 @@ package de.fhb.controller;
 
 import de.fhb.config.Packages;
 import de.fhb.entities.BaseEntity;
+import de.fhb.entities.Category;
 import de.fhb.service.BaseService;
 import de.fhb.util.JSFUtils;
 import de.fhb.view.forms.DefaultFormModel;
 import de.fhb.view.forms.FormInput;
 import de.fhb.view.forms.FormModel;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -27,6 +30,7 @@ import javax.faces.component.html.HtmlOutputText;
 import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
+import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -136,7 +140,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   private HtmlInputText createInputField(FormInput property) {
     String key = property.getKey();
 
-    String jsfValue = String.format("#{%s.item.%s}", getELClassname(), key);
+    String jsfValue = String.format("#{%s.item.%s}", getControllerBeanName(), key);
     ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, property.getValue());
 
     HtmlInputText input = new HtmlInputText();
@@ -176,17 +180,30 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   private UIComponent createComponentByType(FormInput property) {
     UIComponent component;
     String className = property.getValue().getName();
+    String renderType = property.getRenderType();
 
-    switch (className) {
-      case "java.util.Date":
-        initDateTimePicker();
-        component = createDateInputField(property);
-        break;
-      case "java.util.List":
-        component = createSelection(property);
-        break;
-      default:
-        component = createInputField(property);
+    if (renderType != null) {
+      // New approach
+      switch (renderType) {
+        case HtmlSelectOneMenu.COMPONENT_TYPE:
+          component = createDropdown(property);
+          break;
+        default:
+          component = createInputField(property);
+      }
+    } else {
+      // Old strategy
+      switch (className) {
+        case "java.util.Date":
+          initDateTimePicker();
+          component = createDateInputField(property);
+          break;
+        case "java.util.List":
+          component = createSelection(property);
+          break;
+        default:
+          component = createInputField(property);
+      }
     }
 
     return component;
@@ -210,7 +227,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     String key = property.getKey();
     Class<?> value = property.getValue();
 
-    String jsfValue = String.format("#{%s.item.%s}", getELClassname(), key);
+    String jsfValue = String.format("#{%s.item.%s}", getControllerBeanName(), key);
     ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, value);
 
     UISelectItems items = new UISelectItems();
@@ -233,7 +250,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   }
 
   private HtmlCommandButton createSubmitButton(Application app) {
-    String jsfAction = String.format("#{%s.edit}", getELClassname());
+    String jsfAction = String.format("#{%s.edit}", getControllerBeanName());
     MethodExpression actionExpression = JSFUtils.createMethodExpression(jsfAction, Void.class, new Class<?>[0]);
 
     HtmlCommandButton button = new HtmlCommandButton();
@@ -278,7 +295,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     return Character.toUpperCase(line.charAt(0)) + line.substring(1);
   }
 
-  private String getELClassname() {
+  private String getControllerBeanName() {
     String classname = this.getClass().getSimpleName();
     classname = Character.toLowerCase(classname.charAt(0)) + classname.substring(1);
     return classname;
@@ -317,6 +334,35 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     String domainPackage = BaseEntity.class.getPackage().getName();
 
     return itemPackage.startsWith(domainPackage);
+  }
+
+  /**
+   * TODO: Approach works but it needs to get generic!
+   * @param property
+   * @return 
+   */
+  private UIComponent createDropdown(FormInput property) {
+    String key = property.getKey();
+    Class<?> expectedType = property.getValue();
+
+    String beanName = "categoryController";
+    CategoryController categoryController = (CategoryController) JSFUtils.getManagedBean(beanName);
+    List<Category> list = categoryController.getService().findAll();
+
+    List dropdownValues = new ArrayList();
+    for (Category category : list) {
+      dropdownValues.add(new SelectItem(category));
+    }
+
+    UISelectItems items = new UISelectItems();
+    items.setValue(dropdownValues);
+
+    HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
+    menu.setId(key);
+    menu.getChildren().add(items);
+    menu.setValue("Java");
+
+    return menu;
   }
 
 }

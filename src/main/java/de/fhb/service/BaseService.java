@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
+//@Interceptors({EJBLoggerInterceptor.class})
 public abstract class BaseService<T extends BaseEntity, E extends AbstractRepository<T>> {
 
   private final Class<T> entityClass;
@@ -46,9 +47,6 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
     return (List<T>) getRepository().findRange(startPosition, maxResult);
   }
 
-  /**
-   * TODO: https://github.com/Yserz/OwnSimpleCache/issues/2
-   */
   protected void invalidateRelatedCaches() {
     String dtoFullQualifiedName = "de.fhb.rest.v1.dto." + entityClass.getSimpleName() + "DTO";
     getCache().invalidateCache("javax.ws.rs.core.Response", null);

@@ -3,9 +3,11 @@ package de.fhb.util;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
+import javax.el.ELContext;
 import javax.el.ELException;
 import javax.el.MethodExpression;
 import javax.el.ValueExpression;
+import javax.faces.FacesException;
 import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -240,6 +242,31 @@ public class JSFUtils implements Serializable {
    */
   public static Object getBean(String beanName) {
     return FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get(beanName);
+  }
+
+  /**
+   * @param beanName
+   * @return
+   * @see
+   * http://www.javacodegeeks.com/2012/04/5-useful-methods-jsf-developers-should.html
+   */
+  public static Object getManagedBean(final String beanName) {
+    FacesContext fc = FacesContext.getCurrentInstance();
+    Object bean;
+
+    try {
+      ELContext elContext = fc.getELContext();
+      bean = elContext.getELResolver().getValue(elContext, null, beanName);
+    } catch (RuntimeException e) {
+      throw new FacesException(e.getMessage(), e);
+    }
+
+    if (bean == null) {
+      throw new FacesException("Managed bean with name '" + beanName
+              + "' was not found. Check your faces-config.xml or @ManagedBean annotation.");
+    }
+
+    return bean;
   }
 
   /**
