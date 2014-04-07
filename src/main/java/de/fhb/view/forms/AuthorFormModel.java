@@ -27,6 +27,7 @@ public class AuthorFormModel extends FormModel {
     // Parse each property and collect them in a map
     for (Map.Entry<String, Class<?>> property : properties.entrySet()) {
       FormInput input = new FormInput(property);
+      setDefaultRenderType(input);
 
       String key = input.getKey();
 

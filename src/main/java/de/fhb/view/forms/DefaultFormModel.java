@@ -11,6 +11,7 @@ public class DefaultFormModel extends FormModel {
     int i = 0;
     for (Map.Entry<String, Class<?>> property : properties.entrySet()) {
       FormInput input = new FormInput(property);
+      setDefaultRenderType(input);
       formFields[i] = input;
       i++;
     }

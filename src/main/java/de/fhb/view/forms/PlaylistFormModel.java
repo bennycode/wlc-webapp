@@ -2,7 +2,6 @@ package de.fhb.view.forms;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.faces.component.html.HtmlSelectOneMenu;
 
 public class PlaylistFormModel extends FormModel {
 
@@ -39,7 +38,9 @@ public class PlaylistFormModel extends FormModel {
       }
 
       if (key.equals("category")) {
-        input.setRenderType(HtmlSelectOneMenu.COMPONENT_TYPE);
+        input.setRenderType(RenderType.DROPDOWN);
+      } else {
+        setDefaultRenderType(input);
       }
 
       inputs.put(key, input);

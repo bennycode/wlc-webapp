@@ -8,6 +8,7 @@ import de.fhb.util.JSFUtils;
 import de.fhb.view.forms.DefaultFormModel;
 import de.fhb.view.forms.FormInput;
 import de.fhb.view.forms.FormModel;
+import de.fhb.view.forms.RenderType;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -179,31 +180,21 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
    */
   private UIComponent createComponentByType(FormInput property) {
     UIComponent component;
-    String className = property.getValue().getName();
-    String renderType = property.getRenderType();
+    RenderType renderType = property.getRenderType();
 
-    if (renderType != null) {
-      // New approach
-      switch (renderType) {
-        case HtmlSelectOneMenu.COMPONENT_TYPE:
-          component = createDropdown(property);
-          break;
-        default:
-          component = createInputField(property);
-      }
-    } else {
-      // Old strategy
-      switch (className) {
-        case "java.util.Date":
-          initDateTimePicker();
-          component = createDateInputField(property);
-          break;
-        case "java.util.List":
-          component = createSelection(property);
-          break;
-        default:
-          component = createInputField(property);
-      }
+    switch (renderType) {
+      case DATETIME:
+        initDateTimePicker();
+        component = createDateInputField(property);
+        break;
+      case DROPDOWN:
+        component = createDropdown(property);
+        break;
+      case LIST:
+        component = createSelection(property);
+        break;
+      default:
+        component = createInputField(property);
     }
 
     return component;
@@ -338,14 +329,15 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
   /**
    * TODO: Approach works but it needs to get generic!
+   *
    * @param property
-   * @return 
+   * @return
    */
   private UIComponent createDropdown(FormInput property) {
     String key = property.getKey();
     Class<?> expectedType = property.getValue();
 
-    String beanName = "categoryController";
+    String beanName = key + "Controller";
     CategoryController categoryController = (CategoryController) JSFUtils.getManagedBean(beanName);
     List<Category> list = categoryController.getService().findAll();
 
