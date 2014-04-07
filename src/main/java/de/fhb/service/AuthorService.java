@@ -20,7 +20,6 @@ public class AuthorService extends BaseService<Author, AuthorRepository> {
 
   public AuthorService() {
     super(Author.class);
-//    cacheService = OwnCacheServerService.getInstance();
   }
 
   @PostConstruct
@@ -36,10 +35,6 @@ public class AuthorService extends BaseService<Author, AuthorRepository> {
   @Override
   protected OwnCacheServerService getCache() {
     return cacheService;
-  }
-
-  public long getAuthorCount() {
-    return repository.getAuthorCount();
   }
 
 }

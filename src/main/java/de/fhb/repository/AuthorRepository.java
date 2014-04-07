@@ -1,6 +1,5 @@
 package de.fhb.repository;
 
-import de.fhb.config.Packages;
 import static de.fhb.config.Packages.PERSISTENCE_UNIT_NAME;
 import de.fhb.entities.Author;
 import java.util.List;
@@ -21,10 +20,6 @@ public class AuthorRepository extends AbstractRepository<Author> {
 
   public AuthorRepository() {
     super(Author.class);
-  }
-
-  public long getAuthorCount() {
-    return em.createNamedQuery(Author.GET_COUNT, Long.class).getSingleResult().intValue();
   }
 
   public List<Author> getAuthors() {

@@ -18,7 +18,6 @@ public class VideoService extends BaseService<Video, VideoRepository> {
 
   public VideoService() {
     super(Video.class);
-//    cacheService = OwnCacheServerService.getInstance();
   }
 
   @Override

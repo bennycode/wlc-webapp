@@ -41,6 +41,6 @@ public class AuthorController
   }
 
   public long getAuthorCount() {
-    return service.getAuthorCount();
+    return service.count();
   }
 }

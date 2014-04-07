@@ -47,6 +47,10 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
     return (List<T>) getRepository().findRange(startPosition, maxResult);
   }
 
+  public int count() {
+    return getRepository().count();
+  }
+
   protected void invalidateRelatedCaches() {
     String dtoFullQualifiedName = "de.fhb.rest.v1.dto." + entityClass.getSimpleName() + "DTO";
     getCache().invalidateCache("javax.ws.rs.core.Response", null);

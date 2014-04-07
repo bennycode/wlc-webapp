@@ -18,7 +18,6 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
 
   public PlaylistService() {
     super(Playlist.class);
-//    cacheService = OwnCacheServerService.getInstance();
   }
 
   @Override

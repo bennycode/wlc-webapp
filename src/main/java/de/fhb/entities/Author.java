@@ -7,13 +7,10 @@ import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({
-  @NamedQuery(name = "Author.findAll", query = "SELECT a FROM Author a"),
-  @NamedQuery(name = "Author.getCount", query = "SELECT COUNT(a) FROM Author a")
-})
+  @NamedQuery(name = "Author.findAll", query = "SELECT a FROM Author a"),})
 public class Author extends BaseEntity {
 
   public static final String FIND_ALL = "Author.findAll";
-  public static final String GET_COUNT = "Author.getCount";
 
   @Size(min = 0, max = 255)
   private String description;

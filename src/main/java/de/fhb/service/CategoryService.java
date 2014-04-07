@@ -18,7 +18,6 @@ public class CategoryService extends BaseService<Category, CategoryRepository> {
 
   public CategoryService() {
     super(Category.class);
-//    cacheService = OwnCacheServerService.getInstance();
   }
 
   @PostConstruct
