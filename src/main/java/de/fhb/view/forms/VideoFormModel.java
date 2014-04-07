@@ -5,7 +5,7 @@ import java.util.Map;
 
 // Convention: FormModels have to be called <EntityName>FormModel.java and extends abstract class FormModel
 public class VideoFormModel extends FormModel {
-
+  
   public VideoFormModel() {
     super.PROPERTY_ORDER = new String[]{
       "id",
@@ -20,7 +20,7 @@ public class VideoFormModel extends FormModel {
       "lastModified"
     };
   }
-
+  
   @Override
   public FormInput[] parseProperties(Map<String, Class<?>> properties) {
     int size = PROPERTY_ORDER.length;
@@ -31,13 +31,17 @@ public class VideoFormModel extends FormModel {
     for (Map.Entry<String, Class<?>> property : properties.entrySet()) {
       FormInput input = new FormInput(property);
       setDefaultRenderType(input);
-
+      
       String key = input.getKey();
-
+      
       if (key.equals("id") || key.equals("created") || key.equals("lastModified")) {
         input.setReadOnly(true);
       }
-
+      
+      if (key.equals("playlist")) {
+        input.setRenderType(RenderType.DROPDOWN);
+      }
+      
       inputs.put(key, input);
     }
 
@@ -47,7 +51,7 @@ public class VideoFormModel extends FormModel {
       formFields[i] = inputs.get(orderedKey);
       i++;
     }
-
+    
     return formFields;
   }
 }
