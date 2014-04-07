@@ -42,7 +42,7 @@ Project configuration:
 - [From database to RESTful web service to HTML5 in FIVE minutes](http://jaxenter.com/from-database-to-restful-web-service-to-html5-in-five-minutes-48908.html)
 - [How to use a JEE Filter to secure JSF 2 application resources](http://www.itcuties.com/j2ee/jsf-2-login-filter-example/)
 - [Composite Components In JSF 2.0](http://www.mkyong.com/jsf2/composite-components-in-jsf-2-0/)
-- [GZip Compression for JEE Web Application](hirenscafe.blogspot.de/2010/02/gzip-compression-for-web-application.html)
+- [GZip Compression for JEE Web Application](http://hirenscafe.blogspot.de/2010/02/gzip-compression-for-web-application.html)
 
 **Mobile Web Apps**
 
