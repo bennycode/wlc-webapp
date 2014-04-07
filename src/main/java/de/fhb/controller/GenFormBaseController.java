@@ -42,6 +42,8 @@ import javax.servlet.http.HttpServletRequest;
  * java.lang.String to field de.fhb.controller.GenFormBaseController.backendText
  * of type java.util.ResourceBundle in instance of
  * de.fhb.controller.CategoryController.
+ *
+ * Example for a value expression: #{playlistController.item.category}
  */
 public abstract class GenFormBaseController<T extends BaseEntity, E extends BaseService> extends BaseController<T, E> {
 
@@ -327,22 +329,18 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   }
 
   /**
-   * TODO: Approach works but it needs to get generic!
-   *
    * @param property
    * @return
    */
   private UIComponent createDropdown(FormInput property) {
     String key = property.getKey();
-    Class<?> expectedType = property.getValue();
-
     String beanName = key + "Controller";
     GenFormBaseController controller = (GenFormBaseController) JSFUtils.getManagedBean(beanName);
-    List<BaseEntity> list = controller.getService().findAll();
 
     List dropdownValues = new ArrayList();
+    List<BaseEntity> list = controller.getService().findAll();
     for (BaseEntity itemInList : list) {
-      dropdownValues.add(new SelectItem(itemInList));
+      dropdownValues.add(new SelectItem(itemInList.getId(), itemInList.toString()));
     }
 
     UISelectItems items = new UISelectItems();
@@ -351,7 +349,10 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
     menu.setId(key);
     menu.getChildren().add(items);
-    menu.setValue("Java");
+
+    String jsfValue = String.format("#{%s.item.%s.id}", getControllerBeanName(), key);
+    ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, Long.class);
+    menu.setValueExpression("value", valueExpression);
 
     return menu;
   }
