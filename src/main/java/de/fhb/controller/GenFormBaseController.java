@@ -265,7 +265,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       for (Field field : objectFields) {
         if (checkGetterPresent(obj.getClass(), field)
                 && (isJavaLang(field.getType()) || isDomainType(field.getType()))) {
-          System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
+//          System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
           attributes.put(field.getName(), field.getType());
         }
       }
@@ -273,7 +273,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       // check for superclass
       for (Field field : superclassFields) {
         if (checkGetterPresent(obj.getClass().getSuperclass(), field) && isJavaLang(field.getType())) {
-          System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
+//          System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
           attributes.put(field.getName(), field.getType());
         }
       }
