@@ -75,10 +75,9 @@ public class BaseEntity implements Serializable {
 
   @Override
   public int hashCode() {
-    int hash = 7;
-    hash = 23 * hash + Objects.hashCode(this.id);
-    hash = 23 * hash + Objects.hashCode(this.name);
-    return hash;
+    return (id != null)
+            ? (this.getClass().hashCode() + id.hashCode())
+            : super.hashCode();
   }
 
   @Override
@@ -95,7 +94,7 @@ public class BaseEntity implements Serializable {
 
   @Override
   public String toString() {
-    return "BaseEntity{" + "id=" + id + ", name=" + name + ", created=" + created + ", lastModified=" + lastModified + '}';
+    return String.format("%s[id=%d]", getClass().getSimpleName(), getId());
   }
 
 }
