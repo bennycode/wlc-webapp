@@ -9,6 +9,7 @@ import de.fhb.view.forms.FormInput;
 import de.fhb.view.forms.FormModel;
 import de.fhb.view.forms.RenderType;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -352,14 +353,13 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     GenFormBaseController controller = (GenFormBaseController) JSFUtils.getManagedBean(beanName);
 
     List<BaseEntity> list = controller.getService().findAll();
-    SelectItem[] selectItems = new SelectItem[list.size()];
-    int i = 0;
+    List<SelectItem> selectItems = new ArrayList<>(list.size());
     for (BaseEntity itemInList : list) {
-      selectItems[i++] = new SelectItem(itemInList, itemInList.getName());
+      selectItems.add(new SelectItem(itemInList, itemInList.getName()));
     }
 
     UISelectItems items = new UISelectItems();
-    items.setValue(selectItems);
+    items.setValue(selectItems.toArray());
 
     HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
     menu.setConverter(new SelectItemsConverter());
