@@ -342,12 +342,6 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
    * @return
    */
   private UIComponent createDropdown(FormInput property) {
-    /*
-     <h:selectOneMenu id="categoryId" value="#{playlistController.selected.categoryId}" title="#{bundle.EditPlaylistTitle_categoryId}" >
-     <f:selectItems value="#{categoryController.itemsAvailableSelectOne}"/>
-     </h:selectOneMenu>
-     */
-    Class<?> expectedType = property.getValue();
     String key = property.getKey();
     String beanName = key + "Controller";
     GenFormBaseController controller = (GenFormBaseController) JSFUtils.getManagedBean(beanName);
