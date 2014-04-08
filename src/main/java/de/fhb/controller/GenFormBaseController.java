@@ -328,6 +328,10 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   }
 
   /**
+   * TODO: Konvertierungsfehler beim Festlegen von Wert 'Windows 7' für 'null
+   * Converter'.
+   * We might need a converter between SelectItems and actual item.
+   *
    * @param property
    * @return
    */
