@@ -1,16 +1,17 @@
 package de.fhb.controller;
 
 import com.google.gdata.util.ServiceException;
+import de.fhb.config.Pages;
 import de.fhb.entities.Author;
 import de.fhb.entities.Category;
 import de.fhb.entities.Playlist;
 import de.fhb.entities.Video;
-import de.fhb.config.Pages;
 import de.fhb.service.AuthorService;
 import de.fhb.service.CategoryService;
 import de.fhb.service.PlaylistService;
 import de.fhb.service.YouTubeCrawlerService;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -19,7 +20,9 @@ import javax.inject.Named;
 
 @Named
 @ViewScoped
-public class PlaylistController extends GenFormBaseController<Playlist, PlaylistService> {
+public class PlaylistController
+        extends GenFormBaseController<Playlist, PlaylistService>
+        implements Serializable {
 
   @EJB
   private PlaylistService service;

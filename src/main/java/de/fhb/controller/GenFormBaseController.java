@@ -5,6 +5,7 @@ import de.fhb.entities.BaseEntity;
 import de.fhb.service.BaseService;
 import de.fhb.util.JSFUtils;
 import de.fhb.view.forms.DefaultFormModel;
+import de.fhb.view.forms.DropdownItemsConverter;
 import de.fhb.view.forms.FormInput;
 import de.fhb.view.forms.FormModel;
 import de.fhb.view.forms.RenderType;
@@ -342,6 +343,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
    * @return
    */
   private UIComponent createDropdown(FormInput property) {
+    Class<?> expectedType = property.getValue();
     String key = property.getKey();
     String beanName = key + "Controller";
     GenFormBaseController controller = (GenFormBaseController) JSFUtils.getManagedBean(beanName);
@@ -356,13 +358,16 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     items.setValue(selectItems.toArray());
 
     HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
-    menu.setConverter(new SelectItemsConverter());
+    // menu.setConverter(new SelectItemsConverter());
+    menu.setConverter(new DropdownItemsConverter());
     menu.setId(key);
     menu.getChildren().add(items);
 
     String jsfValue = String.format("#{%s.item.%s}", getControllerBeanName(), key);
+    System.out.println(jsfValue);
     ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, String.class);
     menu.setValueExpression("value", valueExpression);
+    // menu.setValue("Category[id=3]");
 
     return menu;
   }

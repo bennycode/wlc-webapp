@@ -82,9 +82,4 @@ public class Category extends BaseEntity implements Serializable {
   public void setPlaylists(List<Playlist> playlists) {
     this.playlists = playlists;
   }
-
-  @Override
-  public String toString() {
-    return String.format("%s[id=%d]", getClass().getSimpleName(), getId());
-  }
 }
