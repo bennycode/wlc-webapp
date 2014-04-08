@@ -9,7 +9,6 @@ import de.fhb.view.forms.FormInput;
 import de.fhb.view.forms.FormModel;
 import de.fhb.view.forms.RenderType;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -333,25 +332,32 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
    * @return
    */
   private UIComponent createDropdown(FormInput property) {
+    /*
+     <h:selectOneMenu id="categoryId" value="#{playlistController.selected.categoryId}" title="#{bundle.EditPlaylistTitle_categoryId}" >
+     <f:selectItems value="#{categoryController.itemsAvailableSelectOne}"/>
+     </h:selectOneMenu>
+     */
+    Class<?> expectedType = property.getValue();
     String key = property.getKey();
     String beanName = key + "Controller";
     GenFormBaseController controller = (GenFormBaseController) JSFUtils.getManagedBean(beanName);
 
-    List dropdownValues = new ArrayList();
-    List<BaseEntity> list = controller.getService().findAll();
-    for (BaseEntity itemInList : list) {
-      dropdownValues.add(new SelectItem(itemInList.getId(), itemInList.toString()));
+    List<?> list = controller.getService().findAll();
+    SelectItem[] selectItems = new SelectItem[list.size()];
+    int i = 0;
+    for (Object itemInList : list) {
+      selectItems[i++] = new SelectItem(itemInList, itemInList.toString());
     }
 
     UISelectItems items = new UISelectItems();
-    items.setValue(dropdownValues);
+    items.setValue(selectItems);
 
     HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
     menu.setId(key);
     menu.getChildren().add(items);
 
-    String jsfValue = String.format("#{%s.item.%s.id}", getControllerBeanName(), key);
-    ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, Long.class);
+    String jsfValue = String.format("#{%s.item.%s}", getControllerBeanName(), key);
+    ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, String.class);
     menu.setValueExpression("value", valueExpression);
 
     return menu;
