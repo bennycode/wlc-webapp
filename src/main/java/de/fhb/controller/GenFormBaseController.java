@@ -31,6 +31,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
+import org.omnifaces.converter.SelectItemsConverter;
 
 /**
  * @param <T>
@@ -328,9 +329,13 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   }
 
   /**
+   * We might need a converter between SelectItems and actual item.
+   *
    * TODO: Konvertierungsfehler beim Festlegen von Wert 'Windows 7' für 'null
    * Converter'.
-   * We might need a converter between SelectItems and actual item.
+   *
+   * @see http://showcase.omnifaces.org/converters/SelectItemsConverter
+   * @see http://balusc.blogspot.de/2007/09/objects-in-hselectonemenu.html
    *
    * @param property
    * @return
@@ -346,17 +351,18 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     String beanName = key + "Controller";
     GenFormBaseController controller = (GenFormBaseController) JSFUtils.getManagedBean(beanName);
 
-    List<?> list = controller.getService().findAll();
+    List<BaseEntity> list = controller.getService().findAll();
     SelectItem[] selectItems = new SelectItem[list.size()];
     int i = 0;
-    for (Object itemInList : list) {
-      selectItems[i++] = new SelectItem(itemInList, itemInList.toString());
+    for (BaseEntity itemInList : list) {
+      selectItems[i++] = new SelectItem(itemInList, itemInList.getName());
     }
 
     UISelectItems items = new UISelectItems();
     items.setValue(selectItems);
 
     HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
+    menu.setConverter(new SelectItemsConverter());
     menu.setId(key);
     menu.getChildren().add(items);
 

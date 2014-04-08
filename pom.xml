@@ -80,6 +80,11 @@
   </repositories>
     
   <dependencies>
+    <dependency>
+      <groupId>org.omnifaces</groupId>
+      <artifactId>omnifaces</artifactId>
+      <version>1.7</version>
+    </dependency>
     <!-- JPA -->
     <dependency>
       <groupId>org.eclipse.persistence</groupId>
