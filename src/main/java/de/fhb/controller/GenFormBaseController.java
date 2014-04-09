@@ -33,7 +33,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
-import org.omnifaces.converter.SelectItemsConverter;
 
 /**
  * @param <T>
@@ -358,7 +357,6 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     items.setValue(selectItems.toArray());
 
     HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
-    // menu.setConverter(new SelectItemsConverter());
     menu.setConverter(new DropdownItemsConverter());
     menu.setId(key);
     menu.getChildren().add(items);

@@ -7,7 +7,7 @@ import de.fhb.entities.Language.LanguageCode;
 import de.fhb.entities.Playlist;
 import de.fhb.entities.Video;
 import de.fhb.rest.v1.dto.CategoryDTO;
-import de.fhb.rest.v1.dto.OwnerDTO;
+import de.fhb.rest.v1.dto.AuthorDTO;
 import de.fhb.rest.v1.dto.PlaylistDTO;
 import de.fhb.rest.v1.dto.StatusDTO;
 import de.fhb.rest.v1.dto.VideoDTO;
@@ -30,8 +30,8 @@ import java.util.TreeSet;
  */
 public class DTOMapper {
 
-  public static OwnerDTO mapAuthor(Author author) {
-    OwnerDTO dtoAuthor = new OwnerDTO();
+  public static AuthorDTO mapAuthor(Author author) {
+    AuthorDTO dtoAuthor = new AuthorDTO();
 
     dtoAuthor.setDescription(author.getDescription());
     dtoAuthor.setName(author.getName());

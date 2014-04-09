@@ -22,7 +22,7 @@ public class PlaylistDTO {
   private String providerName;
   private int numberOfVideos;
   private String description;
-  private OwnerDTO owner;
+  private AuthorDTO owner;
   private StatusDTO status;
 
   public PlaylistDTO() {
@@ -99,11 +99,11 @@ public class PlaylistDTO {
     }
   }
 
-  public OwnerDTO getOwner() {
+  public AuthorDTO getOwner() {
     return owner;
   }
 
-  public void setOwner(OwnerDTO owner) {
+  public void setOwner(AuthorDTO owner) {
     this.owner = owner;
   }
 

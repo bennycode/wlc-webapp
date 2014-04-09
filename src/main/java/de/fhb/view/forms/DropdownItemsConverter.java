@@ -7,13 +7,14 @@ import javax.faces.convert.FacesConverter;
 
 /**
  * @see http://www.mkyong.com/jsf2/custom-converter-in-jsf-2-0/
+ * @see http://www.mastertheboss.com/jsf/develop-custom-jsf-converters
  */
 @FacesConverter("de.fhb.view.forms.DropdownItemsConverter")
 public class DropdownItemsConverter implements Converter {
 
   @Override
   public Object getAsObject(FacesContext context, UIComponent component, String value) {
-    return new Object();
+    throw new UnsupportedOperationException("Not supported yet.");
   }
 
   @Override
@@ -23,5 +24,4 @@ public class DropdownItemsConverter implements Converter {
     }
     return value.toString();
   }
-
 }
