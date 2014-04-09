@@ -225,6 +225,7 @@ public class JSFUtils implements Serializable {
    * @see #getBean(java.lang.String)
    * @see #getBean(java.lang.String, java.lang.Class)
    */
+  @SuppressWarnings("unchecked")
   public static <T> T getTypedBean(String beanName) {
     return (T) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get(beanName);
   }

@@ -39,15 +39,15 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
   }
 
   public T find(Long id) {
-    return (T) getRepository().find(id);
+    return getRepository().find(id);
   }
 
   public List<T> findAll() {
-    return (List<T>) getRepository().findAll();
+    return getRepository().findAll();
   }
 
   public List<T> findRange(int startPosition, int maxResult) {
-    return (List<T>) getRepository().findRange(startPosition, maxResult);
+    return getRepository().findRange(startPosition, maxResult);
   }
 
   public int count() {

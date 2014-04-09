@@ -2,6 +2,7 @@ package de.fhb.controller;
 
 import de.fhb.config.Packages;
 import de.fhb.entities.BaseEntity;
+import de.fhb.repository.AbstractRepository;
 import de.fhb.service.BaseService;
 import de.fhb.util.JSFUtils;
 import de.fhb.view.forms.DefaultFormModel;
@@ -345,9 +346,10 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     Class<?> expectedType = property.getValue();
     String key = property.getKey();
     String beanName = key + "Controller";
-    GenFormBaseController controller = (GenFormBaseController) JSFUtils.getManagedBean(beanName);
+    GenFormBaseController<BaseEntity, BaseService<BaseEntity, AbstractRepository<BaseEntity>>> controller;
+    controller = JSFUtils.<GenFormBaseController<BaseEntity, BaseService<BaseEntity, AbstractRepository<BaseEntity>>>>getTypedBean(beanName);
 
-    List<BaseEntity> list = controller.getService().findAll();
+    List<? extends BaseEntity> list = controller.getService().findAll();
     List<SelectItem> selectItems = new ArrayList<>(list.size());
     for (BaseEntity itemInList : list) {
       selectItems.add(new SelectItem(itemInList, itemInList.getName()));

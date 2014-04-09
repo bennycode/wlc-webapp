@@ -66,9 +66,8 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
     this.items = items;
   }
 
-  // TODO: Use MySQL COUNT() statement */
   public int getItemSize() {
-    return getService().findAll().size();
+    return getService().count();
   }
 
   public int getOffset() {
