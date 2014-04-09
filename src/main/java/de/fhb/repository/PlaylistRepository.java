@@ -24,7 +24,7 @@ public class PlaylistRepository extends AbstractRepository<Playlist> {
     return em;
   }
 
-  public Playlist getByCode(String code) {
+  public Playlist findByCode(String code) {
     Playlist playlist = null;
     try {
       playlist = em.createNamedQuery(Playlist.FIND_BY_CODE, Playlist.class).

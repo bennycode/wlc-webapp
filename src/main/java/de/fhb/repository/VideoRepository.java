@@ -28,7 +28,7 @@ public class VideoRepository extends AbstractRepository<Video> {
     return em;
   }
 
-  public Video getVideoByCode(String code) {
+  public Video findByCode(String code) {
     Video video = null;
     try {
       video = em.createNamedQuery(Video.FIND_BY_CODE, Video.class).setParameter("code", code).getSingleResult();

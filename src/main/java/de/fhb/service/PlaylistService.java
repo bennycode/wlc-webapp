@@ -33,7 +33,7 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
   }
 
   public Playlist getPlaylistByCode(String code) {
-    return repository.getByCode(code);
+    return repository.findByCode(code);
   }
 
   public List<Playlist> findAllInCategory(Long categoryid) {

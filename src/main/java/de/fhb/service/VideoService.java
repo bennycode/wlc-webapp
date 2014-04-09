@@ -34,7 +34,7 @@ public class VideoService extends BaseService<Video, VideoRepository> {
   }
 
   public Video getVideoByCode(String code) {
-    return repository.getVideoByCode(code);
+    return repository.findByCode(code);
   }
 
   public List<Video> getAllInPlaylist(Long playlistid) {
