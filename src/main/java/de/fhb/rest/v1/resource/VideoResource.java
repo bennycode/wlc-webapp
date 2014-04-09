@@ -31,7 +31,7 @@ public class VideoResource {
   @Path("playlist/{id}")
   @Produces(MediaType.APPLICATION_JSON)
   public List<VideoDTO> getVideos(@PathParam("id") int id) {
-    List<Video> videos = videoService.getAllVideosByPlaylist(id);
+    List<Video> videos = videoService.getAllInPlaylist(Long.valueOf(id));
     return DTOMapper.mapVideos(videos);
   }
 }

@@ -10,12 +10,22 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NamedQueries({
   @NamedQuery(name = "Video.findByCode", query = "SELECT v FROM Video v WHERE v.code = :code"),
-  @NamedQuery(name = "Video.likeName", query = "SELECT v FROM Video v WHERE UPPER(v.name) LIKE UPPER(:keyword)")
+  @NamedQuery(name = "Video.likeName", query = "SELECT v FROM Video v WHERE UPPER(v.name) LIKE UPPER(:keyword)"),
+  @NamedQuery(name = "Video.findAllInPlaylist", query = "SELECT v FROM Video v WHERE v.playlist.id = :playlistid"),
+  @NamedQuery(name = "Video.findAllInCategory", query = "SELECT v FROM Video v WHERE v.playlist.category.id = :playlistid"),
+  @NamedQuery(name = "Video.findInPlaylist", query = "SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.id = :playlistid"),
+  @NamedQuery(name = "Video.findInCategory", query = "SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.category.id = :playlistid"),
+  @NamedQuery(name = "Video.findInCategoryAndPlaylist", query = "SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.category.id = :categoryid AND v.playlist.id = :playlistid")
 })
 public class Video extends BaseEntity {
 
   public static final String FIND_BY_CODE = "Video.findByCode";
   public static final String LIKE_NAME = "Video.likeName";
+  public static final String FIND_ALL_IN_PLAYLIST = "Video.findAllInPlaylist";
+  public static final String FIND_ALL_IN_CATEGORY = "Video.findAllInCategory";
+  public static final String FIND_IN_PLAYLIST = "Video.findInPlaylist";
+  public static final String FIND_IN_CATEGORY = "Video.findInCategory";
+  public static final String FIND_IN_CATEGORY_AND_PLAYLIST = "Video.findInCategoryAndPlaylist";
 
   @Column(unique = true)
   private String code;

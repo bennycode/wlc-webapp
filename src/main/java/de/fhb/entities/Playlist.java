@@ -16,12 +16,14 @@ import javax.validation.constraints.Size;
 @Entity
 @NamedQueries({
   @NamedQuery(name = "Playlist.findByCode", query = "SELECT p FROM Playlist p WHERE p.code = :code"),
-  @NamedQuery(name = "Playlist.likeName", query = "SELECT p FROM Playlist p WHERE UPPER(p.name) LIKE UPPER(:keyword)")
+  @NamedQuery(name = "Playlist.likeName", query = "SELECT p FROM Playlist p WHERE UPPER(p.name) LIKE UPPER(:keyword)"),
+  @NamedQuery(name = "Playlist.findInCategory", query = "SELECT p FROM Playlist p WHERE p.id = :playlistid AND p.category.id = :categoryid")
 })
 public class Playlist extends BaseEntity {
 
   public static final String FIND_BY_CODE = "Playlist.findByCode";
   public static final String LIKE_NAME = "Playlist.likeName";
+  public static final String FIND_IN_CATEGORY = "Playlist.findInCategory";
 
   @NotNull
   @ManyToOne

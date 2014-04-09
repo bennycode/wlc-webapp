@@ -31,7 +31,7 @@ public class PlaylistResource {
   @Path("category/{id}")
   @Produces(MediaType.APPLICATION_JSON)
   public List<PlaylistDTO> getPlaylists(@PathParam("id") int id) {
-    List<Playlist> playlists = playlistService.getAllPlaylistsByCategory(id);
+    List<Playlist> playlists = playlistService.getAllByCategory(id);
     return DTOMapper.mapPlaylists(playlists);
   }
 }

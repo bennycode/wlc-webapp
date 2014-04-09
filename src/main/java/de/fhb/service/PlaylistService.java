@@ -31,12 +31,16 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
   }
 
   public Playlist getPlaylistByCode(String code) {
-    return repository.getPlaylistByCode(code);
+    return repository.getByCode(code);
   }
 
-  public List<Playlist> getAllPlaylistsByCategory(long id) {
+  public List<Playlist> getAllByCategory(long id) {
     // TODO Implement getAllPlaylistsByCategory(long)
     // Never return null. instead return an empty List
     return new ArrayList<>();
+  }
+
+  public Playlist findInCategory(Long categoryid, Long playlistid) {
+    return repository.findInCategory(categoryid, playlistid);
   }
 }

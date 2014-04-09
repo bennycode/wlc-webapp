@@ -23,13 +23,28 @@ public class PlaylistRepository extends AbstractRepository<Playlist> {
     return em;
   }
 
-  public Playlist getPlaylistByCode(String code) {
+  public Playlist getByCode(String code) {
     Playlist playlist = null;
     try {
-      playlist = em.createNamedQuery(Playlist.FIND_BY_CODE, Playlist.class).setParameter("code", code).getSingleResult();
+      playlist = em.createNamedQuery(Playlist.FIND_BY_CODE, Playlist.class).
+              setParameter("code", code).
+              getSingleResult();
     } catch (NoResultException e) {
     }
 
+    return playlist;
+  }
+
+  public Playlist findInCategory(Long categoryid, Long playlistid) {
+    Playlist playlist = null;
+
+    try {
+      playlist = em.createNamedQuery(Playlist.FIND_IN_CATEGORY, Playlist.class).
+              setParameter("playlistid", playlistid).
+              setParameter("categoryid", categoryid).
+              getSingleResult();
+    } catch (NoResultException e) {
+    }
     return playlist;
   }
 }

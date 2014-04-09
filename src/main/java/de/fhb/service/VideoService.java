@@ -34,10 +34,28 @@ public class VideoService extends BaseService<Video, VideoRepository> {
     return repository.getVideoByCode(code);
   }
 
-  public List<Video> getAllVideosByPlaylist(long id) {
+  public List<Video> getAllInPlaylist(Long playlistid) {
     // TODO Implement getAllVideosByPlaylist(long)
     // Never return null. instead return an empty List
     return new ArrayList<Video>();
+  }
+
+  public List<Video> getAllInCategory(Long playlistid) {
+    // TODO Implement getAllVideosByPlaylist(long)
+    // Never return null. instead return an empty List
+    return new ArrayList<Video>();
+  }
+
+  public Video findInCategory(Long categoryid, Long videoid) {
+    return repository.findInCategory(categoryid, videoid);
+  }
+
+  public Video findInCategoryAndPlaylist(Long categoryid, Long playlistid, Long videoid) {
+    return repository.findInCategoryAndPlaylist(categoryid, playlistid, videoid);
+  }
+
+  public Video findInPlaylist(Long playlistid, Long videoid) {
+    return repository.findInPlaylist(playlistid, videoid);
   }
 
 }
