@@ -3,8 +3,10 @@ package de.fhb.service;
 import de.fhb.entities.Playlist;
 import de.fhb.repository.PlaylistRepository;
 import de.yser.ownsimplecache.OwnCacheServerService;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -34,13 +36,19 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
     return repository.getByCode(code);
   }
 
-  public List<Playlist> getAllByCategory(long id) {
-    // TODO Implement getAllPlaylistsByCategory(long)
-    // Never return null. instead return an empty List
-    return new ArrayList<>();
+  public List<Playlist> findAllInCategory(Long categoryid) {
+    return repository.findAllInCategory(categoryid);
   }
 
   public Playlist findInCategory(Long categoryid, Long playlistid) {
     return repository.findInCategory(categoryid, playlistid);
+  }
+
+  @Override
+  protected Set<String> typesToClear() {
+    return new HashSet<>(Arrays.asList(
+            "de.fhb.rest.v1.dto.PlaylistDTO",
+            "de.fhb.rest.v2.dto.PlaylistDTO"
+    ));
   }
 }

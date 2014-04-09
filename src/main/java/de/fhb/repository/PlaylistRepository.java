@@ -2,6 +2,7 @@ package de.fhb.repository;
 
 import static de.fhb.config.Packages.PERSISTENCE_UNIT_NAME;
 import de.fhb.entities.Playlist;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -33,6 +34,17 @@ public class PlaylistRepository extends AbstractRepository<Playlist> {
     }
 
     return playlist;
+  }
+
+  public List<Playlist> findAllInCategory(Long categoryid) {
+    List<Playlist> playlists = null;
+    try {
+      playlists = em.createNamedQuery(Playlist.FIND_ALL_IN_CATEGORY, Playlist.class).
+              setParameter("categoryid", categoryid).
+              getResultList();
+    } catch (NoResultException e) {
+    }
+    return playlists;
   }
 
   public Playlist findInCategory(Long categoryid, Long playlistid) {

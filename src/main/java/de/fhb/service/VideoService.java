@@ -4,7 +4,10 @@ import de.fhb.entities.Video;
 import de.fhb.repository.VideoRepository;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -56,6 +59,14 @@ public class VideoService extends BaseService<Video, VideoRepository> {
 
   public Video findInPlaylist(Long playlistid, Long videoid) {
     return repository.findInPlaylist(playlistid, videoid);
+  }
+
+  @Override
+  protected Set<String> typesToClear() {
+    return new HashSet<>(Arrays.asList(
+            "de.fhb.rest.v1.dto.VideoDTO",
+            "de.fhb.rest.v2.dto.VideoDTO"
+    ));
   }
 
 }

@@ -4,6 +4,7 @@ import de.fhb.entities.BaseEntity;
 import de.fhb.repository.AbstractRepository;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
@@ -15,6 +16,8 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
   protected abstract E getRepository();
 
   protected abstract OwnCacheServerService getCache();
+
+  protected abstract Set<String> typesToClear();
 
   public BaseService(Class<T> entityClass) {
     this.entityClass = entityClass;
@@ -52,10 +55,13 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
   }
 
   protected void invalidateRelatedCaches() {
-    String dtoFullQualifiedName = "de.fhb.rest.v1.dto." + entityClass.getSimpleName() + "DTO";
+
+    for (String type : typesToClear()) {
+      getCache().invalidateCache(type, null);
+      getCache().invalidateCache("java.util.List", type);
+    }
     getCache().invalidateCache("javax.ws.rs.core.Response", null);
-    getCache().invalidateCache(dtoFullQualifiedName, null);
-    getCache().invalidateCache("java.util.List", dtoFullQualifiedName);
+
   }
 
 }
