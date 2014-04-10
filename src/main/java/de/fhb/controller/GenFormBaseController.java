@@ -27,6 +27,7 @@ import javax.faces.component.UISelectItems;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlForm;
 import javax.faces.component.html.HtmlInputText;
+import javax.faces.component.html.HtmlInputTextarea;
 import javax.faces.component.html.HtmlOutputLabel;
 import javax.faces.component.html.HtmlOutputText;
 import javax.faces.component.html.HtmlSelectOneMenu;
@@ -195,6 +196,9 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
         break;
       case LIST:
         component = createSelection(property);
+        break;
+      case TEXTAREA:
+        component = createTextarea(property);
         break;
       default:
         component = createInputField(property);
@@ -365,6 +369,19 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     menu.setValueExpression("value", valueExpression);
 
     return menu;
+  }
+
+  private UIComponent createTextarea(FormInput property) {
+    String key = property.getKey();
+
+    String jsfValue = String.format("#{%s.item.%s}", getControllerBeanName(), key);
+    ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, property.getValue());
+
+    HtmlInputTextarea input = new HtmlInputTextarea();
+    input.setId(key);
+    input.setValueExpression("value", valueExpression);
+
+    return input;
   }
 
 }

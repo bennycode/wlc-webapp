@@ -32,15 +32,22 @@ public class PlaylistFormModel extends FormModel {
 
       String key = input.getKey();
 
-      // Readonly
+      // Set read-only
       if (key.equals("id") || key.equals("created") || key.equals("lastModified")) {
         input.setReadOnly(true);
       }
 
-      if (key.equals("category")) {
-        input.setRenderType(RenderType.DROPDOWN);
-      } else {
-        setDefaultRenderType(input);
+      // Set render-type
+      switch (key) {
+        case "category":
+          input.setRenderType(RenderType.DROPDOWN);
+          break;
+        case "description":
+          input.setRenderType(RenderType.TEXTAREA);
+          break;
+        default:
+          setDefaultRenderType(input);
+          break;
       }
 
       inputs.put(key, input);
