@@ -4,7 +4,9 @@ import de.fhb.config.Packages;
 import de.fhb.entities.BaseEntity;
 import de.fhb.service.BaseService;
 import de.fhb.util.JSFUtils;
+import de.fhb.util.StringUtils;
 import de.fhb.view.forms.DefaultFormModel;
+import de.fhb.view.forms.DropdownItemsConverter;
 import de.fhb.view.forms.FormInput;
 import de.fhb.view.forms.FormModel;
 import de.fhb.view.forms.RenderType;
@@ -32,7 +34,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
-import org.omnifaces.converter.SelectItemsConverter;
 
 /**
  * @param <T>
@@ -284,17 +285,9 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     return attributes;
   }
 
-  private String capitalize(String line) {
-    return Character.toUpperCase(line.charAt(0)) + line.substring(1);
-  }
-
-  private String lowerFirstChar(String line) {
-    return Character.toLowerCase(line.charAt(0)) + line.substring(1);
-  }
-
   private String getControllerBeanName() {
     String classname = this.getClass().getSimpleName();
-    classname = lowerFirstChar(classname);
+    classname = StringUtils.lowerFirstChar(classname);
     return classname;
   }
 
@@ -302,7 +295,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     Class<?>[] emptyParamObjects = new Class<?>[]{};
     boolean isPresent = false;
     try {
-      clazz.getDeclaredMethod("get" + capitalize(field.getName()), emptyParamObjects);
+      clazz.getDeclaredMethod("get" + StringUtils.capitalize(field.getName()), emptyParamObjects);
       isPresent = true;
     } catch (NoSuchMethodException ex) {
       // NO-OP ignore the field
@@ -350,7 +343,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     String key = property.getKey();
     Class<?> expectedType = property.getValue();
 
-    String beanName = lowerFirstChar(expectedType.getSimpleName()) + "Controller";
+    String beanName = StringUtils.getControllerBeanName(expectedType.getSimpleName());
     GenFormBaseController controller = (GenFormBaseController) JSFUtils.getManagedBean(beanName);
 
     List<BaseEntity> list = controller.getService().findAll();
@@ -363,7 +356,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     items.setValue(selectItems);
 
     HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
-    menu.setConverter(new SelectItemsConverter());
+    menu.setConverter(new DropdownItemsConverter());
     menu.setId(key);
     menu.getChildren().add(items);
 
