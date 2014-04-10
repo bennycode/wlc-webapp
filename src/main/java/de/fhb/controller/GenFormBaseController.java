@@ -2,11 +2,9 @@ package de.fhb.controller;
 
 import de.fhb.config.Packages;
 import de.fhb.entities.BaseEntity;
-import de.fhb.repository.AbstractRepository;
 import de.fhb.service.BaseService;
 import de.fhb.util.JSFUtils;
 import de.fhb.view.forms.DefaultFormModel;
-import de.fhb.view.forms.DropdownItemsConverter;
 import de.fhb.view.forms.FormInput;
 import de.fhb.view.forms.FormModel;
 import de.fhb.view.forms.RenderType;
@@ -290,9 +288,13 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     return Character.toUpperCase(line.charAt(0)) + line.substring(1);
   }
 
+  private String lowerFirstChar(String line) {
+    return Character.toLowerCase(line.charAt(0)) + line.substring(1);
+  }
+
   private String getControllerBeanName() {
     String classname = this.getClass().getSimpleName();
-    classname = Character.toLowerCase(classname.charAt(0)) + classname.substring(1);
+    classname = lowerFirstChar(classname);
     return classname;
   }
 
@@ -343,9 +345,12 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
    * @param property
    * @return
    */
+  @SuppressWarnings("unchecked")
   private UIComponent createDropdown(FormInput property) {
     String key = property.getKey();
-    String beanName = key + "Controller";
+    Class<?> expectedType = property.getValue();
+
+    String beanName = lowerFirstChar(expectedType.getSimpleName()) + "Controller";
     GenFormBaseController controller = (GenFormBaseController) JSFUtils.getManagedBean(beanName);
 
     List<BaseEntity> list = controller.getService().findAll();
@@ -355,7 +360,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     }
 
     UISelectItems items = new UISelectItems();
-    items.setValue(selectItems.toArray());
+    items.setValue(selectItems);
 
     HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
     menu.setConverter(new SelectItemsConverter());
@@ -363,7 +368,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     menu.getChildren().add(items);
 
     String jsfValue = String.format("#{%s.item.%s}", getControllerBeanName(), key);
-    ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, String.class);
+    ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, expectedType);
     menu.setValueExpression("value", valueExpression);
 
     return menu;
