@@ -79,6 +79,9 @@ Project configuration:
 - [http://tools.quicksprout.com/analyze/www.welovecoding.com](http://tools.quicksprout.com/analyze/www.welovecoding.com)
 - [Load testing from the cloud (free credits)](https://www.blitz.io/bKjFTlt40QR0nr7aXHFJ0Y)
 
+## Tools: ##
+- [CSS Unminifier](http://mrcoles.com/blog/css-unminify/)
+
 ##REST service##
 - [http://localhost:8080/wlc_webapp/rest/fhb/v1/categories](http://localhost:8080/wlc_webapp/rest/fhb/v1/categories)
 
