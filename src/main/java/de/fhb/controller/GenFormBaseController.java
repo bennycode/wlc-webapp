@@ -34,6 +34,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
+import org.omnifaces.converter.SelectItemsConverter;
 
 /**
  * @param <T>
@@ -343,13 +344,11 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
    * @return
    */
   private UIComponent createDropdown(FormInput property) {
-    Class<?> expectedType = property.getValue();
     String key = property.getKey();
     String beanName = key + "Controller";
-    GenFormBaseController<BaseEntity, BaseService<BaseEntity, AbstractRepository<BaseEntity>>> controller;
-    controller = JSFUtils.<GenFormBaseController<BaseEntity, BaseService<BaseEntity, AbstractRepository<BaseEntity>>>>getTypedBean(beanName);
+    GenFormBaseController controller = (GenFormBaseController) JSFUtils.getManagedBean(beanName);
 
-    List<? extends BaseEntity> list = controller.getService().findAll();
+    List<BaseEntity> list = controller.getService().findAll();
     List<SelectItem> selectItems = new ArrayList<>(list.size());
     for (BaseEntity itemInList : list) {
       selectItems.add(new SelectItem(itemInList, itemInList.getName()));
@@ -359,15 +358,13 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     items.setValue(selectItems.toArray());
 
     HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
-    menu.setConverter(new DropdownItemsConverter());
+    menu.setConverter(new SelectItemsConverter());
     menu.setId(key);
     menu.getChildren().add(items);
 
     String jsfValue = String.format("#{%s.item.%s}", getControllerBeanName(), key);
-    System.out.println(jsfValue);
     ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, String.class);
     menu.setValueExpression("value", valueExpression);
-    // menu.setValue("Category[id=3]");
 
     return menu;
   }
