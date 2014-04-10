@@ -14,7 +14,6 @@
                         idle-timeout-in-seconds="170"
                         is-connection-validation-required="true"
                         is-isolation-level-guaranteed="true"
-                        isolation="repeatable-read"
                         lazy-connection-association="false"
                         lazy-connection-enlistment="false"
                         match-connections="false"
@@ -34,6 +33,7 @@
                         steady-pool-size="20"
                         validate-atmost-once-period-in-seconds="0"
                         wrap-jdbc-objects="true">
+    <property name="isolation" value="repeatable-read"/>
     <property name="user" value="${jdbc.username}"/>
     <property name="password" value="${jdbc.password}"/>
     <property name="url" value="${jdbc.url}"/>
