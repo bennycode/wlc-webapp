@@ -15,14 +15,12 @@ import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({
-  @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
   @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id"),
   @NamedQuery(name = "Category.findBySlug", query = "SELECT c FROM Category c WHERE c.slug = :slug"),
   @NamedQuery(name = "Category.orderByName", query = "SELECT c FROM Category c ORDER BY c.name")
 })
 public class Category extends BaseEntity implements Serializable {
 
-  public static final String FIND_ALL = "Category.findAll";
   public static final String FIND_BY_ID = "Category.findById";
   public static final String FIND_BY_SLUG = "Category.findBySlug";
   public static final String ORDER_BY_NAME = "Category.orderByName";

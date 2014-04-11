@@ -2,15 +2,11 @@ package de.fhb.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.validation.constraints.Size;
 
 @Entity
-@NamedQueries({
-  @NamedQuery(name = "Author.findAll", query = "SELECT a FROM Author a"),})
+@NamedQueries({})
 public class Author extends BaseEntity {
-
-  public static final String FIND_ALL = "Author.findAll";
 
   @Size(min = 0, max = 255)
   private String description;
