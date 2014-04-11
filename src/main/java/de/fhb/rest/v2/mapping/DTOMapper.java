@@ -93,7 +93,7 @@ public class DTOMapper {
       dto.setLastModified(e.getLastModified());
       dto.setNumberOfVideos(e.getVideos().size());
       dto.setAuthor(mapAuthor(e.getAuthor()));
-      dto.setProvider(mapProvider(e.getProviderName()));
+      dto.setProvider(e.getProvider().getName());
 //    dto.setSlug(e.getSlug());
       dto.setStatus(new StatusDTO());
       dto.setName(e.getName());
@@ -194,26 +194,6 @@ public class DTOMapper {
     }
 
     return dtoList;
-  }
-
-  private static String mapProvider(Provider e) {
-    String provider = "";
-
-    if (e.getProviderName() != null) {
-      switch (e.getProviderName()) {
-        case Provider.ProviderName.CHANNEL9:
-          provider = "Channel9";
-          break;
-        case Provider.ProviderName.VIMEO:
-          provider = "Vimeo";
-          break;
-        case Provider.ProviderName.YOUTUBE:
-          provider = "YouTube";
-          break;
-      }
-    }
-
-    return provider;
   }
 
   public static String mapLanguage(Language e) {

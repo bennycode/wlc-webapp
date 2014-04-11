@@ -47,7 +47,7 @@ public class DTOMapper {
     dtoPlaylist.setName(playlist.getName());
     dtoPlaylist.setLanguage(mapLanguage(playlist.getLanguageCode()));
     dtoPlaylist.setCategoryName(playlist.getCategory().getName());
-    dtoPlaylist.setProviderName(playlist.getProviderName().getProviderName());
+    dtoPlaylist.setProviderName(playlist.getProvider().getName());
     dtoPlaylist.setNumberOfVideos(playlist.getVideos().size());
     dtoPlaylist.setDescription(playlist.getDescription());
     dtoPlaylist.setOwner(mapAuthor(playlist.getAuthor()));

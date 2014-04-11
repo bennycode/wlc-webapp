@@ -6,5 +6,6 @@ public enum RenderType {
   DROPDOWN,
   LIST,
   TEXT,
-  TEXTAREA
+  TEXTAREA,
+  ENUM
 }

@@ -6,6 +6,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -27,6 +29,9 @@ public class Playlist extends BaseEntity {
   public static final String FIND_IN_CATEGORY = "Playlist.findInCategory";
   public static final String FIND_ALL_IN_CATEGORY = "Playlist.findAllInCategory";
 
+  @Embedded @Enumerated(EnumType.STRING)
+  private Provider provider;
+
   @NotNull
   @ManyToOne
   private Category category;
@@ -43,9 +48,6 @@ public class Playlist extends BaseEntity {
   @Embedded
   private Language languageCode;
 
-  @Embedded
-  private Provider providerName;
-
   @Size(min = 0, max = 255)
   private String description;
 
@@ -59,6 +61,23 @@ public class Playlist extends BaseEntity {
   public Playlist() {
     this.enabled = true;
     this.videos = new ArrayList<>();
+    this.provider = Provider.YOUTUBE;
+  }
+
+  public Provider getProvider() {
+    return provider;
+  }
+
+  public void setProvider(Provider provider) {
+    this.provider = provider;
+  }
+
+  public String getSlug() {
+    return slug;
+  }
+
+  public void setSlug(String slug) {
+    this.slug = slug;
   }
 
   public Category getCategory() {
@@ -101,14 +120,6 @@ public class Playlist extends BaseEntity {
 
   public void setLanguageCode(Language languageCode) {
     this.languageCode = languageCode;
-  }
-
-  public Provider getProviderName() {
-    return providerName;
-  }
-
-  public void setProviderName(Provider providerName) {
-    this.providerName = providerName;
   }
 
   public String getDescription() {

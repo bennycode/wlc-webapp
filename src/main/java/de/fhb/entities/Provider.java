@@ -1,38 +1,23 @@
 package de.fhb.entities;
 
-import java.io.Serializable;
-import javax.persistence.Embeddable;
+public enum Provider {
 
-@Embeddable
-public class Provider implements Serializable {
+  YOUTUBE("YouTube"),
+  VIMEO("Vimeo"),
+  CHANNEL9("Channel9");
 
-  public class ProviderName {
+  private String name;
 
-    static public final String YOUTUBE = "YouTube";
-    static public final String VIMEO = "Vimeo";
-    static public final String CHANNEL9 = "Channel9";
+  private Provider(String name) {
+    this.name = name;
   }
 
-  private String providerName;
-
-  public Provider() {
+  public String getName() {
+    return name;
   }
 
-  public Provider(String providerName) {
-    this.providerName = providerName;
-  }
-
-  public String getProviderName() {
-    return providerName;
-  }
-
-  public void setProviderName(String providerName) {
-    this.providerName = providerName;
-  }
-
-  @Override
-  public String toString() {
-    return this.getProviderName();
+  public void setName(String name) {
+    this.name = name;
   }
 
 }

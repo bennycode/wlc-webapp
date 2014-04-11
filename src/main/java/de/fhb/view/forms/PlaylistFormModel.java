@@ -12,7 +12,7 @@ public class PlaylistFormModel extends FormModel {
       "category",
       "description",
       "languageCode",
-      "providerName",
+      "provider",
       "code",
       "videos",
       "created",
@@ -44,6 +44,9 @@ public class PlaylistFormModel extends FormModel {
           break;
         case "description":
           input.setRenderType(RenderType.TEXTAREA);
+          break;
+        case "provider":
+          input.setRenderType(RenderType.ENUM);
           break;
         default:
           setDefaultRenderType(input);

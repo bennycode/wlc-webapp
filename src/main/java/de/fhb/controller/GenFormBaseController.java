@@ -2,6 +2,7 @@ package de.fhb.controller;
 
 import de.fhb.config.Packages;
 import de.fhb.entities.BaseEntity;
+import de.fhb.entities.Provider;
 import de.fhb.service.BaseService;
 import de.fhb.util.JSFUtils;
 import de.fhb.util.StringUtils;
@@ -34,6 +35,7 @@ import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
 import javax.faces.model.SelectItem;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -57,6 +59,9 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   // FormModel naming convention: <EntityName>FormModel.java
   private final String FORM_MODEL_SUFFIX = "FormModel";
   private final int RESULTS_PER_PAGE = 20;
+
+  @Inject
+  EnumController enumController;
 
   /**
    * Note: You should never assign FacesContext as instance variable of a
@@ -194,6 +199,9 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       case DROPDOWN:
         component = createDropdown(property);
         break;
+      case ENUM:
+        component = createDropdownForEnums(property);
+        break;
       case LIST:
         component = createSelection(property);
         break;
@@ -272,7 +280,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       for (Field field : objectFields) {
         if (checkGetterPresent(obj.getClass(), field)
                 && (isJavaLang(field.getType()) || isDomainType(field.getType()))) {
-//          System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
+          System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
           attributes.put(field.getName(), field.getType());
         }
       }
@@ -280,7 +288,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       // check for superclass
       for (Field field : superclassFields) {
         if (checkGetterPresent(obj.getClass().getSuperclass(), field) && isJavaLang(field.getType())) {
-//          System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
+          System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
           attributes.put(field.getName(), field.getType());
         }
       }
@@ -382,6 +390,33 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     input.setValueExpression("value", valueExpression);
 
     return input;
+  }
+
+  private UIComponent createDropdownForEnums(FormInput property) {
+    String key = property.getKey();
+    Class<?> expectedType = property.getValue();
+
+    String methodName = StringUtils.getMethodName(key);
+
+    Provider[] enums = enumController.getProviderValues();
+    UISelectItems items = new UISelectItems();
+
+    List<SelectItem> selectItems = new ArrayList<>(enums.length);
+    for (Provider status : enums) {
+      selectItems.add(new SelectItem(status, status.getName()));
+    }
+
+    items.setValue(selectItems);
+
+    HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
+    menu.setId(key);
+    menu.getChildren().add(items);
+
+    String jsfValue = String.format("#{%s.item.%s}", getControllerBeanName(), key);
+    ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, expectedType);
+    menu.setValueExpression("value", valueExpression);
+
+    return menu;
   }
 
 }

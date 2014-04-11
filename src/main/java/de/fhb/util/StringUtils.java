@@ -35,4 +35,8 @@ public class StringUtils {
     String id = value.substring(value.indexOf("id=") + 3, value.indexOf("]"));
     return Long.valueOf(id);
   }
+
+  public static String getMethodName(String key) {
+    return String.format("get%sValues", capitalize(key));
+  }
 }
