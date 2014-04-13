@@ -1,7 +1,6 @@
 package de.fhb.entities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.fhb.entities.Language.LanguageCode;
 import de.fhb.rest.v1.mapping.DTOMapper;
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,7 +46,7 @@ public class PlaylistTest {
     Playlist playlist = new Playlist();
     playlist.setId(1L);
     playlist.setName("Windows Phone Workshop (MMT30)");
-    playlist.setLanguageCode(new Language(LanguageCode.GERMAN));
+    playlist.setLanguageCode(LanguageCode.DE);
     playlist.setCategory(category);
     playlist.setProvider(Provider.YOUTUBE);
     playlist.setAuthor(author);

@@ -45,8 +45,8 @@ public class Playlist extends BaseEntity {
 
   private String code;
 
-  @Embedded
-  private Language languageCode;
+  @Embedded @Enumerated(EnumType.STRING)
+  private LanguageCode languageCode;
 
   @Size(min = 0, max = 255)
   private String description;
@@ -114,11 +114,11 @@ public class Playlist extends BaseEntity {
     this.code = code;
   }
 
-  public Language getLanguageCode() {
+  public LanguageCode getLanguageCode() {
     return languageCode;
   }
 
-  public void setLanguageCode(Language languageCode) {
+  public void setLanguageCode(LanguageCode languageCode) {
     this.languageCode = languageCode;
   }
 

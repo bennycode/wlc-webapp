@@ -5,9 +5,8 @@ import static de.fhb.config.Pages.REST_PLAYLIST;
 import static de.fhb.config.Pages.REST_VIDEO;
 import de.fhb.entities.Author;
 import de.fhb.entities.Category;
-import de.fhb.entities.Language;
+import de.fhb.entities.LanguageCode;
 import de.fhb.entities.Playlist;
-import de.fhb.entities.Provider;
 import de.fhb.entities.Video;
 import de.fhb.rest.v2.dto.AuthorDTO;
 import de.fhb.rest.v2.dto.CategoryDTO;
@@ -93,7 +92,7 @@ public class DTOMapper {
       dto.setLastModified(e.getLastModified());
       dto.setNumberOfVideos(e.getVideos().size());
       dto.setAuthor(mapAuthor(e.getAuthor()));
-      dto.setProvider(e.getProvider().getName());
+      dto.setProvider(e.getProvider().toString());
 //    dto.setSlug(e.getSlug());
       dto.setStatus(new StatusDTO());
       dto.setName(e.getName());
@@ -196,20 +195,20 @@ public class DTOMapper {
     return dtoList;
   }
 
-  public static String mapLanguage(Language e) {
-    String lang = "English";
+  public static String mapLanguage(LanguageCode language) {
+    String dtoLanguage = "English";
 
-    if (e.getLanguageCode() != null) {
-      switch (e.getLanguageCode()) {
-        case Language.LanguageCode.GERMAN:
-          lang = "German";
+    if (language != null) {
+      switch (language) {
+        case EN:
+          dtoLanguage = "English";
           break;
-        case Language.LanguageCode.ENGLISH:
-          lang = "English";
+        case DE:
+          dtoLanguage = "German";
           break;
       }
     }
 
-    return lang;
+    return dtoLanguage;
   }
 }

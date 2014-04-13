@@ -1,7 +1,6 @@
 package de.fhb.entities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.fhb.entities.Language.LanguageCode;
 import de.fhb.rest.v1.mapping.DTOMapper;
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,18 +45,18 @@ public class CategoryTest {
 
     Playlist androidPlaylistEnglish = new Playlist();
     androidPlaylistEnglish.setCategory(android);
-    androidPlaylistEnglish.setLanguageCode(new Language(LanguageCode.ENGLISH));
+    androidPlaylistEnglish.setLanguageCode(LanguageCode.EN);
     androidPlaylistEnglish.setVideos(androidVideos);
 
     Playlist androidPlaylistGerman = new Playlist();
     androidPlaylistGerman.setCategory(android);
-    androidPlaylistGerman.setLanguageCode(new Language(LanguageCode.GERMAN));
+    androidPlaylistGerman.setLanguageCode(LanguageCode.DE);
     androidPlaylistGerman.setVideos(androidVideos);
 
     List<Playlist> androidPlaylists = new ArrayList<>();
     androidPlaylists.add(androidPlaylistEnglish);
     androidPlaylists.add(androidPlaylistGerman);
-    
+
     android.setPlaylists(androidPlaylists);
 
     // C
@@ -71,7 +70,7 @@ public class CategoryTest {
 
     Playlist cPlaylistGerman = new Playlist();
     cPlaylistGerman.setCategory(c);
-    cPlaylistGerman.setLanguageCode(new Language(LanguageCode.GERMAN));
+    cPlaylistGerman.setLanguageCode(LanguageCode.DE);
     cPlaylistGerman.setVideos(cVideos);
 
     List<Playlist> cPlaylists = new ArrayList<>();

@@ -2,12 +2,11 @@ package de.fhb.rest.v1.mapping;
 
 import de.fhb.entities.Author;
 import de.fhb.entities.Category;
-import de.fhb.entities.Language;
-import de.fhb.entities.Language.LanguageCode;
+import de.fhb.entities.LanguageCode;
 import de.fhb.entities.Playlist;
 import de.fhb.entities.Video;
-import de.fhb.rest.v1.dto.CategoryDTO;
 import de.fhb.rest.v1.dto.AuthorDTO;
+import de.fhb.rest.v1.dto.CategoryDTO;
 import de.fhb.rest.v1.dto.PlaylistDTO;
 import de.fhb.rest.v1.dto.StatusDTO;
 import de.fhb.rest.v1.dto.VideoDTO;
@@ -47,7 +46,7 @@ public class DTOMapper {
     dtoPlaylist.setName(playlist.getName());
     dtoPlaylist.setLanguage(mapLanguage(playlist.getLanguageCode()));
     dtoPlaylist.setCategoryName(playlist.getCategory().getName());
-    dtoPlaylist.setProviderName(playlist.getProvider().getName());
+    dtoPlaylist.setProviderName(playlist.getProvider().toString());
     dtoPlaylist.setNumberOfVideos(playlist.getVideos().size());
     dtoPlaylist.setDescription(playlist.getDescription());
     dtoPlaylist.setOwner(mapAuthor(playlist.getAuthor()));
@@ -67,16 +66,16 @@ public class DTOMapper {
     return dtoPlaylists;
   }
 
-  public static String mapLanguage(Language language) {
+  public static String mapLanguage(LanguageCode language) {
     String dtoLanguage = "English";
 
-    if (language.getLanguageCode() != null) {
-      switch (language.getLanguageCode()) {
-        case LanguageCode.GERMAN:
-          dtoLanguage = "German";
-          break;
-        case LanguageCode.ENGLISH:
+    if (language != null) {
+      switch (language) {
+        case EN:
           dtoLanguage = "English";
+          break;
+        case DE:
+          dtoLanguage = "German";
           break;
       }
     }
