@@ -7,6 +7,7 @@ import de.fhb.util.StringUtils;
 import de.fhb.view.forms.DefaultFormModel;
 import de.fhb.view.forms.FormInput;
 import de.fhb.view.forms.FormModel;
+import de.fhb.view.jsf.CustomTag;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,6 @@ import java.util.logging.Logger;
 import javax.faces.component.UIOutput;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlForm;
-import javax.faces.component.html.HtmlOutputText;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -79,24 +79,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     form.setAcceptcharset("ISO-8859-1");
     form.setStyleClass("pure-form pure-form-stacked");
 
-    // TODO START never used
-    UIOutput legend = new UIOutput();
-    legend.setRendererType("javax.faces.Text");
-    legend.getAttributes().put("escape", false);
-    legend.setValue("<legend>Eintrag bearbeiten</legend>");
-    // TODO END never used
-
-    //TODO fieldset should be in ComponentFactory
-    // Create a <fieldset>
-    HtmlOutputText fieldsetStart = new HtmlOutputText();
-    fieldsetStart.setEscape(false);
-    fieldsetStart.setValue("<fieldset>");
-
-    HtmlOutputText fieldsetEnd = new HtmlOutputText();
-    fieldsetEnd.setEscape(false);
-    fieldsetEnd.setValue("</fieldset>");
-
-    form.getChildren().add(fieldsetStart);
+    CustomTag fieldset = new CustomTag("fieldset");
 
     // Add labels and properies
     Map<String, Class<?>> properties = getProperties(item);
@@ -116,12 +99,12 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       FormInput[] parsedProperties = formModel.parseProperties(properties);
 
       for (FormInput property : parsedProperties) {
-        form.getChildren().add(componentFactory.createLabel(property));
-        form.getChildren().add(componentFactory.createComponentByType(property));
+        fieldset.getChildren().add(componentFactory.createLabel(property));
+        fieldset.getChildren().add(componentFactory.createComponentByType(property));
       }
     }
 
-    form.getChildren().add(fieldsetEnd);
+    form.getChildren().add(fieldset);
 
     HtmlCommandButton submit = componentFactory.createSubmitButton(FacesContext.getCurrentInstance().getApplication());
     form.getChildren().add(submit);
