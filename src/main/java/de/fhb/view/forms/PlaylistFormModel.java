@@ -10,6 +10,7 @@ public class PlaylistFormModel extends FormModel {
       "id",
       "name",
       "category",
+      "difficulty",
       "description",
       "languageCode",
       "provider",
@@ -44,6 +45,9 @@ public class PlaylistFormModel extends FormModel {
           break;
         case "description":
           input.setRenderType(RenderType.TEXTAREA);
+          break;
+        case "difficulty":
+          input.setRenderType(RenderType.ENUM);
           break;
         case "languageCode":
           input.setRenderType(RenderType.ENUM);

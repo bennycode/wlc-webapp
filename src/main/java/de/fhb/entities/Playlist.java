@@ -32,6 +32,9 @@ public class Playlist extends BaseEntity {
   @Embedded @Enumerated(EnumType.STRING)
   private Provider provider;
 
+  @Embedded @Enumerated(EnumType.STRING)
+  private Difficulty difficulty;
+
   @NotNull
   @ManyToOne
   private Category category;
@@ -138,6 +141,14 @@ public class Playlist extends BaseEntity {
     this.enabled = enabled;
   }
 
+  public Difficulty getDifficulty() {
+    return difficulty;
+  }
+
+  public void setDifficulty(Difficulty difficulty) {
+    this.difficulty = difficulty;
+  }
+  
   @Override
   public String toString() {
     return this.getName();

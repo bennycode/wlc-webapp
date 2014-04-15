@@ -51,6 +51,9 @@ public class DTOMapper {
     dtoPlaylist.setDescription(playlist.getDescription());
     dtoPlaylist.setOwner(mapAuthor(playlist.getAuthor()));
     dtoPlaylist.setStatus(new StatusDTO());
+    if (playlist.getDifficulty() != null) {
+      dtoPlaylist.setDifficulty(String.valueOf(playlist.getDifficulty()));
+    }
 
     return dtoPlaylist;
   }

@@ -11,7 +11,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   "numberOfVideos",
   "description",
   "owner",
-  "status"
+  "status",
+  "difficulty"
 })
 public class PlaylistDTO {
 
@@ -24,6 +25,7 @@ public class PlaylistDTO {
   private String description;
   private AuthorDTO owner;
   private StatusDTO status;
+  private String difficulty;
 
   public PlaylistDTO() {
   }
@@ -115,4 +117,12 @@ public class PlaylistDTO {
     this.status = status;
   }
 
+  public String getDifficulty() {
+    return difficulty;
+  }
+
+  public void setDifficulty(String difficulty) {
+    this.difficulty = difficulty;
+  }
+  
 }
