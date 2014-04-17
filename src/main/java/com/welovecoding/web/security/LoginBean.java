@@ -39,7 +39,7 @@ public class LoginBean {
   private void removeLogin() {
     userSessionBean.setIsLoggedIn(false);
   }
-
+    
   public String login() {
     for (String user : users) {
       String dbUsername = user.split(":")[0];
