@@ -67,13 +67,7 @@
                 jsf:action="#{loginBean.login}" />
             </p>
             <p class="animate6 bounceIn">
-              <span
-                class="g-signin"
-                data-callback="signinCallback"
-                data-clientid="173259066390.apps.googleusercontent.com"
-                data-cookiepolicy="single_host_origin"
-                data-scope="profile"
-                />
+              <a href="#{googleLoginBean.buildLoginUrl()}">Sign-In with Google</a>
             </p>
             <p class="animate7 fadeIn forgotPassword">
               <i class="fa fa-question-circle"></i> Forgot Password?
@@ -84,30 +78,6 @@
       </div>
       <div class="loginshadow animate3 fadeInUp"></div>
     </div>
-    <!-- Google+ script -->
-    <!-- https://developers.google.com/+/web/signin/add-button-javascript -->
-    <script>
-      function signinCallback(authResult) {
-        console.log(JSON.stringify(authResult));
-
-        if (authResult.status.signed_in) {
-          console.log('Access token: ' + authResult.access_token);
-          sessionStorage.setItem('token', authResult.access_token);
-          // window.location = 'oauth2callback';
-        } else {
-          console.log('Sign-in state: ' + authResult.error);
-        }
-      }
-
-      (function() {
-        var po = document.createElement('script');
-        po.type = 'text/javascript';
-        po.async = true;
-        po.src = 'https://apis.google.com/js/client:plusone.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(po, s);
-      })();
-    </script>
     <script>
       jQuery(document).ready(function($) {
         var animationEnd = 'animationend oAnimationEnd MSAnimationEnd webkitAnimationEnd';

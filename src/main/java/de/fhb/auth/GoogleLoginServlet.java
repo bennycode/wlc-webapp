@@ -1,16 +1,11 @@
 package de.fhb.auth;
 
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
-import javax.servlet.ServletException;
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.MediaType;
 
 @WebServlet(name = "GoogleLoginServlet", urlPatterns = {"/oauth2callback"})
 /**
@@ -18,49 +13,47 @@ import javax.ws.rs.core.MediaType;
  */
 public class GoogleLoginServlet extends HttpServlet {
 
-  private static final JacksonFactory JSON_FACTORY = new JacksonFactory();
-  private static final Gson GSON = new Gson();
+  public static final String CODE_URL_PARAM_NAME = "code";
+  public static final String ERROR_URL_PARAM_NAME = "error";
+  public static final String URL_MAPPING = "/oauth2callback";
 
-  protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-    try (PrintWriter out = response.getWriter()) {
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<title>Servlet GoogleLoginServlet</title>");
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>Servlet GoogleLoginServlet at " + request.getContextPath() + "</h1>");
-      out.println("</body>");
-      out.println("</html>");
-    }
-  }
+  @Inject
+  private GoogleLoginBean googleLoginBean;
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    response.setContentType(MediaType.APPLICATION_JSON);
+  public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    // Getting the "error" URL parameter
+    String[] error = req.getParameterValues(ERROR_URL_PARAM_NAME);
 
-    String tokenData = (String) request.getSession().getAttribute("token");
-    Enumeration<String> e = request.getSession().getAttributeNames();
-    while (e.hasMoreElements()) {
-      String param = e.nextElement();
-      System.out.println(param);
+    // Checking if there was an error such as the user denied access
+    if (error != null && error.length > 0) {
+      resp.sendError(HttpServletResponse.SC_NOT_ACCEPTABLE, "There was an error: \"" + error[0] + "\".");
+      return;
     }
+    // Getting the "code" URL parameter
+    String[] code = req.getParameterValues(CODE_URL_PARAM_NAME);
 
-    if (tokenData == null) {
-      response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-      response.getWriter().print(GSON.toJson("Current user not connected."));
+    // Checking conditions on the "code" URL parameter
+    if (code == null || code.length == 0) {
+      resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "The \"code\" URL parameter is missing");
     } else {
-      processRequest(request, response);
+      System.out.println("LOGGED IN!");
     }
   }
 
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    processRequest(request, response);
+  /**
+   * Construct the OAuth code callback handler URL.
+   *
+   * @param req the HttpRequest object
+   * @return The constructed request's URL
+   */
+  public static String getOAuthCodeCallbackHandlerUrl(HttpServletRequest req) {
+    String scheme = req.getScheme() + "://";
+    String serverName = req.getServerName();
+    String serverPort = (req.getServerPort() == 80) ? "" : ":" + req.getServerPort();
+    String contextPath = req.getContextPath();
+    String servletPath = URL_MAPPING;
+    String pathInfo = (req.getPathInfo() == null) ? "" : req.getPathInfo();
+    return scheme + serverName + serverPort + contextPath + servletPath + pathInfo;
   }
-
 }

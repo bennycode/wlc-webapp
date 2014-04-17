@@ -3,6 +3,8 @@ package de.fhb.util;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.el.ELContext;
 import javax.el.ELException;
 import javax.el.MethodExpression;
@@ -388,11 +390,9 @@ public class JSFUtils implements Serializable {
    *
    * @param facesContext The {@link FacesContext} to examine.
    * @return the base URL.
-   * @throws MalformedURLException if an exception occurs during parsing of the
-   * URL.
    * @since 1.3
    */
-  public static String getBaseURL(final FacesContext facesContext) throws MalformedURLException {
+  public static String getBaseURL(final FacesContext facesContext) {
     return getBaseURL(facesContext.getExternalContext());
   }
 
@@ -404,12 +404,15 @@ public class JSFUtils implements Serializable {
    *
    * @param externalContext The {@link ExternalContext} to examine.
    * @return the base URL.
-   * @throws MalformedURLException if an exception occurs during parsing of the
-   * URL.
    * @since 1.3
    */
-  public static String getBaseURL(final ExternalContext externalContext) throws MalformedURLException {
-    return getBaseURL((HttpServletRequest) externalContext.getRequest());
+  public static String getBaseURL(final ExternalContext externalContext) {
+    try {
+      return getBaseURL((HttpServletRequest) externalContext.getRequest());
+    } catch (MalformedURLException ex) {
+      Logger.getLogger(JSFUtils.class.getName()).log(Level.SEVERE, null, ex);
+      return "";
+    }
   }
 
   /**
