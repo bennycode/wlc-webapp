@@ -50,9 +50,10 @@
       <id>mandubian-mvn</id>
       <url>http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository</url>
     </repository>
+    <!-- Google -->
     <repository>
       <id>google-api-services</id>
-      <url>http://mavenrepo.google-api-java-client.googlecode.com/hg</url>
+      <url>http://mavenrepo.google-api-java-client.googlecode.com/hg/</url>
     </repository>
     <repository>
       <id>maven.java.net</id>
@@ -109,7 +110,7 @@
       <artifactId>commons-lang3</artifactId>
       <version>3.3.1</version>
       <type>jar</type>
-    </dependency>
+    </dependency>   
     <dependency>
       <!-- Java EE Web Profile -->
       <groupId>javax</groupId>
@@ -118,6 +119,31 @@
       <scope>provided</scope>
     </dependency>
     <!-- Google -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.3.3</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.http-client</groupId>
+      <artifactId>google-http-client</artifactId>
+      <version>1.18.0-rc</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.http-client</groupId>
+      <artifactId>google-http-client-jackson2</artifactId>
+      <version>1.18.0-rc</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>com.google.oauth-client</groupId>
+      <artifactId>google-oauth-client</artifactId>
+      <version>1.18.0-rc</version>
+    </dependency>
+    <!-- 
+    This library is built on top of HTTP Client Library for Java and the Google 
+    OAuth Client Library for Java.
+    -->
     <dependency>
       <groupId>com.google.api-client</groupId>
       <artifactId>google-api-client</artifactId>

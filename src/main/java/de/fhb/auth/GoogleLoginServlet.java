@@ -1,5 +1,6 @@
 package de.fhb.auth;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +22,10 @@ public class GoogleLoginServlet extends HttpServlet {
   private GoogleLoginBean googleLoginBean;
 
   @Override
+  /**
+   * @see
+   * https://developers.google.com/google-apps/tasks/oauth-authorization-callback-handler?hl=de
+   */
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     // Getting the "error" URL parameter
     String[] error = req.getParameterValues(ERROR_URL_PARAM_NAME);
@@ -37,7 +42,18 @@ public class GoogleLoginServlet extends HttpServlet {
     if (code == null || code.length == 0) {
       resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "The \"code\" URL parameter is missing");
     } else {
-      System.out.println("LOGGED IN!");
+      GoogleTokenResponse tokenResponse = googleLoginBean.convertCodeToToken(code[0]);
+      String accessToken = tokenResponse.getIdToken();
+      System.out.println("Access Token: " + accessToken);
+
+      GoogleUser user = googleLoginBean.getUser(tokenResponse);
+      System.out.println(user.getFamilyName());
+      System.out.println(user.getGender());
+      System.out.println(user.isVerifiedEmail());
+
+      // TODO:
+      // 1. Save login in LoginBean / Session
+      // 2. Redirect to desired page...
     }
   }
 

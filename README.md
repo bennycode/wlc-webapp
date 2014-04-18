@@ -81,6 +81,7 @@ Project configuration:
 
 ## Tools: ##
 - [CSS Unminifier](http://mrcoles.com/blog/css-unminify/)
+- [Code Search](http://code.ohloh.net/)
 
 ##REST service##
 - [http://localhost:8080/wlc_webapp/rest/fhb/v1/categories](http://localhost:8080/wlc_webapp/rest/fhb/v1/categories)
