@@ -1,6 +1,5 @@
 package de.fhb.security.auth;
 
-import de.fhb.security.auth.google.GoogleUser;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;

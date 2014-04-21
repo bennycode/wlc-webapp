@@ -1,11 +1,17 @@
 package de.fhb.service;
 
+import de.fhb.controller.GenFormBaseController;
 import de.fhb.entities.BaseEntity;
 import de.fhb.repository.AbstractRepository;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.List;
 import java.util.Set;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.MappedSuperclass;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 
 @MappedSuperclass
 //@Interceptors({EJBLoggerInterceptor.class})
@@ -29,8 +35,22 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
   }
 
   public void edit(T entity) {
-    invalidateRelatedCaches();
-    getRepository().edit(entity);
+    Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+    Set<ConstraintViolation<T>> constraintViolations = validator.validate(entity);
+
+    if (constraintViolations.size() > 0) {
+      // TODO: Don't handle exception here - Throw it!
+      for (ConstraintViolation<T> constraintViolation : constraintViolations) {
+        String message = constraintViolation.getPropertyPath() + ": " + constraintViolation.getMessage();
+        FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null);
+        FacesContext.getCurrentInstance().addMessage(GenFormBaseController.ERROR_MESSAGES_NAME, facesMsg);
+      }
+
+    } else {
+      invalidateRelatedCaches();
+      getRepository().edit(entity);
+    }
+
   }
 
   public void remove(T entity) {

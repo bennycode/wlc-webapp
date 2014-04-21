@@ -12,9 +12,9 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
-import javax.faces.component.UIOutput;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlForm;
+import javax.faces.component.html.HtmlMessages;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -40,6 +40,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   //TODO knowledge about pagination should be in BaseController
   private final int RESULTS_PER_PAGE = 20;
   private final ComponentFactory componentFactory;
+  public static String ERROR_MESSAGES_NAME = "error_messages";
 
   /**
    * Note: You should never assign FacesContext as instance variable of a
@@ -80,6 +81,11 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     form.setStyleClass("pure-form pure-form-stacked");
 
     CustomTag fieldset = new CustomTag("fieldset");
+
+    HtmlMessages messages = new HtmlMessages();
+    messages.setId(ERROR_MESSAGES_NAME);
+
+    fieldset.getChildren().add(messages);
 
     // Add labels and properies
     Map<String, Class<?>> properties = getProperties(item);
