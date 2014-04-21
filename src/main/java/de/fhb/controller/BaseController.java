@@ -114,6 +114,10 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
       pages += 1;
     }
 
+    if (pages == 0) {
+      pages = 1;
+    }
+
     return pages;
   }
 

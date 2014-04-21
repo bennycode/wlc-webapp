@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -45,14 +46,14 @@ public class GoogleLoginBean implements Serializable {
   private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
   private static final ObjectMapper mapper = new ObjectMapper();
 
-  public GoogleLoginBean() {
+  @PostConstruct
+  void init() {
     mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+    ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+    redirectUri = JSFUtils.getBaseURL(externalContext) + REGISTERED_REDIRECT_URI;
   }
 
   public String buildLoginUrl() {
-    ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-    redirectUri = JSFUtils.getBaseURL(externalContext) + REGISTERED_REDIRECT_URI;
-
     GoogleAuthorizationCodeRequestUrl authUrl
             = new GoogleAuthorizationCodeRequestUrl(GOOGLE_CREDENTIALS.getClientId(), redirectUri, SCOPES);
 
