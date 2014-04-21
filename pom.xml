@@ -21,6 +21,7 @@
     </developer>
     <developer>
       <name>Michael Koppen</name>
+      <url>https://github.com/Yserz</url>
       <roles>
         <role>Original Author</role>
       </roles>
@@ -70,11 +71,9 @@
       <url>https://bitbucket.org/api/1.0/repositories/Yserz/ownmavenrepo/raw/HEAD/</url>
       <releases>
         <enabled>true</enabled>
-        <!--<updatePolicy>always</updatePolicy>-->
       </releases>
       <snapshots>
         <enabled>true</enabled>
-        <!--<updatePolicy>always</updatePolicy>-->
       </snapshots>
     </repository>
     <repository>
@@ -237,9 +236,7 @@
     </pluginRepository>
   </pluginRepositories>
 
-
   <build>
-    
     <finalName>${project.artifactId}</finalName>
     
     <resources>
@@ -432,5 +429,4 @@
       </build>
     </profile>
   </profiles>
-   
 </project>
