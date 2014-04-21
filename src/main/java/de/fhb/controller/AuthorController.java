@@ -5,8 +5,6 @@ import de.fhb.entities.Author;
 import de.fhb.service.AuthorService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -25,7 +23,6 @@ public class AuthorController
 
   @Override
   public String edit() {
-    // TODO: Do exception handling here!
     super.edit();
 
     this.item = new Author();
