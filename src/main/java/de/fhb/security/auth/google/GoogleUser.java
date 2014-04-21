@@ -1,4 +1,4 @@
-package de.fhb.auth;
+package de.fhb.security.auth.google;
 
 public class GoogleUser {
 

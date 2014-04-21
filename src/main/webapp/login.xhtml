@@ -67,7 +67,12 @@
                 jsf:action="#{loginBean.login}" />
             </p>
             <p class="animate6 bounceIn">
-              <a href="#{googleLoginBean.buildLoginUrl()}">Sign-In with Google</a>
+              <a class="btn btn-default btn-block" 
+                 href="#{googleLoginBean.buildLoginUrl()}" 
+                 rel="nofollow">
+                <i class="fa fa-google-plus"></i>
+                Sign in with Google
+              </a>
             </p>
             <p class="animate7 fadeIn forgotPassword">
               <i class="fa fa-question-circle"></i> Forgot Password?

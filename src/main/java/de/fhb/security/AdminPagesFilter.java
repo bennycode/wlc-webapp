@@ -1,5 +1,6 @@
-package com.welovecoding.web.security;
+package de.fhb.security;
 
+import de.fhb.security.auth.UserSessionBean;
 import de.fhb.config.Pages;
 import java.io.IOException;
 import javax.inject.Inject;

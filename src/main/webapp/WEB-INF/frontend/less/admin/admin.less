@@ -2,10 +2,21 @@
 @imagePath: "../images/admin";
 
 /* Mixins */
-.box-sizing-border-box () {
+.box-sizing-border-box() {
   -webkit-box-sizing: border-box; 
   -moz-box-sizing: border-box; 
   box-sizing: border-box;
+}
+
+.loginFormSubmitButton() {
+  .box-sizing-border-box;
+  border: 0; 
+  border-radius: 2px;
+  font-size: 14px !important; 
+  min-height: 44px; 
+  padding: 10px; 
+  padding-left: 30px;
+  width: 100%; 
 }
 
 body.admin {
@@ -33,16 +44,9 @@ body.admin {
     }
 
     input { 
-      width: 100%; 
-      .box-sizing-border-box;
-      padding: 10px; 
-      min-height: 44px; 
-      font-size: 14px !important; 
-      border: 0; 
-      border-radius: 2px;
-      color: #999;
+      .loginFormSubmitButton();
       background: #eee; 
-      padding-left: 30px; 
+      color: #999;
       .error {
         background-color: #ffeaea; color: #ff0000;
       }

@@ -1,4 +1,4 @@
-package com.welovecoding.web.security;
+package de.fhb.security.auth;
 
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;

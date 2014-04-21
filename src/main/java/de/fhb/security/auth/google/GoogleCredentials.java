@@ -1,4 +1,4 @@
-package de.fhb.auth;
+package de.fhb.security.auth.google;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package com.welovecoding.web.security;
+package de.fhb.security.auth;
 
 import de.fhb.config.Pages;
 import java.util.logging.Level;

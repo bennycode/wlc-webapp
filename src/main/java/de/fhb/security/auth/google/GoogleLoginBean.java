@@ -1,4 +1,4 @@
-package de.fhb.auth;
+package de.fhb.security.auth.google;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;

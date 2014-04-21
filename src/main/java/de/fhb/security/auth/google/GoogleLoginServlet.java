@@ -1,4 +1,4 @@
-package de.fhb.auth;
+package de.fhb.security.auth.google;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
 import java.io.IOException;
