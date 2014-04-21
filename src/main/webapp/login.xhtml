@@ -32,6 +32,7 @@
   <h:body class="admin">
     <div class="loginwrapper">
       <div class="loginwrap zindex100 animate2 bounceInDown">
+
         <div class="header">
           <div class="left lock">
             <i class="fa fa-lock fa-3x"></i>
@@ -42,31 +43,10 @@
           </div>
           <div class="clearfix"></div>
         </div>
-        <div class="loginwrapperinner">
 
+        <div class="loginwrapperinner">
           <form jsf:id="loginform">
             <p class="animate4 bounceIn">
-              <input
-                type="text"
-                jsf:id="username"
-                jsf:value="#{loginBean.username}"
-                />
-            </p>
-            <p class="animate5 bounceIn">
-              <input
-                type="password"
-                jsf:id="password"
-                jsf:value="#{loginBean.password}"
-                />
-            </p>
-            <p class="animate6 bounceIn">
-              <input
-                class="btn btn-default btn-block"
-                type="submit"
-                value="Submit"
-                jsf:action="#{loginBean.login}" />
-            </p>
-            <p class="animate6 bounceIn">
               <a class="btn-google" 
                  href="#{googleLoginBean.buildLoginUrl()}" 
                  rel="nofollow">
@@ -74,56 +54,12 @@
                 Sign in with Google
               </a>
             </p>
-            <p class="animate7 fadeIn forgotPassword">
-              <i class="fa fa-question-circle"></i> Forgot Password?
-            </p>
           </form>
-
         </div>
+
       </div>
       <div class="loginshadow animate3 fadeInUp"></div>
     </div>
-    <script>
-      jQuery(document).ready(function($) {
-        var animationEnd = 'animationend oAnimationEnd MSAnimationEnd webkitAnimationEnd';
-        $('.loginwrap').bind(animationEnd, function() {
-          $(this).removeClass('animate2 bounceInDown');
-        });
-
-        $('#username,#password').focus(function() {
-          if ($(this).hasClass('error')) {
-            $(this).removeClass('error');
-          }
-        });
-
-        /* TODO: Wird nie ausgeführt, da JSF zuvorkommt! */
-        $('#loginform button').click(function() {
-          if ($('#username').val() === '' || $('#password').val() === '') {
-            if ($('#username').val() === '') {
-              $('#username').addClass('error');
-            }
-            else {
-              $('#username').removeClass('error');
-            }
-            if ($('#password').val() === '') {
-              $('#password').addClass('error');
-            }
-            else {
-              $('#password').removeClass('error');
-            }
-
-            $('.loginwrap').addClass('animate0 wobble').bind(animationEnd, function() {
-              $(this).removeClass('animate0 wobble');
-            });
-          } else {
-            $('.loginwrapper').addClass('animate0 fadeOutUp').bind(animationEnd, function() {
-              $('#loginform').submit();
-            });
-          }
-          return false;
-        });
-      });
-    </script>
   </h:body>
 </html>
 

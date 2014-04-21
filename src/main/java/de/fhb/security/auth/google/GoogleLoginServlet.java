@@ -1,7 +1,13 @@
 package de.fhb.security.auth.google;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
+import de.fhb.security.auth.User;
+import de.fhb.security.auth.UserConverter;
+import de.fhb.security.auth.UserSessionBean;
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +26,9 @@ public class GoogleLoginServlet extends HttpServlet {
 
   @Inject
   private GoogleLoginBean googleLoginBean;
+
+  @Inject
+  private UserSessionBean userSessionBean;
 
   @Override
   /**
@@ -46,16 +55,24 @@ public class GoogleLoginServlet extends HttpServlet {
       String accessToken = tokenResponse.getIdToken();
       System.out.println("Access Token: " + accessToken);
 
-      GoogleUser user = googleLoginBean.getUser(tokenResponse);
-      System.out.println(user.getFamilyName());
-      System.out.println(user.getGender());
-      System.out.println(user.isVerifiedEmail());
+      GoogleUser gu = googleLoginBean.getUser(tokenResponse);
+      System.out.println(gu.getFamilyName());
+      System.out.println(gu.getGender());
+      System.out.println(gu.isVerifiedEmail());
 
-      // TODO:
+      User user = UserConverter.convertGoogleUser(gu);
+      userSessionBean.setUser(user);
+
+      // http://www.adam-bien.com/roller/abien/entry/does_cdi_injection_of_sessionscoped
+      String redirectUrl = userSessionBean.getDeniedUrl();
+      LOG.log(Level.INFO, "Redirecting to: {0}", redirectUrl);
+
+      resp.sendRedirect(redirectUrl);
       // 1. Save login in LoginBean / Session
       // 2. Redirect to desired page...
     }
   }
+  private static final Logger LOG = Logger.getLogger(GoogleLoginServlet.class.getName());
 
   /**
    * Construct the OAuth code callback handler URL.

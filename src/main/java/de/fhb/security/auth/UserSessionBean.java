@@ -1,6 +1,8 @@
 package de.fhb.security.auth;
 
+import de.fhb.security.auth.google.GoogleUser;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
@@ -9,9 +11,16 @@ import javax.inject.Named;
 public class UserSessionBean implements Serializable {
 
   private boolean isLoggedIn;
+  private String deniedUrl;
+  private User user;
+
+  @PostConstruct
+  void init() {
+    isLoggedIn = false;
+    user = new User();
+  }
 
   public UserSessionBean() {
-    isLoggedIn = false;
   }
 
   public boolean isLoggedIn() {
@@ -21,4 +30,21 @@ public class UserSessionBean implements Serializable {
   public void setIsLoggedIn(boolean isLoggedIn) {
     this.isLoggedIn = isLoggedIn;
   }
+
+  public String getDeniedUrl() {
+    return deniedUrl;
+  }
+
+  public void setDeniedUrl(String deniedUrl) {
+    this.deniedUrl = deniedUrl;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
 }
