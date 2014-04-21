@@ -2,6 +2,7 @@ package de.fhb.security;
 
 import de.fhb.security.auth.UserSessionBean;
 import de.fhb.config.Pages;
+import de.fhb.security.auth.User;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.Filter;
@@ -18,19 +19,43 @@ public class AdminPagesFilter implements Filter {
   @Inject
   private UserSessionBean userSessionBean;
 
+  private static final String[] ALLOWED_EMAILS = {
+    "apfelbenny@googlemail.com",
+    "michael.koppen@googlemail.com"
+  };
+
   public AdminPagesFilter() {
+  }
+
+  private boolean isAllowed() {
+    boolean isAllowed = false;
+    User user = userSessionBean.getUser();
+
+    if (user != null && user.getEmail() != null) {
+      for (String email : ALLOWED_EMAILS) {
+        if (user.getEmail().equals(email)) {
+          isAllowed = true;
+        }
+      }
+    }
+
+    return isAllowed;
   }
 
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
           throws IOException, ServletException {
+    HttpServletRequest servletRequest = (HttpServletRequest) request;
+    HttpServletResponse servletResponse = (HttpServletResponse) response;
 
-    boolean isAdmin = userSessionBean.isLoggedIn();
-
-    if (!isAdmin) {
+    if (!isAllowed()) {
       // Deny Access
-      String contextPath = ((HttpServletRequest) request).getContextPath();
-      ((HttpServletResponse) response).sendRedirect(contextPath + Pages.LOGIN);
+      String referrer = servletRequest.getRequestURL().toString();
+      userSessionBean.setDeniedUrl(referrer);
+
+      // Send redirect
+      String contextPath = servletRequest.getContextPath();
+      servletResponse.sendRedirect(contextPath + Pages.LOGIN);
     }
 
     // Continue filtering...

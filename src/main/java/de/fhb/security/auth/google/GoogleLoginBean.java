@@ -66,6 +66,7 @@ public class GoogleLoginBean implements Serializable {
                     GOOGLE_CREDENTIALS.getClientId(),
                     GOOGLE_CREDENTIALS.getClientSecret(),
                     code,
+                    // TODO: Change this!!
                     "http://localhost:8080/wlc-webapp/oauth2callback");
 
     return request.execute();
