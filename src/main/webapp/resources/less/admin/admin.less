@@ -8,15 +8,19 @@
   box-sizing: border-box;
 }
 
-.loginFormSubmitButton() {
+.loginFormButton() {
   .box-sizing-border-box;
+  background-color: rgb(238, 238, 238);
   border: 0; 
   border-radius: 2px;
+  display: inline-block;
   font-size: 14px !important; 
-  min-height: 44px; 
-  padding: 10px; 
+  line-height: 44px;
+  min-height: 44px;
+  /*text-align: center;*/
   padding-left: 30px;
   width: 100%; 
+  text-decoration: none;
 }
 
 body.admin {
@@ -43,8 +47,22 @@ body.admin {
       box-shadow: 0 2px 3px rgba(0,0,0,0.3); 
     }
 
+    .btn-google {
+      .loginFormButton();      
+      background-color: #dd4b39;
+      color: white;
+      padding: 0;
+      text-align: center;
+      .icon {
+        font-size: 28px;
+        position: absolute;
+        left: 30px;
+        top: 8px;
+      }
+    }
+
     input { 
-      .loginFormSubmitButton();
+      .loginFormButton();
       background: #eee; 
       color: #999;
       .error {
