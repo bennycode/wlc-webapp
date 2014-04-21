@@ -9,8 +9,19 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>${project.artifactId}</name>
-  
+  <name>WeLoveCoding</name><!-- name is just an overlay -->
+  <url>https://github.com/bennyn/wlc-webapp</url>
+  <inceptionYear>2014</inceptionYear>
+  <description>
+        <![CDATA[
+            We Love Coding provides a numerous collection of video tutorials for developers. 
+            The spectrum ranges from the introduction to object-oriented programming languages such as C#, Java, Ruby, and C++ 
+            to topics of web development with HTML5 and JavaScript and to the development of apps for iOS, Android and Windows Phone.
+        ]]>
+  </description>
+  <organization>
+    <name>We Love Coding</name>
+  </organization>
   <developers>
     <developer>
       <name>Benny Neugebauer</name>
@@ -21,12 +32,20 @@
     </developer>
     <developer>
       <name>Michael Koppen</name>
+      <email>michael.koppen@googlemail.com</email>
       <url>https://github.com/Yserz</url>
       <roles>
         <role>Original Author</role>
       </roles>
     </developer>
   </developers>
+  <scm>
+    <connection>scm:git:git@github.com:bennyn/wlc-webapp.git</connection>
+  </scm>
+  <issueManagement>
+    <system>GitHub Issue Management</system>
+    <url>https://github.com/bennyn/wlc-webapp/issues</url>
+  </issueManagement>
 
   <properties>
     <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -387,6 +406,33 @@
       </properties>
       <build>
         <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>2.2.1</version>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>2.9.1</version>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>2.8.1</version>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <version>2.1</version>
+          </plugin>
+          <plugin>
+            <artifactId>maven-scm-plugin</artifactId>
+            <version>1.9</version>
+            <configuration>
+              <tag>${project.artifactId}-${project.version}</tag>
+            </configuration>
+          </plugin>
           <plugin>
             <groupId>org.codehaus.cargo</groupId>
             <artifactId>cargo-maven2-plugin</artifactId>
