@@ -19,13 +19,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named
-@RequestScoped
+@ApplicationScoped
 public class GoogleLoginBean implements Serializable {
 
   // https://console.developers.google.com/project/apps~we-love-coding/apiui/credential
@@ -38,6 +38,7 @@ public class GoogleLoginBean implements Serializable {
 
   // API
   private static final String USER_INFO_URL = "https://www.googleapis.com/oauth2/v1/userinfo";
+  private String redirectUri;
 
   // Utils
   private static final JsonFactory JSON_FACTORY = new JacksonFactory();
@@ -50,7 +51,7 @@ public class GoogleLoginBean implements Serializable {
 
   public String buildLoginUrl() {
     ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-    String redirectUri = JSFUtils.getBaseURL(externalContext) + REGISTERED_REDIRECT_URI;
+    redirectUri = JSFUtils.getBaseURL(externalContext) + REGISTERED_REDIRECT_URI;
 
     GoogleAuthorizationCodeRequestUrl authUrl
             = new GoogleAuthorizationCodeRequestUrl(GOOGLE_CREDENTIALS.getClientId(), redirectUri, SCOPES);
@@ -66,8 +67,7 @@ public class GoogleLoginBean implements Serializable {
                     GOOGLE_CREDENTIALS.getClientId(),
                     GOOGLE_CREDENTIALS.getClientSecret(),
                     code,
-                    // TODO: Change this!!
-                    "http://localhost:8080/wlc-webapp/oauth2callback");
+                    redirectUri);
 
     return request.execute();
   }

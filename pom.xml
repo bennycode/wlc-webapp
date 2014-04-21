@@ -9,7 +9,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>WeLoveCoding</name><!-- name is just an overlay -->
+  <name>We Love Coding (webapp)</name>
   <url>https://github.com/bennyn/wlc-webapp</url>
   <inceptionYear>2014</inceptionYear>
   <description>

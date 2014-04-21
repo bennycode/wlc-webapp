@@ -3,6 +3,7 @@ package de.fhb.controller;
 import de.fhb.entities.Category;
 import de.fhb.config.Pages;
 import de.fhb.service.CategoryService;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -37,5 +38,9 @@ public class CategoryController extends GenFormBaseController<Category, Category
   @Override
   public CategoryService getService() {
     return service;
+  }
+
+  public List<Category> orderByName() {
+    return service.orderByName();
   }
 }

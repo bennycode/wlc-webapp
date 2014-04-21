@@ -17,7 +17,7 @@
               <span id="ordered">geordnet</span> | <span class="unordered">wild durcheinander</span>
             </p>
             <ul>
-              <ui:repeat value="#{categoryService.orderByName}" var="category">
+              <ui:repeat value="#{categoryController.orderByName()}" var="category">
                 <li><a href="#"><h:outputText value="#{category.name}"/></a></li>
               </ui:repeat>
             </ul>

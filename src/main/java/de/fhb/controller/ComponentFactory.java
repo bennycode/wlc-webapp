@@ -26,7 +26,6 @@ import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
 import javax.faces.model.SelectItem;
-import javax.inject.Inject;
 
 /**
  *
@@ -36,8 +35,6 @@ public class ComponentFactory {
 
   private static final Logger LOG = Logger.getLogger(ComponentFactory.class.getName());
 
-  @Inject
-  EnumController enumController;
   private final ResourceBundle backendText;
   private final String controllerBeanName;
 
