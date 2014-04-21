@@ -43,8 +43,8 @@ public class AuthorService extends BaseService<Author, AuthorRepository> {
   @Override
   protected Set<String> typesToClear() {
     return new HashSet<>(Arrays.asList(
-            "de.fhb.rest.v1.dto.AuthorDTO",
-            "de.fhb.rest.v2.dto.AuthorDTO"
+            de.fhb.rest.v1.dto.AuthorDTO.class.getName(),
+            de.fhb.rest.v2.dto.AuthorDTO.class.getName()
     ));
   }
 

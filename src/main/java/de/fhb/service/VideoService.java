@@ -46,7 +46,7 @@ public class VideoService extends BaseService<Video, VideoRepository> {
   public List<Video> getAllInCategory(Long playlistid) {
     // TODO Implement getAllVideosByPlaylist(long)
     // Never return null. instead return an empty List
-    return new ArrayList<Video>();
+    return new ArrayList<>();
   }
 
   public Video findInCategory(Long categoryid, Long videoid) {
@@ -64,8 +64,8 @@ public class VideoService extends BaseService<Video, VideoRepository> {
   @Override
   protected Set<String> typesToClear() {
     return new HashSet<>(Arrays.asList(
-            "de.fhb.rest.v1.dto.VideoDTO",
-            "de.fhb.rest.v2.dto.VideoDTO"
+            de.fhb.rest.v1.dto.VideoDTO.class.getName(),
+            de.fhb.rest.v2.dto.VideoDTO.class.getName()
     ));
   }
 

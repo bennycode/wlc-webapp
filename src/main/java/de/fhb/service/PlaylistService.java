@@ -47,8 +47,8 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
   @Override
   protected Set<String> typesToClear() {
     return new HashSet<>(Arrays.asList(
-            "de.fhb.rest.v1.dto.PlaylistDTO",
-            "de.fhb.rest.v2.dto.PlaylistDTO"
+            de.fhb.rest.v1.dto.PlaylistDTO.class.getName(),
+            de.fhb.rest.v2.dto.PlaylistDTO.class.getName()
     ));
   }
 }

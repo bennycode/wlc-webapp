@@ -44,8 +44,8 @@ public class CategoryService extends BaseService<Category, CategoryRepository> {
   @Override
   protected Set<String> typesToClear() {
     return new HashSet<>(Arrays.asList(
-            "de.fhb.rest.v1.dto.CategoryDTO",
-            "de.fhb.rest.v2.dto.CategoryDTO"
+            de.fhb.rest.v1.dto.CategoryDTO.class.getName(),
+            de.fhb.rest.v2.dto.CategoryDTO.class.getName()
     ));
   }
 }
