@@ -1,10 +1,12 @@
 package de.fhb.service;
 
+import de.fhb.config.Packages;
 import de.fhb.controller.GenFormBaseController;
 import de.fhb.entities.BaseEntity;
 import de.fhb.repository.AbstractRepository;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.Set;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -35,15 +37,28 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
   }
 
   public void edit(T entity) {
+    FacesContext context = FacesContext.getCurrentInstance();
+    ResourceBundle backendText = context.getApplication().getResourceBundle(context, Packages.BACKEND_MESSAGES_NAME);
+
     Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     Set<ConstraintViolation<T>> constraintViolations = validator.validate(entity);
 
     if (constraintViolations.size() > 0) {
       // TODO: Don't handle exception here - Throw it!
       for (ConstraintViolation<T> constraintViolation : constraintViolations) {
-        String message = constraintViolation.getPropertyPath() + ": " + constraintViolation.getMessage();
-        FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null);
-        FacesContext.getCurrentInstance().addMessage(GenFormBaseController.ERROR_MESSAGES_NAME, facesMsg);
+
+        String key;
+
+        try {
+          key = backendText.getString("admin.form.label." + constraintViolation.getPropertyPath());
+        } catch (java.util.MissingResourceException ex) {
+          // TODO: Should be combined with text handling in ComponentFactory
+          key = constraintViolation.getPropertyPath().toString();
+        }
+
+        String summary = key + ": " + constraintViolation.getMessage();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, null);
+        context.addMessage(GenFormBaseController.ERROR_MESSAGES_NAME, message);
       }
 
     } else {

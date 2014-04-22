@@ -1,11 +1,11 @@
 package de.fhb.security.auth.google;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
+import de.fhb.config.Pages;
 import de.fhb.security.auth.User;
 import de.fhb.security.auth.UserConverter;
 import de.fhb.security.auth.UserSessionBean;
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -35,41 +35,39 @@ public class GoogleLoginServlet extends HttpServlet {
    * @see
    * https://developers.google.com/google-apps/tasks/oauth-authorization-callback-handler?hl=de
    */
-  public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Getting the "error" URL parameter
-    String[] error = req.getParameterValues(ERROR_URL_PARAM_NAME);
+    String[] error = request.getParameterValues(ERROR_URL_PARAM_NAME);
 
     // Checking if there was an error such as the user denied access
     if (error != null && error.length > 0) {
-      resp.sendError(HttpServletResponse.SC_NOT_ACCEPTABLE, "There was an error: \"" + error[0] + "\".");
+      response.sendError(HttpServletResponse.SC_NOT_ACCEPTABLE, "There was an error: \"" + error[0] + "\".");
       return;
     }
     // Getting the "code" URL parameter
-    String[] code = req.getParameterValues(CODE_URL_PARAM_NAME);
+    String[] code = request.getParameterValues(CODE_URL_PARAM_NAME);
 
     // Checking conditions on the "code" URL parameter
     if (code == null || code.length == 0) {
-      resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "The \"code\" URL parameter is missing");
+      response.sendError(HttpServletResponse.SC_BAD_REQUEST, "The \"code\" URL parameter is missing");
     } else {
       GoogleTokenResponse tokenResponse = googleLoginBean.convertCodeToToken(code[0]);
       String accessToken = tokenResponse.getIdToken();
       System.out.println("Access Token: " + accessToken);
 
       GoogleUser gu = googleLoginBean.getUser(tokenResponse);
-      System.out.println(gu.getFamilyName());
-      System.out.println(gu.getGender());
-      System.out.println(gu.isVerifiedEmail());
-
       User user = UserConverter.convertGoogleUser(gu);
       userSessionBean.setUser(user);
 
-      // http://www.adam-bien.com/roller/abien/entry/does_cdi_injection_of_sessionscoped
       String redirectUrl = userSessionBean.getDeniedUrl();
+      if (redirectUrl == null) {
+        LOG.log(Level.INFO, "Redirect URL not found.");
+        String contextPath = this.getServletContext().getContextPath();
+        redirectUrl = contextPath + Pages.ADMIN_INDEX + ".xhtml";
+      }
       LOG.log(Level.INFO, "Redirecting to: {0}", redirectUrl);
 
-      resp.sendRedirect(redirectUrl);
-      // 1. Save login in LoginBean / Session
-      // 2. Redirect to desired page...
+      response.sendRedirect(redirectUrl);
     }
   }
   private static final Logger LOG = Logger.getLogger(GoogleLoginServlet.class.getName());

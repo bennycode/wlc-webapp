@@ -1,5 +1,6 @@
 package de.fhb.controller;
 
+import de.fhb.config.Packages;
 import de.fhb.entities.BaseEntity;
 import de.fhb.util.JSFUtils;
 import de.fhb.util.StringUtils;
@@ -41,7 +42,7 @@ public class ComponentFactory {
   public ComponentFactory(String controllerBeanName) {
     this.controllerBeanName = controllerBeanName;
     FacesContext context = FacesContext.getCurrentInstance();
-    this.backendText = context.getApplication().getResourceBundle(context, "backend");
+    this.backendText = context.getApplication().getResourceBundle(context, Packages.BACKEND_MESSAGES_NAME);
   }
 
   /**

@@ -1,5 +1,6 @@
 package de.fhb.security.auth.google;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.api.client.auth.oauth2.Credential;
@@ -49,6 +50,8 @@ public class GoogleLoginBean implements Serializable {
   @PostConstruct
   void init() {
     mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
     ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
     redirectUri = JSFUtils.getBaseURL(externalContext) + REGISTERED_REDIRECT_URI;
   }

@@ -148,10 +148,5 @@ public class Playlist extends BaseEntity {
   public void setDifficulty(Difficulty difficulty) {
     this.difficulty = difficulty;
   }
-  
-  @Override
-  public String toString() {
-    return this.getName();
-  }
 
 }
