@@ -18,7 +18,7 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-@Path("video")
+@Path("videos")
 @Stateless
 public class VideoResource2 {
 

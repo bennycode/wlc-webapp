@@ -19,7 +19,7 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-@Path("playlist")
+@Path("playlists")
 @Stateless
 public class PlaylistResource2 {
 

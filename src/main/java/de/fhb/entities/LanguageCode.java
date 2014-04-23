@@ -8,12 +8,13 @@ package de.fhb.entities;
  */
 public enum LanguageCode {
 
-  EN, DE;
+  EN, en, DE, de;
 
   @Override
   public String toString() {
     switch (this) {
       case DE:
+      case de:
         return "German";
       default:
         return "English";

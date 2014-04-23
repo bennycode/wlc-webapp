@@ -8,18 +8,18 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class PlaylistTest {
-  
+
   private static ObjectMapper mapper;
   private static Properties properties;
-  
+
   public PlaylistTest() {
   }
-  
+
   @BeforeClass
   public static void setUpClass() throws IOException {
     // Test cases
@@ -31,18 +31,18 @@ public class PlaylistTest {
     // Jackson mapper
     mapper = new ObjectMapper();
   }
-  
+
   @Test
   public void testRestServiceV1Mapping() throws JsonProcessingException {
     Author author = new Author();
     author.setName("Tom Wendel & Felix Rieseberg");
-    
+
     Category category = new Category();
     category.setName("Windows Phone");
-    
+
     List<Video> videos = new ArrayList<>();
     videos.add(new Video());
-    
+
     Playlist playlist = new Playlist();
     playlist.setId(1L);
     playlist.setName("Windows Phone Workshop (MMT30)");
@@ -51,27 +51,27 @@ public class PlaylistTest {
     playlist.setProvider(Provider.YOUTUBE);
     playlist.setAuthor(author);
     playlist.setVideos(videos);
-    
+
     de.fhb.rest.v1.dto.PlaylistDTO dtoPlaylist = DTOMapper.mapPlaylist(playlist);
-    
+
     String actual = mapper.writeValueAsString(dtoPlaylist);
     String expected = properties.getProperty("bert");
-    
+
     System.out.println(actual);
     System.out.println(expected);
-    
+
     assertEquals(expected, actual);
   }
-  
+
   @Test
   public void testDifficultyV1Mapping() throws JsonProcessingException {
     Author author = new Author();
     author.setName("Benny Neugebauer");
     author.setWebsite("http://www.bennyn.de/");
-    
+
     Category category = new Category();
     category.setName("Theorie");
-    
+
     List<Video> videos = new ArrayList<>();
     videos.add(new Video());
     videos.add(new Video());
@@ -81,7 +81,7 @@ public class PlaylistTest {
     videos.add(new Video());
     videos.add(new Video());
     videos.add(new Video());
-    
+
     Playlist playlist = new Playlist();
     playlist.setId(9L);
     playlist.setName("Formale Sprachen und Automatentheorie");
@@ -91,15 +91,15 @@ public class PlaylistTest {
     playlist.setAuthor(author);
     playlist.setVideos(videos);
     playlist.setDifficulty(Difficulty.MEDIUM);
-    
+
     de.fhb.rest.v1.dto.PlaylistDTO dtoPlaylist = DTOMapper.mapPlaylist(playlist);
-    
+
     String actual = mapper.writeValueAsString(dtoPlaylist);
     String expected = properties.getProperty("berta");
-    
+
     System.out.println(actual);
     System.out.println(expected);
-    
+
     assertEquals(expected, actual);
   }
 }

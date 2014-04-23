@@ -12,7 +12,7 @@ public class Pages {
   public static final String ADMIN_PLAYLISTS = "/admin/playlists";
   public static final String ADMIN_VIDEOS = "/admin/videos";
   public static final String REST_VERSION_1 = "/rest/fhb/v1";
-  public static final String REST_VERSION_2 = "/rest/fhb/v2";
+  public static final String REST_VERSION_2 = "/rest/service/v2";
 
   //REST V2
   public static final String REST_CATEGORY = "category/{0}";

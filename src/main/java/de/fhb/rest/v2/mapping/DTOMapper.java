@@ -53,7 +53,6 @@ public class DTOMapper {
 
   private static String mapCategoryAddress(String root, Category e) {
     if (e != null) {
-      System.out.println("CategoryAddressTemplate: " + root + REST_CATEGORY);
       return MessageFormat.format(root + REST_CATEGORY, new Object[]{
         e.getId()});
     } else {
@@ -106,7 +105,6 @@ public class DTOMapper {
 
   private static String mapPlaylistAddress(String root, Playlist e) {
     if (e != null) {
-      System.out.println("PlaylistAddressTemplate: " + root + REST_PLAYLIST);
       return MessageFormat.format(root + REST_PLAYLIST, new Object[]{
         e.getCategory().getId(),
         e.getId()});
@@ -166,7 +164,6 @@ public class DTOMapper {
 
   private static String mapVideoAddress(String root, Video e) {
     if (e != null) {
-      System.out.println("VideoAddressTemplate: " + root + REST_VIDEO);
       return MessageFormat.format(root + REST_VIDEO, new Object[]{
         e.getPlaylist().getCategory().getId(),
         e.getPlaylist().getId(),
@@ -196,15 +193,17 @@ public class DTOMapper {
   }
 
   public static String mapLanguage(LanguageCode language) {
-    String dtoLanguage = "English";
+    String dtoLanguage = "EN";
 
     if (language != null) {
       switch (language) {
         case EN:
-          dtoLanguage = "English";
+        case en:
+          dtoLanguage = "EN";
           break;
         case DE:
-          dtoLanguage = "German";
+        case de:
+          dtoLanguage = "DE";
           break;
       }
     }
