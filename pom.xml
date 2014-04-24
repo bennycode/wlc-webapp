@@ -189,6 +189,18 @@
       <version>2.2.2</version>
     </dependency>
     
+    <!-- CORS -->
+    <dependency>
+      <groupId>com.thetransactioncompany</groupId>
+      <artifactId>java-property-utils</artifactId>
+      <version>1.9.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.thetransactioncompany</groupId>
+      <artifactId>cors-filter</artifactId>
+      <version>1.9.1</version>
+    </dependency>
+    
     <!-- TESTING -->
     <dependency>
       <groupId>org.glassfish.main.extras</groupId>
