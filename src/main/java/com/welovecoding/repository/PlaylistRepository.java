@@ -37,14 +37,8 @@ public class PlaylistRepository extends AbstractRepository<Playlist> {
   }
 
   public List<Playlist> findAllInCategory(Long categoryid) {
-    List<Playlist> playlists = null;
-    try {
-      playlists = em.createNamedQuery(Playlist.FIND_ALL_IN_CATEGORY, Playlist.class).
-              setParameter("categoryid", categoryid).
-              getResultList();
-    } catch (NoResultException e) {
-    }
-    return playlists;
+    return em.createNamedQuery(Playlist.FIND_ALL_IN_CATEGORY, Playlist.class).
+            setParameter("categoryid", categoryid).getResultList();
   }
 
   public Playlist findInCategory(Long categoryid, Long playlistid) {
