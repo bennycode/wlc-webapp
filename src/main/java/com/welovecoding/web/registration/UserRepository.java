@@ -1,6 +1,6 @@
 package com.welovecoding.web.registration;
 
-import de.fhb.config.Packages;
+import com.welovecoding.config.Packages;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

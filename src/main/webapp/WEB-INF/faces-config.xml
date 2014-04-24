@@ -8,7 +8,7 @@
       <default-locale>de</default-locale>
     </locale-config>
     <resource-bundle>
-      <base-name>de.fhb.resources.text.backend</base-name>
+      <base-name>com.welovecoding.resources.text.backend</base-name>
       <var>backend</var>
     </resource-bundle>
   </application>

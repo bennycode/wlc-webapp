@@ -30,7 +30,7 @@
   <!-- Admin page filter -->
   <filter>
     <filter-name>AdminPagesFilter</filter-name>
-    <filter-class>de.fhb.security.AdminPagesFilter</filter-class>
+    <filter-class>com.welovecoding.security.AdminPagesFilter</filter-class>
   </filter>
   <!-- CORS filter -->
   <filter>
