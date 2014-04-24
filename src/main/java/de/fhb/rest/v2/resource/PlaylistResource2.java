@@ -7,7 +7,7 @@ import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,7 +20,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 @Path("playlists")
-@Stateless
+@RequestScoped
 public class PlaylistResource2 {
 
   private static final Logger LOG = Logger.getLogger(PlaylistResource2.class.getName());
