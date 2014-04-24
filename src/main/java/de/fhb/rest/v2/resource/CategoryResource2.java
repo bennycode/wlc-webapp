@@ -78,7 +78,6 @@ public class CategoryResource2 {
   }
 
   private String getServerRootAddress() {
-    System.out.println("BaseURI: " + uriInfo.getBaseUri().toString());
     return uriInfo.getBaseUri().toString();
   }
 }
