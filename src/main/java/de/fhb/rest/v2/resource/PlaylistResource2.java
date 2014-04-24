@@ -58,7 +58,7 @@ public class PlaylistResource2 {
     return resp;
   }
 
-  @Path("{playlistid}/video")
+  @Path("{playlistid}/videos")
   public VideoResource2 getVideoResource() {
     return videoResource;
   }

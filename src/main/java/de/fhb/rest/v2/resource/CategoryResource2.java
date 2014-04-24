@@ -72,7 +72,7 @@ public class CategoryResource2 {
     return resp;
   }
 
-  @Path("{categoryid}/playlist")
+  @Path("{categoryid}/playlists")
   public PlaylistResource2 getPlaylistResource() {
     return playlistResource;
   }

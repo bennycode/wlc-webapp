@@ -15,8 +15,8 @@ public class Pages {
   public static final String REST_VERSION_2 = "/rest/service/v2";
 
   //REST V2
-  public static final String REST_CATEGORY = "category/{0}";
-  public static final String REST_PLAYLIST = "category/{0}/playlist/{1}";
-  public static final String REST_VIDEO = "category/{0}/playlist/{1}/video/{2}";
+  public static final String REST_CATEGORY = "categories/{0}";
+  public static final String REST_PLAYLIST = "categories/{0}/playlists/{1}";
+  public static final String REST_VIDEO = "categories/{0}/playlists/{1}/videos/{2}";
 
 }
