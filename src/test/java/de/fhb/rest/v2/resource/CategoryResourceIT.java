@@ -18,6 +18,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -71,6 +72,7 @@ public class CategoryResourceIT {
   /**
    * Test of getCategories method, of class CategoryResource.
    */
+  @Ignore
   @Test
   public void testGetCategories() throws Exception {
     System.out.println("getCategories");
@@ -85,6 +87,7 @@ public class CategoryResourceIT {
     resp.then().assertThat().body(matchesJsonSchema(schema));
   }
 
+  @Ignore
   @Test
   public void testGetCategory() throws Exception {
     System.out.println("getCategory");
