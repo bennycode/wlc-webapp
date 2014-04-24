@@ -3,6 +3,7 @@ package de.fhb.rest.v1.resource;
 import de.fhb.entities.Playlist;
 import de.fhb.rest.v1.dto.PlaylistDTO;
 import de.fhb.rest.v1.mapping.DTOMapper;
+import static de.fhb.rest.v1.RestConfig.JSON_MEDIATYPE;
 import de.fhb.service.PlaylistService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.List;
@@ -12,7 +13,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 @Path("")
 @Stateless
@@ -29,7 +29,7 @@ public class PlaylistResource {
   @RESTCache(genericTypeHint = "de.fhb.rest.v1.dto.PlaylistDTO")
   @GET
   @Path("category/{id}")
-  @Produces(MediaType.APPLICATION_JSON)
+  @Produces(JSON_MEDIATYPE)
   public List<PlaylistDTO> getPlaylists(@PathParam("categoryid") Long categoryid) {
     List<Playlist> playlists = playlistService.findAllInCategory(categoryid);
     return DTOMapper.mapPlaylists(playlists);

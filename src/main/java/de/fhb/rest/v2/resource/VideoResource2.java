@@ -1,5 +1,6 @@
 package de.fhb.rest.v2.resource;
 
+import static de.fhb.rest.v2.RestConfig.JSON_MEDIATYPE;
 import de.fhb.rest.v2.dto.VideoDTO;
 import de.fhb.rest.v2.mapping.DTOMapper;
 import de.fhb.service.VideoService;
@@ -13,7 +14,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -35,7 +35,7 @@ public class VideoResource2 {
   @GET
   @RESTCache(genericTypeHint = "de.fhb.rest.v2.dto.VideoDTO")
   @Path("{videoid}")
-  @Produces(MediaType.APPLICATION_JSON)
+  @Produces(JSON_MEDIATYPE)
   public Response getVideo(@PathParam("categoryid") Long categoryid, @PathParam("playlistid") Long playlistid, @PathParam("videoid") Long videoid, @Context Request req) {
 
     Response resp;

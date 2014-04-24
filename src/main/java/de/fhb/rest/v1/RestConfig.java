@@ -10,6 +10,8 @@ import org.glassfish.jersey.server.ResourceConfig;
 @ApplicationPath(REST_VERSION_1)
 public class RestConfig extends ResourceConfig {
 
+  public static final String JSON_MEDIATYPE = "application/json;charset=utf-8";
+
   public RestConfig() {
     // registers REST-Resources and Jackson JSON mapping
     packages(Packages.REST_RESOURCES_V1, "com.fasterxml.jackson.jaxrs.base");

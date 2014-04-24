@@ -1,5 +1,6 @@
 package de.fhb.rest.v2.resource;
 
+import static de.fhb.rest.v2.RestConfig.JSON_MEDIATYPE;
 import de.fhb.rest.v2.dto.PlaylistDTO;
 import de.fhb.rest.v2.mapping.DTOMapper;
 import de.fhb.service.PlaylistService;
@@ -14,7 +15,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -38,7 +38,7 @@ public class PlaylistResource2 {
   @GET
   @RESTCache(genericTypeHint = "de.fhb.rest.v2.dto.PlaylistDTO")
   @Path("{playlistid}")
-  @Produces(MediaType.APPLICATION_JSON)
+  @Produces(JSON_MEDIATYPE)
   public Response getPlaylist(@PathParam("categoryid") Long categoryid, @PathParam("playlistid") Long playlistid, @Context Request req) {
 
     Response resp;

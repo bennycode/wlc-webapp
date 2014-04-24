@@ -1,5 +1,6 @@
 package de.fhb.rest.v2.resource;
 
+import static de.fhb.rest.v2.RestConfig.JSON_MEDIATYPE;
 import de.fhb.rest.v2.dto.CategoryDTO;
 import de.fhb.rest.v2.mapping.DTOMapper;
 import de.fhb.service.CategoryService;
@@ -16,7 +17,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -41,7 +41,7 @@ public class CategoryResource2 {
 
   @GET
   @RESTCache(genericTypeHint = "de.fhb.rest.v2.dto.CategoryDTO")
-  @Produces(MediaType.APPLICATION_JSON)
+  @Produces(JSON_MEDIATYPE)
   public Response getCategories(@Context Request req) {
 
     Response resp;
@@ -58,7 +58,7 @@ public class CategoryResource2 {
   @GET
   @RESTCache(genericTypeHint = "de.fhb.rest.v2.dto.CategoryDTO")
   @Path("{categoryid}")
-  @Produces(MediaType.APPLICATION_JSON)
+  @Produces(JSON_MEDIATYPE)
   public Response getCategory(@PathParam("categoryid") Long categoryid, @Context Request req) {
     Response resp;
     try {
