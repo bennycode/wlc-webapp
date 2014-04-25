@@ -28,10 +28,10 @@ public class VideoResource {
 
   @RESTCache(genericTypeHint = "com.welovecoding.rest.v1.dto.VideoDTO")
   @GET
-  @Path("playlist/{id}")
+  @Path("playlist/{playlistid}")
   @Produces(JSON_MEDIATYPE)
-  public List<VideoDTO> getVideos(@PathParam("id") int id) {
-    List<Video> videos = videoService.getAllInPlaylist(Long.valueOf(id));
+  public List<VideoDTO> getVideos(@PathParam("playlistid") long playlistId) {
+    List<Video> videos = videoService.getVideosByPlaylistId(playlistId);
     return DTOMapper.mapVideos(videos);
   }
 }

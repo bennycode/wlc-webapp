@@ -3,7 +3,6 @@ package com.welovecoding.service;
 import com.welovecoding.entities.Video;
 import com.welovecoding.repository.VideoRepository;
 import de.yser.ownsimplecache.OwnCacheServerService;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -37,16 +36,8 @@ public class VideoService extends BaseService<Video, VideoRepository> {
     return repository.findByCode(code);
   }
 
-  public List<Video> getAllInPlaylist(Long playlistid) {
-    // TODO Implement getAllVideosByPlaylist(long)
-    // Never return null. instead return an empty List
-    return new ArrayList<Video>();
-  }
-
-  public List<Video> getAllInCategory(Long playlistid) {
-    // TODO Implement getAllVideosByPlaylist(long)
-    // Never return null. instead return an empty List
-    return new ArrayList<>();
+  public List<Video> getVideosByPlaylistId(Long playlistId) {
+    return repository.getVideosByPlaylistId(playlistId);
   }
 
   public Video findInCategory(Long categoryid, Long videoid) {
