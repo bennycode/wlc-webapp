@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({
@@ -30,6 +31,9 @@ public class Video extends BaseEntity {
 
   @Column(unique = true)
   private String code;
+
+  @Size(min = 0, max = 1024)
+  @Column(length = 1024)
   private String description;
 
   @NotNull

@@ -67,7 +67,7 @@
     <auth.google.client.id>123456.apps.googleusercontent.com</auth.google.client.id>
     <auth.google.client.secret>xyz</auth.google.client.secret>
     
-    <test.generate.data>false</test.generate.data>
+    <test.generate.data>true</test.generate.data>
   </properties>
   
   <repositories>

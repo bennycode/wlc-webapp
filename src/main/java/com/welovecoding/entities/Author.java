@@ -1,5 +1,6 @@
 package com.welovecoding.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.validation.constraints.Size;
@@ -8,7 +9,8 @@ import javax.validation.constraints.Size;
 @NamedQueries({})
 public class Author extends BaseEntity {
 
-  @Size(min = 0, max = 255)
+  @Size(min = 0, max = 1024)
+  @Column(length = 1024)
   private String description;
   @Size(min = 0, max = 255)
   private String website;

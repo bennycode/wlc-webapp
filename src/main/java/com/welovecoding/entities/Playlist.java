@@ -47,13 +47,13 @@ public class Playlist extends BaseEntity {
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist")
   private List<Video> videos;
 
-  @Column(length = 1024)
-  @Size(min = 0, max = 1024)
   private String code;
 
   @Embedded @Enumerated(EnumType.STRING)
   private LanguageCode languageCode;
 
+  @Size(min = 0, max = 1024)
+  @Column(length = 1024)
   private String description;
 
   private boolean enabled;
