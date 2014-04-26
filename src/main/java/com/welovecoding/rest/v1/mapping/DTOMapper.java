@@ -4,6 +4,7 @@ import com.welovecoding.entities.Author;
 import com.welovecoding.entities.Category;
 import com.welovecoding.entities.LanguageCode;
 import com.welovecoding.entities.Playlist;
+import com.welovecoding.entities.Provider;
 import com.welovecoding.entities.Video;
 import com.welovecoding.rest.v1.dto.AuthorDTO;
 import com.welovecoding.rest.v1.dto.CategoryDTO;
@@ -120,10 +121,10 @@ public class DTOMapper {
   }
 
   public static List<CategoryDTO> mapCategories(List<Category> categories) {
-    List<com.welovecoding.rest.v1.dto.CategoryDTO> dtoCategories = new ArrayList<>();
+    List<CategoryDTO> dtoCategories = new ArrayList<>();
 
     for (Category category : categories) {
-      com.welovecoding.rest.v1.dto.CategoryDTO dtoCategory = DTOMapper.mapCategory(category);
+      CategoryDTO dtoCategory = DTOMapper.mapCategory(category);
       dtoCategories.add(dtoCategory);
     }
 
@@ -137,9 +138,17 @@ public class DTOMapper {
     dtoVideo.setName(video.getName());
     dtoVideo.setDescription(video.getDescription());
     dtoVideo.setCode(video.getCode());
-    dtoVideo.setPreviewImageUrl(video.getPreviewImageUrl());
     dtoVideo.setDownloadUrl(video.getDownloadUrl());
-    dtoVideo.setPermalink(video.getPermalink());
+
+    Playlist playlist = video.getPlaylist();
+    Category category = playlist.getCategory();
+
+    if (playlist.getProvider() == Provider.YOUTUBE) {
+      dtoVideo.setPreviewImageUrl(String.format("http://img.youtube.com/vi/%s/1.jpg", video.getCode()));
+    }
+
+    String permalink = String.format("http://www.welovecoding.com/tutorials/%s/%s?video=%s", category.getSlug(), playlist.getSlug(), video.getId());
+    dtoVideo.setPermalink(permalink);
 
     return dtoVideo;
   }

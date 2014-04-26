@@ -28,7 +28,7 @@ public class PlaylistResource {
 
   @RESTCache(genericTypeHint = "com.welovecoding.rest.v1.dto.PlaylistDTO")
   @GET
-  @Path("category/{id}")
+  @Path("category/{categoryid}")
   @Produces(JSON_MEDIATYPE)
   public List<PlaylistDTO> getPlaylists(@PathParam("categoryid") Long categoryid) {
     List<Playlist> playlists = playlistService.findAllInCategory(categoryid);
