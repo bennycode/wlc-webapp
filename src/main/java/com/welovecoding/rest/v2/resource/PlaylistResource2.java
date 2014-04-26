@@ -45,9 +45,9 @@ public class PlaylistResource2 {
     try {
       PlaylistDTO playlist = null;
       if (categoryid == null) {
-        playlist = DTOMapper.mapPlaylist(getServerRootAddress(), playlistService.find(playlistid));
+        playlist = DTOMapper.mapPlaylist(uriInfo.getBaseUri().toString(), playlistService.find(playlistid));
       } else {
-        playlist = DTOMapper.mapPlaylist(getServerRootAddress(), playlistService.findInCategory(categoryid, playlistid));
+        playlist = DTOMapper.mapPlaylist(uriInfo.getBaseUri().toString(), playlistService.findInCategory(categoryid, playlistid));
       }
       resp = Response.ok(playlist).build();
     } catch (Exception e) {
@@ -63,7 +63,4 @@ public class PlaylistResource2 {
     return videoResource;
   }
 
-  private String getServerRootAddress() {
-    return uriInfo.getBaseUri().toString();
-  }
 }

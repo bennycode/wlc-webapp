@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -27,8 +26,6 @@ public class CategoryResource2 {
 
   private static final Logger LOG = Logger.getLogger(CategoryResource2.class.getName());
 
-  @Context
-  HttpServletRequest request;
   @Context
   UriInfo uriInfo;
   @EJB
@@ -46,7 +43,7 @@ public class CategoryResource2 {
 
     Response resp;
     try {
-      List<CategoryDTO> categoryList = DTOMapper.mapCategoryList(getServerRootAddress(), categoryService.orderByName());
+      List<CategoryDTO> categoryList = DTOMapper.mapCategoryList(uriInfo.getBaseUri().toString(), categoryService.orderByName());
       resp = Response.ok(categoryList).build();
     } catch (Exception e) {
       LOG.log(Level.SEVERE, "Exception: {0}", e);
@@ -63,7 +60,7 @@ public class CategoryResource2 {
     Response resp;
     try {
 
-      CategoryDTO category = DTOMapper.mapCategory(getServerRootAddress(), categoryService.find(categoryid));
+      CategoryDTO category = DTOMapper.mapCategory(uriInfo.getBaseUri().toString(), categoryService.find(categoryid));
       resp = Response.ok(category).build();
     } catch (Exception e) {
       LOG.log(Level.SEVERE, "Exception: {0}", e);
@@ -77,7 +74,4 @@ public class CategoryResource2 {
     return playlistResource;
   }
 
-  private String getServerRootAddress() {
-    return uriInfo.getBaseUri().toString();
-  }
 }

@@ -1,14 +1,14 @@
 package com.welovecoding.entities;
 
-import com.welovecoding.entities.Video;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.welovecoding.rest.v1.mapping.DTOMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.Properties;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class VideoTest {
@@ -31,6 +31,7 @@ public class VideoTest {
     mapper = new ObjectMapper();
   }
 
+  @Ignore
   @Test
   public void testRestServiceV1Mapping() throws IOException, URISyntaxException {
     Video video = new Video();

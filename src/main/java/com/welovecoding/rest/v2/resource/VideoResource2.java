@@ -44,15 +44,15 @@ public class VideoResource2 {
       if (categoryid == null) {
         if (playlistid == null) {
           //direct access
-          video = DTOMapper.mapVideo(getServerRootAddress(), videoService.find(videoid));
+          video = DTOMapper.mapVideo(uriInfo.getBaseUri().toString(), videoService.find(videoid));
         } else {
-          video = DTOMapper.mapVideo(getServerRootAddress(), videoService.findInPlaylist(playlistid, videoid));
+          video = DTOMapper.mapVideo(uriInfo.getBaseUri().toString(), videoService.findInPlaylist(playlistid, videoid));
         }
       } else {
         if (playlistid == null) {
-          video = DTOMapper.mapVideo(getServerRootAddress(), videoService.findInCategory(categoryid, videoid));
+          video = DTOMapper.mapVideo(uriInfo.getBaseUri().toString(), videoService.findInCategory(categoryid, videoid));
         } else {
-          video = DTOMapper.mapVideo(getServerRootAddress(), videoService.findInCategoryAndPlaylist(categoryid, playlistid, videoid));
+          video = DTOMapper.mapVideo(uriInfo.getBaseUri().toString(), videoService.findInCategoryAndPlaylist(categoryid, playlistid, videoid));
         }
       }
       resp = Response.ok(video).build();
@@ -64,7 +64,4 @@ public class VideoResource2 {
     return resp;
   }
 
-  private String getServerRootAddress() {
-    return uriInfo.getBaseUri().toString();
-  }
 }

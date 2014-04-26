@@ -14,7 +14,7 @@
         "required": true
       },
       "description": {
-        "type": "string",
+        "type": ["string", "null"],
         "id": "http://jsonschema.net/0/description",
         "required": true
       },
