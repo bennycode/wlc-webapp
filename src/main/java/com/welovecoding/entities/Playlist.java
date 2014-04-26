@@ -36,11 +36,11 @@ public class Playlist extends BaseEntity {
   private Difficulty difficulty;
 
   @NotNull
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.PERSIST)
   private Category category;
 
   @NotNull
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.PERSIST)
   private Author author;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist")
@@ -88,7 +88,6 @@ public class Playlist extends BaseEntity {
   }
 
   public void setCategory(Category category) {
-    System.out.println(category);
     this.category = category;
   }
 
@@ -97,7 +96,6 @@ public class Playlist extends BaseEntity {
   }
 
   public void setAuthor(Author author) {
-    System.out.println(author);
     this.author = author;
   }
 

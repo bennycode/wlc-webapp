@@ -1,5 +1,6 @@
 package com.welovecoding.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -32,7 +33,7 @@ public class Video extends BaseEntity {
   private String description;
 
   @NotNull
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.PERSIST)
   private Playlist playlist;
 
   private String previewImageUrl;

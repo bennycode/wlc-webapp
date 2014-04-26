@@ -36,7 +36,16 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
     getRepository().create(entity);
   }
 
+  public void batchCreate(List<T> entityList) {
+    invalidateRelatedCaches();
+    for (T entity : entityList) {
+      getRepository().create(entity);
+    }
+  }
+
   public void edit(T entity) {
+
+    // TODO uh...thats bad...you are breaking the layers...facescontext is forbidden here
     FacesContext context = FacesContext.getCurrentInstance();
     ResourceBundle backendText = context.getApplication().getResourceBundle(context, Packages.BACKEND_MESSAGES_NAME);
 
@@ -58,6 +67,7 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
 
         String summary = key + ": " + constraintViolation.getMessage();
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, null);
+        // TODO GenFormBaseController as well
         context.addMessage(GenFormBaseController.ERROR_MESSAGES_NAME, message);
       }
 
@@ -65,7 +75,13 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
       invalidateRelatedCaches();
       getRepository().edit(entity);
     }
+  }
 
+  public void batchEdit(List<T> entityList) {
+    invalidateRelatedCaches();
+    for (T entity : entityList) {
+      getRepository().edit(entity);
+    }
   }
 
   public void remove(T entity) {

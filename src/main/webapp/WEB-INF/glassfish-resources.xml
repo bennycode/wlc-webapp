@@ -63,7 +63,7 @@
                              lazy-connection-enlistment="false"
                              match-connections="true"
                              max-connection-usage-count="0"
-                             max-pool-size="250"
+                             max-pool-size="500"
                              max-wait-time-in-millis="60000"
                              pool-resize-quantity="2"
                              resource-adapter-name="jmsra"
