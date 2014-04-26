@@ -15,6 +15,7 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.services.plus.PlusScopes;
 import com.welovecoding.util.JSFUtils;
 import java.io.IOException;
 import java.io.Serializable;
@@ -34,8 +35,8 @@ public class GoogleLoginBean implements Serializable {
   private static final GoogleCredentials GOOGLE_CREDENTIALS = new GoogleCredentials();
   private static final String REGISTERED_REDIRECT_URI = "/oauth2callback";
   private static final List<String> SCOPES = Arrays.asList(
-          "https://www.googleapis.com/auth/userinfo.email",
-          "https://www.googleapis.com/auth/userinfo.profile"
+          PlusScopes.USERINFO_EMAIL,
+          PlusScopes.USERINFO_PROFILE
   );
 
   // API
