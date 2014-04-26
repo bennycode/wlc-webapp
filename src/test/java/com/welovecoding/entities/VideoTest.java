@@ -32,7 +32,6 @@ public class VideoTest {
     mapper = new ObjectMapper();
   }
 
-  @Ignore
   @Test
   public void testRestServiceV1Mapping() throws IOException, URISyntaxException {
     Category category = new Category();
