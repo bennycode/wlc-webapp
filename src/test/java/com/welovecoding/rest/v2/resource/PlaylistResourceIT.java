@@ -18,6 +18,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -70,6 +71,7 @@ public class PlaylistResourceIT {
   /**
    * Test of getVideos method, of class VideoResource.
    */
+  @Ignore
   @Test
   public void testGetPlaylist() throws Exception {
     System.out.println("getPlaylist");
