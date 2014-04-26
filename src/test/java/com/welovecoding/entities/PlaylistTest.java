@@ -1,12 +1,5 @@
-package comwelovecodingb.entities;
+package com.welovecoding.entities;
 
-import com.welovecoding.entities.Difficulty;
-import com.welovecoding.entities.Video;
-import com.welovecoding.entities.Category;
-import com.welovecoding.entities.Playlist;
-import com.welovecoding.entities.Author;
-import com.welovecoding.entities.Provider;
-import com.welovecoding.entities.LanguageCode;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.welovecoding.rest.v1.mapping.DTOMapper;
