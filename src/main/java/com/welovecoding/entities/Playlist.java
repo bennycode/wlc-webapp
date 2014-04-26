@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -46,11 +47,13 @@ public class Playlist extends BaseEntity {
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist")
   private List<Video> videos;
 
+  @Column(length = 1024)
+  @Size(min = 0, max = 1024)
   private String code;
 
   @Embedded @Enumerated(EnumType.STRING)
   private LanguageCode languageCode;
-  
+
   private String description;
 
   private boolean enabled;
