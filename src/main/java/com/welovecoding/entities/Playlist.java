@@ -50,8 +50,7 @@ public class Playlist extends BaseEntity {
 
   @Embedded @Enumerated(EnumType.STRING)
   private LanguageCode languageCode;
-
-  @Size(min = 0, max = 255)
+  
   private String description;
 
   private boolean enabled;
