@@ -25,8 +25,6 @@ public class PlaylistResource2 {
 
   private static final Logger LOG = Logger.getLogger(PlaylistResource2.class.getName());
 
-  @Context
-  UriInfo uriInfo;
   @EJB
   private PlaylistService playlistService;
   @Inject
@@ -39,7 +37,7 @@ public class PlaylistResource2 {
   @RESTCache(genericTypeHint = "com.welovecoding.rest.v2.dto.PlaylistDTO")
   @Path("{playlistid}")
   @Produces(JSON_MEDIATYPE)
-  public Response getPlaylist(@PathParam("categoryid") Long categoryid, @PathParam("playlistid") Long playlistid, @Context Request req) {
+  public Response getPlaylist(@PathParam("categoryid") Long categoryid, @PathParam("playlistid") Long playlistid, @Context Request req, @Context UriInfo uriInfo) {
 
     Response resp;
     try {

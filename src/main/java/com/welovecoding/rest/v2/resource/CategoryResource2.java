@@ -26,8 +26,6 @@ public class CategoryResource2 {
 
   private static final Logger LOG = Logger.getLogger(CategoryResource2.class.getName());
 
-  @Context
-  UriInfo uriInfo;
   @EJB
   private CategoryService categoryService;
   @Inject
@@ -39,7 +37,7 @@ public class CategoryResource2 {
   @GET
   @RESTCache(genericTypeHint = "com.welovecoding.rest.v2.dto.CategoryDTO")
   @Produces(JSON_MEDIATYPE)
-  public Response getCategories(@Context Request req) {
+  public Response getCategories(@Context Request req, @Context UriInfo uriInfo) {
 
     Response resp;
     try {
@@ -56,7 +54,7 @@ public class CategoryResource2 {
   @RESTCache(genericTypeHint = "com.welovecoding.rest.v2.dto.CategoryDTO")
   @Path("{categoryid}")
   @Produces(JSON_MEDIATYPE)
-  public Response getCategory(@PathParam("categoryid") Long categoryid, @Context Request req) {
+  public Response getCategory(@PathParam("categoryid") Long categoryid, @Context Request req, @Context UriInfo uriInfo) {
     Response resp;
     try {
 

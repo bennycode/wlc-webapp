@@ -24,8 +24,6 @@ public class VideoResource2 {
 
   private static final Logger LOG = Logger.getLogger(VideoResource2.class.getName());
 
-  @Context
-  UriInfo uriInfo;
   @EJB
   private VideoService videoService;
 
@@ -36,7 +34,7 @@ public class VideoResource2 {
   @RESTCache(genericTypeHint = "com.welovecoding.rest.v2.dto.VideoDTO")
   @Path("{videoid}")
   @Produces(JSON_MEDIATYPE)
-  public Response getVideo(@PathParam("categoryid") Long categoryid, @PathParam("playlistid") Long playlistid, @PathParam("videoid") Long videoid, @Context Request req) {
+  public Response getVideo(@PathParam("categoryid") Long categoryid, @PathParam("playlistid") Long playlistid, @PathParam("videoid") Long videoid, @Context Request req, @Context UriInfo uriInfo) {
 
     Response resp;
     try {
