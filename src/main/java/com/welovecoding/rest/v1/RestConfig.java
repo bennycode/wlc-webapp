@@ -1,10 +1,13 @@
 package com.welovecoding.rest.v1;
 
-import com.welovecoding.config.Packages;
 import static com.welovecoding.config.Pages.REST_VERSION_1;
+import com.welovecoding.rest.v1.resource.CategoryResource;
+import com.welovecoding.rest.v1.resource.PlaylistResource;
+import com.welovecoding.rest.v1.resource.VideoResource;
 import javax.ws.rs.ApplicationPath;
 import org.glassfish.jersey.CommonProperties;
 import org.glassfish.jersey.filter.LoggingFilter;
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
 @ApplicationPath(REST_VERSION_1)
@@ -14,7 +17,12 @@ public class RestConfig extends ResourceConfig {
 
   public RestConfig() {
     // registers REST-Resources and Jackson JSON mapping
-    packages(Packages.REST_RESOURCES_V1, "com.fasterxml.jackson.jaxrs.base");
+    register(CategoryResource.class);
+    register(PlaylistResource.class);
+    register(VideoResource.class);
+    register(ObjectMapperResolver.class);
+    register(JacksonFeature.class);
+//    packages(Packages.REST_RESOURCES_V1, "com.fasterxml.jackson.jaxrs.base");
     // Disbables MOXy JSON mapping
     property(CommonProperties.MOXY_JSON_FEATURE_DISABLE, true);
     // Registers LoggingFilter for Request and Responses

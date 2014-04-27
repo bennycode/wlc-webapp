@@ -1,15 +1,14 @@
 package com.welovecoding.entities;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.welovecoding.rest.v1.dto.VideoDTO;
 import com.welovecoding.rest.v1.mapping.DTOMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.Properties;
+import org.codehaus.jackson.map.ObjectMapper;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class VideoTest {

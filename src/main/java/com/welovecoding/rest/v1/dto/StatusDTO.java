@@ -1,7 +1,7 @@
 package com.welovecoding.rest.v1.dto;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.io.Serializable;
+import org.codehaus.jackson.annotate.JsonPropertyOrder;
 
 @JsonPropertyOrder({
   "playable",

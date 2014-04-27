@@ -1,10 +1,5 @@
-package comwelovecodingb.entities;
+package com.welovecoding.entities;
 
-import com.welovecoding.entities.Video;
-import com.welovecoding.entities.Category;
-import com.welovecoding.entities.Playlist;
-import com.welovecoding.entities.LanguageCode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.welovecoding.rest.v1.mapping.DTOMapper;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +7,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import org.codehaus.jackson.map.ObjectMapper;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;

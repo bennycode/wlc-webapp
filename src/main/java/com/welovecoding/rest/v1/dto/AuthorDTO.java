@@ -1,6 +1,6 @@
 package com.welovecoding.rest.v1.dto;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.codehaus.jackson.annotate.JsonPropertyOrder;
 
 @JsonPropertyOrder({
   "name",

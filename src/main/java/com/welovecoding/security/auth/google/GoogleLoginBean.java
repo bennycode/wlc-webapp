@@ -1,8 +1,8 @@
 package com.welovecoding.security.auth.google;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+//import com.fasterxml.jackson.databind.DeserializationFeature;
+//import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl;
@@ -26,6 +26,8 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.PropertyNamingStrategy;
 
 @Named
 @ApplicationScoped
@@ -51,7 +53,7 @@ public class GoogleLoginBean implements Serializable {
   @PostConstruct
   void init() {
     mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
-    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    // TODO mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
     redirectUri = JSFUtils.getBaseURL(externalContext) + REGISTERED_REDIRECT_URI;

@@ -1,7 +1,7 @@
 package com.welovecoding.rest.v1.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonPropertyOrder;
 
 @JsonPropertyOrder({
   "id",

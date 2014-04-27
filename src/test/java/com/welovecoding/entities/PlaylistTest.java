@@ -1,13 +1,12 @@
 package com.welovecoding.entities;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.welovecoding.rest.v1.mapping.DTOMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import org.codehaus.jackson.map.ObjectMapper;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,7 +32,7 @@ public class PlaylistTest {
   }
 
   @Test
-  public void testRestServiceV1Mapping() throws JsonProcessingException {
+  public void testRestServiceV1Mapping() throws IOException {
     Author author = new Author();
     author.setName("Tom Wendel & Felix Rieseberg");
 
@@ -64,7 +63,7 @@ public class PlaylistTest {
   }
 
   @Test
-  public void testDifficultyV1Mapping() throws JsonProcessingException {
+  public void testDifficultyV1Mapping() throws IOException {
     Author author = new Author();
     author.setName("Benny Neugebauer");
     author.setWebsite("http://www.bennyn.de/");

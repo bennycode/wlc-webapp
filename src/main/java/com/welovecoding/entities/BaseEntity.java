@@ -1,6 +1,5 @@
 package com.welovecoding.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -30,11 +29,9 @@ public class BaseEntity implements Serializable {
   @Basic(optional = false)
   private String name;
 
-  @JsonIgnore
   @Temporal(value = TemporalType.TIMESTAMP)
   private Date created;
 
-  @JsonIgnore
   @Temporal(value = TemporalType.TIMESTAMP)
   private Date lastModified;
 
