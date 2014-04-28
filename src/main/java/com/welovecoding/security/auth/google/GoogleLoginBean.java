@@ -1,8 +1,5 @@
 package com.welovecoding.security.auth.google;
 
-//import com.fasterxml.jackson.databind.DeserializationFeature;
-//import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl;
@@ -16,7 +13,10 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.plus.PlusScopes;
+import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.YouTubeScopes;
 import com.welovecoding.util.JSFUtils;
+import com.welovecoding.util.YouTubeUtils;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
@@ -38,7 +38,8 @@ public class GoogleLoginBean implements Serializable {
   private static final String REGISTERED_REDIRECT_URI = "/oauth2callback";
   private static final List<String> SCOPES = Arrays.asList(
           PlusScopes.USERINFO_EMAIL,
-          PlusScopes.USERINFO_PROFILE
+          PlusScopes.USERINFO_PROFILE,
+          YouTubeScopes.YOUTUBE_READONLY
   );
 
   // API
@@ -91,10 +92,20 @@ public class GoogleLoginBean implements Serializable {
     Credential credential = flow.createAndStoreCredential(response, null);
     HttpRequestFactory requestFactory = HTTP_TRANSPORT.createRequestFactory(credential);
 
+    // Get G+ info
     GenericUrl url = new GenericUrl(USER_INFO_URL);
     HttpRequest request = requestFactory.buildGetRequest(url);
 
     String jsonIdentity = request.execute().parseAsString();
+
+    // TODO: Move YouTube parts somewhere else!
+    // https://www.googleapis.com/youtube/v3/search?q={search_term}&key={API_key}&type=channel&part=snippet
+    // https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLB03EA9545DD188C3
+    YouTube youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName("we-love-coding").build();
+    String[] playlistIds = {"PLB03EA9545DD188C3", "5EA5B1829771349A"};
+    YouTubeUtils youTubeUtils = new YouTubeUtils(youtube);
+    youTubeUtils.logPlaylistInfos(playlistIds);
+
     return mapper.readValue(jsonIdentity, GoogleUser.class);
   }
 }
