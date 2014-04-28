@@ -1,6 +1,12 @@
 package com.welovecoding.util;
 
+import com.google.api.client.repackaged.com.google.common.base.Joiner;
+
 public class StringUtils {
+
+  public static String join(Object[] list, String delim) {
+    return Joiner.on(",").join(list);
+  }
 
   public static String capitalize(String line) {
     return Character.toUpperCase(line.charAt(0)) + line.substring(1);

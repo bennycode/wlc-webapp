@@ -1,8 +1,5 @@
 package com.welovecoding.security.auth.google;
 
-//import com.fasterxml.jackson.databind.DeserializationFeature;
-//import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl;
@@ -18,9 +15,8 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.plus.PlusScopes;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.YouTubeScopes;
-import com.google.api.services.youtube.model.Channel;
-import com.google.api.services.youtube.model.ChannelListResponse;
 import com.welovecoding.util.JSFUtils;
+import com.welovecoding.util.YouTubeUtils;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
@@ -103,18 +99,12 @@ public class GoogleLoginBean implements Serializable {
     String jsonIdentity = request.execute().parseAsString();
 
     // TODO: Move YouTube parts somewhere else!
-    // Get YouTube info
     // https://www.googleapis.com/youtube/v3/search?q={search_term}&key={API_key}&type=channel&part=snippet
     // https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLB03EA9545DD188C3
     YouTube youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName("we-love-coding").build();
-    YouTube.Channels.List channelRequest = youtube.channels().list("contentDetails");
-    channelRequest.setMine(true);
-    channelRequest.setFields("items/contentDetails");
-    ChannelListResponse channelResult = channelRequest.execute();
-    List<Channel> channelsList = channelResult.getItems();
-    if (channelsList != null) {
-      System.out.println("We can query data from YouTube.");
-    }
+    String[] playlistIds = {"PLB03EA9545DD188C3", "5EA5B1829771349A"};
+    YouTubeUtils youTubeUtils = new YouTubeUtils(youtube);
+    youTubeUtils.logPlaylistInfos(playlistIds);
 
     return mapper.readValue(jsonIdentity, GoogleUser.class);
   }
