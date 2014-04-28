@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @see https://github.com/bennyn/wlc-webapp/issues/18
+ */
 public class YouTubeUtils {
 
   private static final Logger log = Logger.getLogger(YouTubeUtils.class.getName());
@@ -19,6 +22,12 @@ public class YouTubeUtils {
     this.youtube = youtube;
   }
 
+  /**
+   * Example:
+   * https://www.googleapis.com/youtube/v3/channels?part=contentDetails&mine=true
+   *
+   * @param playlistItemId
+   */
   public void logChannelDetails(String playlistItemId) {
     try {
       YouTube.Channels.List channelRequest = youtube.channels().list("contentDetails");
@@ -35,6 +44,13 @@ public class YouTubeUtils {
     }
   }
 
+  /**
+   * Example:
+   * https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLB03EA9545DD188C3
+   *
+   * @see https://developers.google.com/youtube/v3/docs/playlists/list
+   * @param playlistIds
+   */
   public void logPlaylistInfos(String[] playlistIds) {
     try {
       YouTube.Playlists.List playlistQuery = youtube.playlists().list("id,snippet,status");
