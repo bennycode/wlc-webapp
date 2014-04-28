@@ -32,6 +32,7 @@ public class GoogleLoginServlet extends HttpServlet {
 
   @Override
   /**
+   * TODO: Catch: oauth2callback?error=access_denied&state=/profile
    * @see
    * https://developers.google.com/google-apps/tasks/oauth-authorization-callback-handler?hl=de
    */

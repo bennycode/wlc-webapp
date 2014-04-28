@@ -13,11 +13,11 @@
   <url>https://github.com/bennyn/wlc-webapp</url>
   <inceptionYear>2014</inceptionYear>
   <description>
-        <![CDATA[
-            We Love Coding provides a numerous collection of video tutorials for developers. 
-            The spectrum ranges from the introduction to object-oriented programming languages such as C#, Java, Ruby, and C++ 
-            to topics of web development with HTML5 and JavaScript and to the development of apps for iOS, Android and Windows Phone.
-        ]]>
+    <![CDATA[
+      We Love Coding provides a numerous collection of video tutorials for developers. 
+      The spectrum ranges from the introduction to object-oriented programming languages such as C#, Java, Ruby, and C++ 
+      to topics of web development with HTML5 and JavaScript and to the development of apps for iOS, Android and Windows Phone.
+    ]]>
   </description>
   <organization>
     <name>We Love Coding</name>
@@ -146,7 +146,7 @@
       <version>7.0</version>
       <scope>provided</scope>
     </dependency>
-    <!-- Google -->
+    <!-- Google Plus -->
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
@@ -179,16 +179,16 @@
       <artifactId>google-oauth-client</artifactId>
       <version>1.18.0-rc</version>
     </dependency>
-    <!-- 
-    This library is built on top of HTTP Client Library for Java and the Google 
-    OAuth Client Library for Java.
-    -->
     <dependency>
       <groupId>com.google.api-client</groupId>
       <artifactId>google-api-client</artifactId>
       <version>1.18.0-rc</version>
     </dependency>
-   
+    <dependency>
+      <groupId>com.google.apis</groupId>
+      <artifactId>google-api-services-youtube</artifactId>
+      <version>v3-rev104-1.18.0-rc</version>
+    </dependency>
     <!-- Jersey (REST) -->
     <dependency>
       <groupId>org.glassfish.jersey.containers</groupId>
