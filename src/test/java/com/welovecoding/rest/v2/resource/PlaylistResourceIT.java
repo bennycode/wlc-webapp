@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.welovecoding.rest.v2.resource;
 
 import static com.github.fge.jsonschema.SchemaVersion.DRAFTV3;
@@ -21,22 +16,17 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
-import util.GFInstance;
+import util.IntegrationTest;
 
 /**
  *
- * @author MacYser
+ * @author Michael Koppen
  */
-public class PlaylistResourceIT {
+public class PlaylistResourceIT extends IntegrationTest {
 
   @Rule
   // Get name of actual Test with test.getMethodName()
   public TestName test = new TestName();
-
-  private static final String HOST = "http://localhost";
-  private static final String PORT = "9090";
-  private static final String APP_NAME = "WeLoveCodingTest";
-  private static final String ROOT = HOST + ":" + PORT + "/" + APP_NAME;
 
   private static final String ANY_JSON_ARRAY_SCHEMA = "json-schema/any-json-array-schema.json";
   private static final String ANY_JSON_OBJECT_SCHEMA = "json-schema/any-json-object-schema.json";
@@ -54,13 +44,15 @@ public class PlaylistResourceIT {
   }
 
   @Before
+  @Override
   public void setUp() throws Exception {
-    GFInstance.deployer.deploy(GFInstance.archive.toURI(), "--contextroot=" + GFInstance.APP_NAME, "--force=true");
+    super.setUp();
   }
 
   @After
+  @Override
   public void tearDown() throws Exception {
-    GFInstance.deployer.undeploy(GFInstance.APP_NAME);
+    super.tearDown();
   }
 
   private static InputStream getSchema(String schemaPath) {
@@ -72,7 +64,7 @@ public class PlaylistResourceIT {
    */
   @Test
   public void testGetPlaylist() throws Exception {
-    System.out.println("getPlaylist");
+    System.out.println(test.getMethodName());
     InputStream schema = getSchema(ANY_JSON_OBJECT_SCHEMA);
     Response resp
             = given().

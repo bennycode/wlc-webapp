@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package util;
 
 import java.util.logging.Level;
@@ -14,7 +9,7 @@ import org.junit.runner.notification.RunListener;
 
 /**
  *
- * @author MacYser
+ * @author Michael Koppen
  */
 public class IntegrationTestRunListener extends RunListener {
 
@@ -37,23 +32,25 @@ public class IntegrationTestRunListener extends RunListener {
 
   @Override
   public void testFinished(Description description) throws Exception {
-    LOG.log(Level.INFO, "testFinished was called!");
+//    LOG.log(Level.INFO, "testFinished was called!");
   }
 
   @Override
   public void testStarted(Description description) throws Exception {
-    LOG.log(Level.INFO, "testStarted was called!");
+//    LOG.log(Level.INFO, "testStarted was called!");
   }
 
   @Override
   public void testRunFinished(Result result) throws Exception {
     LOG.log(Level.INFO, "testRunFinished was called!");
+    LOG.log(Level.INFO, "Stopping embedded GlassFish!");
     GFInstance.stopInstance();
   }
 
   @Override
   public void testRunStarted(Description description) throws Exception {
     LOG.log(Level.INFO, "testRunStarted was called!");
+    LOG.log(Level.INFO, "Starting embedded GlassFish!");
     GFInstance.startInstance();
   }
 
