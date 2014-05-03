@@ -70,20 +70,32 @@ public class GoogleLoginServlet extends HttpServlet {
       GoogleUser gu = googleLoginBean.getUser(tokenResponse);
       User userEntity = userService.findByEmail(gu.getEmail());
       GoogleUserCredentials credentials;
+      boolean isFirstToken = false;
 
       if (userEntity == null) {
         userEntity = UserConverter.convertGoogleUser(gu);
+        isFirstToken = true;
+      } else {
+        List<UserCredentials> userCredentials = userEntity.getCredentials();
+        if (userCredentials != null && userCredentials.size() > 0) {
+          for (UserCredentials c : userCredentials) {
+            if (c.getCredType() == null) {
+              isFirstToken = true;
+            } else if (c.getCredType().equals(GoogleUserCredentials.CREDENTIAL_TYPE_COLUMN_VALUE)) {
+              credentials = (GoogleUserCredentials) c;
+              credentials.setToken(code[0]);
+            }
+          }
+        } else {
+          isFirstToken = true;
+        }
+      }
+
+      // Token creation
+      if (isFirstToken) {
         credentials = new GoogleUserCredentials(code[0]);
         credentials.setUser(userEntity);
         userEntity.setCredentials(Arrays.asList(new UserCredentials[]{credentials}));
-      } else {
-        List<UserCredentials> userCredentials = userEntity.getCredentials();
-        for (UserCredentials c : userCredentials) {
-          if (c.getCredType().equals(GoogleUserCredentials.CREDENTIAL_TYPE_COLUMN_VALUE)) {
-            credentials = (GoogleUserCredentials) c;
-            credentials.setToken(code[0]);
-          }
-        }
       }
 
       try {
