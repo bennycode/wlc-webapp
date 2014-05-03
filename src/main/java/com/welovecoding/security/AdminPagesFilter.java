@@ -1,8 +1,8 @@
 package com.welovecoding.security;
 
-import com.welovecoding.security.auth.UserSessionBean;
 import com.welovecoding.config.Pages;
-import com.welovecoding.security.auth.User;
+import com.welovecoding.entities.User;
+import com.welovecoding.security.auth.UserSessionBean;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.Filter;

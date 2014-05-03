@@ -1,7 +1,7 @@
 package com.welovecoding.service;
 
-import com.welovecoding.entities.Author;
-import com.welovecoding.repository.AuthorRepository;
+import com.welovecoding.entities.User;
+import com.welovecoding.repository.UserRepository;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -12,17 +12,17 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 @Stateless
-public class AuthorService extends BaseService<Author, AuthorRepository> {
+public class UserService extends BaseService<User, UserRepository> {
 
-  private static final Logger LOG = Logger.getLogger(AuthorService.class.getName());
+  private static final Logger LOG = Logger.getLogger(UserService.class.getName());
 
   @EJB
-  private AuthorRepository repository;
+  private UserRepository repository;
   @EJB
   private OwnCacheServerService cacheService;
 
-  public AuthorService() {
-    super(Author.class);
+  public UserService() {
+    super(User.class);
   }
 
   @PostConstruct
@@ -31,7 +31,7 @@ public class AuthorService extends BaseService<Author, AuthorRepository> {
   }
 
   @Override
-  protected AuthorRepository getRepository() {
+  protected UserRepository getRepository() {
     return repository;
   }
 
@@ -42,10 +42,7 @@ public class AuthorService extends BaseService<Author, AuthorRepository> {
 
   @Override
   protected Set<String> typesToClear() {
-    return new HashSet<>(Arrays.asList(
-            com.welovecoding.rest.v1.dto.AuthorDTO.class.getName(),
-            com.welovecoding.rest.v2.dto.AuthorDTO.class.getName()
-    ));
+    return new HashSet<>(Arrays.asList(new String[]{}));
   }
 
 }

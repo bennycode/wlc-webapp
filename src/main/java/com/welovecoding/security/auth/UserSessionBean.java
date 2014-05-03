@@ -1,5 +1,6 @@
 package com.welovecoding.security.auth;
 
+import com.welovecoding.entities.User;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;

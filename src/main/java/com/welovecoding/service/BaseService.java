@@ -3,6 +3,7 @@ package com.welovecoding.service;
 import com.welovecoding.config.Packages;
 import com.welovecoding.controller.GenFormBaseController;
 import com.welovecoding.entities.BaseEntity;
+import com.welovecoding.exception.ConstraintViolationBagException;
 import com.welovecoding.repository.AbstractRepository;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.List;
@@ -12,6 +13,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.MappedSuperclass;
 import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
@@ -43,37 +45,18 @@ public abstract class BaseService<T extends BaseEntity, E extends AbstractReposi
     }
   }
 
-  public void edit(T entity) {
+  public void edit(T entity) throws ConstraintViolationBagException {
+    validateEntity(entity);
+    invalidateRelatedCaches();
+    getRepository().edit(entity);
+  }
 
-    // TODO uh...thats bad...you are breaking the layers...facescontext is forbidden here
-    FacesContext context = FacesContext.getCurrentInstance();
-    ResourceBundle backendText = context.getApplication().getResourceBundle(context, Packages.BACKEND_MESSAGES_NAME);
-
+  protected void validateEntity(T entity) throws ConstraintViolationBagException {
     Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     Set<ConstraintViolation<T>> constraintViolations = validator.validate(entity);
 
     if (constraintViolations.size() > 0) {
-      // TODO: Don't handle exception here - Throw it!
-      for (ConstraintViolation<T> constraintViolation : constraintViolations) {
-
-        String key;
-
-        try {
-          key = backendText.getString("admin.form.label." + constraintViolation.getPropertyPath());
-        } catch (java.util.MissingResourceException ex) {
-          // TODO: Should be combined with text handling in ComponentFactory
-          key = constraintViolation.getPropertyPath().toString();
-        }
-
-        String summary = key + ": " + constraintViolation.getMessage();
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, null);
-        // TODO GenFormBaseController as well
-        context.addMessage(GenFormBaseController.ERROR_MESSAGES_NAME, message);
-      }
-
-    } else {
-      invalidateRelatedCaches();
-      getRepository().edit(entity);
+      throw new ConstraintViolationBagException(constraintViolations);
     }
   }
 

@@ -2,12 +2,18 @@ package com.welovecoding.security.auth.google;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
 import com.welovecoding.config.Pages;
-import com.welovecoding.security.auth.User;
+import com.welovecoding.entities.GoogleUserCredentials;
+import com.welovecoding.entities.User;
+import com.welovecoding.entities.UserCredentials;
+import com.welovecoding.exception.ConstraintViolationBagException;
 import com.welovecoding.security.auth.UserConverter;
 import com.welovecoding.security.auth.UserSessionBean;
+import com.welovecoding.service.UserService;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,20 +25,24 @@ import javax.servlet.http.HttpServletResponse;
  * @see https://code.google.com/p/google-api-java-client/wiki/OAuth2
  */
 public class GoogleLoginServlet extends HttpServlet {
-
+  
   public static final String CODE_URL_PARAM_NAME = "code";
   public static final String ERROR_URL_PARAM_NAME = "error";
   public static final String URL_MAPPING = "/oauth2callback";
-
+  
   @Inject
   private GoogleLoginBean googleLoginBean;
-
+  
   @Inject
   private UserSessionBean userSessionBean;
-
+  
+  @EJB
+  private UserService userService;
+  
   @Override
   /**
    * TODO: Catch: oauth2callback?error=access_denied&state=/profile
+   *
    * @see
    * https://developers.google.com/google-apps/tasks/oauth-authorization-callback-handler?hl=de
    */
@@ -55,11 +65,23 @@ public class GoogleLoginServlet extends HttpServlet {
       GoogleTokenResponse tokenResponse = googleLoginBean.convertCodeToToken(code[0]);
       String accessToken = tokenResponse.getIdToken();
       System.out.println("Access Token: " + accessToken);
-
+      
       GoogleUser gu = googleLoginBean.getUser(tokenResponse);
-      User user = UserConverter.convertGoogleUser(gu);
-      userSessionBean.setUser(user);
+      User userEntity = UserConverter.convertGoogleUser(gu);
+      GoogleUserCredentials credentials = new GoogleUserCredentials(code[0]);
+      credentials.setUser(userEntity);
+      userEntity.setCredentials(Arrays.asList(new UserCredentials[]{credentials}));
+      
+      try {
+        // Save user in database
+        userService.edit(userEntity);
+      } catch (ConstraintViolationBagException ex) {
+        Logger.getLogger(GoogleLoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+      }
 
+      // Save user in session
+      userSessionBean.setUser(userEntity);
+      
       String redirectUrl = userSessionBean.getDeniedUrl();
       if (redirectUrl == null) {
         LOG.log(Level.INFO, "Redirect URL not found.");
@@ -67,7 +89,7 @@ public class GoogleLoginServlet extends HttpServlet {
         redirectUrl = contextPath + Pages.ADMIN_INDEX + ".xhtml";
       }
       LOG.log(Level.INFO, "Redirecting to: {0}", redirectUrl);
-
+      
       response.sendRedirect(redirectUrl);
     }
   }

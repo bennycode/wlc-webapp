@@ -1,6 +1,8 @@
 package com.welovecoding.security.auth;
 
+import com.welovecoding.entities.User;
 import com.welovecoding.security.auth.google.GoogleUser;
+
 
 public class UserConverter {
 

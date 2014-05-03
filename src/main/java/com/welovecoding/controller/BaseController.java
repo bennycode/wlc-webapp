@@ -1,12 +1,19 @@
 package com.welovecoding.controller;
 
+import com.welovecoding.config.Packages;
 import com.welovecoding.entities.BaseEntity;
+import com.welovecoding.exception.ConstraintViolationBagException;
 import com.welovecoding.service.BaseService;
 import java.io.Serializable;
 import java.util.List;
+import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.Dependent;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.validation.ConstraintViolation;
 
 @Dependent
 /**
@@ -44,7 +51,35 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
     String template = "Saving item: {0}";
     LOG.log(Level.INFO, template, item.getName());
     System.out.println("EDIT ITEM: " + item.toString());
-    getService().edit(item);
+
+    try {
+
+      getService().edit(item);
+
+    } catch (ConstraintViolationBagException ex) {
+
+      FacesContext context = FacesContext.getCurrentInstance();
+      ResourceBundle backendText = context.getApplication().getResourceBundle(context, Packages.BACKEND_MESSAGES_NAME);
+
+      Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
+      for (ConstraintViolation<?> constraintViolation : constraintViolations) {
+
+        String key;
+
+        try {
+          key = backendText.getString("admin.form.label." + constraintViolation.getPropertyPath());
+        } catch (java.util.MissingResourceException resourceEx) {
+          // TODO: Should be combined with text handling in ComponentFactory
+          key = constraintViolation.getPropertyPath().toString();
+        }
+
+        String summary = key + ": " + constraintViolation.getMessage();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, null);
+        context.addMessage(GenFormBaseController.ERROR_MESSAGES_NAME, message);
+      }
+
+    }
+
     return "";
   }
 

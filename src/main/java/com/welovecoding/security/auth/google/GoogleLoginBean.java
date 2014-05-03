@@ -26,6 +26,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.PropertyNamingStrategy;
 
@@ -54,7 +55,7 @@ public class GoogleLoginBean implements Serializable {
   @PostConstruct
   void init() {
     mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
-    // TODO mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
     redirectUri = JSFUtils.getBaseURL(externalContext) + REGISTERED_REDIRECT_URI;
