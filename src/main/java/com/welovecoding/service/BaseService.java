@@ -1,19 +1,13 @@
 package com.welovecoding.service;
 
-import com.welovecoding.config.Packages;
-import com.welovecoding.controller.GenFormBaseController;
 import com.welovecoding.entities.BaseEntity;
 import com.welovecoding.exception.ConstraintViolationBagException;
 import com.welovecoding.repository.AbstractRepository;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.Set;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.persistence.MappedSuperclass;
 import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
