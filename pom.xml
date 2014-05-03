@@ -6,7 +6,7 @@
 
   <groupId>com.welovecoding.web</groupId>
   <artifactId>wlc-webapp</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>We Love Coding (webapp)</name>
@@ -21,6 +21,7 @@
   </description>
   <organization>
     <name>We Love Coding</name>
+    <url>http://www.welovecoding.com</url>
   </organization>
   <developers>
     <developer>
@@ -33,7 +34,8 @@
     <developer>
       <name>Michael Koppen</name>
       <email>michael.koppen@googlemail.com</email>
-      <url>https://github.com/Yserz</url>
+      <url>http://beanbelt.blogspot.de</url>
+      <organizationUrl>https://github.com/Yserz</organizationUrl>
       <roles>
         <role>Original Author</role>
       </roles>
@@ -198,11 +200,6 @@
       <version>2.7</version>
       <scope>provided</scope>
     </dependency>
-    <!--    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.2.2</version>
-    </dependency>-->
     <dependency>
       <groupId>org.glassfish.jersey.media</groupId>
       <artifactId>jersey-media-json-jackson</artifactId>
@@ -452,11 +449,32 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <version>2.9.1</version>
+            <executions>
+              <!-- add javadoc.jar to (snapshot) release -->
+              <execution>
+                <id>attach-javadocs</id>
+                <phase>deploy</phase>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-deploy-plugin</artifactId>
             <version>2.8.1</version>
+            <executions> 
+              <!-- http://stackoverflow.com/questions/4725668/how-to-deploy-snapshot-with-sources-and-javadoc -->
+              <!-- explicitly define maven-deploy-plugin after other to force exec order -->
+              <execution>
+                <id>deploy</id>
+                <phase>deploy</phase>
+                <goals>
+                  <goal>deploy</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
@@ -467,7 +485,7 @@
             <artifactId>maven-scm-plugin</artifactId>
             <version>1.9</version>
             <configuration>
-              <tag>${project.artifactId}-${project.version}</tag>
+              <tag>${project.artifactId}/${project.version}</tag>
             </configuration>
           </plugin>
           <plugin>
@@ -488,8 +506,6 @@
                   <cargo.remote.password>${gf.remote.password}</cargo.remote.password>
                   <cargo.remote.port>${gf.remote.port}</cargo.remote.port>
                   <cargo.glassfish.domain.name>/domain1</cargo.glassfish.domain.name>
-                  <!--<cargo.jvmargs>-XX:MaxPermSize=256M -Xmx512m</cargo.jvmargs>-->
-                  <!--<cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024 -XX:+UseConcMarkSweepGC -XX:+CMSPermGenSweepingEnabled -XX:+CMSClassUnloadingEnabled</cargo.jvmargs>-->
                 </properties>
               </configuration>
               <deployables>
