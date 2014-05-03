@@ -1,15 +1,24 @@
 package com.welovecoding.entities;
 
+import static com.welovecoding.entities.User.FIND_BY_EMAIL;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@NamedQueries({
+  @NamedQuery(name = FIND_BY_EMAIL, query = "SELECT u FROM User u WHERE u.email = :email"),})
 public class User extends BaseEntity {
 
+  public static final String FIND_BY_EMAIL = "User.findByEmail";
+
   @NotNull
+  @Column(unique = true)
   private String email;
 
   @OneToMany(cascade = CascadeType.ALL, targetEntity = UserCredentials.class, mappedBy = "user")

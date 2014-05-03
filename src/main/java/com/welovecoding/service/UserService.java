@@ -27,9 +27,12 @@ public class UserService extends BaseService<User, UserRepository> {
 
   @PostConstruct
   public void init() {
-
   }
 
+  public User findByEmail(String email) {
+    return repository.findByEmail(email);
+  }
+  
   @Override
   protected UserRepository getRepository() {
     return repository;

@@ -1,5 +1,9 @@
 package com.welovecoding.entities;
 
+import static com.welovecoding.entities.Playlist.FIND_ALL_IN_CATEGORY;
+import static com.welovecoding.entities.Playlist.FIND_BY_CODE;
+import static com.welovecoding.entities.Playlist.FIND_IN_CATEGORY;
+import static com.welovecoding.entities.Playlist.LIKE_NAME;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
@@ -18,10 +22,10 @@ import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({
-  @NamedQuery(name = "Playlist.findByCode", query = "SELECT p FROM Playlist p WHERE p.code = :code"),
-  @NamedQuery(name = "Playlist.findAllInCategory", query = "SELECT p FROM Playlist p WHERE p.category.id = :categoryid"),
-  @NamedQuery(name = "Playlist.likeName", query = "SELECT p FROM Playlist p WHERE UPPER(p.name) LIKE UPPER(:keyword)"),
-  @NamedQuery(name = "Playlist.findInCategory", query = "SELECT p FROM Playlist p WHERE p.id = :playlistid AND p.category.id = :categoryid")
+  @NamedQuery(name = FIND_BY_CODE, query = "SELECT p FROM Playlist p WHERE p.code = :code"),
+  @NamedQuery(name = FIND_ALL_IN_CATEGORY, query = "SELECT p FROM Playlist p WHERE p.category.id = :categoryid"),
+  @NamedQuery(name = LIKE_NAME, query = "SELECT p FROM Playlist p WHERE UPPER(p.name) LIKE UPPER(:keyword)"),
+  @NamedQuery(name = FIND_IN_CATEGORY, query = "SELECT p FROM Playlist p WHERE p.id = :playlistid AND p.category.id = :categoryid")
 })
 public class Playlist extends BaseEntity {
 
