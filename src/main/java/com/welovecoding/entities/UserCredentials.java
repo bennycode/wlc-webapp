@@ -1,5 +1,6 @@
 package com.welovecoding.entities;
 
+import static com.welovecoding.entities.UserCredentials.CREDENTIAL_TYPE_COLUMN_NAME;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,14 +18,15 @@ import javax.validation.constraints.NotNull;
 
 @Table(
         uniqueConstraints
-        = @UniqueConstraint(columnNames = {"CRED_TYPE", "USER_ID"})
+        = @UniqueConstraint(columnNames = {CREDENTIAL_TYPE_COLUMN_NAME, "USER_ID"})
 )
 @Entity
-@DiscriminatorColumn(name = "CRED_TYPE")
+@DiscriminatorColumn(name = CREDENTIAL_TYPE_COLUMN_NAME)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class UserCredentials implements Serializable {
 
   private static final long serialVersionUID = 1L;
+  public static final String CREDENTIAL_TYPE_COLUMN_NAME = "CRED_TYPE";
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +39,7 @@ public abstract class UserCredentials implements Serializable {
   @NotNull
   private User user;
 
-  @Column(name = "CRED_TYPE", insertable = false, updatable = false)
+  @Column(name = CREDENTIAL_TYPE_COLUMN_NAME, insertable = false, updatable = false)
   private String credType;
 
   public Long getId() {
@@ -62,6 +64,14 @@ public abstract class UserCredentials implements Serializable {
 
   public void setUser(User user) {
     this.user = user;
+  }
+
+  public String getCredType() {
+    return credType;
+  }
+
+  public void setCredType(String credType) {
+    this.credType = credType;
   }
 
 }

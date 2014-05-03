@@ -11,6 +11,7 @@ import com.welovecoding.security.auth.UserSessionBean;
 import com.welovecoding.service.UserService;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -68,14 +69,22 @@ public class GoogleLoginServlet extends HttpServlet {
 
       GoogleUser gu = googleLoginBean.getUser(tokenResponse);
       User userEntity = userService.findByEmail(gu.getEmail());
+      GoogleUserCredentials credentials;
 
       if (userEntity == null) {
         userEntity = UserConverter.convertGoogleUser(gu);
+        credentials = new GoogleUserCredentials(code[0]);
+        credentials.setUser(userEntity);
+        userEntity.setCredentials(Arrays.asList(new UserCredentials[]{credentials}));
+      } else {
+        List<UserCredentials> userCredentials = userEntity.getCredentials();
+        for (UserCredentials c : userCredentials) {
+          if (c.getCredType().equals(GoogleUserCredentials.CREDENTIAL_TYPE_COLUMN_VALUE)) {
+            credentials = (GoogleUserCredentials) c;
+            credentials.setToken(code[0]);
+          }
+        }
       }
-
-      GoogleUserCredentials credentials = new GoogleUserCredentials(code[0]);
-      credentials.setUser(userEntity);
-      userEntity.setCredentials(Arrays.asList(new UserCredentials[]{credentials}));
 
       try {
         // Save user in database
