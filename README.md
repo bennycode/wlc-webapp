@@ -90,6 +90,7 @@ Project configuration:
 
 - Avoid using component bindings to a bean that has session scope
 - Never assign FacesContext as instance variable of a view/session/application scoped managed bean, because the FacesContext instance is request scoped 
+- [h:commandButton is not working](http://stackoverflow.com/a/2120183/451634)
 
 Authors
 ------

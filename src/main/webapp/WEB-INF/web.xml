@@ -11,6 +11,11 @@
     <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
     <param-value>true</param-value>
   </context-param>
+  <!-- http://stackoverflow.com/questions/3500738/invisible-comments-in-jsf-2-0 -->
+  <context-param>
+    <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+    <param-value>true</param-value>
+  </context-param>
   <!-- Servlet declarations -->
   <!-- JSF -->
   <servlet>

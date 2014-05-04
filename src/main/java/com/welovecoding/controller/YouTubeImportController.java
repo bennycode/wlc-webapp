@@ -43,6 +43,8 @@ public class YouTubeImportController implements Serializable {
   public YouTubeImportController() {
   }
 
+  // TODO: playlist is null when form is submitted
+  // See: http://stackoverflow.com/a/2120183/451634
   public void parsePlaylist() {
     if (playlistId.isEmpty()) {
       playlist = null;
