@@ -405,7 +405,7 @@
         <artifactId>maven-release-plugin</artifactId>
         <version>2.5</version>
         <configuration>
-          <arguments>-DskipTests=true -DskipITs=true -Dmaven.javadoc.skip=true</arguments>
+          <arguments>-DskipTests=true -DskipITs=true -Dmaven.javadoc.skip=true -Dmaven.skip.deploy=true</arguments>
         </configuration>
       </plugin>
       <plugin>
