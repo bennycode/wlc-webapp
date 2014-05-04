@@ -114,7 +114,7 @@ public class TestDataProvider {
                                 sdf.parse("2014-04-02 14:18:51"),
                                 "Windows Phone Workshop (MMT30)",
                                 "windows-phone-workshop-mmt30",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a7,
                                 Arrays.asList(new Video[]{
@@ -141,7 +141,7 @@ public class TestDataProvider {
                                 sdf.parse("2014-04-02 14:18:51"),
                                 "Windows Phone 7 Dev Speedruns",
                                 "windows-phone-7-dev-speedruns",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a5,
                                 Arrays.asList(new Video[]{})
@@ -156,7 +156,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:10"),
                                 "Windows Phone Coding Camp",
                                 "windows-phone-coding-camp",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a6,
                                 Arrays.asList(new Video[]{})
@@ -171,7 +171,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "\"Hello World\" für Windows Phone 8",
                                 "hello-world-fuer-windows-phone-8",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a25,
                                 Arrays.asList(new Video[]{})
@@ -191,7 +191,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:10"),
                                 "Java Tutorials von Anfang an",
                                 "java-tutorials-von-anfang-an",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a1,
                                 Arrays.asList(new Video[]{})
@@ -206,7 +206,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:10"),
                                 "Praktischer Einstieg in die Java Enterprise Edition (JEE)",
                                 "praktischer-einstieg-in-die-java-enterprise-edition-jee",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a1,
                                 Arrays.asList(new Video[]{})
@@ -221,7 +221,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:10"),
                                 "JEE with Adam Bien",
                                 "jee-with-adam-bien",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a14,
                                 Arrays.asList(new Video[]{})
@@ -236,7 +236,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Java (Beginner) Programming Tutorials",
                                 "java-beginner-programming-tutorials",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a10,
                                 Arrays.asList(new Video[]{})
@@ -251,7 +251,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Java (Intermediate) Tutorials",
                                 "java-intermediate-tutorials",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a10,
                                 Arrays.asList(new Video[]{})
@@ -266,7 +266,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Java Game Development Tutorials",
                                 "java-game-development-tutorials",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a10,
                                 Arrays.asList(new Video[]{})
@@ -281,7 +281,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Einführung in Java mit BlueJ",
                                 "einfuehrung-in-java-mit-bluej",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a23,
                                 Arrays.asList(new Video[]{})
@@ -296,7 +296,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Java in IntelliJ",
                                 "java-in-intellij",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a23,
                                 Arrays.asList(new Video[]{})
@@ -316,7 +316,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:10"),
                                 "PHP Beginner Tutorials",
                                 "php-beginner-tutorials",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a9,
                                 Arrays.asList(new Video[]{})
@@ -331,7 +331,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:10"),
                                 "Zend Framework Tutorial für Anfänger",
                                 "zend-framework-tutorial-fuer-anfaenger",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a1,
                                 Arrays.asList(new Video[]{})
@@ -351,7 +351,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:10"),
                                 "Formale Sprachen und Automatentheorie",
                                 "formale-sprachen-und-automatentheorie",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a1,
                                 Arrays.asList(new Video[]{})
@@ -366,7 +366,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:10"),
                                 "Zahlensysteme",
                                 "zahlensysteme",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a1,
                                 Arrays.asList(new Video[]{})
@@ -381,7 +381,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Datenstrukturen und Algorithmen",
                                 "datenstrukturen-und-algorithmen",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a3,
                                 Arrays.asList(new Video[]{})
@@ -401,7 +401,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:10"),
                                 "Windows 7",
                                 "windows-7",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a1,
                                 Arrays.asList(new Video[]{})
@@ -416,7 +416,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:10"),
                                 "Windows-Anwendungen programmieren (WPF)",
                                 "windows-anwendungen-programmieren-wpf",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a2,
                                 Arrays.asList(new Video[]{})
@@ -436,7 +436,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:10"),
                                 "Erste Schritte in C",
                                 "erste-schritte-in-c",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a3,
                                 Arrays.asList(new Video[]{})
@@ -451,7 +451,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:10"),
                                 "Operatoren in C",
                                 "operatoren-in-c",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a3,
                                 Arrays.asList(new Video[]{})
@@ -471,7 +471,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Android in 90 Minuten",
                                 "android-in-90-minuten",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a4,
                                 Arrays.asList(new Video[]{})
@@ -486,7 +486,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Android Application Development Tutorials",
                                 "android-application-development-tutorials",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a15,
                                 Arrays.asList(new Video[]{})
@@ -501,7 +501,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Android Apps programmieren",
                                 "android-apps-programmieren",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a24,
                                 Arrays.asList(new Video[]{})
@@ -521,7 +521,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "C++ GUI with Qt Playlist",
                                 "c++-gui-with-qt-playlist",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a10,
                                 Arrays.asList(new Video[]{})
@@ -536,7 +536,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "C++ Programming Tutorials",
                                 "c++-programming-tutorials",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a10,
                                 Arrays.asList(new Video[]{})
@@ -556,7 +556,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Ruby Programming Tutorials",
                                 "ruby-programming-tutorials",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a10,
                                 Arrays.asList(new Video[]{})
@@ -576,7 +576,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "C# Beginners Tutorials",
                                 "c-sharp-beginners-tutorials",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a11,
                                 Arrays.asList(new Video[]{})
@@ -591,7 +591,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "C# Fundamentals for Absolute Beginners",
                                 "c-sharp-fundamentals-for-absolute-beginners",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.CHANNEL9,
                                 a19,
                                 Arrays.asList(new Video[]{})
@@ -606,7 +606,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "C# Tutorial",
                                 "c-sharp-tutorial",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a26,
                                 Arrays.asList(new Video[]{})
@@ -626,7 +626,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "HTML5 Tutorials",
                                 "html5-tutorials",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a10,
                                 Arrays.asList(new Video[]{})
@@ -641,7 +641,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "HTML5 & CSS3 Fundamentals: Development for Absolute Beginners",
                                 "html5-css3-fundamentals-development-for-absolute-beginners",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.CHANNEL9,
                                 a19,
                                 Arrays.asList(new Video[]{})
@@ -661,7 +661,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "MySQL Database Tutorials",
                                 "mysql-database-tutorials",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a10,
                                 Arrays.asList(new Video[]{})
@@ -681,7 +681,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Windows 8 Apps mit C# und XAML",
                                 "windows-8-apps-mit-c-sharp-und-xaml",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a12,
                                 Arrays.asList(new Video[]{})
@@ -696,7 +696,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Introduction to Building Windows 8 apps",
                                 "introduction-to-building-windows-8-apps",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a13,
                                 Arrays.asList(new Video[]{})
@@ -711,7 +711,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Windows Store apps for Absolute Beginners with C#",
                                 "windows-store-apps-for-absolute-beginners-with-c-sharp",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.CHANNEL9,
                                 a19,
                                 Arrays.asList(new Video[]{})
@@ -726,7 +726,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "First Windows Store app with JavaScript",
                                 "first-windows-store-app-with-javascript",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.CHANNEL9,
                                 a20,
                                 Arrays.asList(new Video[]{})
@@ -741,7 +741,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "First Windows Store app with C#",
                                 "first-windows-store-app-with-c-sharp",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.CHANNEL9,
                                 a20,
                                 Arrays.asList(new Video[]{})
@@ -756,7 +756,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "First Windows Store app with Visual Basic",
                                 "first-windows-store-app-with-visual-basic",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.CHANNEL9,
                                 a20,
                                 Arrays.asList(new Video[]{})
@@ -771,7 +771,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Migrating apps from Windows Phone to Windows 8",
                                 "migrating-apps-from-windows-phone-to-windows-8",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.CHANNEL9,
                                 a21,
                                 Arrays.asList(new Video[]{})
@@ -786,7 +786,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "\"Hello World\" für Windows 8",
                                 "hello-world-fuer-windows-8",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a25,
                                 Arrays.asList(new Video[]{})
@@ -806,7 +806,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "JavaScript Tutorial",
                                 "javascript-tutorial",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a10,
                                 Arrays.asList(new Video[]{})
@@ -821,7 +821,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Javascript Fundamentals: Development for Absolute Beginners",
                                 "javascript-fundamentals-development-for-absolute-beginners",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.CHANNEL9,
                                 a19,
                                 Arrays.asList(new Video[]{})
@@ -836,7 +836,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Getting Started with jQuery",
                                 "getting-started-with-jquery",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.CHANNEL9,
                                 a19,
                                 Arrays.asList(new Video[]{})
@@ -856,7 +856,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Python Programming Tutorial",
                                 "python-programming-tutorial",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a10,
                                 Arrays.asList(new Video[]{})
@@ -876,7 +876,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "iPhone Development Tutorial",
                                 "iphone-development-tutorial",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a10,
                                 Arrays.asList(new Video[]{})
@@ -896,7 +896,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Objective C Programming Tutorial",
                                 "objective-c-programming-tutorial",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a10,
                                 Arrays.asList(new Video[]{})
@@ -916,7 +916,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Linux Tutorial",
                                 "linux-tutorial",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a16,
                                 Arrays.asList(new Video[]{})
@@ -931,7 +931,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Diverse Linux Tutorials",
                                 "diverse-linux-tutorials",
-                                LanguageCode.DE,
+                                LanguageCode.de,
                                 Provider.YOUTUBE,
                                 a17,
                                 Arrays.asList(new Video[]{})
@@ -951,7 +951,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Visual Basic Fundamentals: Development for Absolute Beginners",
                                 "visual-basic-fundamentals-development-for-absolute-beginners",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.CHANNEL9,
                                 a19,
                                 Arrays.asList(new Video[]{})
@@ -971,7 +971,7 @@ public class TestDataProvider {
                                 sdf.parse("2013-08-31 12:17:11"),
                                 "Delphi Programming Tutorial",
                                 "delphi-programming-tutorial",
-                                LanguageCode.EN,
+                                LanguageCode.en,
                                 Provider.YOUTUBE,
                                 a22,
                                 Arrays.asList(new Video[]{})
