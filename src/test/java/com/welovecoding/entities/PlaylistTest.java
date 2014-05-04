@@ -45,7 +45,7 @@ public class PlaylistTest {
     Playlist playlist = new Playlist();
     playlist.setId(1L);
     playlist.setName("Windows Phone Workshop (MMT30)");
-    playlist.setLanguageCode(LanguageCode.DE);
+    playlist.setLanguageCode(LanguageCode.de);
     playlist.setCategory(category);
     playlist.setProvider(Provider.YOUTUBE);
     playlist.setAuthor(author);
@@ -84,7 +84,7 @@ public class PlaylistTest {
     Playlist playlist = new Playlist();
     playlist.setId(9L);
     playlist.setName("Formale Sprachen und Automatentheorie");
-    playlist.setLanguageCode(LanguageCode.DE);
+    playlist.setLanguageCode(LanguageCode.de);
     playlist.setCategory(category);
     playlist.setProvider(Provider.YOUTUBE);
     playlist.setAuthor(author);

@@ -8,12 +8,11 @@ package com.welovecoding.entities;
  */
 public enum LanguageCode {
 
-  EN, en, DE, de;
+  en, de;
 
   @Override
   public String toString() {
     switch (this) {
-      case DE:
       case de:
         return "German";
       default:

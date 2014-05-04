@@ -45,12 +45,12 @@ public class CategoryTest {
 
     Playlist androidPlaylistEnglish = new Playlist();
     androidPlaylistEnglish.setCategory(android);
-    androidPlaylistEnglish.setLanguageCode(LanguageCode.EN);
+    androidPlaylistEnglish.setLanguageCode(LanguageCode.en);
     androidPlaylistEnglish.setVideos(androidVideos);
 
     Playlist androidPlaylistGerman = new Playlist();
     androidPlaylistGerman.setCategory(android);
-    androidPlaylistGerman.setLanguageCode(LanguageCode.DE);
+    androidPlaylistGerman.setLanguageCode(LanguageCode.de);
     androidPlaylistGerman.setVideos(androidVideos);
 
     List<Playlist> androidPlaylists = new ArrayList<>();
@@ -70,7 +70,7 @@ public class CategoryTest {
 
     Playlist cPlaylistGerman = new Playlist();
     cPlaylistGerman.setCategory(c);
-    cPlaylistGerman.setLanguageCode(LanguageCode.DE);
+    cPlaylistGerman.setLanguageCode(LanguageCode.de);
     cPlaylistGerman.setVideos(cVideos);
 
     List<Playlist> cPlaylists = new ArrayList<>();

@@ -197,11 +197,9 @@ public class DTOMapper {
 
     if (language != null) {
       switch (language) {
-        case EN:
         case en:
           dtoLanguage = "EN";
           break;
-        case DE:
         case de:
           dtoLanguage = "DE";
           break;
