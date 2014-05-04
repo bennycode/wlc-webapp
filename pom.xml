@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.welovecoding.web</groupId>
   <artifactId>wlc-webapp</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>war</packaging>
 
   <name>We Love Coding (webapp)</name>
@@ -45,6 +43,7 @@
     <connection>scm:git:git@github.com:bennyn/wlc-webapp.git</connection>
     <developerConnection>scm:git:git@github.com:bennyn/wlc-webapp.git</developerConnection>
     <url>https://github.com/bennyn/wlc-webapp</url>
+    <tag>wlc-webapp/0.0.1</tag>
   </scm>
   <issueManagement>
     <system>GitHub Issue Management</system>
@@ -321,7 +320,7 @@
             <!--<Xlint:unchecked />-->
             <endorseddirs>${endorsed.dir}</endorseddirs>
             <!--http://stackoverflow.com/a/14298133/451634--> 
-            <!--<proc:none/>-->
+            <!--<proc:none />-->
           </compilerArguments>
         </configuration>
       </plugin>
