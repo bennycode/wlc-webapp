@@ -429,9 +429,13 @@ public class JSFUtils implements Serializable {
    * @since 1.3
    */
   public static String getBaseURL(final HttpServletRequest request) throws MalformedURLException {
-    return new URL(request.getScheme(),
-            request.getServerName(),
+    String[] domainParts = request.getHeader("Host").split(":");
+
+    URL url = new URL(request.getScheme(),
+            domainParts[0],
             request.getServerPort(),
-            request.getContextPath()).toString();
+            request.getContextPath());
+
+    return url.toString();
   }
 }
