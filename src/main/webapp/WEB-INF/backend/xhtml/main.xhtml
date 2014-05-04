@@ -85,6 +85,14 @@
                     <h:outputText value="#{backend['admin.menu.youtube']}" />
                   </h:outputLink>
                 </li>
+                <li>
+                  <h:outputLink 
+                    rendered="#{ facesContext.isProjectStage('Development') }"
+                    styleClass="#{(view.viewId.equals('/admin/test.xhtml')) ? 'active' : ''}"
+                    value="test.xhtml">
+                    Development Test
+                  </h:outputLink>
+                </li>
               </ul>
             </div>
           </div>

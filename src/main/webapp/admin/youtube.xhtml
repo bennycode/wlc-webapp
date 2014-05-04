@@ -18,7 +18,6 @@
         </h2>
 
         <form class="pure-form pure-form-stacked"
-              autocomplete="off"
               jsf:id="create-author" 
               jsf:prependId="false"
               >
@@ -39,7 +38,7 @@
           <fieldset>
             <div class="pure-controls">                            
               <h:commandButton 
-                value="Import" 
+                value="Parse" 
                 styleClass="pure-button pure-button-primary">
                 <f:ajax 
                   listener="#{youTubeImportController.parsePlaylist}"
@@ -60,6 +59,13 @@
             <p>
               <h:outputText value="#{youTubeImportController.playlist.snippet.description}" />
             </p>
+            <h:form>
+              <h:commandButton 
+                action="#{youTubeImportController.savePlaylist}"
+                value="In Datenbank übernehmen" 
+                styleClass="pure-button pure-button-primary">
+              </h:commandButton>
+            </h:form>
           </h:panelGroup>
         </h:panelGroup>
 

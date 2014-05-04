@@ -54,7 +54,7 @@
       <id>maven-own-repo</id>
       <name>Own Repository</name>
       <layout>default</layout>
-      <url>file:///Users/MacYser/Documents/Workspaces/NetBeansWorkspace/maven-own-repo/</url>
+      <url>file://${project.basedir}/maven-repo/</url>
     </repository>
   </distributionManagement>
 

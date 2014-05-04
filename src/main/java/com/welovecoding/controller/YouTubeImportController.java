@@ -44,7 +44,15 @@ public class YouTubeImportController implements Serializable {
   }
 
   public void parsePlaylist() {
-    playlist = youTubeUtils.getPlaylist(playlistId);
+    if (playlistId.isEmpty()) {
+      playlist = null;
+    } else {
+      playlist = youTubeUtils.getPlaylist(playlistId);
+    }
+  }
+
+  public void savePlaylist() {
+    System.out.println("NOP");
   }
 
   public String getPlaylistId() {
