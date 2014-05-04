@@ -194,7 +194,7 @@ public class ComponentFactory {
     button.setActionExpression(actionExpression);
     button.setId("save");
     button.setStyleClass("pure-button pure-button-primary");
-    button.setValue("Speichern");
+    button.setValue(backendText.getString("admin.page.tableAction.save"));
 
     return button;
   }
