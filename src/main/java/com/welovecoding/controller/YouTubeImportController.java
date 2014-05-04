@@ -1,16 +1,12 @@
 package com.welovecoding.controller;
 
 import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.services.youtube.YouTube;
-import com.google.api.services.youtube.model.Playlist;
+import com.welovecoding.entities.Playlist;
 import com.welovecoding.security.auth.UserSessionBean;
-import com.welovecoding.util.YouTubeUtils;
+import com.welovecoding.service.YouTubeService;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,37 +20,32 @@ public class YouTubeImportController implements Serializable {
   @Inject
   private UserSessionBean userSessionBean;
 
+  @EJB
+  private YouTubeService youTubeService;
+
+  private Credential credential;
+
   private String playlistId = "";
   private Playlist playlist = null;
 
-  private YouTube youtube;
-  private YouTubeUtils youTubeUtils;
-
-  private static final JsonFactory JSON_FACTORY = new JacksonFactory();
-  private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
-
   @PostConstruct
   void init() {
-    Credential credential = userSessionBean.getCredential();
-    youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName("we-love-coding").build();
-    youTubeUtils = new YouTubeUtils(youtube);
+    credential = userSessionBean.getCredential();
   }
 
   public YouTubeImportController() {
   }
 
-  // TODO: playlist is null when form is submitted
-  // See: http://stackoverflow.com/a/2120183/451634
   public void parsePlaylist() {
     if (playlistId.isEmpty()) {
       playlist = null;
     } else {
-      playlist = youTubeUtils.getPlaylist(playlistId);
+      playlist = youTubeService.getPlaylist(playlistId, credential);
     }
   }
 
   public void savePlaylist() {
-    System.out.println(playlist.getSnippet().getTitle());
+    System.out.println(playlist.getName());
   }
 
   public String getPlaylistId() {

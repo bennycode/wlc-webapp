@@ -17,7 +17,7 @@ import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.YouTubeScopes;
 import com.welovecoding.security.auth.UserSessionBean;
 import com.welovecoding.util.JSFUtils;
-import com.welovecoding.util.YouTubeUtils;
+import com.welovecoding.repository.YouTubeRepository;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
@@ -111,7 +111,7 @@ public class GoogleLoginBean implements Serializable {
     // https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLB03EA9545DD188C3
     YouTube youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName("we-love-coding").build();
     String[] playlistIds = {"PLB03EA9545DD188C3", "5EA5B1829771349A"};
-    YouTubeUtils youTubeUtils = new YouTubeUtils(youtube);
+    YouTubeRepository youTubeUtils = new YouTubeRepository(youtube);
     youTubeUtils.logPlaylistInfos(playlistIds);
 
     return mapper.readValue(jsonIdentity, GoogleUser.class);

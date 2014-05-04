@@ -1,10 +1,11 @@
-package com.welovecoding.util;
+package com.welovecoding.repository;
 
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.Channel;
 import com.google.api.services.youtube.model.ChannelListResponse;
 import com.google.api.services.youtube.model.Playlist;
 import com.google.api.services.youtube.model.PlaylistListResponse;
+import com.welovecoding.util.StringUtils;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,12 +14,12 @@ import java.util.logging.Logger;
 /**
  * @see https://github.com/bennyn/wlc-webapp/issues/18
  */
-public class YouTubeUtils {
+public class YouTubeRepository {
 
-  private static final Logger log = Logger.getLogger(YouTubeUtils.class.getName());
+  private static final Logger log = Logger.getLogger(YouTubeRepository.class.getName());
   private final YouTube youtube;
 
-  public YouTubeUtils(YouTube youtube) {
+  public YouTubeRepository(YouTube youtube) {
     this.youtube = youtube;
   }
 
@@ -40,7 +41,7 @@ public class YouTubeUtils {
         log.info(channel.getContentDetails().toPrettyString());
       }
     } catch (IOException ex) {
-      Logger.getLogger(YouTubeUtils.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(YouTubeRepository.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
 
@@ -64,7 +65,7 @@ public class YouTubeUtils {
         log.log(Level.INFO, "Title: {0}", playlist.getSnippet().getTitle());
       }
     } catch (IOException ex) {
-      Logger.getLogger(YouTubeUtils.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(YouTubeRepository.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
 
@@ -84,7 +85,7 @@ public class YouTubeUtils {
       List<Playlist> playlists = execute.getItems();
       playlistTitle = playlists.get(0).getSnippet().getTitle();
     } catch (IOException ex) {
-      Logger.getLogger(YouTubeUtils.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(YouTubeRepository.class.getName()).log(Level.SEVERE, null, ex);
     }
 
     return playlistTitle;
@@ -110,7 +111,7 @@ public class YouTubeUtils {
       List<Playlist> playlists = execute.getItems();
       playlist = playlists.get(0);
     } catch (Exception ex) {
-      Logger.getLogger(YouTubeUtils.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(YouTubeRepository.class.getName()).log(Level.SEVERE, null, ex);
     }
 
     return playlist;

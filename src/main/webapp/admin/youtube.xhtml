@@ -55,7 +55,7 @@
         <h:panelGroup id="playlistDetails" layout="block">          
           <h2 class="page-header">Details</h2>
           <h2>
-            <h:outputText value="#{youTubeImportController.playlist.snippet.title}" />
+            <h:outputText value="#{youTubeImportController.playlist.name}" />
           </h2>	
           <p>
             <h:graphicImage 
@@ -66,7 +66,7 @@
               rendered="#{empty youTubeImportController.playlist}"
               value="/resources/images/preloader/flat/64_64/cube.gif" 
               />
-            <h:outputText value="#{youTubeImportController.playlist.snippet.description}" />
+            <h:outputText value="#{youTubeImportController.playlist.description}" />
           </p>
         </h:panelGroup>
 
