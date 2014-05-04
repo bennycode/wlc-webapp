@@ -144,9 +144,9 @@
       <version>2.2.2</version>
     </dependency>
     <dependency>
-      <!-- Java EE Web Profile -->
+      <!-- Java EE Full Profile -->
       <groupId>javax</groupId>
-      <artifactId>javaee-web-api</artifactId>
+      <artifactId>javaee-api</artifactId>
       <version>7.0</version>
       <scope>compile</scope>
     </dependency>
