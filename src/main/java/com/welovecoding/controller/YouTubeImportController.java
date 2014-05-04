@@ -54,7 +54,7 @@ public class YouTubeImportController implements Serializable {
   }
 
   public void savePlaylist() {
-    System.out.println("NOP");
+    System.out.println(playlist.getSnippet().getTitle());
   }
 
   public String getPlaylistId() {

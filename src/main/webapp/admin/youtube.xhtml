@@ -45,7 +45,7 @@
                 <f:ajax 
                   listener="#{youTubeImportController.parsePlaylist}"
                   execute="@form" 
-                  render=":playlistDetails" 
+                  render=":playlistDetails :submitForm" 
                   />
               </h:commandButton>
             </div>
@@ -53,31 +53,32 @@
         </form>
 
         <h:panelGroup id="playlistDetails" layout="block">          
-          <h:panelGroup rendered="true">
-            <h2 class="page-header">Details</h2>
-            <h2>
-              <h:outputText value="#{youTubeImportController.playlist.snippet.title}" />
-            </h2>	
-            <p>
-              <h:graphicImage 
-                id="playlistPreloader"
-                width="64"
-                height="64"
-                style="display: none;"
-                rendered="#{empty youTubeImportController.playlist}"
-                value="/resources/images/preloader/flat/64_64/cube.gif" 
-                />
-              <h:outputText value="#{youTubeImportController.playlist.snippet.description}" />
-            </p>
-            <h:form>
-              <h:commandButton 
-                action="#{youTubeImportController.savePlaylist}"
-                value="In Datenbank übernehmen" 
-                styleClass="pure-button pure-button-primary">
-              </h:commandButton>
-            </h:form>
-          </h:panelGroup>
+          <h2 class="page-header">Details</h2>
+          <h2>
+            <h:outputText value="#{youTubeImportController.playlist.snippet.title}" />
+          </h2>	
+          <p>
+            <h:graphicImage 
+              id="playlistPreloader"
+              width="64"
+              height="64"
+              style="display: none;"
+              rendered="#{empty youTubeImportController.playlist}"
+              value="/resources/images/preloader/flat/64_64/cube.gif" 
+              />
+            <h:outputText value="#{youTubeImportController.playlist.snippet.description}" />
+          </p>
         </h:panelGroup>
+
+        <h:form id="submitForm">
+          <h:commandButton 
+            action="#{youTubeImportController.savePlaylist}"
+            rendered="#{not empty youTubeImportController.playlist}"
+            styleClass="pure-button pure-button-primary"
+            value="In Datenbank übernehmen">
+          </h:commandButton>
+        </h:form>
+
         <script>
           //<![CDATA[ 
           $(document).ready(function() {
