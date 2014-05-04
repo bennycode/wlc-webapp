@@ -5,7 +5,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       >
   <h:head>
-    <title><ui:insert name="title">Informatik Tutorials - Verwaltung</ui:insert></title>
+    <title>
+      <ui:insert name="title">
+        <h:outputText value="#{backend['admin.app.name']}" />
+      </ui:insert>
+    </title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- http://purecss.io/ -->
