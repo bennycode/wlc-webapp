@@ -89,4 +89,22 @@ public class YouTubeUtils {
     
     return playlistTitle;
   }
+  
+  public Playlist getPlaylist(String playlistId) {
+    Playlist playlist = null;
+    
+    try {
+      YouTube.Playlists.List playlistQuery = youtube.playlists().list("id,snippet,status");
+      playlistQuery.setMaxResults(1L);
+      playlistQuery.setId(playlistId);
+      
+      PlaylistListResponse execute = playlistQuery.execute();
+      List<Playlist> playlists = execute.getItems();
+      playlist = playlists.get(0);
+    } catch (IOException ex) {
+      Logger.getLogger(YouTubeUtils.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+    return playlist;
+  }
 }

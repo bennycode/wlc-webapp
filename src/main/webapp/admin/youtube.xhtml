@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
   <h:body>    
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
       <ui:define name="title">
@@ -16,7 +17,7 @@
           <h:outputText value="#{backend['admin.form.title.youtube']}" />
         </h2>
 
-        <form class="pure-form pure-form-aligned"
+        <form class="pure-form pure-form-stacked"
               autocomplete="off"
               jsf:id="create-author" 
               jsf:prependId="false"
@@ -24,25 +25,44 @@
           <fieldset>
             <div class="pure-control-group">
               <label for="playlistId">Playlist ID</label>
-              <input 
-                type="text" 
-                placeholder="PLF544CEEC9432BF67" 
-                required="required"
-                jsf:id="playlistId"
-                jsf:value="#{youTubeImportController.playlistId}"
-                />
-            </div>
-
-            <div class="pure-controls">
-              <h:commandButton value="Import" styleClass="pure-button pure-button-primary">
-                <f:ajax execute="@form" render="output" />
-              </h:commandButton>
-
+              <h:inputText
+                p:placeholder="PLF544CEEC9432BF67"
+                p:required="required"
+                p:value="PLF544CEEC9432BF67"
+                id="playlistId"
+                value="#{youTubeImportController.playlistId}"
+                >
+              </h:inputText>
             </div>
           </fieldset>
 
-          <h2><h:outputText id="output" value="#{youTubeImportController.playlistName}" /></h2>	
+          <fieldset>
+            <div class="pure-controls">                            
+              <h:commandButton 
+                value="Import" 
+                styleClass="pure-button pure-button-primary">
+                <f:ajax 
+                  listener="#{youTubeImportController.parsePlaylist}"
+                  execute="@form" 
+                  render=":playlistDetails" 
+                  />
+              </h:commandButton>
+            </div>
+          </fieldset>
         </form>
+
+        <h:panelGroup id="playlistDetails" layout="block">
+          <h:panelGroup rendered="#{not empty youTubeImportController.playlist}">
+            <h2 class="page-header">Details</h2>
+            <h2>
+              <h:outputText value="#{youTubeImportController.playlist.snippet.title}" />
+            </h2>	
+            <p>
+              <h:outputText value="#{youTubeImportController.playlist.snippet.description}" />
+            </p>
+          </h:panelGroup>
+        </h:panelGroup>
+
       </ui:define>
     </ui:composition>
   </h:body>

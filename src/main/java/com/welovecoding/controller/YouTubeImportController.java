@@ -6,6 +6,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.model.Playlist;
 import com.welovecoding.security.auth.UserSessionBean;
 import com.welovecoding.util.YouTubeUtils;
 import java.io.Serializable;
@@ -23,9 +24,12 @@ public class YouTubeImportController implements Serializable {
   @Inject
   private UserSessionBean userSessionBean;
 
-  private String playlistId;
+  private String playlistId = "";
+  private Playlist playlist = null;
+
   private YouTube youtube;
   private YouTubeUtils youTubeUtils;
+
   private static final JsonFactory JSON_FACTORY = new JacksonFactory();
   private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
@@ -39,6 +43,10 @@ public class YouTubeImportController implements Serializable {
   public YouTubeImportController() {
   }
 
+  public void parsePlaylist() {
+    playlist = youTubeUtils.getPlaylist(playlistId);
+  }
+
   public String getPlaylistId() {
     return playlistId;
   }
@@ -47,8 +55,12 @@ public class YouTubeImportController implements Serializable {
     this.playlistId = playlistId;
   }
 
-  public String getPlaylistName() {
-    return youTubeUtils.getPlaylistTitle(playlistId);
+  public Playlist getPlaylist() {
+    return playlist;
+  }
+
+  public void setPlaylist(Playlist playlist) {
+    this.playlist = playlist;
   }
 
 }
