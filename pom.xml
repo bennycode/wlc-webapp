@@ -50,6 +50,14 @@
     <system>GitHub Issue Management</system>
     <url>https://github.com/bennyn/wlc-webapp/issues</url>
   </issueManagement>
+  <distributionManagement>
+    <repository>
+      <id>maven-own-repo</id>
+      <name>Own Repository</name>
+      <layout>default</layout>
+      <url>file:///Users/MacYser/Documents/Workspaces/NetBeansWorkspace/maven-own-repo/</url>
+    </repository>
+  </distributionManagement>
 
   <properties>
     <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
