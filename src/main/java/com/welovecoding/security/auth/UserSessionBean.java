@@ -1,5 +1,6 @@
 package com.welovecoding.security.auth;
 
+import com.google.api.client.auth.oauth2.Credential;
 import com.welovecoding.entities.User;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -13,6 +14,8 @@ public class UserSessionBean implements Serializable {
   private boolean isLoggedIn;
   private String deniedUrl;
   private User user;
+  // TODO: Put this into UserCredentials.java
+  private Credential credential;
 
   @PostConstruct
   void init() {
@@ -45,6 +48,14 @@ public class UserSessionBean implements Serializable {
 
   public void setUser(User user) {
     this.user = user;
+  }
+
+  public Credential getCredential() {
+    return credential;
+  }
+
+  public void setCredential(Credential credential) {
+    this.credential = credential;
   }
 
 }

@@ -14,10 +14,10 @@ import java.util.logging.Logger;
  * @see https://github.com/bennyn/wlc-webapp/issues/18
  */
 public class YouTubeUtils {
-
+  
   private static final Logger log = Logger.getLogger(YouTubeUtils.class.getName());
   private final YouTube youtube;
-
+  
   public YouTubeUtils(YouTube youtube) {
     this.youtube = youtube;
   }
@@ -32,10 +32,10 @@ public class YouTubeUtils {
     try {
       YouTube.Channels.List channelRequest = youtube.channels().list("contentDetails");
       channelRequest.setMine(true);
-
+      
       ChannelListResponse channelQuery = channelRequest.execute();
       List<Channel> channelsList = channelQuery.getItems();
-
+      
       for (Channel channel : channelsList) {
         log.info(channel.getContentDetails().toPrettyString());
       }
@@ -56,15 +56,37 @@ public class YouTubeUtils {
       YouTube.Playlists.List playlistQuery = youtube.playlists().list("id,snippet,status");
       playlistQuery.setMaxResults(50L);
       playlistQuery.setId(StringUtils.join(playlistIds, ","));
-
+      
       PlaylistListResponse execute = playlistQuery.execute();
       List<Playlist> playlists = execute.getItems();
-
+      
       for (Playlist playlist : playlists) {
         log.log(Level.INFO, "Title: {0}", playlist.getSnippet().getTitle());
       }
     } catch (IOException ex) {
       Logger.getLogger(YouTubeUtils.class.getName()).log(Level.SEVERE, null, ex);
     }
+  }
+  
+  public String getPlaylistTitle(String playlistId) {
+    if (playlistId == null || playlistId.equals("")) {
+      return "";
+    }
+    
+    String playlistTitle = "";
+    
+    try {
+      YouTube.Playlists.List playlistQuery = youtube.playlists().list("id,snippet,status");
+      playlistQuery.setMaxResults(1L);
+      playlistQuery.setId(playlistId);
+      
+      PlaylistListResponse execute = playlistQuery.execute();
+      List<Playlist> playlists = execute.getItems();
+      playlistTitle = playlists.get(0).getSnippet().getTitle();
+    } catch (IOException ex) {
+      Logger.getLogger(YouTubeUtils.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+    return playlistTitle;
   }
 }

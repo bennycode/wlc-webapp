@@ -15,6 +15,7 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.plus.PlusScopes;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.YouTubeScopes;
+import com.welovecoding.security.auth.UserSessionBean;
 import com.welovecoding.util.JSFUtils;
 import com.welovecoding.util.YouTubeUtils;
 import java.io.IOException;
@@ -25,6 +26,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -51,6 +53,10 @@ public class GoogleLoginBean implements Serializable {
   private static final JsonFactory JSON_FACTORY = new JacksonFactory();
   private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
   private static final ObjectMapper mapper = new ObjectMapper();
+
+  // WLC
+  @Inject
+  private UserSessionBean userSessionBean;
 
   @PostConstruct
   void init() {
@@ -91,6 +97,7 @@ public class GoogleLoginBean implements Serializable {
                     SCOPES).build();
 
     Credential credential = flow.createAndStoreCredential(response, null);
+    userSessionBean.setCredential(credential);
     HttpRequestFactory requestFactory = HTTP_TRANSPORT.createRequestFactory(credential);
 
     // Get G+ info

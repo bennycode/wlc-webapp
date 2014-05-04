@@ -2,14 +2,47 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
   <h:body>    
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
       <ui:define name="title">
         <h:outputText value="#{backend['admin.form.title.youtube']}" />
       </ui:define>
-      <ui:define name="content">  
-        <p>Hello World!</p>
+
+      <ui:define name="content">    
+        <h2 class="page-header">
+          <h:outputText value="#{backend['admin.form.title.youtube']}" />
+        </h2>
+
+        <form class="pure-form pure-form-aligned"
+              autocomplete="off"
+              jsf:id="create-author" 
+              jsf:prependId="false"
+              >
+          <fieldset>
+            <div class="pure-control-group">
+              <label for="playlistId">Playlist ID</label>
+              <input 
+                type="text" 
+                placeholder="PLF544CEEC9432BF67" 
+                required="required"
+                jsf:id="playlistId"
+                jsf:value="#{youTubeImportController.playlistId}"
+                />
+            </div>
+
+            <div class="pure-controls">
+              <h:commandButton value="Import" styleClass="pure-button pure-button-primary">
+                <f:ajax execute="@form" render="output" />
+              </h:commandButton>
+
+            </div>
+          </fieldset>
+
+          <h2><h:outputText id="output" value="#{youTubeImportController.playlistName}" /></h2>	
+        </form>
       </ui:define>
     </ui:composition>
   </h:body>
