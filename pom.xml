@@ -78,6 +78,8 @@
     <auth.google.client.id>123456.apps.googleusercontent.com</auth.google.client.id>
     <auth.google.client.secret>xyz</auth.google.client.secret>
     
+    <javax.faces.project.stage>Development</javax.faces.project.stage>
+    
     <test.generate.data>false</test.generate.data>
   </properties>
   
@@ -303,6 +305,16 @@
       <resource>
         <directory>src/main/resources</directory>
         <filtering>true</filtering>
+        <includes>
+          <include>production.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+        <excludes>
+          <exclude>**/*.properties</exclude>
+        </excludes>
       </resource>
     </resources>
     
@@ -316,11 +328,13 @@
           <target>1.7</target>
           <showWarnings>true</showWarnings>
           <showDeprecation>true</showDeprecation>
+          <!-- http://www.javaworld.com/article/2073587/ -->
+          <compilerArgument>-Xlint:all</compilerArgument>
+          <compilerArgument>-Xlint:-fallthrough</compilerArgument>
+          <!--http://stackoverflow.com/a/14298133/451634--> 
+          <compilerArgument>-proc:none</compilerArgument>
           <compilerArguments>
-            <!--<Xlint:unchecked />-->
             <endorseddirs>${endorsed.dir}</endorseddirs>
-            <!--http://stackoverflow.com/a/14298133/451634--> 
-            <!--<proc:none />-->
           </compilerArguments>
         </configuration>
       </plugin>
@@ -346,6 +360,7 @@
               <directory>${basedir}/src/main/webapp/WEB-INF</directory> 
               <includes> 
                 <include>glassfish-resources.xml</include> 
+                <include>web.xml</include> 
               </includes> 
               <targetPath>WEB-INF</targetPath> 
               <filtering>true</filtering> 
@@ -404,7 +419,7 @@
         <artifactId>maven-release-plugin</artifactId>
         <version>2.5</version>
         <configuration>
-          <arguments>-DskipTests=true -DskipITs=true -Dmaven.javadoc.skip=true -Dmaven.skip.deploy=true</arguments>
+          <arguments>-DskipTests=true -DskipITs=true -Dmaven.javadoc.skip=true</arguments>
         </configuration>
       </plugin>
       <plugin>
@@ -412,12 +427,12 @@
         <artifactId>maven-source-plugin</artifactId>
         <version>2.2.1</version>
       </plugin>
-      <!--      <plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.9.1</version>
         <executions>
-           add javadoc.jar to (snapshot) release 
+          <!--add javadoc.jar to (snapshot) release--> 
           <execution>
             <id>attach-javadocs</id>
             <phase>deploy</phase>
@@ -426,7 +441,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>-->
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
@@ -500,9 +515,58 @@
   
   <profiles>
     <profile>
+      <id>test</id>
+      <properties>
+        <!-- Override properties here -->
+        <javax.faces.project.stage>Development</javax.faces.project.stage>
+      </properties>
+      <build>
+        <plugins>
+          
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven2-plugin</artifactId>
+            <version>1.4.7</version>
+            <configuration>
+              <container>
+                <containerId>glassfish4x</containerId>
+                <type>remote</type>
+                <!--<timeout>300000</timeout>  2 minutes -->
+              </container>
+              <configuration>
+                <type>runtime</type>
+                <properties>
+                  <cargo.hostname>${gf.remote.address}</cargo.hostname>
+                  <cargo.remote.username>${gf.remote.username}</cargo.remote.username>
+                  <cargo.remote.password>${gf.remote.password}</cargo.remote.password>
+                  <cargo.remote.port>${gf.remote.port}</cargo.remote.port>
+                  <cargo.glassfish.domain.name>/domain1</cargo.glassfish.domain.name>
+                </properties>
+              </configuration>
+              <deployables>
+                <deployable>
+                  <groupId>${project.groupId}</groupId>
+                  <artifactId>${project.artifactId}</artifactId>
+                  <type>${gf.remote.deployable.type}</type>
+                </deployable>
+              </deployables>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.glassfish.main.deployment</groupId>
+                <artifactId>deployment-client</artifactId>
+                <version>4.0</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>production</id>
       <properties>
         <!-- Override properties here -->
+        <javax.faces.project.stage>Production</javax.faces.project.stage>
       </properties>
       <build>
         <plugins>
