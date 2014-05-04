@@ -305,16 +305,6 @@
       <resource>
         <directory>src/main/resources</directory>
         <filtering>true</filtering>
-        <includes>
-          <include>production.properties</include>
-        </includes>
-      </resource>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>false</filtering>
-        <excludes>
-          <exclude>**/*.properties</exclude>
-        </excludes>
       </resource>
     </resources>
     
@@ -334,7 +324,10 @@
           <!--http://stackoverflow.com/a/14298133/451634--> 
           <compilerArgument>-proc:none</compilerArgument>
           <compilerArguments>
+            <!--<Xlint:unchecked />-->
             <endorseddirs>${endorsed.dir}</endorseddirs>
+            <!--http://stackoverflow.com/a/14298133/451634--> 
+            <!--<proc:none />-->
           </compilerArguments>
         </configuration>
       </plugin>
@@ -360,7 +353,6 @@
               <directory>${basedir}/src/main/webapp/WEB-INF</directory> 
               <includes> 
                 <include>glassfish-resources.xml</include> 
-                <include>web.xml</include> 
               </includes> 
               <targetPath>WEB-INF</targetPath> 
               <filtering>true</filtering> 
