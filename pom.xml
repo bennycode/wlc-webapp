@@ -307,8 +307,10 @@
         <configuration>
           <source>1.7</source>
           <target>1.7</target>
+          <showWarnings>true</showWarnings>
+          <showDeprecation>true</showDeprecation>
           <compilerArguments>
-            <Xlint:unchecked/>
+            <!--<Xlint:unchecked />-->
             <endorseddirs>${endorsed.dir}</endorseddirs>
             <!--http://stackoverflow.com/a/14298133/451634--> 
             <proc:none/>
