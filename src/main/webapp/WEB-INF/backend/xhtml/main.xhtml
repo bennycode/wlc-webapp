@@ -45,22 +45,37 @@
                 <li>
                   <h:outputLink 
                     styleClass="#{(view.viewId.equals('/admin/authors.xhtml')) ? 'active' : ''}"
-                    value="authors.xhtml">Autoren</h:outputLink>
+                    value="authors.xhtml">
+                    <h:outputText value="#{backend['admin.menu.authors']}" />
+                  </h:outputLink>
                 </li>
                 <li>
                   <h:outputLink 
                     styleClass="#{(view.viewId.equals('/admin/categories.xhtml')) ? 'active' : ''}"
-                    value="categories.xhtml">Kategorien</h:outputLink>
+                    value="categories.xhtml">
+                    <h:outputText value="#{backend['admin.menu.categories']}" />
+                  </h:outputLink>
                 </li>
                 <li>
                   <h:outputLink 
                     styleClass="#{(view.viewId.equals('/admin/playlists.xhtml')) ? 'active' : ''}"
-                    value="playlists.xhtml">Playlisten</h:outputLink>
+                    value="playlists.xhtml">
+                    <h:outputText value="#{backend['admin.menu.playlists']}" />
+                  </h:outputLink>
                 </li>
                 <li>
                   <h:outputLink 
                     styleClass="#{(view.viewId.equals('/admin/videos.xhtml')) ? 'active' : ''}"
-                    value="videos.xhtml">Videos</h:outputLink>
+                    value="videos.xhtml">
+                    <h:outputText value="#{backend['admin.menu.videos']}" />
+                  </h:outputLink>
+                </li>
+                <li>
+                  <h:outputLink 
+                    styleClass="#{(view.viewId.equals('/admin/youtube.xhtml')) ? 'active' : ''}"
+                    value="youtube.xhtml">
+                    <h:outputText value="#{backend['admin.menu.youtube']}" />
+                  </h:outputLink>
                 </li>
               </ul>
             </div>

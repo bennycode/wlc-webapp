@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue(CREDENTIAL_TYPE_COLUMN_VALUE)
 public class GoogleUserCredentials extends UserCredentials {
 
-  public static final String CREDENTIAL_TYPE_COLUMN_VALUE = "CRED_TYPE";
+  public static final String CREDENTIAL_TYPE_COLUMN_VALUE = "GOOGLE";
 
   public GoogleUserCredentials() {
   }

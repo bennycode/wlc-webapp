@@ -10,18 +10,30 @@
   </composite:interface>
 
   <composite:implementation>
-    <h2 class="page-header">Bearbeiten</h2>
+    <h2 class="page-header">
+      <h:outputText value="#{backend['admin.page.title.manage']}" />
+    </h2>
 
     <form jsf:binding="#{cc.attrs.controller.form}"></form>
 
-    <h2 class="page-header">Übersicht</h2>
+    <h2 class="page-header">
+      <h:outputText value="#{backend['admin.page.title.overview']}" />
+    </h2>
 
     <div class="pure-g">
       <div class="pure-u-1-2">
-        <p>Einträge: #{cc.attrs.controller.getItemSize()}</p>
+        <p>
+          <h:outputFormat value="#{backend['admin.page.info.items']}" >          
+            <f:param value="#{cc.attrs.controller.getItemSize()}" />
+          </h:outputFormat>
+        </p>
       </div>
       <div class="pure-u-1-2" style="text-align: right;">
-        <p>Einträge pro Seite: #{cc.attrs.controller.amount}</p>
+        <p>
+          <h:outputFormat value="#{backend['admin.page.info.itemsPerPage']}" >          
+            <f:param value="#{cc.attrs.controller.amount}" />
+          </h:outputFormat>
+        </p>
       </div>
     </div>
     <ul id="pagination" class="sync-pagination pagination-sm"></ul>
@@ -30,9 +42,9 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Name</th>
-          <th>Editieren</th>
-          <th>Löschen</th>
+          <th><h:outputText value="#{backend['admin.page.tableHeader.name']}" /></th>
+          <th><h:outputText value="#{backend['admin.page.tableHeader.edit']}" /></th>
+          <th><h:outputText value="#{backend['admin.page.tableHeader.delete']}" /></th>
         </tr>
       </thead>
       <tbody>
@@ -42,7 +54,7 @@
             <td>#{item.name}</td>
             <td>
               <h:form>
-                <h:commandLink value="bearbeiten">
+                <h:commandLink value="#{backend['admin.page.tableAction.edit']}">
                   <f:setPropertyActionListener value="#{item}"
                                                target="#{cc.attrs.controller.item}" />
                 </h:commandLink>
@@ -50,7 +62,7 @@
             </td>
             <td>
               <h:form>
-                <h:commandLink value="löschen" action="#{cc.attrs.controller.remove}">
+                <h:commandLink value="#{backend['admin.page.tableAction.delete']}" action="#{cc.attrs.controller.remove}">
                   <f:setPropertyActionListener value="#{item}"
                                                target="#{cc.attrs.controller.item}" />
                 </h:commandLink>

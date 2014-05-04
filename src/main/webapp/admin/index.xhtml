@@ -3,12 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      >
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
   <h:body>
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
       <ui:define name="content">
-        <h3><h:outputText value="Hallo, #{userSessionBean.user.name}." /></h3>
-        <p>Bitte wähle ein Menü aus der Seitenleiste aus.</p>
+        <h3>
+          <h:outputFormat value="#{backend['admin.main.welcome']}" >          
+            <f:param value="#{userSessionBean.user.name}" />
+          </h:outputFormat>
+        </h3>
+        <p><h:outputText value="#{backend['admin.main.intro']}" /></p>        
       </ui:define>
     </ui:composition>
   </h:body>

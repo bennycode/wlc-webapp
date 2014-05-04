@@ -2,16 +2,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:wlc="http://xmlns.jcp.org/jsf/composite/wlc">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
   <h:body>    
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
       <ui:define name="title">
-        <h:outputText value="#{backend['admin.form.title.authors']}" />
+        <h:outputText value="#{backend['admin.form.title.youtube']}" />
       </ui:define>
-
-      <ui:define name="content">    
-        <wlc:admin-item-table controller="#{authorController}" />
+      <ui:define name="content">  
+        <p>Hello World!</p>
       </ui:define>
     </ui:composition>
   </h:body>
