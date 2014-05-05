@@ -88,8 +88,11 @@ In our example a blog post entity can have embedded entities. If that is the cas
 ## Reference: ##
 - [Bean Scopes](http://stackoverflow.com/a/17683041/451634)
 - [Managed Bean types](http://stackoverflow.com/a/1030196/451634)
+- [JSF Standard Context Params](http://docs.jboss.org/jbossas/6/JSF_Guide/en-US/html/jsf.reference.html)
 - [Communication in JSF 2.0](http://balusc.blogspot.de/2011/09/communication-in-jsf-20.html)
 - [Maven Default Lifecycle Phases](http://www.avajava.com/tutorials/lessons/what-are-the-phases-of-the-maven-default-lifecycle.html)
+- [Javac XLint Options](http://www.javaworld.com/article/2073587/javac-s--xlint-options.html)
+- [Jenkins: Build on Git-Tags](http://erics-notes.blogspot.de/2013/05/jenkins-build-latest-git-tag.html)
 
 ##Cool projects:##
 - [Apache Isis™](http://isis.apache.org/)
