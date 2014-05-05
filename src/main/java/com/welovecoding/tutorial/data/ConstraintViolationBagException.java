@@ -1,4 +1,4 @@
-package com.welovecoding.exception;
+package com.welovecoding.tutorial.data;
 
 import java.util.HashSet;
 import java.util.Set;

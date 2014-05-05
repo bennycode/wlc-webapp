@@ -1,6 +1,6 @@
-package com.welovecoding.security.auth;
+package com.welovecoding.tutorial.view.auth;
 
-import com.welovecoding.config.Pages;
+import com.welovecoding.tutorial.view.Pages;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -17,7 +17,7 @@ import javax.inject.Named;
 public class LoginBean {
 
   @Inject
-  private UserSessionBean userSessionBean;
+  private AuthSessionBean userSessionBean;
   private static final Logger LOGGER = Logger.getLogger(LoginBean.class.getName());
 
   public LoginBean() {

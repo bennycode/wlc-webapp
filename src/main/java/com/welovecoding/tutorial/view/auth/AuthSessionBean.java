@@ -1,7 +1,7 @@
-package com.welovecoding.security.auth;
+package com.welovecoding.tutorial.view.auth;
 
 import com.google.api.client.auth.oauth2.Credential;
-import com.welovecoding.entities.User;
+import com.welovecoding.tutorial.data.user.entity.User;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -9,7 +9,7 @@ import javax.inject.Named;
 
 @Named
 @SessionScoped
-public class UserSessionBean implements Serializable {
+public class AuthSessionBean implements Serializable {
 
   private boolean isLoggedIn;
   private String deniedUrl;
@@ -23,7 +23,7 @@ public class UserSessionBean implements Serializable {
     user = new User();
   }
 
-  public UserSessionBean() {
+  public AuthSessionBean() {
   }
 
   public boolean isLoggedIn() {

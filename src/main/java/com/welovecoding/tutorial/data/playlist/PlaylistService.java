@@ -1,7 +1,8 @@
-package com.welovecoding.service;
+package com.welovecoding.tutorial.data.playlist;
 
-import com.welovecoding.entities.Playlist;
-import com.welovecoding.repository.PlaylistRepository;
+import com.welovecoding.tutorial.data.base.BaseService;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import com.welovecoding.tutorial.data.playlist.PlaylistRepository;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -47,8 +48,8 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
   @Override
   protected Set<String> typesToClear() {
     return new HashSet<>(Arrays.asList(
-            com.welovecoding.rest.v1.dto.PlaylistDTO.class.getName(),
-            com.welovecoding.rest.v2.dto.PlaylistDTO.class.getName()
+            com.welovecoding.tutorial.api.v1.dto.PlaylistDTO.class.getName(),
+            com.welovecoding.tutorial.api.v2.dto.PlaylistDTO.class.getName()
     ));
   }
 }

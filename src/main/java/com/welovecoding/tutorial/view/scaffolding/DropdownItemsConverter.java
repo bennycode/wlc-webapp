@@ -1,9 +1,9 @@
-package com.welovecoding.view.forms;
+package com.welovecoding.tutorial.view.scaffolding;
 
-import com.welovecoding.controller.GenFormBaseController;
-import com.welovecoding.entities.BaseEntity;
-import com.welovecoding.util.JSFUtils;
-import com.welovecoding.util.StringUtils;
+import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
+import com.welovecoding.tutorial.data.base.BaseEntity;
+import com.welovecoding.tutorial.view.JSFUtils;
+import com.welovecoding.StringUtils;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;

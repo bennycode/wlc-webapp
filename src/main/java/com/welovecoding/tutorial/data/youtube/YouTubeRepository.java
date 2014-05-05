@@ -1,11 +1,11 @@
-package com.welovecoding.repository;
+package com.welovecoding.tutorial.data.youtube;
 
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.Channel;
 import com.google.api.services.youtube.model.ChannelListResponse;
 import com.google.api.services.youtube.model.Playlist;
 import com.google.api.services.youtube.model.PlaylistListResponse;
-import com.welovecoding.util.StringUtils;
+import com.welovecoding.StringUtils;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;

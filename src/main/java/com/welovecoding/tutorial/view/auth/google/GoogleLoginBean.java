@@ -1,5 +1,6 @@
-package com.welovecoding.security.auth.google;
+package com.welovecoding.tutorial.view.auth.google;
 
+import com.welovecoding.tutorial.data.user.GoogleUser;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl;
@@ -13,11 +14,9 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.plus.PlusScopes;
-import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.YouTubeScopes;
-import com.welovecoding.security.auth.UserSessionBean;
-import com.welovecoding.util.JSFUtils;
-import com.welovecoding.repository.YouTubeRepository;
+import com.welovecoding.tutorial.view.auth.AuthSessionBean;
+import com.welovecoding.tutorial.view.JSFUtils;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
@@ -56,7 +55,7 @@ public class GoogleLoginBean implements Serializable {
 
   // WLC
   @Inject
-  private UserSessionBean userSessionBean;
+  private AuthSessionBean userSessionBean;
 
   @PostConstruct
   void init() {
@@ -105,15 +104,6 @@ public class GoogleLoginBean implements Serializable {
     HttpRequest request = requestFactory.buildGetRequest(url);
 
     String jsonIdentity = request.execute().parseAsString();
-
-    // TODO: Move YouTube parts somewhere else!
-    // https://www.googleapis.com/youtube/v3/search?q={search_term}&key={API_key}&type=channel&part=snippet
-    // https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLB03EA9545DD188C3
-    YouTube youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName("we-love-coding").build();
-    String[] playlistIds = {"PLB03EA9545DD188C3", "5EA5B1829771349A"};
-    YouTubeRepository youTubeUtils = new YouTubeRepository(youtube);
-    youTubeUtils.logPlaylistInfos(playlistIds);
-
     return mapper.readValue(jsonIdentity, GoogleUser.class);
   }
 }

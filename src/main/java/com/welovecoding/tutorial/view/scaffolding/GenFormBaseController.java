@@ -1,13 +1,9 @@
-package com.welovecoding.controller;
+package com.welovecoding.tutorial.view.scaffolding;
 
-import com.welovecoding.config.Packages;
-import com.welovecoding.entities.BaseEntity;
-import com.welovecoding.service.BaseService;
-import com.welovecoding.util.StringUtils;
-import com.welovecoding.view.forms.DefaultFormModel;
-import com.welovecoding.view.forms.FormInput;
-import com.welovecoding.view.forms.FormModel;
-import com.welovecoding.view.jsf.CustomTag;
+import com.welovecoding.tutorial.data.base.BaseEntity;
+import com.welovecoding.tutorial.data.base.BaseService;
+import com.welovecoding.StringUtils;
+import com.welovecoding.tutorial.view.base.BaseController;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +38,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   private final int RESULTS_PER_PAGE = 20;
   private final ComponentFactory componentFactory;
   public static String ERROR_MESSAGES_NAME = "error_messages";
+  private final String FORM_MODEL_PACKAGE = "com.welovecoding.view.forms";
 
   /**
    * Note: You should never assign FacesContext as instance variable of a
@@ -96,7 +93,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       FormModel formModel;
 
       try {
-        Class clazz = cl.loadClass(Packages.FORM_MODEL_PACKAGE + "." + item.getClass().getSimpleName() + FORM_MODEL_SUFFIX);
+        Class clazz = cl.loadClass(FORM_MODEL_PACKAGE + "." + item.getClass().getSimpleName() + FORM_MODEL_SUFFIX);
         formModel = (FormModel) clazz.newInstance();
       } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
         formModel = new DefaultFormModel();

@@ -1,7 +1,7 @@
-package com.welovecoding.repository;
+package com.welovecoding.tutorial.data.video;
 
-import static com.welovecoding.config.Packages.PERSISTENCE_UNIT_NAME;
-import com.welovecoding.entities.Video;
+import com.welovecoding.tutorial.data.base.BaseRepository;
+import com.welovecoding.tutorial.data.video.Video;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 @Stateless
 //@Interceptors({EJBLoggerInterceptor.class})
-public class VideoRepository extends AbstractRepository<Video> {
+public class VideoRepository extends BaseRepository<Video> {
 
   private static final Logger LOG = Logger.getLogger(VideoRepository.class.getName());
 

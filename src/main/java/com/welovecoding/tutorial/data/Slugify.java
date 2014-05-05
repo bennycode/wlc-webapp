@@ -1,4 +1,4 @@
-package com.welovecoding.util;
+package com.welovecoding.tutorial.data;
 
 import java.text.Normalizer;
 import org.apache.commons.lang3.StringUtils;

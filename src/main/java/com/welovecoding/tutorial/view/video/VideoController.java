@@ -1,8 +1,9 @@
-package com.welovecoding.controller;
+package com.welovecoding.tutorial.view.video;
 
-import com.welovecoding.entities.Video;
-import com.welovecoding.config.Pages;
-import com.welovecoding.service.VideoService;
+import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
+import com.welovecoding.tutorial.data.video.Video;
+import com.welovecoding.tutorial.view.Pages;
+import com.welovecoding.tutorial.data.video.VideoService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;

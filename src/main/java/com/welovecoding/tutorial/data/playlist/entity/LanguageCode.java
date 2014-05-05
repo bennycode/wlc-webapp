@@ -1,4 +1,4 @@
-package com.welovecoding.entities;
+package com.welovecoding.tutorial.data.playlist.entity;
 
 /**
  * Example: "en" (English), "ja" (Japanese), "kok" (Konkani)

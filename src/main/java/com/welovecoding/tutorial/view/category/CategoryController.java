@@ -1,8 +1,9 @@
-package com.welovecoding.controller;
+package com.welovecoding.tutorial.view.category;
 
-import com.welovecoding.entities.Category;
-import com.welovecoding.config.Pages;
-import com.welovecoding.service.CategoryService;
+import com.welovecoding.tutorial.data.category.Category;
+import com.welovecoding.tutorial.view.Pages;
+import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
+import com.welovecoding.tutorial.data.category.CategoryService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

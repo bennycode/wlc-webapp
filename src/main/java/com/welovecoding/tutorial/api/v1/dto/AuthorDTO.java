@@ -1,4 +1,4 @@
-package com.welovecoding.rest.v1.dto;
+package com.welovecoding.tutorial.api.v1.dto;
 
 import org.codehaus.jackson.annotate.JsonPropertyOrder;
 

@@ -1,10 +1,11 @@
-package com.welovecoding.controller;
+package com.welovecoding.tutorial.view.playlist;
 
-import com.welovecoding.config.Pages;
-import com.welovecoding.entities.Playlist;
-import com.welovecoding.service.AuthorService;
-import com.welovecoding.service.CategoryService;
-import com.welovecoding.service.PlaylistService;
+import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
+import com.welovecoding.tutorial.view.Pages;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import com.welovecoding.tutorial.data.author.AuthorService;
+import com.welovecoding.tutorial.data.category.CategoryService;
+import com.welovecoding.tutorial.data.playlist.PlaylistService;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

@@ -1,6 +1,8 @@
-package com.welovecoding.entities;
+package com.welovecoding.tutorial.data.category;
 
-import com.welovecoding.util.Slugify;
+import com.welovecoding.tutorial.data.base.BaseEntity;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import com.welovecoding.tutorial.data.Slugify;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

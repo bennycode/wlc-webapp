@@ -1,10 +1,10 @@
-package com.welovecoding.rest.v1.resource;
+package com.welovecoding.tutorial.api.v1.resource;
 
-import com.welovecoding.entities.Category;
-import static com.welovecoding.rest.v1.RestConfig.JSON_MEDIATYPE;
-import com.welovecoding.rest.v1.dto.CategoryDTO;
-import com.welovecoding.rest.v1.mapping.DTOMapper;
-import com.welovecoding.service.CategoryService;
+import com.welovecoding.tutorial.data.category.Category;
+import static com.welovecoding.tutorial.api.v1.RestConfig.JSON_MEDIATYPE;
+import com.welovecoding.tutorial.api.v1.dto.CategoryDTO;
+import com.welovecoding.tutorial.api.v1.mapping.DTOMapper;
+import com.welovecoding.tutorial.data.category.CategoryService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.List;
 import javax.ejb.EJB;

@@ -1,6 +1,10 @@
 package com.welovecoding.entities;
 
-import com.welovecoding.rest.v1.mapping.DTOMapper;
+import com.welovecoding.tutorial.data.video.Video;
+import com.welovecoding.tutorial.data.category.Category;
+import com.welovecoding.tutorial.data.playlist.entity.LanguageCode;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import com.welovecoding.tutorial.api.v1.mapping.DTOMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -78,10 +82,10 @@ public class CategoryTest {
 
     c.setPlaylists(cPlaylists);
 
-    com.welovecoding.rest.v1.dto.CategoryDTO dtoAndroid = DTOMapper.mapCategory(android);
-    com.welovecoding.rest.v1.dto.CategoryDTO dtoC = DTOMapper.mapCategory(c);
+    com.welovecoding.tutorial.api.v1.dto.CategoryDTO dtoAndroid = DTOMapper.mapCategory(android);
+    com.welovecoding.tutorial.api.v1.dto.CategoryDTO dtoC = DTOMapper.mapCategory(c);
 
-    List<com.welovecoding.rest.v1.dto.CategoryDTO> dtoCategories = new ArrayList<>();
+    List<com.welovecoding.tutorial.api.v1.dto.CategoryDTO> dtoCategories = new ArrayList<>();
     dtoCategories.add(dtoAndroid);
     dtoCategories.add(dtoC);
 

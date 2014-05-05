@@ -1,9 +1,9 @@
-package com.welovecoding.rest.v2.resource;
+package com.welovecoding.tutorial.api.v2.resource;
 
-import static com.welovecoding.rest.v2.RestConfig.JSON_MEDIATYPE;
-import com.welovecoding.rest.v2.dto.PlaylistDTO;
-import com.welovecoding.rest.v2.mapping.DTOMapper;
-import com.welovecoding.service.PlaylistService;
+import static com.welovecoding.tutorial.api.v2.RestConfig.JSON_MEDIATYPE;
+import com.welovecoding.tutorial.api.v2.dto.PlaylistDTO;
+import com.welovecoding.tutorial.api.v2.mapping.DTOMapper;
+import com.welovecoding.tutorial.data.playlist.PlaylistService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.logging.Level;
 import java.util.logging.Logger;

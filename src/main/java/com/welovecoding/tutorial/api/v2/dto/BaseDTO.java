@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.welovecoding.rest.v2.dto;
+package com.welovecoding.tutorial.api.v2.dto;
 
 import java.io.Serializable;
 import java.util.Date;

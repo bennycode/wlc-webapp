@@ -1,4 +1,4 @@
-package com.welovecoding.rest.v2.dto;
+package com.welovecoding.tutorial.api.v2.dto;
 
 public class VideoDTO extends BaseDTO {
 

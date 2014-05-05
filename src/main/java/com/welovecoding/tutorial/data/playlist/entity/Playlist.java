@@ -1,9 +1,13 @@
-package com.welovecoding.entities;
+package com.welovecoding.tutorial.data.playlist.entity;
 
-import static com.welovecoding.entities.Playlist.FIND_ALL_IN_CATEGORY;
-import static com.welovecoding.entities.Playlist.FIND_BY_CODE;
-import static com.welovecoding.entities.Playlist.FIND_IN_CATEGORY;
-import static com.welovecoding.entities.Playlist.LIKE_NAME;
+import com.welovecoding.tutorial.data.author.Author;
+import com.welovecoding.tutorial.data.base.BaseEntity;
+import com.welovecoding.tutorial.data.category.Category;
+import com.welovecoding.tutorial.data.video.Video;
+import static com.welovecoding.tutorial.data.playlist.entity.Playlist.FIND_ALL_IN_CATEGORY;
+import static com.welovecoding.tutorial.data.playlist.entity.Playlist.FIND_BY_CODE;
+import static com.welovecoding.tutorial.data.playlist.entity.Playlist.FIND_IN_CATEGORY;
+import static com.welovecoding.tutorial.data.playlist.entity.Playlist.LIKE_NAME;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;

@@ -1,4 +1,4 @@
-package com.welovecoding.entities;
+package com.welovecoding.tutorial.data.playlist.entity;
 
 public enum Provider {
 

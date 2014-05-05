@@ -1,9 +1,9 @@
-package com.welovecoding.rest.v1;
+package com.welovecoding.tutorial.api.v1;
 
-import static com.welovecoding.config.Pages.REST_VERSION_1;
-import com.welovecoding.rest.v1.resource.CategoryResource;
-import com.welovecoding.rest.v1.resource.PlaylistResource;
-import com.welovecoding.rest.v1.resource.VideoResource;
+import static com.welovecoding.tutorial.view.Pages.REST_VERSION_1;
+import com.welovecoding.tutorial.api.v1.resource.CategoryResource;
+import com.welovecoding.tutorial.api.v1.resource.PlaylistResource;
+import com.welovecoding.tutorial.api.v1.resource.VideoResource;
 import javax.ws.rs.ApplicationPath;
 import org.glassfish.jersey.CommonProperties;
 import org.glassfish.jersey.filter.LoggingFilter;

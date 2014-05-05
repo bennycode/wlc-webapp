@@ -1,7 +1,7 @@
-package com.welovecoding.service;
+package com.welovecoding.tutorial.data.user;
 
-import com.welovecoding.entities.User;
-import com.welovecoding.repository.UserRepository;
+import com.welovecoding.tutorial.data.user.entity.User;
+import com.welovecoding.tutorial.data.base.BaseService;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;

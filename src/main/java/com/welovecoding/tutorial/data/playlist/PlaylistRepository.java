@@ -1,7 +1,7 @@
-package com.welovecoding.repository;
+package com.welovecoding.tutorial.data.playlist;
 
-import static com.welovecoding.config.Packages.PERSISTENCE_UNIT_NAME;
-import com.welovecoding.entities.Playlist;
+import com.welovecoding.tutorial.data.base.BaseRepository;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 
 @Stateless
 //@Interceptors({EJBLoggerInterceptor.class})
-public class PlaylistRepository extends AbstractRepository<Playlist> {
+public class PlaylistRepository extends BaseRepository<Playlist> {
 
   public PlaylistRepository() {
     super(Playlist.class);

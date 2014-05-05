@@ -1,4 +1,4 @@
-package com.welovecoding.view.forms;
+package com.welovecoding.tutorial.view.scaffolding;
 
 import java.util.Map;
 

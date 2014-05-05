@@ -1,9 +1,10 @@
-package com.welovecoding.controller;
+package com.welovecoding.tutorial.view.base;
 
-import com.welovecoding.config.Packages;
-import com.welovecoding.entities.BaseEntity;
-import com.welovecoding.exception.ConstraintViolationBagException;
-import com.welovecoding.service.BaseService;
+import com.welovecoding.tutorial.data.ConstraintViolationBagException;
+import com.welovecoding.tutorial.data.base.BaseEntity;
+import com.welovecoding.tutorial.data.base.BaseService;
+import com.welovecoding.tutorial.view.scaffolding.ComponentFactory;
+import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -59,7 +60,7 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
     } catch (ConstraintViolationBagException ex) {
 
       FacesContext context = FacesContext.getCurrentInstance();
-      ResourceBundle backendText = context.getApplication().getResourceBundle(context, Packages.BACKEND_MESSAGES_NAME);
+      ResourceBundle backendText = context.getApplication().getResourceBundle(context, ComponentFactory.BACKEND_MESSAGES_NAME);
 
       Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
       for (ConstraintViolation<?> constraintViolation : constraintViolations) {

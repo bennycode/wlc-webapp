@@ -1,10 +1,8 @@
-package com.welovecoding.security.auth;
+package com.welovecoding.tutorial.data.user;
 
-import com.welovecoding.entities.User;
-import com.welovecoding.security.auth.google.GoogleUser;
+import com.welovecoding.tutorial.data.user.entity.User;
 
-
-public class UserConverter {
+public class UserMapper {
 
   public static User convertGoogleUser(GoogleUser gu) {
     User user = new User();

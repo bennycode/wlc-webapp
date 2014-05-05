@@ -1,4 +1,4 @@
-package com.welovecoding.security.auth.google;
+package com.welovecoding.tutorial.data.user;
 
 public class GoogleUser {
 

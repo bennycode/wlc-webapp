@@ -1,13 +1,13 @@
-package com.welovecoding.repository;
+package com.welovecoding.tutorial.data.author;
 
-import static com.welovecoding.config.Packages.PERSISTENCE_UNIT_NAME;
-import com.welovecoding.entities.Author;
+import com.welovecoding.tutorial.data.base.BaseRepository;
+import com.welovecoding.tutorial.data.author.Author;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class AuthorRepository extends AbstractRepository<Author> {
+public class AuthorRepository extends BaseRepository<Author> {
 
   @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
   EntityManager em;

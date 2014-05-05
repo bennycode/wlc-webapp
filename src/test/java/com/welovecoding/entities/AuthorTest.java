@@ -1,7 +1,8 @@
 package com.welovecoding.entities;
 
-import com.welovecoding.rest.v1.dto.AuthorDTO;
-import com.welovecoding.rest.v1.mapping.DTOMapper;
+import com.welovecoding.tutorial.data.author.Author;
+import com.welovecoding.tutorial.api.v1.dto.AuthorDTO;
+import com.welovecoding.tutorial.api.v1.mapping.DTOMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;

@@ -1,7 +1,12 @@
 package com.welovecoding.entities;
 
-import com.welovecoding.rest.v1.dto.VideoDTO;
-import com.welovecoding.rest.v1.mapping.DTOMapper;
+import com.welovecoding.tutorial.data.video.Video;
+import com.welovecoding.tutorial.data.category.Category;
+import com.welovecoding.tutorial.data.playlist.entity.Provider;
+import com.welovecoding.tutorial.data.playlist.entity.LanguageCode;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import com.welovecoding.tutorial.api.v1.dto.VideoDTO;
+import com.welovecoding.tutorial.api.v1.mapping.DTOMapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;

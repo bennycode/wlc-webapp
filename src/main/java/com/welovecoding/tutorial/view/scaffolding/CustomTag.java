@@ -1,4 +1,4 @@
-package com.welovecoding.view.jsf;
+package com.welovecoding.tutorial.view.scaffolding;
 
 import java.io.IOException;
 import javax.faces.component.UIComponent;

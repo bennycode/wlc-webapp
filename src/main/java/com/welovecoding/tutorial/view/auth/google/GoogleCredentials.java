@@ -1,4 +1,4 @@
-package com.welovecoding.security.auth.google;
+package com.welovecoding.tutorial.view.auth.google;
 
 import java.io.IOException;
 import java.io.InputStream;

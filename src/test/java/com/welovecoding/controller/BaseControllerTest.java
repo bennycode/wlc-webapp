@@ -1,7 +1,7 @@
 package com.welovecoding.controller;
 
-import com.welovecoding.controller.BaseController;
-import com.welovecoding.service.AuthorService;
+import com.welovecoding.tutorial.view.base.BaseController;
+import com.welovecoding.tutorial.data.author.AuthorService;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ public class BaseControllerTest {
 
   @Test
   public void testTotalPages() {
-    instance.amount = 0;
+    instance.setAmount(0);
 
     int expected = 1;
     int actual = instance.getTotalPages();

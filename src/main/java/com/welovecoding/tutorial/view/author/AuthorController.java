@@ -1,8 +1,9 @@
-package com.welovecoding.controller;
+package com.welovecoding.tutorial.view.author;
 
-import com.welovecoding.config.Pages;
-import com.welovecoding.entities.Author;
-import com.welovecoding.service.AuthorService;
+import com.welovecoding.tutorial.view.Pages;
+import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
+import com.welovecoding.tutorial.data.author.Author;
+import com.welovecoding.tutorial.data.author.AuthorService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;

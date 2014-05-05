@@ -1,6 +1,7 @@
-package com.welovecoding.entities;
+package com.welovecoding.tutorial.data.user.entity;
 
-import static com.welovecoding.entities.UserCredentials.CREDENTIAL_TYPE_COLUMN_NAME;
+import com.welovecoding.tutorial.data.user.entity.User;
+import static com.welovecoding.tutorial.data.user.entity.UserCredentials.CREDENTIAL_TYPE_COLUMN_NAME;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

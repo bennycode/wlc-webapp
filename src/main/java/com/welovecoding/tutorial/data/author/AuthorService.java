@@ -1,7 +1,6 @@
-package com.welovecoding.service;
+package com.welovecoding.tutorial.data.author;
 
-import com.welovecoding.entities.Author;
-import com.welovecoding.repository.AuthorRepository;
+import com.welovecoding.tutorial.data.base.BaseService;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -43,8 +42,8 @@ public class AuthorService extends BaseService<Author, AuthorRepository> {
   @Override
   protected Set<String> typesToClear() {
     return new HashSet<>(Arrays.asList(
-            com.welovecoding.rest.v1.dto.AuthorDTO.class.getName(),
-            com.welovecoding.rest.v2.dto.AuthorDTO.class.getName()
+            com.welovecoding.tutorial.api.v1.dto.AuthorDTO.class.getName(),
+            com.welovecoding.tutorial.api.v2.dto.AuthorDTO.class.getName()
     ));
   }
 

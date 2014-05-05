@@ -1,4 +1,4 @@
-package com.welovecoding.util;
+package com.welovecoding.tutorial.view;
 
 import java.io.Serializable;
 import java.net.MalformedURLException;

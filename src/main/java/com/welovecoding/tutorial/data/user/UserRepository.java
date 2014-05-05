@@ -1,14 +1,14 @@
-package com.welovecoding.repository;
+package com.welovecoding.tutorial.data.user;
 
-import static com.welovecoding.config.Packages.PERSISTENCE_UNIT_NAME;
-import com.welovecoding.entities.User;
+import com.welovecoding.tutorial.data.base.BaseRepository;
+import com.welovecoding.tutorial.data.user.entity.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class UserRepository extends AbstractRepository<User> {
+public class UserRepository extends BaseRepository<User> {
 
   @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
   EntityManager em;

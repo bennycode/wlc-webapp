@@ -1,5 +1,6 @@
-package com.welovecoding.entities;
+package com.welovecoding.tutorial.data.author;
 
+import com.welovecoding.tutorial.data.base.BaseEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;

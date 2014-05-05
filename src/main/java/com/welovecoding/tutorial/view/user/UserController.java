@@ -1,7 +1,8 @@
-package com.welovecoding.controller;
+package com.welovecoding.tutorial.view.user;
 
-import com.welovecoding.entities.User;
-import com.welovecoding.service.UserService;
+import com.welovecoding.tutorial.view.base.BaseController;
+import com.welovecoding.tutorial.data.user.entity.User;
+import com.welovecoding.tutorial.data.user.UserService;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;

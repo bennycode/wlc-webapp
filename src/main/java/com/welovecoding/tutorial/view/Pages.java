@@ -1,4 +1,4 @@
-package com.welovecoding.config;
+package com.welovecoding.tutorial.view;
 
 public class Pages {
 

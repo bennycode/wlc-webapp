@@ -1,5 +1,7 @@
-package com.welovecoding.entities;
+package com.welovecoding.tutorial.data.video;
 
+import com.welovecoding.tutorial.data.base.BaseEntity;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;

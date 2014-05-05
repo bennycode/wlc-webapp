@@ -1,5 +1,8 @@
-package com.welovecoding.view.forms;
+package com.welovecoding.tutorial.view.video;
 
+import com.welovecoding.tutorial.view.scaffolding.FormModel;
+import com.welovecoding.tutorial.view.scaffolding.FormInput;
+import com.welovecoding.tutorial.view.scaffolding.RenderType;
 import java.util.HashMap;
 import java.util.Map;
 

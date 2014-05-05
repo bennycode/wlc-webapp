@@ -1,14 +1,14 @@
-package com.welovecoding.repository;
+package com.welovecoding.tutorial.data.category;
 
-import static com.welovecoding.config.Packages.PERSISTENCE_UNIT_NAME;
-import com.welovecoding.entities.Category;
+import com.welovecoding.tutorial.data.base.BaseRepository;
+import com.welovecoding.tutorial.data.category.Category;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class CategoryRepository extends AbstractRepository<Category> {
+public class CategoryRepository extends BaseRepository<Category> {
 
   @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
   EntityManager em;

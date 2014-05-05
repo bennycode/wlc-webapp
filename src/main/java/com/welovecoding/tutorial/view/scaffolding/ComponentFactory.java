@@ -1,12 +1,8 @@
-package com.welovecoding.controller;
+package com.welovecoding.tutorial.view.scaffolding;
 
-import com.welovecoding.config.Packages;
-import com.welovecoding.entities.BaseEntity;
-import com.welovecoding.util.JSFUtils;
-import com.welovecoding.util.StringUtils;
-import com.welovecoding.view.forms.DropdownItemsConverter;
-import com.welovecoding.view.forms.FormInput;
-import com.welovecoding.view.forms.RenderType;
+import com.welovecoding.tutorial.data.base.BaseEntity;
+import com.welovecoding.tutorial.view.JSFUtils;
+import com.welovecoding.StringUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,11 +34,12 @@ public class ComponentFactory {
 
   private final ResourceBundle backendText;
   private final String controllerBeanName;
+  public static final String BACKEND_MESSAGES_NAME = "backend";
 
   public ComponentFactory(String controllerBeanName) {
     this.controllerBeanName = controllerBeanName;
     FacesContext context = FacesContext.getCurrentInstance();
-    this.backendText = context.getApplication().getResourceBundle(context, Packages.BACKEND_MESSAGES_NAME);
+    this.backendText = context.getApplication().getResourceBundle(context, BACKEND_MESSAGES_NAME);
   }
 
   /**

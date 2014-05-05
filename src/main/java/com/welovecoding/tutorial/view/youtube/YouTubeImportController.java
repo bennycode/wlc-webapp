@@ -1,9 +1,9 @@
-package com.welovecoding.controller;
+package com.welovecoding.tutorial.view.youtube;
 
 import com.google.api.client.auth.oauth2.Credential;
-import com.welovecoding.entities.Playlist;
-import com.welovecoding.security.auth.UserSessionBean;
-import com.welovecoding.service.YouTubeService;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import com.welovecoding.tutorial.view.auth.AuthSessionBean;
+import com.welovecoding.tutorial.data.youtube.YouTubeService;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -18,7 +18,7 @@ public class YouTubeImportController implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Inject
-  private UserSessionBean userSessionBean;
+  private AuthSessionBean userSessionBean;
 
   @EJB
   private YouTubeService youTubeService;

@@ -1,10 +1,10 @@
-package com.welovecoding.rest.v1.resource;
+package com.welovecoding.tutorial.api.v1.resource;
 
-import com.welovecoding.entities.Playlist;
-import static com.welovecoding.rest.v1.RestConfig.JSON_MEDIATYPE;
-import com.welovecoding.rest.v1.dto.PlaylistDTO;
-import com.welovecoding.rest.v1.mapping.DTOMapper;
-import com.welovecoding.service.PlaylistService;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import static com.welovecoding.tutorial.api.v1.RestConfig.JSON_MEDIATYPE;
+import com.welovecoding.tutorial.api.v1.dto.PlaylistDTO;
+import com.welovecoding.tutorial.api.v1.mapping.DTOMapper;
+import com.welovecoding.tutorial.data.playlist.PlaylistService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.List;
 import javax.ejb.EJB;

@@ -1,7 +1,6 @@
-package com.welovecoding.service;
+package com.welovecoding.tutorial.data.video;
 
-import com.welovecoding.entities.Video;
-import com.welovecoding.repository.VideoRepository;
+import com.welovecoding.tutorial.data.base.BaseService;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -55,8 +54,8 @@ public class VideoService extends BaseService<Video, VideoRepository> {
   @Override
   protected Set<String> typesToClear() {
     return new HashSet<>(Arrays.asList(
-            com.welovecoding.rest.v1.dto.VideoDTO.class.getName(),
-            com.welovecoding.rest.v2.dto.VideoDTO.class.getName()
+            com.welovecoding.tutorial.api.v1.dto.VideoDTO.class.getName(),
+            com.welovecoding.tutorial.api.v2.dto.VideoDTO.class.getName()
     ));
   }
 

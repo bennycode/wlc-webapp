@@ -1,8 +1,6 @@
-package com.welovecoding.service;
+package com.welovecoding.tutorial.data.base;
 
-import com.welovecoding.entities.BaseEntity;
-import com.welovecoding.exception.ConstraintViolationBagException;
-import com.welovecoding.repository.AbstractRepository;
+import com.welovecoding.tutorial.data.ConstraintViolationBagException;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.List;
 import java.util.Set;
@@ -13,7 +11,7 @@ import javax.validation.Validator;
 
 @MappedSuperclass
 //@Interceptors({EJBLoggerInterceptor.class})
-public abstract class BaseService<T extends BaseEntity, E extends AbstractRepository<T>> {
+public abstract class BaseService<T extends BaseEntity, E extends BaseRepository<T>> {
 
   private final Class<T> entityClass;
 

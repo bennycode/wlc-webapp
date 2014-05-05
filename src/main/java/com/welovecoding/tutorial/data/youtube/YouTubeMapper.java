@@ -1,6 +1,6 @@
-package com.welovecoding.mapper;
+package com.welovecoding.tutorial.data.youtube;
 
-import com.welovecoding.entities.Playlist;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 
 public class YouTubeMapper {
 

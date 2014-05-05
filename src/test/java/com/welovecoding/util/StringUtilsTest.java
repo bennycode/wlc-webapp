@@ -1,7 +1,7 @@
 package com.welovecoding.util;
 
-import com.welovecoding.util.StringUtils;
-import com.welovecoding.entities.Category;
+import com.welovecoding.StringUtils;
+import com.welovecoding.tutorial.data.category.Category;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

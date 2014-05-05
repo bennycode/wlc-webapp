@@ -1,13 +1,13 @@
-package com.welovecoding.config.testdata;
+package util;
 
-import com.welovecoding.entities.Author;
-import com.welovecoding.entities.Category;
-import com.welovecoding.entities.Difficulty;
-import com.welovecoding.entities.LanguageCode;
-import com.welovecoding.entities.Playlist;
-import com.welovecoding.entities.Provider;
-import com.welovecoding.entities.Video;
-import com.welovecoding.service.CategoryService;
+import com.welovecoding.tutorial.data.author.Author;
+import com.welovecoding.tutorial.data.category.Category;
+import com.welovecoding.tutorial.data.playlist.entity.Difficulty;
+import com.welovecoding.tutorial.data.playlist.entity.LanguageCode;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import com.welovecoding.tutorial.data.playlist.entity.Provider;
+import com.welovecoding.tutorial.data.video.Video;
+import com.welovecoding.tutorial.data.category.CategoryService;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;

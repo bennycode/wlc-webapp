@@ -1,4 +1,4 @@
-package com.welovecoding.service;
+package com.welovecoding.tutorial.data.youtube;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.http.HttpTransport;
@@ -6,9 +6,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
-import com.welovecoding.mapper.YouTubeMapper;
-import com.welovecoding.entities.Playlist;
-import com.welovecoding.repository.YouTubeRepository;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import javax.ejb.Stateless;
 
 @Stateless

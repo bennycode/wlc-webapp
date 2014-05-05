@@ -1,7 +1,6 @@
-package com.welovecoding.service;
+package com.welovecoding.tutorial.data.category;
 
-import com.welovecoding.entities.Category;
-import com.welovecoding.repository.CategoryRepository;
+import com.welovecoding.tutorial.data.base.BaseService;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -44,8 +43,8 @@ public class CategoryService extends BaseService<Category, CategoryRepository> {
   @Override
   protected Set<String> typesToClear() {
     return new HashSet<>(Arrays.asList(
-            com.welovecoding.rest.v1.dto.CategoryDTO.class.getName(),
-            com.welovecoding.rest.v2.dto.CategoryDTO.class.getName()
+            com.welovecoding.tutorial.api.v1.dto.CategoryDTO.class.getName(),
+            com.welovecoding.tutorial.api.v2.dto.CategoryDTO.class.getName()
     ));
   }
 }

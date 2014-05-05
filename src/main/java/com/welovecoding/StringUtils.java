@@ -1,4 +1,4 @@
-package com.welovecoding.util;
+package com.welovecoding;
 
 import com.google.api.client.repackaged.com.google.common.base.Joiner;
 

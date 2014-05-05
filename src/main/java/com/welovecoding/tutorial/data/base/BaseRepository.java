@@ -1,6 +1,6 @@
-package com.welovecoding.repository;
+package com.welovecoding.tutorial.data.base;
 
-import com.welovecoding.entities.BaseEntity;
+import com.welovecoding.tutorial.data.base.BaseEntity;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -15,12 +15,14 @@ import javax.persistence.criteria.Root;
  * @author Michael Koppen <michael.koppen@googlemail.com>
  * @param <T extends BaseEntity>
  */
-public abstract class AbstractRepository<T extends BaseEntity> {
+public abstract class BaseRepository<T extends BaseEntity> {
+
+  public static final String PERSISTENCE_UNIT_NAME = "com.welovecoding.web_wlc-webapp_war_1.0-SNAPSHOTPU";
 
   protected abstract EntityManager getEntityManager();
   private final Class<T> entityClass;
 
-  public AbstractRepository(Class<T> entityClass) {
+  public BaseRepository(Class<T> entityClass) {
     this.entityClass = entityClass;
   }
 

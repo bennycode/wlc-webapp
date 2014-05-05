@@ -1,8 +1,7 @@
-package com.welovecoding.security;
+package com.welovecoding.tutorial.view.auth;
 
-import com.welovecoding.config.Pages;
-import com.welovecoding.entities.User;
-import com.welovecoding.security.auth.UserSessionBean;
+import com.welovecoding.tutorial.view.Pages;
+import com.welovecoding.tutorial.data.user.entity.User;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.Filter;
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminPagesFilter implements Filter {
 
   @Inject
-  private UserSessionBean userSessionBean;
+  private AuthSessionBean userSessionBean;
 
   private static final String[] ALLOWED_EMAILS = {
     "apfelbenny@googlemail.com",

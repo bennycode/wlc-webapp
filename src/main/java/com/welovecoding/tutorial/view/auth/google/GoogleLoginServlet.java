@@ -1,14 +1,16 @@
-package com.welovecoding.security.auth.google;
+package com.welovecoding.tutorial.view.auth.google;
 
+import com.welovecoding.tutorial.data.user.GoogleUser;
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
-import com.welovecoding.config.Pages;
-import com.welovecoding.entities.GoogleUserCredentials;
-import com.welovecoding.entities.User;
-import com.welovecoding.entities.UserCredentials;
-import com.welovecoding.exception.ConstraintViolationBagException;
-import com.welovecoding.security.auth.UserConverter;
-import com.welovecoding.security.auth.UserSessionBean;
-import com.welovecoding.service.UserService;
+import com.welovecoding.tutorial.view.Pages;
+import com.welovecoding.tutorial.data.user.entity.GoogleUserCredentials;
+import com.welovecoding.tutorial.data.user.entity.User;
+import com.welovecoding.tutorial.data.user.entity.UserCredentials;
+import com.welovecoding.tutorial.data.ConstraintViolationBagException;
+import com.welovecoding.tutorial.data.user.UserMapper;
+import com.welovecoding.tutorial.view.auth.AuthSessionBean;
+import com.welovecoding.tutorial.data.user.UserService;
+import com.welovecoding.tutorial.view.auth.AuthSessionBean;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +37,7 @@ public class GoogleLoginServlet extends HttpServlet {
   private GoogleLoginBean googleLoginBean;
 
   @Inject
-  private UserSessionBean userSessionBean;
+  private AuthSessionBean userSessionBean;
 
   @EJB
   private UserService userService;
@@ -73,7 +75,7 @@ public class GoogleLoginServlet extends HttpServlet {
       boolean isFirstToken = false;
 
       if (userEntity == null) {
-        userEntity = UserConverter.convertGoogleUser(gu);
+        userEntity = UserMapper.convertGoogleUser(gu);
         isFirstToken = true;
       } else {
         List<UserCredentials> userCredentials = userEntity.getCredentials();

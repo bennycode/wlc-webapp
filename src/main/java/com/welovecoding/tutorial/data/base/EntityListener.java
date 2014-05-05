@@ -14,8 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.welovecoding.entities;
+package com.welovecoding.tutorial.data.base;
 
+import com.welovecoding.tutorial.data.base.BaseEntity;
 import java.util.Date;
 import javax.interceptor.ExcludeClassInterceptors;
 import javax.persistence.PostLoad;

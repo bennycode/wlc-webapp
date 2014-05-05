@@ -1,4 +1,4 @@
-package com.welovecoding.rest.v2;
+package com.welovecoding.tutorial.api.v2;
 
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;

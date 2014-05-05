@@ -1,6 +1,7 @@
-package com.welovecoding.entities;
+package com.welovecoding.tutorial.data.user.entity;
 
-import static com.welovecoding.entities.User.FIND_BY_EMAIL;
+import com.welovecoding.tutorial.data.base.BaseEntity;
+import static com.welovecoding.tutorial.data.user.entity.User.FIND_BY_EMAIL;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

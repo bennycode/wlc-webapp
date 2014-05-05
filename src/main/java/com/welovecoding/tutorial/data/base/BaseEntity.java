@@ -1,4 +1,4 @@
-package com.welovecoding.entities;
+package com.welovecoding.tutorial.data.base;
 
 import java.io.Serializable;
 import java.util.Date;
