@@ -7,7 +7,7 @@
     <ui:composition>
       <h2 class="page-header">Details</h2>
       <h2>
-        <h:outputText value="#{youTubeImportController.playlist.name}" />
+        <h:outputText value="#{youTubeImportWizard.playlist.name}" />
       </h2>	
       <p>
         <h:graphicImage 
@@ -15,14 +15,14 @@
           width="64"
           height="64"
           style="display: none;"
-          rendered="#{empty youTubeImportController.playlist}"
+          rendered="#{empty youTubeImportWizard.playlist}"
           value="/resources/images/preloader/flat/64_64/cube.gif" 
           />
-        <h:outputText value="#{youTubeImportController.playlist.description}" />
+        <h:outputText value="#{youTubeImportWizard.playlist.description}" />
       </p>
       <h:form>
         <h:commandButton 
-          action="#{youTubeImportController.savePlaylist}"
+          action="#{youTubeImportWizard.savePlaylist}"
           styleClass="pure-button pure-button-primary"
           value="Weiter">
         </h:commandButton>

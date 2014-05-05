@@ -12,7 +12,7 @@
           <h:outputLabel for="selectCategory" value="#{backend['admin.form.label.category']}" />
           <h:selectOneMenu 
             id="selectCategory"
-            value="#{youTubeImportController.category}"
+            value="#{youTubeImportWizard.category}"
             >
             <f:converter converterId="wlc.DropdownItemsConverter" />
             <f:selectItems 

@@ -2,10 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
   <h:body>    
     <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
       <ui:define name="title">
@@ -13,29 +10,13 @@
       </ui:define>
 
       <ui:define name="content">  
-        <h:panelGroup rendered="#{youTubeImportController.step == 1}">
+        <h:panelGroup rendered="#{youTubeImportWizard.step eq 'init'}">
           <ui:include src="/WEB-INF/admin/youtube/wizard/page_1.xhtml" />
         </h:panelGroup>
 
-        <h:panelGroup rendered="#{youTubeImportController.step == 2}">          
-          <ui:include src="/WEB-INF/admin/youtube/wizard/page_2.xhtml" />
-        </h:panelGroup>
-
-        <h:panelGroup rendered="#{youTubeImportController.step == 3}">               
+        <h:panelGroup rendered="#{youTubeImportWizard.step eq 'assignMetaData'}">          
           <ui:include src="/WEB-INF/admin/youtube/wizard/page_3.xhtml" />
         </h:panelGroup>
-
-        <script>
-          //<![CDATA[ 
-          $(document).ready(function() {
-            window.youTubeImporter = {
-              startPreLoader: function() {
-                $('#playlistPreloader').toggleClass('block');
-              }
-            };
-          });
-          //]]>
-        </script>
       </ui:define>
     </ui:composition>
   </h:body>

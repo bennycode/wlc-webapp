@@ -17,7 +17,6 @@ public class DropdownItemsConverter implements Converter {
 
   @Override
   public Object getAsObject(FacesContext context, UIComponent component, String value) {
-    System.out.println("HIT");
     if (value == null || value.isEmpty()) {
       return null;
     }

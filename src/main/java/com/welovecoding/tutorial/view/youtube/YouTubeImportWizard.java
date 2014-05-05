@@ -5,7 +5,6 @@ import com.welovecoding.tutorial.data.category.Category;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import com.welovecoding.tutorial.data.youtube.YouTubeService;
 import com.welovecoding.tutorial.view.auth.AuthSessionBean;
-import com.welovecoding.tutorial.view.scaffolding.DropdownItemsConverter;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -16,14 +15,13 @@ import javax.inject.Named;
 
 @Named
 @ConversationScoped
-public class YouTubeImportController implements Serializable {
+public class YouTubeImportWizard implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
   @Inject
   private Conversation conversation;
-  // TODO: Can be an enum (or string)
-  private int step;
+  private String step;
 
   @Inject
   private AuthSessionBean userSessionBean;
@@ -40,16 +38,14 @@ public class YouTubeImportController implements Serializable {
   @PostConstruct
   void init() {
     conversation.begin();
-    step = 1;
+    step = "init";
     credential = userSessionBean.getCredential();
   }
 
-  public YouTubeImportController() {
+  public YouTubeImportWizard() {
   }
 
   public void parsePlaylist() {
-    step += 1;
-
     if (playlistId.isEmpty()) {
       playlist = null;
     } else {
@@ -57,9 +53,12 @@ public class YouTubeImportController implements Serializable {
     }
   }
 
+  // TODO: We have to click the button behind that action two-times until
+  // the action get's invoked. Maybe because the button is in a panel group
+  // which is again in a panel group....?
   public void savePlaylist() {
-    step += 1;
-
+    System.out.println("youTubeImportWizard.savePlaylist has been clicked.");
+    step = "assignMetaData";
     System.out.println(playlist.getName());
   }
 
@@ -83,11 +82,11 @@ public class YouTubeImportController implements Serializable {
     this.playlist = playlist;
   }
 
-  public int getStep() {
+  public String getStep() {
     return step;
   }
 
-  public void setStep(int step) {
+  public void setStep(String step) {
     this.step = step;
   }
 

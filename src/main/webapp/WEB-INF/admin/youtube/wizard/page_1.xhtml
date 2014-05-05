@@ -24,7 +24,7 @@
               p:required="required"
               p:value="PLF544CEEC9432BF67"
               id="playlistId"
-              value="#{youTubeImportController.playlistId}"
+              value="#{youTubeImportWizard.playlistId}"
               >
             </h:inputText>
           </div>
@@ -33,15 +33,56 @@
         <fieldset>
           <div class="pure-controls">                            
             <h:commandButton 
-              action="#{youTubeImportController.parsePlaylist}"
+              action="#{youTubeImportWizard.parsePlaylist}"
               value="Einlesen" 
               styleClass="pure-button pure-button-primary"
               onclick="youTubeImporter.startPreLoader();"
               >
+              <f:ajax 
+                listener="#{youTubeImportWizard.parsePlaylist}"
+                execute="@form" 
+                render=":playlistDetails" 
+                />
             </h:commandButton>
           </div>
         </fieldset>
       </form>
+
+      <h:panelGroup id="playlistDetails" layout="block">          
+        <h2 class="page-header">Details</h2>
+        <h2>
+          <h:outputText value="#{youTubeImportWizard.playlist.name}" />
+        </h2>	
+        <p>
+          <h:graphicImage 
+            id="playlistPreloader"
+            width="64"
+            height="64"
+            style="display: none;"
+            rendered="#{empty youTubeImportWizard.playlist}"
+            value="/resources/images/preloader/flat/64_64/cube.gif" 
+            />
+          <h:outputText value="#{youTubeImportWizard.playlist.description}" />
+        </p>
+        <h:form>
+          <h:commandButton 
+            action="#{youTubeImportWizard.savePlaylist}"
+            styleClass="pure-button pure-button-primary"
+            value="Weiter">
+          </h:commandButton>
+        </h:form>
+      </h:panelGroup>
+      <script>
+        //<![CDATA[ 
+        $(document).ready(function() {
+          window.youTubeImporter = {
+            startPreLoader: function() {
+              $('#playlistPreloader').toggleClass('block');
+            }
+          };
+        });
+        //]]>
+      </script>
     </ui:composition>
   </body>
 </html>
