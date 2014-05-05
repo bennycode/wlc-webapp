@@ -1,8 +1,8 @@
 package com.welovecoding.tutorial.view.scaffolding;
 
+import com.welovecoding.StringUtils;
 import com.welovecoding.tutorial.data.base.BaseEntity;
 import com.welovecoding.tutorial.data.base.BaseService;
-import com.welovecoding.StringUtils;
 import com.welovecoding.tutorial.view.base.BaseController;
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -174,6 +174,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
    */
   private boolean isDomainType(Class<?> type) {
     String itemPackage = type.getPackage().getName();
+    //TODO HERES THE BUG...THE ENTITIES ARE NO LONGER IN THE SAME PACKAGE AS THE BASEENTITY!!!
     String domainPackage = BaseEntity.class.getPackage().getName();
 
     return itemPackage.startsWith(domainPackage);

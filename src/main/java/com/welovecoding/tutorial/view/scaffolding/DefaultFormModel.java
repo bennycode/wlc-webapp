@@ -6,6 +6,7 @@ public class DefaultFormModel extends FormModel {
 
   @Override
   public FormInput[] parseProperties(Map<String, Class<?>> properties) {
+    System.out.println("#### using default!!!");
     FormInput[] formFields = new FormInput[properties.size()];
 
     int i = 0;
