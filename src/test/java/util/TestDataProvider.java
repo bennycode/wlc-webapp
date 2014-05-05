@@ -1,4 +1,4 @@
-package com.welovecoding.config.testdata;
+package util;
 
 import com.welovecoding.tutorial.data.author.Author;
 import com.welovecoding.tutorial.data.category.Category;
