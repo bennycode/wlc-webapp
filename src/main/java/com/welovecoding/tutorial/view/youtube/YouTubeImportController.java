@@ -5,6 +5,7 @@ import com.welovecoding.tutorial.data.category.Category;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import com.welovecoding.tutorial.data.youtube.YouTubeService;
 import com.welovecoding.tutorial.view.auth.AuthSessionBean;
+import com.welovecoding.tutorial.view.scaffolding.DropdownItemsConverter;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -21,7 +22,7 @@ public class YouTubeImportController implements Serializable {
 
   @Inject
   private Conversation conversation;
-  // TODO: Can be an enum
+  // TODO: Can be an enum (or string)
   private int step;
 
   @Inject

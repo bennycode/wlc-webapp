@@ -6,10 +6,27 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
   <body>
     <ui:composition>
-      <h:form>
-        <h:selectOneMenu value="#{youTubeImportController.category}">
-          <f:selectItems value="#{categoryController.items}" />
-        </h:selectOneMenu>
+      <!-- TODO: put h:form elements that are using the "pure" styling in a composite component -->
+      <h:form class="pure-form pure-form-stacked">
+        <fieldset>
+          <h:outputLabel for="selectCategory" value="#{backend['admin.form.label.category']}" />
+          <h:selectOneMenu 
+            id="selectCategory"
+            value="#{youTubeImportController.category}"
+            >
+            <f:converter converterId="wlc.DropdownItemsConverter" />
+            <f:selectItems 
+              value="#{categoryController.items}" 
+              var="category" 
+              itemLabel="#{category.name}" 
+              itemValue="#{category}" 
+              />
+          </h:selectOneMenu>
+        </fieldset>
+        <h:commandButton 
+          styleClass="pure-button pure-button-primary"
+          value="Weiter">
+        </h:commandButton>        
       </h:form>
     </ui:composition>
   </body>

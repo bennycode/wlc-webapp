@@ -6,15 +6,18 @@ import com.welovecoding.tutorial.view.JSFUtils;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 
 /**
  * @see http://www.mkyong.com/jsf2/custom-converter-in-jsf-2-0/
  * @see http://www.mastertheboss.com/jsf/develop-custom-jsf-converters
  */
+@FacesConverter("wlc.DropdownItemsConverter")
 public class DropdownItemsConverter implements Converter {
 
   @Override
   public Object getAsObject(FacesContext context, UIComponent component, String value) {
+    System.out.println("HIT");
     if (value == null || value.isEmpty()) {
       return null;
     }
