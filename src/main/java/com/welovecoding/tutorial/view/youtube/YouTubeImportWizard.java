@@ -38,7 +38,7 @@ public class YouTubeImportWizard implements Serializable {
   @PostConstruct
   void init() {
     conversation.begin();
-    step = "init";
+    step = "parsePlaylist";
     credential = userSessionBean.getCredential();
   }
 
@@ -53,11 +53,7 @@ public class YouTubeImportWizard implements Serializable {
     }
   }
 
-  // TODO: We have to click the button behind that action two-times until
-  // the action get's invoked. Maybe because the button is in a panel group
-  // which is again in a panel group....?
   public void savePlaylist() {
-    System.out.println("youTubeImportWizard.savePlaylist has been clicked.");
     step = "assignMetaData";
     System.out.println(playlist.getName());
   }

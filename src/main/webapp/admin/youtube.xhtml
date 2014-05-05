@@ -10,12 +10,12 @@
       </ui:define>
 
       <ui:define name="content">  
-        <h:panelGroup rendered="#{youTubeImportWizard.step eq 'init'}">
-          <ui:include src="/WEB-INF/admin/youtube/wizard/page_1.xhtml" />
+        <h:panelGroup rendered="#{youTubeImportWizard.step eq 'parsePlaylist'}">
+          <ui:include src="/WEB-INF/admin/youtube/wizard/parsePlaylist.xhtml" />
         </h:panelGroup>
 
         <h:panelGroup rendered="#{youTubeImportWizard.step eq 'assignMetaData'}">          
-          <ui:include src="/WEB-INF/admin/youtube/wizard/page_3.xhtml" />
+          <ui:include src="/WEB-INF/admin/youtube/wizard/assignMetaData.xhtml" />
         </h:panelGroup>
       </ui:define>
     </ui:composition>

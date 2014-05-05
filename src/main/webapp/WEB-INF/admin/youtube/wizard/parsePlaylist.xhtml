@@ -13,7 +13,7 @@
       </h2>
 
       <form class="pure-form pure-form-stacked"
-            jsf:id="create-author" 
+            jsf:id="parsePlaylist" 
             jsf:prependId="false"
             >
         <fieldset>
@@ -34,14 +34,14 @@
           <div class="pure-controls">                            
             <h:commandButton 
               action="#{youTubeImportWizard.parsePlaylist}"
-              value="Einlesen" 
-              styleClass="pure-button pure-button-primary"
               onclick="youTubeImporter.startPreLoader();"
+              styleClass="pure-button pure-button-primary"
+              value="Einlesen" 
               >
               <f:ajax 
                 listener="#{youTubeImportWizard.parsePlaylist}"
                 execute="@form" 
-                render=":playlistDetails" 
+                render=":playlistDetails :submitForm" 
                 />
             </h:commandButton>
           </div>
@@ -64,14 +64,17 @@
             />
           <h:outputText value="#{youTubeImportWizard.playlist.description}" />
         </p>
-        <h:form>
-          <h:commandButton 
-            action="#{youTubeImportWizard.savePlaylist}"
-            styleClass="pure-button pure-button-primary"
-            value="Weiter">
-          </h:commandButton>
-        </h:form>
       </h:panelGroup>
+
+      <h:form id="submitForm">
+        <h:commandButton 
+          action="#{youTubeImportWizard.savePlaylist}"
+          rendered="#{not empty youTubeImportWizard.playlist}"
+          styleClass="pure-button pure-button-primary"
+          value="Weiter"
+          >
+        </h:commandButton>
+      </h:form>
       <script>
         //<![CDATA[ 
         $(document).ready(function() {
