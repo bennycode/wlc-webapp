@@ -1,21 +1,28 @@
 package com.welovecoding.tutorial.view.youtube;
 
 import com.google.api.client.auth.oauth2.Credential;
+import com.welovecoding.tutorial.data.category.Category;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
-import com.welovecoding.tutorial.view.auth.AuthSessionBean;
 import com.welovecoding.tutorial.data.youtube.YouTubeService;
+import com.welovecoding.tutorial.view.auth.AuthSessionBean;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
-@ViewScoped
+@ConversationScoped
 public class YouTubeImportController implements Serializable {
 
   private static final long serialVersionUID = 1L;
+
+  @Inject
+  private Conversation conversation;
+  // TODO: Can be an enum
+  private int step;
 
   @Inject
   private AuthSessionBean userSessionBean;
@@ -25,11 +32,14 @@ public class YouTubeImportController implements Serializable {
 
   private Credential credential;
 
+  private Category category;
   private String playlistId = "";
   private Playlist playlist = null;
 
   @PostConstruct
   void init() {
+    conversation.begin();
+    step = 1;
     credential = userSessionBean.getCredential();
   }
 
@@ -37,6 +47,8 @@ public class YouTubeImportController implements Serializable {
   }
 
   public void parsePlaylist() {
+    step += 1;
+
     if (playlistId.isEmpty()) {
       playlist = null;
     } else {
@@ -45,7 +57,13 @@ public class YouTubeImportController implements Serializable {
   }
 
   public void savePlaylist() {
+    step += 1;
+
     System.out.println(playlist.getName());
+  }
+
+  public void saveMetaData() {
+    conversation.end();
   }
 
   public String getPlaylistId() {
@@ -62,6 +80,22 @@ public class YouTubeImportController implements Serializable {
 
   public void setPlaylist(Playlist playlist) {
     this.playlist = playlist;
+  }
+
+  public int getStep() {
+    return step;
+  }
+
+  public void setStep(int step) {
+    this.step = step;
+  }
+
+  public Category getCategory() {
+    return category;
+  }
+
+  public void setCategory(Category category) {
+    this.category = category;
   }
 
 }

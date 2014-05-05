@@ -38,7 +38,6 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   private final int RESULTS_PER_PAGE = 20;
   private final ComponentFactory componentFactory;
   public static String ERROR_MESSAGES_NAME = "error_messages";
-  private final String FORM_MODEL_PACKAGE = "com.welovecoding.view.forms";
 
   /**
    * Note: You should never assign FacesContext as instance variable of a
@@ -93,7 +92,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       FormModel formModel;
 
       try {
-        Class clazz = cl.loadClass(FORM_MODEL_PACKAGE + "." + item.getClass().getSimpleName() + FORM_MODEL_SUFFIX);
+        Class clazz = cl.loadClass("com.welovecoding.tutorial.view." + item.getClass().getSimpleName().toLowerCase() + "." + item.getClass().getSimpleName() + FORM_MODEL_SUFFIX);
         formModel = (FormModel) clazz.newInstance();
       } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
         formModel = new DefaultFormModel();

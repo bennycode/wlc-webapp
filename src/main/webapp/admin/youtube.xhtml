@@ -12,72 +12,18 @@
         <h:outputText value="#{backend['admin.form.title.youtube']}" />
       </ui:define>
 
-      <ui:define name="content">    
-        <h2 class="page-header">
-          <h:outputText value="#{backend['admin.form.title.youtube']}" />
-        </h2>
-
-        <form class="pure-form pure-form-stacked"
-              jsf:id="create-author" 
-              jsf:prependId="false"
-              >
-          <fieldset>
-            <div class="pure-control-group">
-              <label for="playlistId">Playlist ID</label>
-              <h:inputText
-                p:placeholder="PLF544CEEC9432BF67"
-                p:required="required"
-                p:value="PLF544CEEC9432BF67"
-                id="playlistId"
-                value="#{youTubeImportController.playlistId}"
-                >
-              </h:inputText>
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <div class="pure-controls">                            
-              <h:commandButton 
-                value="Einlesen" 
-                styleClass="pure-button pure-button-primary"
-                onclick="youTubeImporter.startPreLoader();"
-                >
-                <f:ajax 
-                  listener="#{youTubeImportController.parsePlaylist}"
-                  execute="@form" 
-                  render=":playlistDetails :submitForm" 
-                  />
-              </h:commandButton>
-            </div>
-          </fieldset>
-        </form>
-
-        <h:panelGroup id="playlistDetails" layout="block">          
-          <h2 class="page-header">Details</h2>
-          <h2>
-            <h:outputText value="#{youTubeImportController.playlist.name}" />
-          </h2>	
-          <p>
-            <h:graphicImage 
-              id="playlistPreloader"
-              width="64"
-              height="64"
-              style="display: none;"
-              rendered="#{empty youTubeImportController.playlist}"
-              value="/resources/images/preloader/flat/64_64/cube.gif" 
-              />
-            <h:outputText value="#{youTubeImportController.playlist.description}" />
-          </p>
+      <ui:define name="content">  
+        <h:panelGroup rendered="#{youTubeImportController.step == 1}">
+          <ui:include src="/WEB-INF/admin/youtube/wizard/page_1.xhtml" />
         </h:panelGroup>
 
-        <h:form id="submitForm">
-          <h:commandButton 
-            action="#{youTubeImportController.savePlaylist}"
-            rendered="#{not empty youTubeImportController.playlist}"
-            styleClass="pure-button pure-button-primary"
-            value="In Datenbank übernehmen">
-          </h:commandButton>
-        </h:form>
+        <h:panelGroup rendered="#{youTubeImportController.step == 2}">          
+          <ui:include src="/WEB-INF/admin/youtube/wizard/page_2.xhtml" />
+        </h:panelGroup>
+
+        <h:panelGroup rendered="#{youTubeImportController.step == 3}">               
+          <ui:include src="/WEB-INF/admin/youtube/wizard/page_3.xhtml" />
+        </h:panelGroup>
 
         <script>
           //<![CDATA[ 

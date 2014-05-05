@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+  <body>
+    <ui:composition>
+      <h2 class="page-header">
+        <h:outputText value="#{backend['admin.form.title.youtube']}" />
+      </h2>
+
+      <form class="pure-form pure-form-stacked"
+            jsf:id="create-author" 
+            jsf:prependId="false"
+            >
+        <fieldset>
+          <div class="pure-control-group">
+            <label for="playlistId">Playlist ID</label>
+            <h:inputText
+              p:placeholder="PLF544CEEC9432BF67"
+              p:required="required"
+              p:value="PLF544CEEC9432BF67"
+              id="playlistId"
+              value="#{youTubeImportController.playlistId}"
+              >
+            </h:inputText>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="pure-controls">                            
+            <h:commandButton 
+              action="#{youTubeImportController.parsePlaylist}"
+              value="Einlesen" 
+              styleClass="pure-button pure-button-primary"
+              onclick="youTubeImporter.startPreLoader();"
+              >
+            </h:commandButton>
+          </div>
+        </fieldset>
+      </form>
+    </ui:composition>
+  </body>
+</html>
