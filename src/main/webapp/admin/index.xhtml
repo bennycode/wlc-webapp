@@ -9,7 +9,7 @@
       <ui:define name="content">
         <h3>
           <h:outputFormat value="#{backend['admin.main.welcome']}" >          
-            <f:param value="#{userSessionBean.user.name}" />
+            <f:param value="#{authSessionBean.user.name}" />
           </h:outputFormat>
         </h3>
         <p><h:outputText value="#{backend['admin.main.intro']}" /></p>        
