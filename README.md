@@ -34,6 +34,31 @@ Project configuration:
 
 [CoffeeScript in NetBeans](https://blogs.oracle.com/geertjan/entry/coffeescript_rocks_in_netbeans_ide)
 
+## Naming conventions ##
+### Classes ###
+Everyhting that is getting raw data from our database or a third party API and maps that data into entities of our own structure is called a **Repository**. 
+
+A **Service** uses entities (given by a Repository) and provides them in a sorted, filtered or unfiltered way so that they can be used by a Controller. A **Controller** is then used to provide the requested data for a view (JSF page).
+
+### Packages ###
+Every self-contained big feature (called an "epic") has it's own package, like `com.welovecoding.blog`. A package of an "epic" consists of the main packages: `data`, `view` and `api` (`api` is optional). The `view` package is used to keep classes that are used for view-related operations (like our Controllers). In the `data` package you can find all classes that are needed to retrieve and map data (like our Repositories & Services). The classes themselves belong to context specific packages inside the main packages. 
+
+Here is an example for a possible "blog post" which a part of the context of a "blog" module:
+
+    com.welovecoding.blog.data.post.PostEntity
+    com.welovecoding.blog.data.post.PostRepository
+    com.welovecoding.blog.data.post.PostService
+    com.welovecoding.blog.view.post.PostController
+    com.welovecoding.blog.api.post.PostResource
+
+In our example a blog post entity can have embedded entities. If that is the case and if there are multiple entities, then we will add an extra package inside the `data.post` package. 
+
+**Example**
+
+    com.welovecoding.blog.data.post.entity.PostEntity
+    com.welovecoding.blog.data.post.entity.LanguageEntity
+    com.welovecoding.blog.data.post.entity.TagEntity
+
 ## Useful resources: ##
 
 **Java**
