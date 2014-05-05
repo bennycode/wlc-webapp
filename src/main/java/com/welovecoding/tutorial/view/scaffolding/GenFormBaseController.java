@@ -175,7 +175,9 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
   private boolean isDomainType(Class<?> type) {
     String itemPackage = type.getPackage().getName();
     //TODO HERES THE BUG...THE ENTITIES ARE NO LONGER IN THE SAME PACKAGE AS THE BASEENTITY!!!
-    String domainPackage = BaseEntity.class.getPackage().getName();
+    // Quickfix: Assume that all entities with e.g. com.welovecoding are entities of the project (call me if u have a better and easier idea ;P)
+    String[] packages = BaseEntity.class.getPackage().getName().split("\\.");
+    String domainPackage = packages[0] + "." + packages[1];
 
     return itemPackage.startsWith(domainPackage);
   }
