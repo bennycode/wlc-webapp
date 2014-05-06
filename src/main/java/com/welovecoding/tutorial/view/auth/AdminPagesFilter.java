@@ -30,12 +30,15 @@ public class AdminPagesFilter implements Filter {
     boolean isAllowed = false;
     User user = userSessionBean.getUser();
 
+//    if (user != null && user.getEmail() != null) {
+//      for (String email : ALLOWED_EMAILS) {
+//        if (user.getEmail().equals(email)) {
+//          isAllowed = true;
+//        }
+//      }
+//    }
     if (user != null && user.getEmail() != null) {
-      for (String email : ALLOWED_EMAILS) {
-        if (user.getEmail().equals(email)) {
-          isAllowed = true;
-        }
-      }
+      isAllowed = true;
     }
 
     return isAllowed;
