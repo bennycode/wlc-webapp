@@ -296,6 +296,11 @@
       <id>glassfish</id>
       <url>http://download.java.net/maven/glassfish</url>
     </pluginRepository>
+    <pluginRepository>
+      <name>oss.sonatype.org</name>
+      <id>oss.sonatype.org</id>
+      <url>http://oss.sonatype.org/content/groups/public</url>
+    </pluginRepository>
   </pluginRepositories>
 
   <build>
@@ -513,7 +518,14 @@
       </properties>
       <build>
         <plugins>
-          
+          <plugin>
+            <groupId>net.alchim31.maven</groupId>
+            <artifactId>yuicompressor-maven-plugin</artifactId>
+            <version>1.4.0</version>
+            <configuration>
+              <nosuffix>true</nosuffix>
+            </configuration>
+          </plugin>
           <plugin>
             <groupId>org.codehaus.cargo</groupId>
             <artifactId>cargo-maven2-plugin</artifactId>
@@ -561,7 +573,14 @@
       </properties>
       <build>
         <plugins>
-          
+          <plugin>
+            <groupId>net.alchim31.maven</groupId>
+            <artifactId>yuicompressor-maven-plugin</artifactId>
+            <version>1.4.0</version>
+            <configuration>
+              <nosuffix>true</nosuffix>
+            </configuration>
+          </plugin>
           <plugin>
             <groupId>org.codehaus.cargo</groupId>
             <artifactId>cargo-maven2-plugin</artifactId>
