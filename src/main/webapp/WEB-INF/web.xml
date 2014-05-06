@@ -1,108 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <display-name>We Love Coding - Web App</display-name>
-    <!-- Project -->
-    <context-param>
-        <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>${javax.faces.project.stage}</param-value>
-    </context-param>
-    <!-- http://docs.oracle.com/javaee/6/tutorial/doc/gircz.html#gkcrg -->
-    <context-param>
-        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <!-- http://stackoverflow.com/questions/3500738/invisible-comments-in-jsf-2-0 -->
-    <context-param>
-        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <!-- Servlet declarations -->
-    <!-- JSF -->
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <!-- Servlet mappings -->
-    <!-- JSF -->
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.xhtml</url-pattern>
-    </servlet-mapping>
-    <session-config>
-        <session-timeout>30</session-timeout>
-    </session-config>
-    <!-- Admin page filter -->
-    <filter>
-        <filter-name>AdminPagesFilter</filter-name>
-        <filter-class>com.welovecoding.tutorial.view.auth.AdminPagesFilter</filter-class>
-    </filter>
-    <!-- CORS filter -->
-    <filter>
-        <!-- http://stackoverflow.com/questions/19902514/access-control-allow-origin-in-ajax-call-to-jersey-rest-web-services -->
-        <filter-name>CORS</filter-name>
-        <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
-        <init-param>
-            <param-name>cors.allowGenericHttpRequests</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>cors.allowOrigin</param-name>
-            <param-value>http://localhost:8383</param-value>
-        </init-param>
-        <init-param>
-            <param-name>cors.allowSubdomains</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>cors.supportedMethods</param-name>
-            <param-value>GET, HEAD, POST, OPTIONS</param-value>
-        </init-param>
-        <init-param>
-            <param-name>cors.supportedHeaders</param-name>
-            <param-value>Content-Type, X-Requested-With</param-value>
-        </init-param>
-        <init-param>
-            <param-name>cors.exposedHeaders</param-name>
-            <param-value>X-Test-1, X-Test-2</param-value>
-        </init-param>
-        <init-param>
-            <param-name>cors.supportsCredentials</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>cors.maxAge</param-name>
-            <param-value>-1</param-value>
-        </init-param>
-    </filter>
-    <!-- Filter mappings -->
-    <filter-mapping>
-        <filter-name>AdminPagesFilter</filter-name>
-        <url-pattern>/admin/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>CORS</filter-name>
-        <url-pattern>/rest/*</url-pattern>
-    </filter-mapping>
-    <!-- Security Constraints -->
-    <!-- http://stackoverflow.com/a/9033567/451634 -->
-    <security-constraint>
-        <display-name>Restrict direct access to the /resources folder.</display-name>
-        <web-resource-collection>
-            <web-resource-name>The /resources folder.</web-resource-name>
-            <url-pattern>/resources/wlc</url-pattern>
-        </web-resource-collection>
-        <auth-constraint/>
-    </security-constraint>
-    <!-- Homepages -->
-    <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
-        <welcome-file>List.xhtml</welcome-file>
-        <welcome-file>index.html</welcome-file>
-    </welcome-file-list>
-    <!-- http://stackoverflow.com/a/3642969/451634 -->
-    <error-page>
-        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
-        <location>/admin/index.xhtml</location>
-    </error-page>
+  <display-name>We Love Coding - Web App</display-name>
+  <!-- Project -->
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>${javax.faces.project.stage}</param-value>
+  </context-param>
+  <!-- http://docs.oracle.com/javaee/6/tutorial/doc/gircz.html#gkcrg -->
+  <context-param>
+    <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <!-- http://stackoverflow.com/questions/3500738/invisible-comments-in-jsf-2-0 -->
+  <context-param>
+    <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <!-- Servlet declarations -->
+  <!-- JSF -->
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <!-- Servlet mappings -->
+  <!-- JSF -->
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+  <!-- Admin page filter -->
+  <filter>
+    <filter-name>AdminPagesFilter</filter-name>
+    <filter-class>com.welovecoding.tutorial.view.auth.AdminPagesFilter</filter-class>
+  </filter>
+  <!-- CORS filter -->
+  <filter>
+    <!-- http://stackoverflow.com/questions/19902514/access-control-allow-origin-in-ajax-call-to-jersey-rest-web-services -->
+    <filter-name>CORS</filter-name>
+    <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+    <init-param>
+      <param-name>cors.allowGenericHttpRequests</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.allowOrigin</param-name>
+      <param-value>http://localhost:8383</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.allowSubdomains</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.supportedMethods</param-name>
+      <param-value>GET, HEAD, POST, OPTIONS</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.supportedHeaders</param-name>
+      <param-value>Content-Type, X-Requested-With</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.exposedHeaders</param-name>
+      <param-value>X-Test-1, X-Test-2</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.supportsCredentials</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.maxAge</param-name>
+      <param-value>-1</param-value>
+    </init-param>
+  </filter>
+  <!-- Filter mappings -->
+  <filter-mapping>
+    <filter-name>AdminPagesFilter</filter-name>
+    <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>CORS</filter-name>
+    <url-pattern>/rest/*</url-pattern>
+  </filter-mapping>
+    
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>file</realm-name>
+  </login-config>
+  <security-role>
+    <description>Tester</description>
+    <role-name>Tester</role-name>
+  </security-role>
+  <security-constraint>
+    <display-name>Test-Server-Access</display-name>
+    <web-resource-collection>
+      <web-resource-name>Test-Server-Access</web-resource-name>
+      <description/>
+      <url-pattern>${test.secured.url}</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <description>Tester Access</description>
+      <role-name>Tester</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <description>HTTPS Login</description>
+      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+  <!-- Security Constraints -->
+  <!-- http://stackoverflow.com/a/9033567/451634 -->
+  <security-constraint>
+    <display-name>Restrict direct access to the /resources folder.</display-name>
+    <web-resource-collection>
+      <web-resource-name>The /resources folder.</web-resource-name>
+      <url-pattern>/resources/wlc</url-pattern>
+    </web-resource-collection>
+    <auth-constraint/>
+  </security-constraint>
+  <!-- Homepages -->
+  <welcome-file-list>
+    <welcome-file>index.xhtml</welcome-file>
+    <welcome-file>List.xhtml</welcome-file>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <!-- http://stackoverflow.com/a/3642969/451634 -->
+  <error-page>
+    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+    <location>/admin/index.xhtml</location>
+  </error-page>
 </web-app>

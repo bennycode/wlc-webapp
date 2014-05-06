@@ -79,7 +79,7 @@
     <auth.google.client.secret>xyz</auth.google.client.secret>
     
     <javax.faces.project.stage>Development</javax.faces.project.stage>
-    
+    <test.secured.url>/xyz</test.secured.url>
     <test.generate.data>false</test.generate.data>
   </properties>
   
@@ -509,6 +509,7 @@
       <properties>
         <!-- Override properties here -->
         <javax.faces.project.stage>Development</javax.faces.project.stage>
+        <test.secured.url>/*</test.secured.url>
       </properties>
       <build>
         <plugins>
