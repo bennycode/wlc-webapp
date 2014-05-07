@@ -1,11 +1,16 @@
 package com.welovecoding.tutorial.view.youtube;
 
 import com.google.api.client.auth.oauth2.Credential;
+import com.welovecoding.tutorial.data.ConstraintViolationBagException;
+import com.welovecoding.tutorial.data.author.Author;
 import com.welovecoding.tutorial.data.category.Category;
+import com.welovecoding.tutorial.data.playlist.PlaylistService;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import com.welovecoding.tutorial.data.youtube.YouTubeService;
 import com.welovecoding.tutorial.view.auth.AuthSessionBean;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.Conversation;
@@ -19,19 +24,16 @@ public class YouTubeImportWizard implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  @Inject
-  private Conversation conversation;
+  @Inject private Conversation conversation;
   private String step;
 
-  @Inject
-  private AuthSessionBean userSessionBean;
+  @Inject private AuthSessionBean userSessionBean;
 
-  @EJB
-  private YouTubeService youTubeService;
+  @EJB private YouTubeService youTubeService;
+  @EJB private PlaylistService playlistService;
 
   private Credential credential;
 
-  private Category category;
   private String playlistId = "";
   private Playlist playlist = null;
 
@@ -53,13 +55,20 @@ public class YouTubeImportWizard implements Serializable {
     }
   }
 
-  public void savePlaylist() {
+  public void assignMetaData() {
     step = "assignMetaData";
-    System.out.println(playlist.getName());
   }
 
-  public void saveMetaData() {
+  public void savePlaylist() {
+    try {
+      playlistService.edit(playlist);
+    } catch (ConstraintViolationBagException ex) {
+      Logger.getLogger(YouTubeImportWizard.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
     conversation.end();
+
+    step = "parsePlaylist";
   }
 
   public String getPlaylistId() {
@@ -85,13 +94,4 @@ public class YouTubeImportWizard implements Serializable {
   public void setStep(String step) {
     this.step = step;
   }
-
-  public Category getCategory() {
-    return category;
-  }
-
-  public void setCategory(Category category) {
-    this.category = category;
-  }
-
 }

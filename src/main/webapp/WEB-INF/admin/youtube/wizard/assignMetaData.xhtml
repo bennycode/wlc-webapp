@@ -12,14 +12,30 @@
           <h:outputLabel for="selectCategory" value="#{backend['admin.form.label.category']}" />
           <h:selectOneMenu 
             id="selectCategory"
-            value="#{youTubeImportWizard.category}"
+            value="#{youTubeImportWizard.playlist.category}"
             >
             <f:converter converterId="wlc.DropdownItemsConverter" />
             <f:selectItems 
               value="#{categoryController.items}" 
               var="category" 
-              itemLabel="#{category.name}" 
               itemValue="#{category}" 
+              itemLabel="#{category.name}" 
+              />
+          </h:selectOneMenu>
+        </fieldset>
+
+        <fieldset>
+          <h:outputLabel for="selectAuthor" value="#{backend['admin.form.label.author']}" />
+          <h:selectOneMenu 
+            id="selectAuthor"
+            value="#{youTubeImportWizard.playlist.author}"
+            >
+            <f:converter converterId="wlc.DropdownItemsConverter" />
+            <f:selectItems 
+              value="#{authorController.items}" 
+              var="author" 
+              itemValue="#{author}" 
+              itemLabel="#{author.name}" 
               />
           </h:selectOneMenu>
         </fieldset>
@@ -27,8 +43,9 @@
         <fieldset>
           <div class="pure-controls">    
             <h:commandButton 
+              action="#{youTubeImportWizard.savePlaylist}"
               styleClass="pure-button pure-button-primary"
-              value="Weiter"
+              value="Neue Playliste speichern"
               >
             </h:commandButton>     
           </div>

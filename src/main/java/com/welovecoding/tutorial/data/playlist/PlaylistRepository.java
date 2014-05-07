@@ -26,11 +26,13 @@ public class PlaylistRepository extends BaseRepository<Playlist> {
 
   public Playlist findByCode(String code) {
     Playlist playlist = null;
+
     try {
       playlist = em.createNamedQuery(Playlist.FIND_BY_CODE, Playlist.class).
               setParameter("code", code).
               getSingleResult();
     } catch (NoResultException e) {
+      // NOP
     }
 
     return playlist;
@@ -50,7 +52,9 @@ public class PlaylistRepository extends BaseRepository<Playlist> {
               setParameter("categoryid", categoryid).
               getSingleResult();
     } catch (NoResultException e) {
+      // NOP
     }
+
     return playlist;
   }
 }

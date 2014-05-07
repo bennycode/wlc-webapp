@@ -12,6 +12,7 @@ public class PlaylistFormModel extends FormModel {
 
   public PlaylistFormModel() {
     super.PROPERTY_ORDER = new String[]{
+      "author",
       "id",
       "name",
       "category",
@@ -45,6 +46,9 @@ public class PlaylistFormModel extends FormModel {
 
       // Set render-type
       switch (key) {
+        case "author":
+          input.setRenderType(RenderType.DROPDOWN);
+          break;
         case "category":
           input.setRenderType(RenderType.DROPDOWN);
           break;
