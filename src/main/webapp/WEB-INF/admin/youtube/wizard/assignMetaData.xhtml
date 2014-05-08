@@ -41,6 +41,16 @@
         </fieldset>
 
         <fieldset>
+          <h:outputLabel for="selectDifficulties" value="#{backend['admin.form.label.author']}" />
+          <h:selectOneMenu 
+            id="selectDifficulties"
+            value="#{youTubeImportWizard.playlist.difficulty}"
+            >
+            <f:selectItems value="#{youTubeImportWizard.difficulties}" />
+          </h:selectOneMenu>
+        </fieldset>
+
+        <fieldset>
           <div class="pure-controls">    
             <h:commandButton 
               action="#{youTubeImportWizard.savePlaylist}"

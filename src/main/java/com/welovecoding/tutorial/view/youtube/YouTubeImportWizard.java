@@ -5,16 +5,22 @@ import com.welovecoding.tutorial.data.ConstraintViolationBagException;
 import com.welovecoding.tutorial.data.author.Author;
 import com.welovecoding.tutorial.data.category.Category;
 import com.welovecoding.tutorial.data.playlist.PlaylistService;
+import com.welovecoding.tutorial.data.playlist.entity.Difficulty;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import com.welovecoding.tutorial.data.youtube.YouTubeService;
 import com.welovecoding.tutorial.view.auth.AuthSessionBean;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.faces.component.UISelectItems;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -36,6 +42,7 @@ public class YouTubeImportWizard implements Serializable {
 
   private String playlistId = "";
   private Playlist playlist = null;
+  private SelectItem[] difficulties;
 
   @PostConstruct
   void init() {
@@ -45,6 +52,24 @@ public class YouTubeImportWizard implements Serializable {
   }
 
   public YouTubeImportWizard() {
+  }
+
+  public SelectItem[] getDifficulties() {
+    List<Difficulty> asList = Arrays.asList(Difficulty.class.getEnumConstants());
+    UISelectItems items = new UISelectItems();
+
+    List<SelectItem> selectItems = new ArrayList<>(asList.size());
+    for (Difficulty constant : asList) {
+      selectItems.add(new SelectItem(constant, constant.toString()));
+    }
+
+    SelectItem[] toArray = selectItems.toArray(new SelectItem[selectItems.size()]);
+
+    return toArray;
+  }
+
+  public void setDifficulties(SelectItem[] difficulties) {
+    this.difficulties = difficulties;
   }
 
   public void parsePlaylist() {
