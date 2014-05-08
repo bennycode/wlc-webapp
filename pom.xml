@@ -10,13 +10,7 @@
   <name>We Love Coding (webapp)</name>
   <url>https://github.com/bennyn/wlc-webapp</url>
   <inceptionYear>2014</inceptionYear>
-  <description>
-    <![CDATA[
-      We Love Coding provides a numerous collection of video tutorials for developers. 
-      The spectrum ranges from the introduction to object-oriented programming languages such as C#, Java, Ruby, and C++ 
-      to topics of web development with HTML5 and JavaScript and to the development of apps for iOS, Android and Windows Phone.
-    ]]>
-  </description>
+  <description>We Love Coding provides a numerous collection of video tutorials for developers. The spectrum ranges from the introduction to object-oriented programming languages such as C#, Java, Ruby, and C++ to topics of web development with HTML5 and JavaScript and to the development of apps for iOS, Android and Windows Phone.</description>
   <organization>
     <name>We Love Coding</name>
     <url>http://www.welovecoding.com</url>
