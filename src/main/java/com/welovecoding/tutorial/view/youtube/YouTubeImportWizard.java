@@ -55,17 +55,15 @@ public class YouTubeImportWizard implements Serializable {
   }
 
   public SelectItem[] getDifficulties() {
-    List<Difficulty> asList = Arrays.asList(Difficulty.class.getEnumConstants());
-    UISelectItems items = new UISelectItems();
+    Difficulty[] enumConstants = Difficulty.class.getEnumConstants();
+    SelectItem[] items = new SelectItem[enumConstants.length];
 
-    List<SelectItem> selectItems = new ArrayList<>(asList.size());
-    for (Difficulty constant : asList) {
-      selectItems.add(new SelectItem(constant, constant.toString()));
+    for (int i = 0; i < enumConstants.length; i++) {
+      Difficulty enumConstant = enumConstants[i];
+      items[i] = new SelectItem(enumConstant, enumConstant.toString());
     }
 
-    SelectItem[] toArray = selectItems.toArray(new SelectItem[selectItems.size()]);
-
-    return toArray;
+    return items;
   }
 
   public void setDifficulties(SelectItem[] difficulties) {
