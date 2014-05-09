@@ -8,6 +8,7 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.welovecoding.tutorial.data.playlist.PlaylistService;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import java.io.IOException;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -25,6 +26,8 @@ public class YouTubeService {
     YouTube youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName("we-love-coding").build();
     YouTubeRepository repository = new YouTubeRepository(youtube);
     com.google.api.services.youtube.model.Playlist ytPlaylist = repository.getPlaylist(playlistId);
+
+    repository.getVideos(playlistId, null);
 
     Playlist playlist = playlistService.getPlaylistByCode(ytPlaylist.getId());
     if (playlist == null) {

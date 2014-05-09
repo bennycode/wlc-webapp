@@ -35,6 +35,8 @@ import org.codehaus.jackson.map.PropertyNamingStrategy;
 @ApplicationScoped
 public class GoogleLoginBean implements Serializable {
 
+  private static final long serialVersionUID = 1L;
+
   // https://console.developers.google.com/project/apps~we-love-coding/apiui/credential
   private static final GoogleCredentials GOOGLE_CREDENTIALS = new GoogleCredentials();
   private static final String REGISTERED_REDIRECT_URI = "/oauth2callback";

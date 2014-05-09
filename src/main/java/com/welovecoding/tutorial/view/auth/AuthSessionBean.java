@@ -11,11 +11,15 @@ import javax.inject.Named;
 @SessionScoped
 public class AuthSessionBean implements Serializable {
 
+  private static final long serialVersionUID = 1L;
+
   private boolean isLoggedIn;
   private String deniedUrl;
   private User user;
-  // TODO: Put this into UserCredentials.java
-  private Credential credential;
+  // TODO: Better handling for 
+  // java.io.NotSerializableException: com.google.api.client.auth.oauth2.Credential
+  // needed. Atm. we use "transient" but that's uncool
+  private transient Credential credential;
 
   @PostConstruct
   void init() {
