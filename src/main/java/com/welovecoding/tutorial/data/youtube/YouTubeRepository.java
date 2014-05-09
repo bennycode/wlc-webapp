@@ -21,11 +21,9 @@ public class YouTubeRepository {
 
   private static final Logger log = Logger.getLogger(YouTubeRepository.class.getName());
   private final YouTube youtube;
-  private List<PlaylistItem> playlistItems;
 
   public YouTubeRepository(YouTube youtube) {
     this.youtube = youtube;
-    this.playlistItems = new ArrayList<>();
   }
 
   public void logChannelDetails(String playlistItemId) {
@@ -115,13 +113,15 @@ public class YouTubeRepository {
     return playlist;
   }
 
-  public Playlist getVideos(String playlistId, String pageToken) {
-    Playlist playlist = null;
+  public List<PlaylistItem> getVideos(String playlistId) {
+    List<PlaylistItem> playlistItems = new ArrayList<>();
 
-    if (pageToken == null) {
-      playlistItems = new ArrayList<>();
-    }
+    getVideos(playlistId, null, playlistItems);
 
+    return playlistItems;
+  }
+
+  private void getVideos(String playlistId, String pageToken, List<PlaylistItem> playlistItems) {
     try {
       YouTube.PlaylistItems.List query = youtube.playlistItems().list("id,snippet,contentDetails");
       query.setPlaylistId(playlistId);
@@ -136,20 +136,16 @@ public class YouTubeRepository {
       // Parse results
       for (PlaylistItem playlistItem : response.getItems()) {
         playlistItems.add(playlistItem);
-        System.out.println(playlistItem.getContentDetails().getVideoId());
       }
 
       String nextPageToken = response.getNextPageToken();
-      System.out.println("PAGE TOKEN: " + nextPageToken);
 
       if (nextPageToken != null) {
-        getVideos(playlistId, nextPageToken);
+        getVideos(playlistId, nextPageToken, playlistItems);
       }
 
     } catch (Exception ex) {
       Logger.getLogger(YouTubeRepository.class.getName()).log(Level.SEVERE, null, ex);
     }
-
-    return playlist;
   }
 }

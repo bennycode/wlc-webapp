@@ -6,9 +6,11 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.model.PlaylistItem;
 import com.welovecoding.tutorial.data.playlist.PlaylistService;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -27,7 +29,8 @@ public class YouTubeService {
     YouTubeRepository repository = new YouTubeRepository(youtube);
     com.google.api.services.youtube.model.Playlist ytPlaylist = repository.getPlaylist(playlistId);
 
-    repository.getVideos(playlistId, null);
+    List<PlaylistItem> videos = repository.getVideos(playlistId);
+    System.out.println("Video count: " + videos.size());
 
     Playlist playlist = playlistService.getPlaylistByCode(ytPlaylist.getId());
     if (playlist == null) {
