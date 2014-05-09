@@ -6,7 +6,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
   <body>
     <ui:composition>
-      <!-- TODO: put h:form elements that are using the "pure" styling in a composite component -->
       <h:form class="pure-form pure-form-stacked">
         <fieldset>
           <h:outputLabel for="selectCategory" value="#{backend['admin.form.label.category']}" />
@@ -46,7 +45,23 @@
             id="selectDifficulties"
             value="#{youTubeImportWizard.playlist.difficulty}"
             >
-            <f:selectItems value="#{youTubeImportWizard.difficulties}" />
+            <f:selectItems value="#{difficultyController.difficulties}" 
+                           var="difficulty"
+                           itemValue="#{difficulty}" 
+                           itemLabel="#{backend[difficulty.label]}" />
+          </h:selectOneMenu>
+        </fieldset>
+
+        <fieldset>
+          <h:outputLabel for="selectLanguageCode" value="#{backend['admin.form.label.languageCode']}" />
+          <h:selectOneMenu 
+            id="selectLanguageCode"
+            value="#{youTubeImportWizard.playlist.languageCode}"
+            >
+            <f:selectItems value="#{languageCodeController.languages}" 
+                           var="language"
+                           itemValue="#{language}" 
+                           itemLabel="#{backend[language.label]}" />
           </h:selectOneMenu>
         </fieldset>
 

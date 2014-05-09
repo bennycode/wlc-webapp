@@ -2,20 +2,23 @@ package com.welovecoding.tutorial.data.playlist.entity;
 
 public enum Provider {
 
-  YOUTUBE,
-  VIMEO,
-  CHANNEL9;
+  CHANNEL9("Channel9"),
+  VIMEO("Vimeo"),
+  YOUTUBE("YouTube");
+
+  private final String label;
+
+  private Provider(String label) {
+    this.label = label;
+  }
+
+  public String getLabel() {
+    return label;
+  }
 
   @Override
   public String toString() {
-    switch (this) {
-      case CHANNEL9:
-        return "Channel9";
-      case VIMEO:
-        return "Vimeo";
-      default:
-        return "YouTube";
-    }
+    return label;
   }
 
 }

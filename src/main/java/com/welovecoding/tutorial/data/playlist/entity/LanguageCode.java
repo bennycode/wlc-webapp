@@ -3,12 +3,23 @@ package com.welovecoding.tutorial.data.playlist.entity;
 /**
  * Example: "en" (English), "ja" (Japanese), "kok" (Konkani)
  *
- * @see http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
- * @see http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html
+ * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+ * http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html
  */
 public enum LanguageCode {
 
-  en, de;
+  de("admin.locale.de"),
+  en("admin.locale.en");
+
+  private final String label;
+
+  private LanguageCode(String label) {
+    this.label = label;
+  }
+
+  public String getLabel() {
+    return label;
+  }
 
   @Override
   public String toString() {

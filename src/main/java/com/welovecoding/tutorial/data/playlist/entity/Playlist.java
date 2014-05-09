@@ -1,5 +1,6 @@
 package com.welovecoding.tutorial.data.playlist.entity;
 
+import com.welovecoding.tutorial.data.Slugify;
 import com.welovecoding.tutorial.data.author.Author;
 import com.welovecoding.tutorial.data.base.BaseEntity;
 import com.welovecoding.tutorial.data.category.Category;
@@ -86,7 +87,7 @@ public class Playlist extends BaseEntity {
   }
 
   public String getSlug() {
-    return slug;
+    return Slugify.slugify(name);
   }
 
   public void setSlug(String slug) {

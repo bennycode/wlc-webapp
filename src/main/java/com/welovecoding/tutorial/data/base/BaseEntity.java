@@ -27,7 +27,7 @@ public class BaseEntity implements Serializable {
   @NotNull
   @Size(min = 1, max = 255)
   @Basic(optional = false)
-  private String name;
+  protected String name;
 
   @Temporal(value = TemporalType.TIMESTAMP)
   private Date created;

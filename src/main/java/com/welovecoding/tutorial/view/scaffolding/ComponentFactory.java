@@ -82,23 +82,30 @@ public class ComponentFactory {
     String key = property.getKey();
     Class<?> expectedType = property.getValue();
 
+    // Getting all available enum constants
     List<?> constants = Arrays.asList(expectedType.getEnumConstants());
-    UISelectItems items = new UISelectItems();
 
+    // Selectable items
     List<SelectItem> selectItems = new ArrayList<>(constants.size());
     for (Object constant : constants) {
       selectItems.add(new SelectItem(constant, constant.toString()));
     }
 
+    // Component for selectable items: <f:selectItems />
+    UISelectItems items = new UISelectItems();
     items.setValue(selectItems);
 
+    // Expression for actual value binding
+    // Example: #{playlistController.item.difficulty}
+    String jsfValue = String.format("#{%s.item.%s}", controllerBeanName, key);
+    ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, expectedType);
+
+    // Creating <h:selectOneMenu />
     HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
     menu.setId(key);
     menu.getChildren().add(items);
-
-    String jsfValue = String.format("#{%s.item.%s}", controllerBeanName, key);
-    ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, expectedType);
     menu.setValueExpression("value", valueExpression);
+
     return menu;
   }
 

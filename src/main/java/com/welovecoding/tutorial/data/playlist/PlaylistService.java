@@ -2,7 +2,6 @@ package com.welovecoding.tutorial.data.playlist;
 
 import com.welovecoding.tutorial.data.base.BaseService;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
-import com.welovecoding.tutorial.data.playlist.PlaylistRepository;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;

@@ -3,8 +3,6 @@ package com.welovecoding.tutorial.view.playlist;
 import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
 import com.welovecoding.tutorial.view.Pages;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
-import com.welovecoding.tutorial.data.author.AuthorService;
-import com.welovecoding.tutorial.data.category.CategoryService;
 import com.welovecoding.tutorial.data.playlist.PlaylistService;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -18,17 +16,8 @@ public class PlaylistController
         extends GenFormBaseController<Playlist, PlaylistService>
         implements Serializable {
 
-  @EJB
-  private PlaylistService service;
-
-  @EJB
-  private AuthorService authorService;
-
-  @EJB
-  private CategoryService categoryService;
-
+  @EJB private PlaylistService service;
   private Long authorId;
-
   private Long categoryId;
 
   @Override
