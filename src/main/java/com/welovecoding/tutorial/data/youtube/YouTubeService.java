@@ -9,7 +9,9 @@ import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.PlaylistItem;
 import com.welovecoding.tutorial.data.playlist.PlaylistService;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import com.welovecoding.tutorial.data.video.Video;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -29,9 +31,6 @@ public class YouTubeService {
     YouTubeRepository repository = new YouTubeRepository(youtube);
     com.google.api.services.youtube.model.Playlist ytPlaylist = repository.getPlaylist(playlistId);
 
-    List<PlaylistItem> videos = repository.getVideos(playlistId);
-    System.out.println("Video count: " + videos.size());
-
     Playlist playlist = playlistService.getPlaylistByCode(ytPlaylist.getId());
     if (playlist == null) {
       playlist = new Playlist();
@@ -39,6 +38,22 @@ public class YouTubeService {
 
     YouTubeMapper.updatePlaylist(playlist, ytPlaylist);
 
+    // Convert YouTube playlist items to playlist entities
+    List<PlaylistItem> playlistItems = repository.getVideos(playlistId);
+    List<Video> videos = new ArrayList<>(playlistItems.size());
+
+    // TODO: Don't forget to map the language!
+    for (PlaylistItem playlistItem : playlistItems) {
+      Video video = YouTubeMapper.mapVideo(playlistItem);
+      video.setPlaylist(playlist);
+      videos.add(video);
+    }
+
+    // Bean Validation constraint(s) violated while executing Automatic Bean Validation on callback event:'prePersist'. Please refer to embedded ConstraintViolations for details
+    // TODO: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry 'Cl9AkUL49U0' for key 'CODE'
+    // Note: Will the videos already be saved when we execute "setVideos"??
+    // http://stackoverflow.com/questions/12902827/jpa-merge-results-in-duplicate-entry-of-foreign-entity
+     playlist.setVideos(videos);
     // Return data
     return playlist;
   }
