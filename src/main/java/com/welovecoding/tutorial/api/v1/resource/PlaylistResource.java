@@ -1,10 +1,10 @@
 package com.welovecoding.tutorial.api.v1.resource;
 
-import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import static com.welovecoding.tutorial.api.v1.RestConfig.JSON_MEDIATYPE;
 import com.welovecoding.tutorial.api.v1.dto.PlaylistDTO;
 import com.welovecoding.tutorial.api.v1.mapping.DTOMapper;
 import com.welovecoding.tutorial.data.playlist.PlaylistService;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.List;
 import javax.ejb.EJB;
@@ -26,7 +26,7 @@ public class PlaylistResource {
   public PlaylistResource() {
   }
 
-  @RESTCache(genericTypeHint = "com.welovecoding.rest.v1.dto.PlaylistDTO")
+  @RESTCache(genericTypeHint = "com.welovecoding.tutorial.api.v1.dto.PlaylistDTO")
   @GET
   @Path("category/{categoryid}")
   @Produces(JSON_MEDIATYPE)

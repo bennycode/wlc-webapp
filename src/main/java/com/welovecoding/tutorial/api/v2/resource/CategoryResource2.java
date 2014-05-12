@@ -35,7 +35,8 @@ public class CategoryResource2 {
   }
 
   @GET
-  @RESTCache(genericTypeHint = "com.welovecoding.rest.v2.dto.CategoryDTO")
+  
+  @RESTCache(genericTypeHint = "com.welovecoding.tutorial.api.v2.dto.CategoryDTO")
   @Produces(JSON_MEDIATYPE)
   public Response getCategories(@Context Request req, @Context UriInfo uriInfo) {
 
@@ -51,7 +52,8 @@ public class CategoryResource2 {
   }
 
   @GET
-  @RESTCache(genericTypeHint = "com.welovecoding.rest.v2.dto.CategoryDTO")
+  
+  @RESTCache(genericTypeHint = "com.welovecoding.tutorial.api.v2.dto.CategoryDTO")
   @Path("{categoryid}")
   @Produces(JSON_MEDIATYPE)
   public Response getCategory(@PathParam("categoryid") Long categoryid, @Context Request req, @Context UriInfo uriInfo) {

@@ -34,7 +34,8 @@ public class PlaylistResource2 {
   }
 
   @GET
-  @RESTCache(genericTypeHint = "com.welovecoding.rest.v2.dto.PlaylistDTO")
+  
+  @RESTCache(genericTypeHint = "com.welovecoding.tutorial.api.v2.dto.PlaylistDTO")
   @Path("{playlistid}")
   @Produces(JSON_MEDIATYPE)
   public Response getPlaylist(@PathParam("categoryid") Long categoryid, @PathParam("playlistid") Long playlistid, @Context Request req, @Context UriInfo uriInfo) {

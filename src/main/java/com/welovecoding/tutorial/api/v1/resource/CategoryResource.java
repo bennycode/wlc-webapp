@@ -1,9 +1,9 @@
 package com.welovecoding.tutorial.api.v1.resource;
 
-import com.welovecoding.tutorial.data.category.Category;
 import static com.welovecoding.tutorial.api.v1.RestConfig.JSON_MEDIATYPE;
 import com.welovecoding.tutorial.api.v1.dto.CategoryDTO;
 import com.welovecoding.tutorial.api.v1.mapping.DTOMapper;
+import com.welovecoding.tutorial.data.category.Category;
 import com.welovecoding.tutorial.data.category.CategoryService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.List;
@@ -25,7 +25,7 @@ public class CategoryResource {
   public CategoryResource() {
   }
 
-  @RESTCache(genericTypeHint = "com.welovecoding.rest.v1.dto.CategoryDTO")
+  @RESTCache(genericTypeHint = "com.welovecoding.tutorial.api.v1.dto.CategoryDTO")
   @GET
   @Path("categories")
   @Produces(JSON_MEDIATYPE)

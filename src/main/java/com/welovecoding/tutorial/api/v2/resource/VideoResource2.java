@@ -31,7 +31,7 @@ public class VideoResource2 {
   }
 
   @GET
-  @RESTCache(genericTypeHint = "com.welovecoding.rest.v2.dto.VideoDTO")
+  @RESTCache(genericTypeHint = "com.welovecoding.tutorial.api.v2.dto.VideoDTO")
   @Path("{videoid}")
   @Produces(JSON_MEDIATYPE)
   public Response getVideo(@PathParam("categoryid") Long categoryid, @PathParam("playlistid") Long playlistid, @PathParam("videoid") Long videoid, @Context Request req, @Context UriInfo uriInfo) {

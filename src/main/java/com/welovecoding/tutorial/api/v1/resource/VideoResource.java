@@ -1,9 +1,9 @@
 package com.welovecoding.tutorial.api.v1.resource;
 
-import com.welovecoding.tutorial.data.video.Video;
 import static com.welovecoding.tutorial.api.v1.RestConfig.JSON_MEDIATYPE;
 import com.welovecoding.tutorial.api.v1.dto.VideoDTO;
 import com.welovecoding.tutorial.api.v1.mapping.DTOMapper;
+import com.welovecoding.tutorial.data.video.Video;
 import com.welovecoding.tutorial.data.video.VideoService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
 import java.util.List;
@@ -26,7 +26,7 @@ public class VideoResource {
   public VideoResource() {
   }
 
-  @RESTCache(genericTypeHint = "com.welovecoding.rest.v1.dto.VideoDTO")
+  @RESTCache(genericTypeHint = "com.welovecoding.tutorial.api.v1.dto.VideoDTO")
   @GET
   @Path("playlist/{playlistid}")
   @Produces(JSON_MEDIATYPE)
