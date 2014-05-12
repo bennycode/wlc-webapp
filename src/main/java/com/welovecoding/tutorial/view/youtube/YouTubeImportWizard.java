@@ -7,6 +7,7 @@ import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import com.welovecoding.tutorial.data.youtube.YouTubeService;
 import com.welovecoding.tutorial.view.auth.AuthSessionBean;
 import java.io.Serializable;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -15,6 +16,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.ConstraintViolation;
 
 @Named
 @ConversationScoped
@@ -53,15 +55,23 @@ public class YouTubeImportWizard implements Serializable {
     }
   }
 
-  public void assignMetaData() {
-    step = "assignMetaData";
+  public void addMetaData() {
+    step = "addMetaData";
   }
 
   public void savePlaylist() {
     try {
       playlistService.edit(playlist);
     } catch (ConstraintViolationBagException ex) {
-      Logger.getLogger(YouTubeImportWizard.class.getName()).log(Level.SEVERE, null, ex);
+      Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
+      for (ConstraintViolation<?> constraintViolation : constraintViolations) {
+        String propertyPath = constraintViolation.getPropertyPath().toString();
+        String message = constraintViolation.getMessage();
+        Logger.getLogger(YouTubeImportWizard.class.getName()).log(Level.SEVERE, null, propertyPath + ": " + message);
+      }
+    } finally {
+      this.playlistId = "";
+      this.playlist = null;
     }
 
     conversation.end();

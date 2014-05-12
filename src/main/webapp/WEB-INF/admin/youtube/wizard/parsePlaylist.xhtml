@@ -20,9 +20,9 @@
           <div class="pure-control-group">
             <label for="playlistId">Playlist ID</label>
             <h:inputText
-              p:placeholder="PL0EE421AE8BCEBA4A"
+              p:placeholder="PL5-HGvYNkCrXyJtUwfaSXYsL6xX8fCT23"
               p:required="required"
-              p:value="PL0EE421AE8BCEBA4A"              
+              p:value="PL5-HGvYNkCrXyJtUwfaSXYsL6xX8fCT23"              
               id="playlistId"
               value="#{youTubeImportWizard.playlistId}"
               >
@@ -69,7 +69,7 @@
 
       <h:form id="submitForm">
         <h:commandButton 
-          action="#{youTubeImportWizard.assignMetaData}"
+          action="#{youTubeImportWizard.addMetaData()}"
           rendered="#{not empty youTubeImportWizard.playlist}"
           styleClass="pure-button pure-button-primary"
           value="Weiter"

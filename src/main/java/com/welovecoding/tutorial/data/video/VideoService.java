@@ -8,14 +8,14 @@ import java.util.List;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 
 @Stateless
 public class VideoService extends BaseService<Video, VideoRepository> {
 
-  @EJB
-  private VideoRepository repository;
-  @EJB
-  private OwnCacheServerService cacheService;
+  @EJB private VideoRepository repository;
+  @EJB private OwnCacheServerService cacheService;
 
   public VideoService() {
     super(Video.class);
@@ -32,6 +32,11 @@ public class VideoService extends BaseService<Video, VideoRepository> {
   }
 
   public Video getVideoByCode(String code) {
+    return repository.findByCode(code);
+  }
+
+  @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+  public Video getDetachedVideoByCode(String code) {
     return repository.findByCode(code);
   }
 

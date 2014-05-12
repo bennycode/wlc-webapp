@@ -1,7 +1,6 @@
 package com.welovecoding.tutorial.data.video;
 
 import com.welovecoding.tutorial.data.base.BaseRepository;
-import com.welovecoding.tutorial.data.video.Video;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +29,7 @@ public class VideoRepository extends BaseRepository<Video> {
 
   public Video findByCode(String code) {
     Video video = null;
+
     try {
       video = em.createNamedQuery(Video.FIND_BY_CODE, Video.class).setParameter("code", code).getSingleResult();
     } catch (NoResultException e) {
