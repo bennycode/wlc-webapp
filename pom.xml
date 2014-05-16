@@ -309,6 +309,49 @@
     
     <plugins>
       <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <id>render-maven-properties</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <echo>STAGE................................: ${javax.faces.project.stage}</echo>
+                <echo>-------------------------------------------</echo>
+                <echo>project.artifactId...................: ${project.artifactId}</echo>
+                <echo>project.basedir......................: ${project.basedir}</echo>
+                <echo>project.build.directory..............: ${project.build.directory}</echo>
+                <echo>project.build.outputDirectory........: ${project.build.outputDirectory}</echo>
+                <echo></echo>
+                <echo>-- Remote Deploy Information --</echo>
+                <echo>gf.remote.address....................: ${gf.remote.address}</echo>
+                <echo>gf.remote.port.......................: ${gf.remote.port}</echo>
+                <echo>gf.remote.deployable.type............: ${gf.remote.deployable.type}</echo>
+                <echo></echo>
+                <echo>-- Database Information --</echo>
+                <echo>jdbc.url.............................: ${jdbc.url}</echo>
+                <echo>jdbc.username........................: ${jdbc.username}</echo>
+                <echo>jdbc.password........................: ${jdbc.password}</echo>
+                <echo>sql.driver.version...................: ${sql.driver.version}</echo>
+                <echo></echo>
+                <echo>-- Google Information --</echo>
+                <echo>auth.google.client.id................: ${auth.google.client.id}</echo>
+                <echo>auth.google.client.secret............: ${auth.google.client.secret}</echo>
+                <echo></echo>
+                <echo>-- Other Information --</echo>
+                <echo>test.secured.url.....................: ${test.secured.url}</echo>
+                <echo>test.generate.data...................: ${test.generate.data}</echo>
+                
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
