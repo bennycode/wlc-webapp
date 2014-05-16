@@ -2,8 +2,11 @@ package com.welovecoding.tutorial.data.base;
 
 import com.welovecoding.tutorial.data.ConstraintViolationBagException;
 import de.yser.ownsimplecache.OwnCacheServerService;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.MappedSuperclass;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -12,6 +15,8 @@ import javax.validation.Validator;
 @MappedSuperclass
 //@Interceptors({EJBLoggerInterceptor.class})
 public abstract class BaseService<T extends BaseEntity, E extends BaseRepository<T>> {
+
+  private static final Logger LOG = Logger.getLogger(BaseService.class.getName());
 
   private final Class<T> entityClass;
 
@@ -46,6 +51,13 @@ public abstract class BaseService<T extends BaseEntity, E extends BaseRepository
   protected void validateEntity(T entity) throws ConstraintViolationBagException {
     Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     Set<ConstraintViolation<T>> constraintViolations = validator.validate(entity);
+
+    Iterator<ConstraintViolation<T>> iterator = constraintViolations.iterator();
+    while (iterator.hasNext()) {
+      ConstraintViolation<T> item = iterator.next();
+      String property = item.getPropertyPath().toString();
+      LOG.log(Level.INFO, "Validation error in ''{0}''. Reason: ''{1}''.", new Object[]{property, item.getMessage()});
+    }
 
     if (constraintViolations.size() > 0) {
       throw new ConstraintViolationBagException(constraintViolations);

@@ -10,52 +10,71 @@ import com.google.api.services.youtube.model.PlaylistItem;
 import com.welovecoding.tutorial.data.playlist.PlaylistService;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import com.welovecoding.tutorial.data.video.Video;
-import java.io.IOException;
+import com.welovecoding.tutorial.data.video.VideoService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 @Stateless
 public class YouTubeService {
 
+  private static final Logger LOG = Logger.getLogger(YouTubeService.class.getName());
+
   private static final JsonFactory JSON_FACTORY = new JacksonFactory();
   private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
-  @EJB
-  private PlaylistService playlistService;
+  @EJB private PlaylistService playlistService;
+  @EJB private VideoService videoService;
 
   public Playlist getPlaylist(String playlistId, Credential credential) {
-    // Get data
     YouTube youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName("we-love-coding").build();
     YouTubeRepository repository = new YouTubeRepository(youtube);
+
+    // Get playlist
     com.google.api.services.youtube.model.Playlist ytPlaylist = repository.getPlaylist(playlistId);
-
-    Playlist playlist = playlistService.getPlaylistByCode(ytPlaylist.getId());
-    if (playlist == null) {
-      playlist = new Playlist();
-    }
-
+    Playlist playlist = getPlaylist(ytPlaylist.getId());
     YouTubeMapper.updatePlaylist(playlist, ytPlaylist);
 
     // Convert YouTube playlist items to playlist entities
     List<PlaylistItem> playlistItems = repository.getVideos(playlistId);
     List<Video> videos = new ArrayList<>(playlistItems.size());
 
-    // TODO: Don't forget to map the language!
     for (PlaylistItem playlistItem : playlistItems) {
-      Video video = YouTubeMapper.mapVideo(playlistItem);
+      String videoId = playlistItem.getContentDetails().getVideoId();
+      LOG.log(Level.INFO, "Fetched video ID: {0}", videoId);
+      Video video = getVideo(videoId);
+      YouTubeMapper.updateVideo(video, playlistItem);
       video.setPlaylist(playlist);
       videos.add(video);
     }
 
-    // Bean Validation constraint(s) violated while executing Automatic Bean Validation on callback event:'prePersist'. Please refer to embedded ConstraintViolations for details
-    // TODO: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry 'Cl9AkUL49U0' for key 'CODE'
-    // Note: Will the videos already be saved when we execute "setVideos"??
-    // http://stackoverflow.com/questions/12902827/jpa-merge-results-in-duplicate-entry-of-foreign-entity
-     playlist.setVideos(videos);
-    // Return data
+    // Connect videos and playlist
+    playlist.setVideos(videos);
+
     return playlist;
+  }
+
+  private Playlist getPlaylist(String code) {
+    Playlist playlist = playlistService.getDetachedPlaylistByCode(code);
+
+    if (playlist == null) {
+      playlist = new Playlist();
+    }
+
+    return playlist;
+  }
+
+  private Video getVideo(String code) {
+    Video video = videoService.getDetachedVideoByCode(code);
+
+    if (video == null) {
+      video = new Video();
+    }
+
+    return video;
   }
 
 }

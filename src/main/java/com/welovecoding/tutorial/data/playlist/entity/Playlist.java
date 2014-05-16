@@ -53,7 +53,7 @@ public class Playlist extends BaseEntity {
   @ManyToOne(cascade = CascadeType.PERSIST)
   private Author author;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist", orphanRemoval = true)
   private List<Video> videos;
 
   private String code;
@@ -84,6 +84,12 @@ public class Playlist extends BaseEntity {
 
   public void setProvider(Provider provider) {
     this.provider = provider;
+  }
+
+  @Override
+  public void setName(String name) {
+    super.setName(name);
+    this.slug = Slugify.slugify(name);
   }
 
   public String getSlug() {

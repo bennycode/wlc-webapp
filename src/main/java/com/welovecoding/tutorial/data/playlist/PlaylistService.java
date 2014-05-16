@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 
 @Stateless
 public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
 
-  @EJB
-  private PlaylistRepository repository;
-  @EJB
-  private OwnCacheServerService cacheService;
+  @EJB private PlaylistRepository repository;
+  @EJB private OwnCacheServerService cacheService;
 
   public PlaylistService() {
     super(Playlist.class);
@@ -42,6 +42,11 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
 
   public Playlist findInCategory(Long categoryid, Long playlistid) {
     return repository.findInCategory(categoryid, playlistid);
+  }
+
+  @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+  public Playlist getDetachedPlaylistByCode(String code) {
+    return repository.findByCode(code);
   }
 
   @Override
