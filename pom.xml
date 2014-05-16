@@ -349,6 +349,8 @@
                 <echo>-- Remote Deploy Information --</echo>
                 <echo>gf.remote.address....................: ${gf.remote.address}</echo>
                 <echo>gf.remote.port.......................: ${gf.remote.port}</echo>
+                <echo>gf.remote.username...................: ${gf.remote.username}</echo>
+                <echo>gf.remote.password...................: ${gf.remote.password}</echo>
                 <echo>gf.remote.deployable.type............: ${gf.remote.deployable.type}</echo>
                 <echo></echo>
                 <echo>-- Database Information --</echo>
