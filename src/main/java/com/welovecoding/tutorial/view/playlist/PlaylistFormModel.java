@@ -23,7 +23,8 @@ public class PlaylistFormModel extends FormModel {
       "code",
       "videos",
       "created",
-      "lastModified"
+      "lastModified",
+      "creator"
     };
   }
 
@@ -36,13 +37,7 @@ public class PlaylistFormModel extends FormModel {
     // Parse each property and collect them in a map
     for (Map.Entry<String, Class<?>> property : properties.entrySet()) {
       FormInput input = new FormInput(property);
-
       String key = input.getKey();
-
-      // Set read-only
-      if (key.equals("id") || key.equals("created") || key.equals("lastModified")) {
-        input.setReadOnly(true);
-      }
 
       // Set render-type
       switch (key) {
@@ -52,14 +47,27 @@ public class PlaylistFormModel extends FormModel {
         case "category":
           input.setRenderType(RenderType.DROPDOWN);
           break;
+        case "created":
+          input.setReadOnly(true);
+          break;
+        case "creator":
+          input.setRenderType(RenderType.DROPDOWN);
+          input.setReadOnly(true);
+          break;
         case "description":
           input.setRenderType(RenderType.TEXTAREA);
           break;
         case "difficulty":
           input.setRenderType(RenderType.ENUM);
           break;
+        case "id":
+          input.setReadOnly(true);
+          break;
         case "languageCode":
           input.setRenderType(RenderType.ENUM);
+          break;
+        case "lastModified":
+          input.setReadOnly(true);
           break;
         case "provider":
           input.setRenderType(RenderType.ENUM);

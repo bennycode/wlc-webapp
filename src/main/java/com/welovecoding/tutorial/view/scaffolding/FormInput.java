@@ -19,6 +19,7 @@ public class FormInput {
   }
 
   public FormInput(Map.Entry<String, Class<?>> property) {
+    this();
     this.key = property.getKey();
     this.value = property.getValue();
   }

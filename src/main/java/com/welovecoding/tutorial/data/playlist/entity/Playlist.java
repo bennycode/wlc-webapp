@@ -4,11 +4,12 @@ import com.welovecoding.tutorial.data.Slugify;
 import com.welovecoding.tutorial.data.author.Author;
 import com.welovecoding.tutorial.data.base.BaseEntity;
 import com.welovecoding.tutorial.data.category.Category;
-import com.welovecoding.tutorial.data.video.Video;
 import static com.welovecoding.tutorial.data.playlist.entity.Playlist.FIND_ALL_IN_CATEGORY;
 import static com.welovecoding.tutorial.data.playlist.entity.Playlist.FIND_BY_CODE;
 import static com.welovecoding.tutorial.data.playlist.entity.Playlist.FIND_IN_CATEGORY;
 import static com.welovecoding.tutorial.data.playlist.entity.Playlist.LIKE_NAME;
+import com.welovecoding.tutorial.data.user.entity.User;
+import com.welovecoding.tutorial.data.video.Video;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
@@ -45,13 +46,14 @@ public class Playlist extends BaseEntity {
   @Embedded @Enumerated(EnumType.STRING)
   private Difficulty difficulty;
 
-  @NotNull
-  @ManyToOne(cascade = CascadeType.PERSIST)
+  @NotNull @ManyToOne(cascade = CascadeType.PERSIST)
   private Category category;
 
-  @NotNull
-  @ManyToOne(cascade = CascadeType.PERSIST)
+  @NotNull @ManyToOne(cascade = CascadeType.PERSIST)
   private Author author;
+
+  @NotNull @ManyToOne(cascade = CascadeType.PERSIST)
+  private User creator;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist", orphanRemoval = true)
   private List<Video> videos;
@@ -164,4 +166,11 @@ public class Playlist extends BaseEntity {
     this.difficulty = difficulty;
   }
 
+  public User getCreator() {
+    return creator;
+  }
+
+  public void setCreator(User creator) {
+    this.creator = creator;
+  }
 }

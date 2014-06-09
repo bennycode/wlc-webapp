@@ -135,12 +135,13 @@ public class ComponentFactory {
       selectItems.add(new SelectItem(itemInList, itemInList.getName()));
     }
 
-    UISelectItems items = new UISelectItems();
-    items.setValue(selectItems);
-
     HtmlSelectOneMenu menu = new HtmlSelectOneMenu();
     menu.setConverter(new DropdownItemsConverter());
     menu.setId(key);
+    menu.setReadonly(property.isReadOnly());
+
+    UISelectItems items = new UISelectItems();
+    items.setValue(selectItems);
     menu.getChildren().add(items);
 
     String jsfValue = String.format("#{%s.item.%s}", controllerBeanName, key);

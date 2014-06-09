@@ -13,13 +13,13 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @NamedQueries({
-  @NamedQuery(name = FIND_BY_EMAIL, query = "SELECT u FROM User u WHERE u.email = :email"),})
+  @NamedQuery(name = FIND_BY_EMAIL, query = "SELECT u FROM User u WHERE u.email = :email")
+})
 public class User extends BaseEntity {
 
   public static final String FIND_BY_EMAIL = "User.findByEmail";
 
-  @NotNull
-  @Column(unique = true)
+  @NotNull @Column(unique = true)
   private String email;
 
   @OneToMany(cascade = CascadeType.ALL, targetEntity = UserCredentials.class, mappedBy = "user")
