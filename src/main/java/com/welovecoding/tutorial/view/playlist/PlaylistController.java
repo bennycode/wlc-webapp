@@ -4,10 +4,12 @@ import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
 import com.welovecoding.tutorial.view.Pages;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import com.welovecoding.tutorial.data.playlist.PlaylistService;
+import com.welovecoding.tutorial.view.auth.AuthSessionBean;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
@@ -16,6 +18,7 @@ public class PlaylistController
         extends GenFormBaseController<Playlist, PlaylistService>
         implements Serializable {
 
+  @Inject private AuthSessionBean userSessionBean;
   @EJB private PlaylistService service;
   private Long authorId;
   private Long categoryId;
@@ -33,6 +36,7 @@ public class PlaylistController
 
   @Override
   public String edit() {
+    this.item.setCreator(userSessionBean.getUser());
     super.edit();
     this.item = new Playlist();
     return Pages.ADMIN_PLAYLISTS;
