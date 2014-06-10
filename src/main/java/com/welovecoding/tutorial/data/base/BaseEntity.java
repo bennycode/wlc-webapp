@@ -1,8 +1,18 @@
 package com.welovecoding.tutorial.data.base;
 
+import com.welovecoding.tutorial.view.scaffolding.ComponentFactory;
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.text.MessageFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Objects;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -88,15 +98,55 @@ public class BaseEntity implements Serializable {
       return false;
     }
     final BaseEntity other = (BaseEntity) obj;
-    if (!Objects.equals(this.id, other.id)) {
-      return false;
-    }
-    return true;
+    return Objects.equals(this.id, other.id);
   }
 
   @Override
   public String toString() {
     return String.format("%s[id=%d]", getClass().getSimpleName(), getId());
+  }
+
+  public String propertyLog() {
+    Class<?> aClass = this.getClass();
+    Field[] declaredFields = aClass.getDeclaredFields();
+    Map<String, String> logEntries = new HashMap<>();
+
+    for (Field field : declaredFields) {
+      field.setAccessible(true);
+
+      Object[] arguments;
+      try {
+        arguments = new Object[]{
+          field.getName(),
+          field.getType().getSimpleName(),
+          String.valueOf(field.get(this))
+        };
+      } catch (IllegalArgumentException | IllegalAccessException ex) {
+        arguments = new Object[]{
+          field.getName(),
+          field.getType().getSimpleName(),
+          ""
+        };
+      }
+
+      String template = "- Property: {0} (\"{2}\", {1})";
+      String logMessage = System.getProperty("line.separator")
+              + MessageFormat.format(template, arguments);
+
+      logEntries.put(field.getName(), logMessage);
+    }
+
+    SortedSet<String> sortedLog = new TreeSet<>(logEntries.keySet());
+
+    StringBuilder sb = new StringBuilder("Class properties:");
+
+    Iterator<String> it = sortedLog.iterator();
+    while (it.hasNext()) {
+      String key = it.next();
+      sb.append(logEntries.get(key));
+    }
+
+    return sb.toString();
   }
 
 }

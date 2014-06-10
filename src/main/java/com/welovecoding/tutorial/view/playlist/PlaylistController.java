@@ -36,6 +36,9 @@ public class PlaylistController
 
   @Override
   public String edit() {
+    String propertyLog = this.item.propertyLog();
+    System.out.println(propertyLog);
+    // TODO: User should be bound in the view with the JSF form field
     this.item.setCreator(userSessionBean.getUser());
     super.edit();
     this.item = new Playlist();

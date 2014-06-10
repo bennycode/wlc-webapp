@@ -37,6 +37,7 @@ public class ComponentFactory {
   public static final String BACKEND_MESSAGES_NAME = "backend";
 
   public ComponentFactory(String controllerBeanName) {
+    ComponentFactory.LOG.setLevel(Level.FINEST);
     this.controllerBeanName = controllerBeanName;
     FacesContext context = FacesContext.getCurrentInstance();
     this.backendText = context.getApplication().getResourceBundle(context, BACKEND_MESSAGES_NAME);
@@ -143,10 +144,13 @@ public class ComponentFactory {
     UISelectItems items = new UISelectItems();
     items.setValue(selectItems);
     menu.getChildren().add(items);
+    // TODO: Check if the user is selected in "j_idt42:j_idt46:creator"
 
     String jsfValue = String.format("#{%s.item.%s}", controllerBeanName, key);
     ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, expectedType);
     menu.setValueExpression("value", valueExpression);
+
+    LOG.log(Level.FINEST, "Creating dropdown with value expression: {0}", jsfValue);
 
     return menu;
   }
