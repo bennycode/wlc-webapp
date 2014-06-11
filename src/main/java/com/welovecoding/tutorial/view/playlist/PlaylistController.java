@@ -1,5 +1,6 @@
 package com.welovecoding.tutorial.view.playlist;
 
+import com.welovecoding.Debugger;
 import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
 import com.welovecoding.tutorial.view.Pages;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
@@ -36,8 +37,7 @@ public class PlaylistController
 
   @Override
   public String edit() {
-    String propertyLog = this.item.propertyLog();
-    System.out.println(propertyLog);
+    Debugger.logProperties(this.item);
     // TODO: User should be bound in the view with the JSF form field
     this.item.setCreator(userSessionBean.getUser());
     super.edit();
