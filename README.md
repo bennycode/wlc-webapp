@@ -81,6 +81,7 @@ In our example a blog post entity can have embedded entities. If that is the cas
 - [Which XHTML files do I need to put in /WEB-INF and which not?](http://stackoverflow.com/a/9033567/451634)
 - [New JSF 2.2 namespaces](http://jsflive.wordpress.com/2013/05/16/jsf22-namespaces/) <- At the moment we should use THE OLD namespaces ([reason](http://stackoverflow.com/questions/17361528/uirepeat-in-jsf-2-2-is-working-but-rendered))
 - [How to Write Doc Comments for the Javadoc Tool](http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html)
+- [GitHub keywords for commit messages](https://help.github.com/articles/closing-issues-via-commit-messages)
 
 **UI & UX**
 
