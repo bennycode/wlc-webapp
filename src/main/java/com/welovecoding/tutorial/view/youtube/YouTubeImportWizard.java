@@ -22,6 +22,7 @@ import javax.validation.ConstraintViolation;
 @ConversationScoped
 public class YouTubeImportWizard implements Serializable {
 
+  private static final Logger LOG = Logger.getLogger(YouTubeImportWizard.class.getName());
   private static final long serialVersionUID = 1L;
 
   @Inject private Conversation conversation;
@@ -61,18 +62,18 @@ public class YouTubeImportWizard implements Serializable {
 
   public void savePlaylist() {
     try {
-      if (playlist.getCreator() == null) {
-        playlist.setCreator(userSessionBean.getUser());
-      }
+      // TODO: When using getCreator() == null check, then we get an exception
+      // while trying to save the creator if none is present.
+      // It might be because of: 'CascadeType.PERSIST' for that field.
+      playlist.setCreator(userSessionBean.getUser());
       playlist.setLastEditor(userSessionBean.getUser());
-      
       playlistService.edit(playlist);
     } catch (ConstraintViolationBagException ex) {
       Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
       for (ConstraintViolation<?> constraintViolation : constraintViolations) {
         String propertyPath = constraintViolation.getPropertyPath().toString();
         String message = constraintViolation.getMessage();
-        Logger.getLogger(YouTubeImportWizard.class.getName()).log(Level.SEVERE, null, propertyPath + ": " + message);
+        LOG.log(Level.SEVERE, null, propertyPath + ": " + message);
       }
     } finally {
       this.playlistId = "";

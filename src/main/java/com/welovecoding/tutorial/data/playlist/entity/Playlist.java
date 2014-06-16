@@ -8,7 +8,6 @@ import static com.welovecoding.tutorial.data.playlist.entity.Playlist.FIND_ALL_I
 import static com.welovecoding.tutorial.data.playlist.entity.Playlist.FIND_BY_CODE;
 import static com.welovecoding.tutorial.data.playlist.entity.Playlist.FIND_IN_CATEGORY;
 import static com.welovecoding.tutorial.data.playlist.entity.Playlist.LIKE_NAME;
-import com.welovecoding.tutorial.data.user.entity.User;
 import com.welovecoding.tutorial.data.video.Video;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,12 +51,6 @@ public class Playlist extends BaseEntity {
   @NotNull @ManyToOne(cascade = CascadeType.PERSIST)
   private Author author;
 
-  @NotNull @ManyToOne(cascade = CascadeType.PERSIST)
-  private User creator;
-
-  @NotNull @ManyToOne(cascade = CascadeType.PERSIST)
-  private User lastEditor;
-
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist", orphanRemoval = true)
   private List<Video> videos;
 
@@ -98,7 +91,7 @@ public class Playlist extends BaseEntity {
   }
 
   public String getSlug() {
-    return Slugify.slugify(name);
+    return Slugify.slugify(this.getName());
   }
 
   public void setSlug(String slug) {
@@ -169,19 +162,4 @@ public class Playlist extends BaseEntity {
     this.difficulty = difficulty;
   }
 
-  public User getCreator() {
-    return creator;
-  }
-
-  public void setCreator(User creator) {
-    this.creator = creator;
-  }
-
-  public User getLastEditor() {
-    return lastEditor;
-  }
-
-  public void setLastEditor(User lastEditor) {
-    this.lastEditor = lastEditor;
-  }
 }

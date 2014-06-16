@@ -1,23 +1,16 @@
 package com.welovecoding.tutorial.data.base;
 
-import com.welovecoding.tutorial.view.scaffolding.ComponentFactory;
+import com.welovecoding.tutorial.data.user.entity.User;
 import java.io.Serializable;
-import java.lang.reflect.Field;
-import java.text.MessageFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Objects;
-import java.util.SortedSet;
-import java.util.TreeSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,13 +30,20 @@ public class BaseEntity implements Serializable {
   @NotNull
   @Size(min = 1, max = 255)
   @Basic(optional = false)
-  protected String name;
+  private String name;
 
   @Temporal(value = TemporalType.TIMESTAMP)
   private Date created;
 
   @Temporal(value = TemporalType.TIMESTAMP)
-  private Date lastModified;
+  protected Date lastModified;
+
+  // TODO: Create an EditableBaseEntity with @NotNull attributes
+  @ManyToOne(cascade = CascadeType.PERSIST)
+  private User creator;
+
+  @ManyToOne(cascade = CascadeType.PERSIST)
+  private User lastEditor;
 
   public BaseEntity() {
     this.created = new Date();
@@ -80,6 +80,22 @@ public class BaseEntity implements Serializable {
 
   public void setLastModified(Date lastModified) {
     this.lastModified = lastModified;
+  }
+
+  public User getCreator() {
+    return creator;
+  }
+
+  public void setCreator(User creator) {
+    this.creator = creator;
+  }
+
+  public User getLastEditor() {
+    return lastEditor;
+  }
+
+  public void setLastEditor(User lastEditor) {
+    this.lastEditor = lastEditor;
   }
 
   @Override

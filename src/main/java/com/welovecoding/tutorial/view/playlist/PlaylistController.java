@@ -1,6 +1,5 @@
 package com.welovecoding.tutorial.view.playlist;
 
-import com.welovecoding.Debugger;
 import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
 import com.welovecoding.tutorial.view.Pages;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;

@@ -7,6 +7,7 @@ import com.welovecoding.tutorial.view.base.BaseController;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlForm;
@@ -47,6 +48,8 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
    * @see http://stackoverflow.com/a/4605163/451634
    */
   public GenFormBaseController() {
+    LOG.setLevel(Level.FINE);
+
     componentFactory = new ComponentFactory(StringUtils.lowerFirstChar(this.getClass().getSimpleName()));
     FacesContext context = FacesContext.getCurrentInstance();
     HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -119,25 +122,27 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     Map<String, Class<?>> attributes = new HashMap<>();
 
     if (obj != null) {
+      Map<String, Class<?>> directMembers = getProperties(obj.getClass());
+      Map<String, Class<?>> superclassMembers = getProperties(obj.getClass().getSuperclass());
 
-      Field[] objectFields = obj.getClass().getDeclaredFields();
-      Field[] superclassFields = obj.getClass().getSuperclass().getDeclaredFields();
+      attributes.putAll(directMembers);
+      attributes.putAll(superclassMembers);
+    }
 
-      // check for class
-      for (Field field : objectFields) {
-        if (checkGetterPresent(obj.getClass(), field)
-                && (isJavaLang(field.getType()) || isDomainType(field.getType()))) {
-          System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
-          attributes.put(field.getName(), field.getType());
-        }
-      }
+    return attributes;
+  }
 
-      // check for superclass
-      for (Field field : superclassFields) {
-        if (checkGetterPresent(obj.getClass().getSuperclass(), field) && isJavaLang(field.getType())) {
-          System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
-          attributes.put(field.getName(), field.getType());
-        }
+  private Map<String, Class<?>> getProperties(Class<?> aClass) {
+    Map<String, Class<?>> attributes = new HashMap<>();
+    Field[] objectFields = aClass.getDeclaredFields();
+
+    for (Field field : objectFields) {
+      if (checkGetterPresent(aClass, field)
+              && (isJavaLang(field.getType()) || isDomainType(field.getType()))) {
+        LOG.log(Level.FINE, "Mapped member: {0} ({1})", new Object[]{field.getName(), field.getType()});
+        attributes.put(field.getName(), field.getType());
+      } else {
+        LOG.log(Level.FINEST, "This member will not be mapped: {0} ({1})", new Object[]{field.getName(), field.getType()});
       }
     }
 
