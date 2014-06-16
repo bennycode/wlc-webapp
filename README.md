@@ -68,6 +68,7 @@ In our example a blog post entity can have embedded entities. If that is the cas
 - [How to use a JEE Filter to secure JSF 2 application resources](http://www.itcuties.com/j2ee/jsf-2-login-filter-example/)
 - [Composite Components In JSF 2.0](http://www.mkyong.com/jsf2/composite-components-in-jsf-2-0/)
 - [GZip Compression for JEE Web Application](http://hirenscafe.blogspot.de/2010/02/gzip-compression-for-web-application.html)
+- [Good JavaDoc source code example](http://www.docjar.net/html/api/java/util/Collections.java.html)
 
 **Mobile Web Apps**
 

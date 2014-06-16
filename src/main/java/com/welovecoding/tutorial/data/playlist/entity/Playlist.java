@@ -55,6 +55,9 @@ public class Playlist extends BaseEntity {
   @NotNull @ManyToOne(cascade = CascadeType.PERSIST)
   private User creator;
 
+  @NotNull @ManyToOne(cascade = CascadeType.PERSIST)
+  private User lastEditor;
+
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist", orphanRemoval = true)
   private List<Video> videos;
 
@@ -172,5 +175,13 @@ public class Playlist extends BaseEntity {
 
   public void setCreator(User creator) {
     this.creator = creator;
+  }
+
+  public User getLastEditor() {
+    return lastEditor;
+  }
+
+  public void setLastEditor(User lastEditor) {
+    this.lastEditor = lastEditor;
   }
 }

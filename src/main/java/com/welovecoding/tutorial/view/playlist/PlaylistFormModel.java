@@ -24,7 +24,8 @@ public class PlaylistFormModel extends FormModel {
       "videos",
       "created",
       "lastModified",
-      "creator"
+      "creator",
+      "lastEditor"
     };
   }
 
@@ -51,6 +52,7 @@ public class PlaylistFormModel extends FormModel {
           input.setReadOnly(true);
           break;
         case "creator":
+        case "lastEditor":
           input.setRenderType(RenderType.DROPDOWN);
           input.setReadOnly(true);
           break;

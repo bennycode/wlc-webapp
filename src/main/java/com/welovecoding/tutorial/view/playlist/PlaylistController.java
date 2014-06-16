@@ -37,9 +37,13 @@ public class PlaylistController
 
   @Override
   public String edit() {
-    Debugger.logProperties(this.item);
-    // TODO: User should be bound in the view with the JSF form field
-    this.item.setCreator(userSessionBean.getUser());
+    // Debugger.logProperties(this.item);
+    if (this.item.getCreator() == null) {
+      this.item.setCreator(userSessionBean.getUser());
+    }
+
+    this.item.setLastEditor(userSessionBean.getUser());
+
     super.edit();
     this.item = new Playlist();
     return Pages.ADMIN_PLAYLISTS;

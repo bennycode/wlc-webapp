@@ -21,32 +21,32 @@ import javax.validation.ConstraintViolation;
 @Named
 @ConversationScoped
 public class YouTubeImportWizard implements Serializable {
-  
+
   private static final long serialVersionUID = 1L;
-  
+
   @Inject private Conversation conversation;
   private String step;
-  
+
   @Inject private AuthSessionBean userSessionBean;
-  
+
   @EJB private YouTubeService youTubeService;
   @EJB private PlaylistService playlistService;
-  
+
   private Credential credential;
-  
+
   private String playlistId = "";
   private Playlist playlist = null;
-  
+
   @PostConstruct
   void init() {
     conversation.begin();
     step = "parsePlaylist";
     credential = userSessionBean.getCredential();
   }
-  
+
   public YouTubeImportWizard() {
   }
-  
+
   public void parsePlaylist() {
     if (playlistId.isEmpty()) {
       playlist = null;
@@ -54,14 +54,18 @@ public class YouTubeImportWizard implements Serializable {
       playlist = youTubeService.getPlaylist(playlistId, credential);
     }
   }
-  
+
   public void addMetaData() {
     step = "addMetaData";
   }
-  
+
   public void savePlaylist() {
     try {
-      playlist.setCreator(userSessionBean.getUser());
+      if (playlist.getCreator() == null) {
+        playlist.setCreator(userSessionBean.getUser());
+      }
+      playlist.setLastEditor(userSessionBean.getUser());
+      
       playlistService.edit(playlist);
     } catch (ConstraintViolationBagException ex) {
       Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
@@ -74,32 +78,32 @@ public class YouTubeImportWizard implements Serializable {
       this.playlistId = "";
       this.playlist = null;
     }
-    
+
     conversation.end();
-    
+
     step = "parsePlaylist";
   }
-  
+
   public String getPlaylistId() {
     return playlistId;
   }
-  
+
   public void setPlaylistId(String playlistId) {
     this.playlistId = playlistId;
   }
-  
+
   public Playlist getPlaylist() {
     return playlist;
   }
-  
+
   public void setPlaylist(Playlist playlist) {
     this.playlist = playlist;
   }
-  
+
   public String getStep() {
     return step;
   }
-  
+
   public void setStep(String step) {
     this.step = step;
   }
