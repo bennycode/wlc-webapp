@@ -1,7 +1,14 @@
 @import "../libs/lesshat/3.0.2/lesshat-prefixed.less";
-@import "fonts.less";
 @import "colors.less";
 @import "mixins.less";
+
+// Pure CSS customization
+body,
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"] {
+  // http://purecss.io/grids/#using-grids-with-custom-fonts
+  font-family: "Open Sans", sans-serif;
+}
 
 .pure-g div[class^="pure-u"] {
   padding-left: 10px;
