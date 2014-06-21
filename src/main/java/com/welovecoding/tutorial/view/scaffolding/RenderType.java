@@ -31,5 +31,9 @@ public enum RenderType {
   /**
    * Render enums in a dropdown.
    */
-  ENUM
+  ENUM,
+  /**
+   * Render boolean in a Checkbox.
+   */
+  BOOLEAN
 }

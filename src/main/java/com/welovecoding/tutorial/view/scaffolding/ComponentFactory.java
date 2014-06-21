@@ -1,8 +1,8 @@
 package com.welovecoding.tutorial.view.scaffolding;
 
+import com.welovecoding.StringUtils;
 import com.welovecoding.tutorial.data.base.BaseEntity;
 import com.welovecoding.tutorial.view.JSFUtils;
-import com.welovecoding.StringUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +19,7 @@ import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.component.html.HtmlInputTextarea;
 import javax.faces.component.html.HtmlOutputLabel;
+import javax.faces.component.html.HtmlSelectBooleanCheckbox;
 import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
@@ -65,6 +66,9 @@ public class ComponentFactory {
         break;
       case ENUM:
         component = createDropdownForEnums(property);
+        break;
+      case BOOLEAN:
+        component = createCheckbox(property);
         break;
       case LIST:
         component = createSelection(property);
@@ -251,6 +255,23 @@ public class ComponentFactory {
     label.setValue(text);
 
     return label;
+  }
+
+  private HtmlSelectBooleanCheckbox createCheckbox(FormInput property) {
+    String key = property.getKey();
+
+    String jsfValue = String.format("#{%s.item.%s}", controllerBeanName, key);
+    ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, property.getValue());
+
+    HtmlSelectBooleanCheckbox input = new HtmlSelectBooleanCheckbox();
+    input.setId(key);
+    input.setValueExpression("value", valueExpression);
+
+    if (property.isReadOnly()) {
+      input.setReadonly(true);
+    }
+
+    return input;
   }
 
 }

@@ -87,6 +87,13 @@
                 </li>
                 <li>
                   <h:outputLink 
+                    styleClass="#{(view.viewId.equals('/admin/users.xhtml')) ? 'active' : ''}"
+                    value="users.xhtml">
+                    <h:outputText value="#{backend['admin.menu.users']}" />
+                  </h:outputLink>
+                </li>
+                <li>
+                  <h:outputLink 
                     rendered="#{ facesContext.isProjectStage('Development') }"
                     styleClass="#{(view.viewId.equals('/admin/test.xhtml')) ? 'active' : ''}"
                     value="test.xhtml">

@@ -156,8 +156,14 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
       clazz.getDeclaredMethod("get" + StringUtils.capitalize(field.getName()), emptyParamObjects);
       isPresent = true;
     } catch (NoSuchMethodException ex) {
-      // NO-OP ignore the field
+      try {
+        clazz.getDeclaredMethod("is" + StringUtils.capitalize(field.getName()), emptyParamObjects);
+        isPresent = true;
+      } catch (NoSuchMethodException ex2) {
+        // NO-OP ignore the field
+      }
     }
+
     return isPresent;
   }
 
