@@ -16,6 +16,14 @@
     <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
     <param-value>true</param-value>
   </context-param>
+  <context-param>
+    <param-name>com.ocpsoft.pretty.PRODUCTION</param-name>
+    <param-value>${prettyfaces.production}</param-value>
+  </context-param>
+  <context-param>
+    <param-name>com.ocpsoft.pretty.DEVELOPMENT</param-name>
+    <param-value>${prettyfaces.development}</param-value>
+  </context-param>
   <!-- Servlet declarations -->
   <!-- JSF -->
   <servlet>

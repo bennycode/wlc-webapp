@@ -9,24 +9,26 @@
       <div id="header-grid" class="pure-g-r">
         <div id="header-unit-1" class="pure-u-1-3">
           <!-- Title -->
-          <a id="title" href="#{facesContext.externalContext.requestContextPath}">We Love Coding<span class="dot">.</span></a>
+          <h:link id="title" outcome="/index.xhtml" value="We Love Coding">
+            <span class="dot">.</span>
+          </h:link>
         </div>
         <div id="header-unit-2" class="pure-u-2-3">
           <!-- Navigation -->
           <div id="navigation">
             <ul>
-              <li><a href="#" class="current-menu-item">Home</a></li>
-              <li><a href="#">Tutorials</a></li>
-              <li><a href="#{facesContext.externalContext.requestContextPath}/team.xhtml">Team</a></li>
-              <li><a href="#{facesContext.externalContext.requestContextPath}/demo.xhtml">Demo</a></li>
-              <li><a href="#{facesContext.externalContext.requestContextPath}/register.xhtml"><span class="wlc-icon wlc-icon-user"></span> Register</a></li>
+              <li><h:link outcome="/index.xhtml" value="Home"></h:link></li>
+              <li><h:link outcome="/tutorials.xhtml" value="Tutorials"></h:link></li>
+              <li><h:link outcome="/team.xhtml" value="Team"></h:link></li>
+              <li><h:link outcome="/index.xhtml" value="Support"></h:link></li>
+              <li><span class="wlc-icon wlc-icon-user"></span><h:link outcome="/register.xhtml" value="Register"></h:link></li>
               <h:panelGroup rendered="#{authSessionBean.loggedIn eq true}">
                 <li>
                   <h:form><h:commandLink value="Logout" action="#{loginBean.logout}"/></h:form>
                 </li>
               </h:panelGroup>
               <h:panelGroup rendered="#{authSessionBean.loggedIn eq false}">
-                <li><a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon wlc-icon-enter"></span> Login</a></li>
+                <li><span class="wlc-icon wlc-icon-enter"></span><h:outputLink value="#{request.contextPath}/admin/" target="_blank">Login</h:outputLink></li>
               </h:panelGroup>
             </ul>
           </div>

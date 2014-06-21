@@ -73,6 +73,8 @@
     <auth.google.client.secret>xyz</auth.google.client.secret>
     
     <javax.faces.project.stage>Development</javax.faces.project.stage>
+    <prettyfaces.production>false</prettyfaces.production>
+    <prettyfaces.development>true</prettyfaces.development>
     <test.secured.url>/xyz</test.secured.url>
     <test.generate.data>false</test.generate.data>
   </properties>
@@ -220,6 +222,19 @@
       <groupId>com.thetransactioncompany</groupId>
       <artifactId>cors-filter</artifactId>
       <version>1.9.1</version>
+    </dependency>
+    
+    <!-- PrettyFaces: http://ocpsoft.org/prettyfaces/ -->
+    <!-- for JSF 2.x -->
+    <dependency>
+      <groupId>org.ocpsoft.rewrite</groupId>
+      <artifactId>rewrite-servlet</artifactId>
+      <version>2.0.12.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ocpsoft.rewrite</groupId>
+      <artifactId>rewrite-config-prettyfaces</artifactId>
+      <version>2.0.12.Final</version>
     </dependency>
     
     <!-- TESTING -->
@@ -643,6 +658,8 @@
       <properties>
         <!-- Override properties here -->
         <javax.faces.project.stage>Production</javax.faces.project.stage>
+        <prettyfaces.production>true</prettyfaces.production>
+        <prettyfaces.development>false</prettyfaces.development>
       </properties>
       <build>
         <plugins>
