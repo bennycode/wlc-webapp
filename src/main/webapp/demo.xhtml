@@ -15,27 +15,36 @@
     <h:outputStylesheet library="css/generated" name="style.css" />
   </h:head>
   <h:body>
-    <div id="header-grid" class="pure-g">
-      <div id="header-unit-1" class="pure-u-1-3">
-        <a id="title" href="#{facesContext.externalContext.requestContextPath}">We Love Coding<span class="dot">.</span></a>
-      </div>
-      <div id="header-unit-2" class="pure-u-2-3">
-        <div id="navigation">
-          <ul>
-            <li><a href="#" class="current-menu-item">Home</a></li>
-            <li><a href="#">Tutorials</a></li>
-            <li><a href="#{facesContext.externalContext.requestContextPath}/team.xhtml">Team</a></li>
-            <li><a href="#">Support</a></li>
-            <li><a href="#{facesContext.externalContext.requestContextPath}/register.xhtml"><span class="wlc-icon user"></span> Register</a></li>
-            <h:panelGroup rendered="#{authSessionBean.loggedIn eq true}">
-              <li>
-                <h:form><h:commandLink value="Logout" action="#{loginBean.logout}"/></h:form>
-              </li>
-            </h:panelGroup>
-            <h:panelGroup rendered="#{authSessionBean.loggedIn eq false}">
-              <li><a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon enter"></span> Login</a></li>
-            </h:panelGroup>
-          </ul>
+    <div id="top-wrapper" class="layout-wrapper">
+      <div id="top-grid" class="pure-g-r">
+        <div id="top-unit-1" class="pure-u-1">
+
+          <!-- Header Grid -->
+          <div id="header-grid" class="pure-g">
+            <div id="header-unit-1" class="pure-u-1-3">
+              <a id="title" href="#{facesContext.externalContext.requestContextPath}">We Love Coding<span class="dot">.</span></a>
+            </div>
+            <div id="header-unit-2" class="pure-u-2-3">
+              <div id="navigation">
+                <ul>
+                  <li><a href="#" class="current-menu-item">Home</a></li>
+                  <li><a href="#">Tutorials</a></li>
+                  <li><a href="#{facesContext.externalContext.requestContextPath}/team.xhtml">Team</a></li>
+                  <li><a href="#">Support</a></li>
+                  <li><a href="#{facesContext.externalContext.requestContextPath}/register.xhtml"><span class="wlc-icon user"></span> Register</a></li>
+                  <h:panelGroup rendered="#{authSessionBean.loggedIn eq true}">
+                    <li>
+                      <h:form><h:commandLink value="Logout" action="#{loginBean.logout}"/></h:form>
+                    </li>
+                  </h:panelGroup>
+                  <h:panelGroup rendered="#{authSessionBean.loggedIn eq false}">
+                    <li><a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon enter"></span> Login</a></li>
+                  </h:panelGroup>
+                </ul>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
