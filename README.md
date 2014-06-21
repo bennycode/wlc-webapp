@@ -102,6 +102,9 @@ In our example a blog post entity can have embedded entities. If that is the cas
 - [Project Lombok](http://projectlombok.org/), [Project Lombok & JEE](http://javalabor.blogspot.de/2012/01/java-verbosity-jee-and-lombok.html)
 - [Pure CSS modules](http://purecss.io/)
 
+## Web Tools ##
+- [Font Awesome subsetting tool](http://icnfnt.com/)
+
 ##Website Analyzer:##
 - [SEO tools](http://www.feedthebot.com/tools/)
 - [http://developers.google.com/speed/pagespeed/insights/?url=wwww.welovecoding.com&tab=desktop](http://developers.google.com/speed/pagespeed/insights/?url=wwww.welovecoding.com&tab=desktop)
