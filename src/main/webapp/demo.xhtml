@@ -11,7 +11,6 @@
     <h:outputStylesheet library="libs/pure/0.5.0" name="pure-min.css" />
     <h:outputStylesheet library="libs/pure/0.5.0" name="grids-responsive-min.css" />
     <h:outputStylesheet library="libs/pure/themes/baby-blue/1.16.1" name="baby-blue.css" />
-    <h:outputStylesheet library="libs/wlc-icons/1.0/css" name="icons.css" />
     <h:outputStylesheet library="css/generated" name="style.css" />
   </h:head>
   <h:body>
@@ -26,14 +25,14 @@
             <li><a href="#">Tutorials</a></li>
             <li><a href="#{facesContext.externalContext.requestContextPath}/team.xhtml">Team</a></li>
             <li><a href="#">Support</a></li>
-            <li><a href="#{facesContext.externalContext.requestContextPath}/register.xhtml"><span class="wlc-icon wlc-icon-user"></span> Register</a></li>
+            <li><a href="#{facesContext.externalContext.requestContextPath}/register.xhtml"><span class="wlc-icon user"></span> Register</a></li>
             <h:panelGroup rendered="#{authSessionBean.loggedIn eq true}">
               <li>
                 <h:form><h:commandLink value="Logout" action="#{loginBean.logout}"/></h:form>
               </li>
             </h:panelGroup>
             <h:panelGroup rendered="#{authSessionBean.loggedIn eq false}">
-              <li><a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon wlc-icon-enter"></span> Login</a></li>
+              <li><a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon enter"></span> Login</a></li>
             </h:panelGroup>
           </ul>
         </div>

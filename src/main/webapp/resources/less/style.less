@@ -1,6 +1,12 @@
 @import "../libs/lesshat/3.0.2/lesshat-prefixed.less";
+@import "fonts.less";
 @import "colors.less";
 @import "mixins.less";
+
+.pure-g div[class^="pure-u"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
 #header-grid {
 
@@ -23,15 +29,15 @@
           a {
             color: @color-text-light;
             display: block;
-            margin-right: 6px;
             padding: 6px;
+            margin-left: 6px;
             &.current-menu-item {
               background-color: @color-navigation-off;
               .box-shadow-standard();
               .border-radius-standard();
             }
             &:hover, &:active {
-              background-color: @color-navigation-on;
+              background-color: @color-navigation-hover;
               .box-shadow-standard();
               .border-radius-standard();
             }

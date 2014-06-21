@@ -1,0 +1,29 @@
+@import "../libs/lesshat/3.0.2/lesshat-prefixed.less";
+
+@font-face {
+  .lh-font-face('wlc-icons', ~'../fonts/wlc-icons/wlc-icons', normal, normal);
+}
+
+.wlc-icon {
+  font-family: 'wlc-icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  &.user:before {
+    content: "\e600";
+  }
+  &.lock:before {
+    content: "\e601";
+  }
+  &.enter:before {
+    content: "\e602";
+  }
+}
+
