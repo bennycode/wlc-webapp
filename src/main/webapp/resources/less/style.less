@@ -1,4 +1,50 @@
+@import "../libs/lesshat/3.0.2/lesshat-prefixed.less";
+@import "colors.less";
 @import "mixins.less";
+
+#header-grid {
+
+  #header-unit-1 {
+    #title {
+      .font-title();
+      .dot {
+        color: @color-text-highlight;
+      }
+    }
+  }
+
+  #header-unit-2 {
+    #navigation {
+      ul {
+        float: right;
+        list-style: none;
+        li {
+          float: left;
+          a {
+            color: @color-text-light;
+            display: block;
+            margin-right: 6px;
+            padding: 6px;
+            &.current-menu-item {
+              background-color: @color-navigation-off;
+              .box-shadow-standard();
+              .border-radius-standard();
+            }
+            &:hover, &:active {
+              background-color: @color-navigation-on;
+              .box-shadow-standard();
+              .border-radius-standard();
+            }
+          }
+        }
+        &:after {
+          clear: right;
+        }
+      }
+    }
+  }
+
+}
 
 body {
   @media @pure-sm {

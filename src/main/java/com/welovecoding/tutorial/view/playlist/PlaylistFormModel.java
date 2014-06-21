@@ -75,7 +75,7 @@ public class PlaylistFormModel extends FormModel {
           input.setRenderType(RenderType.ENUM);
           break;
         default:
-          setDefaultRenderType(input);
+          super.setDefaultRenderType(input);
           break;
       }
 
