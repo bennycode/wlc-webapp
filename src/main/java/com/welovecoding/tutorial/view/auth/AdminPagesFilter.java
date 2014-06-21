@@ -1,7 +1,7 @@
 package com.welovecoding.tutorial.view.auth;
 
-import com.welovecoding.tutorial.view.Pages;
 import com.welovecoding.tutorial.data.user.entity.User;
+import com.welovecoding.tutorial.view.Pages;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.Filter;
@@ -18,30 +18,13 @@ public class AdminPagesFilter implements Filter {
   @Inject
   private AuthSessionBean userSessionBean;
 
-  private static final String[] ALLOWED_EMAILS = {
-    "apfelbenny@googlemail.com",
-    "michael.koppen@googlemail.com"
-  };
-
   public AdminPagesFilter() {
   }
 
   private boolean isAllowed() {
-    boolean isAllowed = false;
     User user = userSessionBean.getUser();
 
-//    if (user != null && user.getEmail() != null) {
-//      for (String email : ALLOWED_EMAILS) {
-//        if (user.getEmail().equals(email)) {
-//          isAllowed = true;
-//        }
-//      }
-//    }
-    if (user != null && user.getEmail() != null) {
-      isAllowed = true;
-    }
-
-    return isAllowed;
+    return user.isAdmin();
   }
 
   @Override
@@ -49,6 +32,8 @@ public class AdminPagesFilter implements Filter {
           throws IOException, ServletException {
     HttpServletRequest servletRequest = (HttpServletRequest) request;
     HttpServletResponse servletResponse = (HttpServletResponse) response;
+
+    System.out.println("User is allowed: " + isAllowed());
 
     if (!isAllowed()) {
       // Deny Access

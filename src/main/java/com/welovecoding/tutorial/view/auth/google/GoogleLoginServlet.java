@@ -1,15 +1,14 @@
 package com.welovecoding.tutorial.view.auth.google;
 
-import com.welovecoding.tutorial.data.user.GoogleUser;
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
-import com.welovecoding.tutorial.view.Pages;
+import com.welovecoding.tutorial.data.ConstraintViolationBagException;
+import com.welovecoding.tutorial.data.user.GoogleUser;
+import com.welovecoding.tutorial.data.user.UserMapper;
+import com.welovecoding.tutorial.data.user.UserService;
 import com.welovecoding.tutorial.data.user.entity.GoogleUserCredentials;
 import com.welovecoding.tutorial.data.user.entity.User;
 import com.welovecoding.tutorial.data.user.entity.UserCredentials;
-import com.welovecoding.tutorial.data.ConstraintViolationBagException;
-import com.welovecoding.tutorial.data.user.UserMapper;
-import com.welovecoding.tutorial.view.auth.AuthSessionBean;
-import com.welovecoding.tutorial.data.user.UserService;
+import com.welovecoding.tutorial.view.Pages;
 import com.welovecoding.tutorial.view.auth.AuthSessionBean;
 import java.io.IOException;
 import java.util.Arrays;
@@ -70,22 +69,24 @@ public class GoogleLoginServlet extends HttpServlet {
       System.out.println("Access Token: " + accessToken);
 
       GoogleUser gu = googleLoginBean.getUser(tokenResponse);
+
       User userEntity = userService.findByEmail(gu.getEmail());
       GoogleUserCredentials credentials;
       boolean isFirstToken = false;
 
       if (userEntity == null) {
         userEntity = UserMapper.convertGoogleUser(gu);
+
         isFirstToken = true;
       } else {
         List<UserCredentials> userCredentials = userEntity.getCredentials();
         if (userCredentials != null && userCredentials.size() > 0) {
           for (UserCredentials c : userCredentials) {
-            if (c.getCredType() == null) {
-              isFirstToken = true;
-            } else if (c.getCredType().equals(GoogleUserCredentials.CREDENTIAL_TYPE_COLUMN_VALUE)) {
+            if (c instanceof GoogleUserCredentials) {
               credentials = (GoogleUserCredentials) c;
               credentials.setToken(code[0]);
+            } else {
+              isFirstToken = true;
             }
           }
         } else {
@@ -99,7 +100,6 @@ public class GoogleLoginServlet extends HttpServlet {
         credentials.setUser(userEntity);
         userEntity.setCredentials(Arrays.asList(new UserCredentials[]{credentials}));
       }
-
       try {
         // Save user in database
         userService.edit(userEntity);

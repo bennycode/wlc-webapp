@@ -25,6 +25,8 @@ public class User extends BaseEntity {
   @OneToMany(cascade = CascadeType.ALL, targetEntity = UserCredentials.class, mappedBy = "user")
   private List<UserCredentials> credentials;
 
+  private boolean admin;
+
   public User() {
   }
 
@@ -42,6 +44,14 @@ public class User extends BaseEntity {
 
   public void setCredentials(List<UserCredentials> credentials) {
     this.credentials = credentials;
+  }
+
+  public boolean isAdmin() {
+    return admin;
+  }
+
+  public void setAdmin(boolean admin) {
+    this.admin = admin;
   }
 
 }

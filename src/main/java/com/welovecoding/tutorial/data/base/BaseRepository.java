@@ -1,6 +1,5 @@
 package com.welovecoding.tutorial.data.base;
 
-import com.welovecoding.tutorial.data.base.BaseEntity;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
