@@ -19,14 +19,14 @@
               <li><a href="#">Tutorials</a></li>
               <li><a href="#{facesContext.externalContext.requestContextPath}/team.xhtml">Team</a></li>
               <li><a href="#">Support</a></li>
-              <li><a href="#{facesContext.externalContext.requestContextPath}/register.xhtml"><i class="fa fa-user"></i> Register</a></li>
+              <li><a href="#{facesContext.externalContext.requestContextPath}/register.xhtml"><span class="wlc-icon wlc-icon-user"></span> Register</a></li>
               <h:panelGroup rendered="#{authSessionBean.loggedIn eq true}">
                 <li>
                   <h:form><h:commandLink value="Logout" action="#{loginBean.logout}"/></h:form>
                 </li>
               </h:panelGroup>
               <h:panelGroup rendered="#{authSessionBean.loggedIn eq false}">
-                <li><a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><i class="fa fa-sign-in"></i> Login</a></li>
+                <li><a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon wlc-icon-enter"></span> Login</a></li>
               </h:panelGroup>
             </ul>
           </div>
