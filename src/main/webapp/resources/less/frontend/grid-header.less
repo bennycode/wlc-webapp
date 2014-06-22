@@ -5,6 +5,10 @@
 #grid-header {
 
   #header-unit-1 {
+    text-align: center;
+    @media @pure-md {
+      text-align: left;
+    }
     #title {
       .font-title();
       .dot {
@@ -15,8 +19,15 @@
 
   #header-unit-2 {
     #navigation {
+      width: 80%;
+      margin: 0 auto;
+      @media @pure-md {
+        width: 100%;
+      }
       ul {
-        float: right;
+        @media @pure-md {
+          float: right;
+        }
         list-style: none;
         li {
           float: left;
@@ -25,6 +36,10 @@
             display: block;
             padding: 6px;
             margin-left: 6px;
+            margin-bottom: 10px;
+            @media @pure-md {
+              margin-bottom: 0px;
+            }
             &.current-menu-item {
               background-color: @color-navigation-off;
               .box-shadow-standard();
