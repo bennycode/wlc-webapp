@@ -1,0 +1,47 @@
+@import "../import/mixins.less";
+@import "../import/fonts.less";
+@import "../import/variables.less";
+
+#grid-header {
+
+  #header-unit-1 {
+    #title {
+      .font-title();
+      .dot {
+        color: @color-text-highlight;
+      }
+    }
+  }
+
+  #header-unit-2 {
+    #navigation {
+      ul {
+        float: right;
+        list-style: none;
+        li {
+          float: left;
+          a {
+            color: @color-text-light;
+            display: block;
+            padding: 6px;
+            margin-left: 6px;
+            &.current-menu-item {
+              background-color: @color-navigation-off;
+              .box-shadow-standard();
+              .border-radius-standard();
+            }
+            &:hover, &:active {
+              background-color: @color-navigation-hover;
+              .box-shadow-standard();
+              .border-radius-standard();
+            }
+          }
+        }
+        &:after {
+          clear: right;
+        }
+      }
+    }
+  }
+
+}
