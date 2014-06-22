@@ -1,3 +1,4 @@
+@import "../import/mixins.less";
 @import "../import/variables.less";
 @import "../../libs/lesshat/3.0.2/lesshat-prefixed.less";
 
@@ -9,65 +10,22 @@
   .lh-border-radius(20px);
 }
 
-#welcome-teaser-grid {
+#grid-welcome-teaser {
   color: white;
+
   #welcome-teaser-unit-1 {
     #welcome-teaser {
       color: @color-text-light;
-      margin-top: 15%;
+      margin-top: 0;
       h1 {
         color: @color-text-light;
         font-weight: bold;
-        .font-size(72px);
-        margin-bottom: 36px;
-      }
-      p {
-        font-weight: 600;
-        .font-size(20px);
-        margin-bottom: 22px;
-      }
-      .button {
-        display: inline-block;
+        font-size: 52px;
+        line-height: 60px;
         text-align: center;
-        .height(42px);
-        &#quickstart {
-          width: 141px;
-          /* Text */
-          font-size: 14px;
-          font-weight: bold;
-          text-transform: uppercase;
-          /* Styling */
-          cursor: pointer;
-          .hello-button-outline;
-        }
-        &#or {
-          font-size: 16px;
-          font-style: italic;
-          margin-left: 12px;
-          margin-right: 12px;
-        }
-        &#register-outline {
-          width: 139px;
-          .hello-button-outline;
-          #register {
-            width: 126px;
-            .height(31px);
-            /* Background */
-            background-color: #d94636;
-            box-shadow: 0 3px 7px rgba(0,0,0,.2);
-            -moz-box-shadow: 0 3px 7px rgba(0,0,0,.2);
-            -webkit-box-shadow: 0 3px 7px rgba(0,0,0,.2);
-            background-image: -webkit-linear-gradient(bottom, #ed1810, #f74d37);
-            background-image: -moz-linear-gradient(bottom, #ed1810, #f74d37);
-            background-image: -o-linear-gradient(bottom, #ed1810, #f74d37);
-            background-image: linear-gradient(to top, #ed1810, #f74d37);
-            /* Font */
-            cursor: pointer;
-            font-weight: bold;      
-            text-transform: uppercase;
-            margin: 6px, 0px, 0px, 6px;
-            .lh-border-radius(14px);
-          }
+        @media @pure-md {
+          .font-size(72px);
+          text-align: left;
         }
       }
     }

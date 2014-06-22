@@ -7,6 +7,10 @@
   <h:body>
     <ui:composition template="/WEB-INF/templates/frontend/main.xhtml">
 
+      <ui:define name="extra-stylesheets">
+        <h:outputStylesheet library="css/generated/frontend" name="index.css" />
+      </ui:define>
+
       <ui:define name="center-unit-1">
         <ui:include src="/WEB-INF/frontend/jsf-templates/main/top/welcome-teaser.xhtml" />
       </ui:define>

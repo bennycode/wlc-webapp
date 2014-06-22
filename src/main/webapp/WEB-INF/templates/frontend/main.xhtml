@@ -38,7 +38,7 @@
 
   <h:body>
 
-    <div class="layout-wrapper">
+    <div id="top-wrapper" class="layout-wrapper">
 
       <!-- Header -->
       <div id="grid-header" class="pure-g">
@@ -66,10 +66,20 @@
         </div>
       </div>
 
-      <div id="grid-center" class="pure-g-r">
-        <ui:insert name="center-unit-1"></ui:insert>
-        <ui:insert name="center-unit-2"></ui:insert>
+    </div>
+
+    <div id="center">
+      <div id="center-wrapper" class="layout-wrapper">
+
+        <div id="grid-center" class="pure-g-r">
+          <ui:insert name="center-unit-1"></ui:insert>
+          <ui:insert name="center-unit-2"></ui:insert>
+        </div>
+
       </div>
+    </div>
+
+    <div id="bottom-wrapper" class="layout-wrapper">
 
       <!-- Footer -->
       <div id="grid-footer" class="pure-g">
@@ -84,6 +94,7 @@
           </div>
         </h:panelGroup>
       </div>    
+
     </div>
 
     <h:outputScript name="js/wlc/main.js" />
