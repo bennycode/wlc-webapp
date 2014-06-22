@@ -1,11 +1,12 @@
 package com.welovecoding.tutorial.view.playlist;
 
-import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
-import com.welovecoding.tutorial.view.Pages;
-import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import com.welovecoding.tutorial.data.playlist.PlaylistService;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import com.welovecoding.tutorial.view.Pages;
 import com.welovecoding.tutorial.view.auth.AuthSessionBean;
+import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -18,10 +19,11 @@ public class PlaylistController
         extends GenFormBaseController<Playlist, PlaylistService>
         implements Serializable {
 
-  @Inject private AuthSessionBean userSessionBean;
-  @EJB private PlaylistService service;
-  private Long authorId;
-  private Long categoryId;
+  @Inject
+  private AuthSessionBean userSessionBean;
+  @EJB
+  private PlaylistService service;
+  private long categoryId;
 
   @Override
   public PlaylistService getService() {
@@ -55,20 +57,16 @@ public class PlaylistController
     return Pages.ADMIN_PLAYLISTS;
   }
 
-  public Long getCategoryId() {
+  public List<Playlist> getPlaylists() {
+    return getService().findAllInCategory(categoryId);
+  }
+
+  public long getCategoryId() {
     return categoryId;
   }
 
-  public void setCategoryId(Long categoryId) {
+  public void setCategoryId(long categoryId) {
     this.categoryId = categoryId;
-  }
-
-  public Long getAuthorId() {
-    return authorId;
-  }
-
-  public void setAuthorId(Long authorId) {
-    this.authorId = authorId;
   }
 
 }

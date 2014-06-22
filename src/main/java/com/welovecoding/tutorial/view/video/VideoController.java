@@ -1,9 +1,10 @@
 package com.welovecoding.tutorial.view.video;
 
-import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
 import com.welovecoding.tutorial.data.video.Video;
-import com.welovecoding.tutorial.view.Pages;
 import com.welovecoding.tutorial.data.video.VideoService;
+import com.welovecoding.tutorial.view.Pages;
+import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -15,6 +16,7 @@ public class VideoController extends GenFormBaseController<Video, VideoService> 
 
   @EJB
   private VideoService service;
+  private long playlistId;
 
   @PostConstruct
   public void init() {
@@ -39,4 +41,17 @@ public class VideoController extends GenFormBaseController<Video, VideoService> 
   public VideoService getService() {
     return service;
   }
+
+  public List<Video> getVideos() {
+    return getService().getVideosByPlaylistId(playlistId);
+  }
+
+  public long getPlaylistId() {
+    return playlistId;
+  }
+
+  public void setPlaylistId(long playlistId) {
+    this.playlistId = playlistId;
+  }
+
 }

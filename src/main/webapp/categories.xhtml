@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+  <h:body>
+    <h:form>
+      <ui:repeat value="#{categoryController.orderByName()}" var="category">
+        <li>
+          <h:link outcome="/playlists.xhtml" value="#{category.name}">
+            <f:param name="categoryId" value="#{category.id}" />
+          </h:link>
+        </li>
+      </ui:repeat>
+    </h:form>
+  </h:body>
+</html>

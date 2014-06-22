@@ -35,14 +35,16 @@
   <!-- http://ocpsoft.org/docs/prettyfaces/3.3.3/en-US/html/Configuration.html#config.mapping.parents -->
   <url-mapping id="tutorials">
     <pattern value="/tutorials" />
-    <view-id value="/index.xhtml" />
+    <view-id value="/categories.xhtml" />
   </url-mapping>
-  <url-mapping id="category" parentId="tutorials">
-    <pattern value="/#{categorySlug}" />
-    <view-id value="/category.xhtml" />
+  <url-mapping id="playlists" parentId="tutorials">
+    <!--<pattern value="/#{categorySlug: playlistController.category.slug}/playlists" />-->
+    <pattern value="/#{categoryId : playlistController.categoryId}/playlists" />
+    <view-id value="/playlists.xhtml" />
   </url-mapping>
-  <url-mapping id="playlist" parentId="category">
-    <pattern value="/#{playlistSlug}-#{playlistId}" />
-    <view-id value="/playlist.xhtml" />
+  <url-mapping id="videos" parentId="playlists">
+    <!--<pattern value="/#{playlistSlug}-#{playlistId}/videos" />-->
+    <pattern value="/#{playlistId : videoController.playlistId}/videos" />
+    <view-id value="/videos.xhtml" />
   </url-mapping>
 </pretty-config>
