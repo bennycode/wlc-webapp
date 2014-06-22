@@ -1,26 +1,23 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:wlc="http://xmlns.jcp.org/jsf/composite/wlc">
   <h:body>
-    <ui:composition template="/WEB-INF/frontend/jsf-templates/main.xhtml">
+    <ui:composition template="/WEB-INF/templates/frontend/main.xhtml">
 
       <ui:define name="extra-stylesheets">
         <h:outputStylesheet library="css/generated" name="team.css" />
       </ui:define>
 
       <ui:define name="center-unit-1">
-        <div id="center-unit-1" class="pure-u-1">
+        <div class="pure-u-1">
           <div id="team">
-            <h1>Backstage</h1>
-
             <!-- Developers -->
-            <h2>Entwickler</h2>
+            <h1>Entwickler</h1>
 
-            <div id="team-grid" class="pure-g-r">
-              <!-- Benny Neugebauer -->
+            <div id="team-grid" class="pure-g">
               <wlc:team-member 
                 picture="benny-neugebauer.png"
                 name="Benny Neugebauer" 
@@ -31,7 +28,7 @@
                 twitter="apfelbenny"
                 about="Benny hat Informatik an der Fachhochschule Brandenburg studiert und ist fit in Java, JavaScript und CoffeeScript."
                 /> 
-              <!-- Benny Neugebauer -->
+
               <wlc:team-member 
                 picture="benny-neugebauer.png"
                 name="Michael Koppen" 
@@ -43,31 +40,6 @@
                 /> 
             </div>
 
-            <!-- Authors -->
-            <h2>Autoren</h2>
-
-            <div id="author-grid" class="pure-g-r">
-              <!-- Benny Neugebauer -->
-              <wlc:team-member 
-                picture="benny-neugebauer.png"
-                name="Benny Neugebauer" 
-                position="Initiator"
-                homepage="http://www.bennyn.de/"
-                facebook="benny.neugebauer"
-                google="BennyNeugebauer"
-                twitter="apfelbenny"
-                /> 
-              <!-- Benny Neugebauer -->
-              <wlc:team-member 
-                picture="benny-neugebauer.png"
-                name="Benny Neugebauer" 
-                position="Initiator"
-                homepage="http://www.bennyn.de/"
-                facebook="benny.neugebauer"
-                google="BennyNeugebauer"
-                twitter="apfelbenny"
-                /> 
-            </div>
           </div>
         </div>
       </ui:define>
