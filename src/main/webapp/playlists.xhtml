@@ -9,7 +9,9 @@
       <ui:define name="center-unit-2">
         <div id="center-unit-2" class="pure-u-1">
 
-          <strong><h:link outcome="categories.xhtml" value="Categories"></h:link> >> #{playlistController.getPlaylists().get(0).category.name}</strong>
+          <strong>
+            <h:link outcome="categories.xhtml" value="Categories"></h:link> >> #{playlistController.getLatestCategory().name}
+          </strong>
           <hr />
           <ui:repeat value="#{playlistController.getPlaylists()}" var="playlist">
             <li>

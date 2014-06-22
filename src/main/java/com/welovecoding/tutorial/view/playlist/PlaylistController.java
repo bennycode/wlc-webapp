@@ -1,9 +1,11 @@
 package com.welovecoding.tutorial.view.playlist;
 
+import com.welovecoding.tutorial.data.category.Category;
 import com.welovecoding.tutorial.data.playlist.PlaylistService;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import com.welovecoding.tutorial.view.Pages;
 import com.welovecoding.tutorial.view.auth.AuthSessionBean;
+import com.welovecoding.tutorial.view.category.CategoryController;
 import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
 import java.io.Serializable;
 import java.util.List;
@@ -21,6 +23,8 @@ public class PlaylistController
 
   @Inject
   private AuthSessionBean userSessionBean;
+  @Inject
+  private CategoryController categoryController;
   @EJB
   private PlaylistService service;
   private long categoryId;
@@ -59,6 +63,10 @@ public class PlaylistController
 
   public List<Playlist> getPlaylists() {
     return getService().findAllInCategory(categoryId);
+  }
+
+  public Category getLatestCategory() {
+    return categoryController.getCategory(categoryId);
   }
 
   public Playlist getPlaylist(long playlistId) {
