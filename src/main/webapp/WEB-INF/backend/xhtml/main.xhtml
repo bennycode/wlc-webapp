@@ -34,9 +34,10 @@
         <div id="header-grid" class="pure-g-r">
           <div id="header-unit-1" class="pure-u-1-3">
             <h1>
-              <h:outputLink value="index.xhtml">
-                <h:outputText value="#{backend['admin.main.title']}" />
-              </h:outputLink>
+              <h:link 
+                outcome="/admin/index.xhtml" 
+                value="#{backend['admin.main.title']}">
+              </h:link>
             </h1>
           </div>
           <div id="header-unit-2" class="pure-u-2-3"></div>
@@ -51,54 +52,54 @@
             <div class="l-box">
               <ul>
                 <li>
-                  <h:outputLink 
+                  <h:link 
                     styleClass="#{(view.viewId.equals('/admin/authors.xhtml')) ? 'active' : ''}"
-                    value="authors.xhtml">
-                    <h:outputText value="#{backend['admin.menu.authors']}" />
-                  </h:outputLink>
+                    outcome="/admin/authors.xhtml"
+                    value="#{backend['admin.menu.authors']}">
+                  </h:link>
                 </li>
                 <li>
-                  <h:outputLink 
+                  <h:link 
                     styleClass="#{(view.viewId.equals('/admin/categories.xhtml')) ? 'active' : ''}"
-                    value="categories.xhtml">
-                    <h:outputText value="#{backend['admin.menu.categories']}" />
-                  </h:outputLink>
+                    outcome="/admin/categories.xhtml"
+                    value="#{backend['admin.menu.categories']}">
+                  </h:link>
                 </li>
                 <li>
-                  <h:outputLink 
+                  <h:link 
                     styleClass="#{(view.viewId.equals('/admin/playlists.xhtml')) ? 'active' : ''}"
-                    value="playlists.xhtml">
-                    <h:outputText value="#{backend['admin.menu.playlists']}" />
-                  </h:outputLink>
+                    outcome="/admin/playlists.xhtml"
+                    value="#{backend['admin.menu.playlists']}">
+                  </h:link>
                 </li>
                 <li>
-                  <h:outputLink 
+                  <h:link 
                     styleClass="#{(view.viewId.equals('/admin/videos.xhtml')) ? 'active' : ''}"
-                    value="videos.xhtml">
-                    <h:outputText value="#{backend['admin.menu.videos']}" />
-                  </h:outputLink>
+                    outcome="/admin/videos.xhtml"
+                    value="#{backend['admin.menu.videos']}">
+                  </h:link>
                 </li>
                 <li>
-                  <h:outputLink 
+                  <h:link 
                     styleClass="#{(view.viewId.equals('/admin/youtube.xhtml')) ? 'active' : ''}"
-                    value="youtube.xhtml">
-                    <h:outputText value="#{backend['admin.menu.youtube']}" />
-                  </h:outputLink>
+                    outcome="/admin/youtube.xhtml"
+                    value="#{backend['admin.menu.youtube']}">
+                  </h:link>
                 </li>
                 <li>
-                  <h:outputLink 
+                  <h:link 
                     styleClass="#{(view.viewId.equals('/admin/users.xhtml')) ? 'active' : ''}"
-                    value="users.xhtml">
-                    <h:outputText value="#{backend['admin.menu.users']}" />
-                  </h:outputLink>
+                    outcome="/admin/users.xhtml"
+                    value="#{backend['admin.menu.users']}">
+                  </h:link>
                 </li>
                 <li>
-                  <h:outputLink 
+                  <h:link 
                     rendered="#{ facesContext.isProjectStage('Development') }"
                     styleClass="#{(view.viewId.equals('/admin/test.xhtml')) ? 'active' : ''}"
-                    value="test.xhtml">
-                    Development Test
-                  </h:outputLink>
+                    outcome="/admin/test.xhtml"
+                    value="Development Test">
+                  </h:link>
                 </li>
               </ul>
             </div>
