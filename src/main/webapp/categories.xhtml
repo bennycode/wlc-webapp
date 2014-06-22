@@ -5,14 +5,20 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
   <h:body>
-    <h:form>
-      <ui:repeat value="#{categoryController.orderByName()}" var="category">
-        <li>
-          <h:link outcome="/playlists.xhtml" value="#{category.name}">
-            <f:param name="categoryId" value="#{category.id}" />
-          </h:link>
-        </li>
-      </ui:repeat>
-    </h:form>
+    <ui:composition template="/WEB-INF/frontend/jsf-templates/main.xhtml">
+      <ui:define name="center-unit-2">
+        <div id="center-unit-2" class="pure-u-1">
+          <h:form>
+            <ui:repeat value="#{categoryController.orderByName()}" var="category">
+              <li>
+                <h:link outcome="/playlists.xhtml" value="#{category.name}">
+                  <f:param name="categoryId" value="#{category.id}" />
+                </h:link>
+              </li>
+            </ui:repeat>
+          </h:form>
+        </div>
+      </ui:define>
+    </ui:composition>
   </h:body>
 </html>

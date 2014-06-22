@@ -5,11 +5,16 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
   <h:body>
-
-    <ui:repeat value="#{videoController.getVideos()}" var="video">
-      <li>
-        #{video.name}
-      </li>
-    </ui:repeat>
+    <ui:composition template="/WEB-INF/frontend/jsf-templates/main.xhtml">
+      <ui:define name="center-unit-2">
+        <div id="center-unit-2" class="pure-u-1">
+          <ui:repeat value="#{videoController.getVideos()}" var="video">
+            <li>
+              #{video.name}
+            </li>
+          </ui:repeat>
+        </div>
+      </ui:define>
+    </ui:composition>
   </h:body>
 </html>
