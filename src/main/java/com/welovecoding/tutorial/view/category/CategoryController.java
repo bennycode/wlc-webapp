@@ -1,9 +1,9 @@
 package com.welovecoding.tutorial.view.category;
 
 import com.welovecoding.tutorial.data.category.Category;
+import com.welovecoding.tutorial.data.category.CategoryService;
 import com.welovecoding.tutorial.view.Pages;
 import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
-import com.welovecoding.tutorial.data.category.CategoryService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -43,5 +43,9 @@ public class CategoryController extends GenFormBaseController<Category, Category
 
   public List<Category> orderByName() {
     return service.orderByName();
+  }
+
+  public Category getCategory(long categoryId) {
+    return getService().find(categoryId);
   }
 }

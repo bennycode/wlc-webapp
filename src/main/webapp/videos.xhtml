@@ -3,11 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
   <h:body>
     <ui:composition template="/WEB-INF/frontend/jsf-templates/main.xhtml">
       <ui:define name="center-unit-2">
         <div id="center-unit-2" class="pure-u-1">
+          <strong><h:link outcome="categories.xhtml" value="Categories"></h:link> >> <h:link outcome="playlists.xhtml" value="#{playlistController.getPlaylists().get(0).category.name}"><f:param name="categoryId" value="#{playlistController.getPlaylists().get(0).category.id}" /></h:link> >> #{videoController.getVideos().get(0).playlist.name}</strong>
+          <hr />
           <ui:repeat value="#{videoController.getVideos()}" var="video">
             <li>
               #{video.name}

@@ -61,6 +61,10 @@ public class PlaylistController
     return getService().findAllInCategory(categoryId);
   }
 
+  public Playlist getPlaylist(long playlistId) {
+    return getService().find(playlistId);
+  }
+
   public long getCategoryId() {
     return categoryId;
   }
