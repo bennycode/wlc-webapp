@@ -3,57 +3,67 @@
 
 @box-width: 100%;
 
+#breadcrumb-navigation {
+  padding-top: 10px;
+  ul {
+    margin-left: 0;
+    padding-left: 0;
+    display: inline;
+    border: none;
+    li {
+      margin-left: 0;
+      padding-left: 2px;
+      border: none;
+      list-style: none;
+      display: inline;
+      &:before {
+        content: "\020 \020 \020 \0BB \020";
+      }
+      &:first-child:before {
+        content: " ";
+      }
+    }
+  } 
+}
+
 #grid-videos {
   padding-bottom: 20px;
-}
 
-iframe {
-  max-width: 100%;
-}
-
-#container {
-  width: @box-width;
-}
-
-dt {
-  .lh-user-select(none);
-
-  background: #eceff3;
-
-  float: left;
-
-  width: @box-width;
-  padding: 5px;
-  margin-top: 15px;
-
-  cursor: pointer;
-
-  .lh-box-shadow(0 1px 1px rgba(0,0,0,1));
-  .lh-border-radius(5px);
-}
-
-dd {
-  display: none;
-
-  float: left;
-  width: @box-width;
-
-  padding: 10px 10px 15px 10px;
-
-  .lh-box-shadow(0 1px 1px rgba(0,0,0,1));
-  .lh-border-radius(0 0 5px 5px);
-}
-
-#button {
-  float: right;
-  display: block;
-  height: 18px;
-  width: 17px;
-  text-indent: -9999px;
-  &.closed { 
-    background: url("#{resource['images:temp/accordion.png']}") left no-repeat; 
-  }
-  &.open {
-    background: url("#{resource['images:temp/accordion.png']}") right no-repeat; 
+  .container {
+    margin-top: -15px;
+    width: @box-width;
+    dt {
+      .lh-border-radius(5px);
+      .lh-box-shadow(0 1px 1px rgba(0,0,0,1));
+      .lh-user-select(none);
+      background: #eceff3;
+      cursor: pointer;
+      float: left;
+      margin-top: 15px;
+      padding: 5px;
+      width: @box-width;
+    }
+    dd {
+      .lh-border-radius(0 0 5px 5px);
+      .lh-box-shadow(0 1px 1px rgba(0,0,0,1));
+      display: none;
+      float: left;
+      padding: 10px 10px 15px 10px;
+      width: @box-width;
+    }
+    .button {
+      float: right;
+      display: block;
+      height: 18px;
+      width: 17px;
+      text-indent: -9999px;
+      background: url("#{resource['images:temp/accordion.png']}") right no-repeat; 
+      &.closed { 
+        background: url("#{resource['images:temp/accordion.png']}") left no-repeat; 
+      }
+    }
+    iframe {
+      max-width: 100%;
+    }
   }
 }

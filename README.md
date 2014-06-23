@@ -73,6 +73,7 @@ In our example a blog post entity can have embedded entities. If that is the cas
 **Mobile Web Apps**
 
 - [Best Practices for Developing Web Apps](https://developer.amazon.com/sdk/webapps/Best-Practices.html)
+- [CSS Design: Taming Lists](http://alistapart.com/article/taminglists)
 
 **Rules & Conventions**
 

@@ -6,14 +6,24 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
   <body>
     <ui:composition>
-      <h:link outcome="categories.xhtml" value="Categories"></h:link> >> <h:link outcome="playlists.xhtml" value="#{videoController.getLatestPlaylist().category.name}"><f:param name="categoryId" value="#{videoController.getLatestPlaylist().category.id}" /></h:link> >> #{videoController.getLatestPlaylist().name}
+      <div class="pure-g">
+        <div class="pure-u-1">
+          <div id="breadcrumb-navigation">
+            <ul>
+              <li><h:link outcome="categories.xhtml" value="Tutorials"></h:link></li>
+              <li><h:link outcome="playlists.xhtml" value="#{videoController.getLatestPlaylist().category.name}"><f:param name="categoryId" value="#{videoController.getLatestPlaylist().category.id}" /></h:link></li>
+              <li>#{videoController.getLatestPlaylist().name}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
       <div id="grid-videos" class="pure-g">
         <div class="pure-u-1">
-          <div id="container">            
+          <div class="container">            
             <dl>
               <ui:repeat value="#{videoController.getVideos()}" var="video">
-                <dt>#{video.name}<div id="button" class="closed"></div></dt>
+                <dt>#{video.name}<div class="button closed"></div></dt>
                 <dd>
                   <iframe width="1280" height="720" src="//www.youtube-nocookie.com/embed/#{video.code}?rel=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>                  
                 </dd>
