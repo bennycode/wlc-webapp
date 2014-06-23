@@ -1,0 +1,59 @@
+@import "../../../libs/lesshat/3.0.2/lesshat-prefixed.less";
+@import "../../import/variables.less";
+
+@box-width: 100%;
+
+#grid-videos {
+  padding-bottom: 20px;
+}
+
+iframe {
+  max-width: 100%;
+}
+
+#container {
+  width: @box-width;
+}
+
+dt {
+  .lh-user-select(none);
+
+  background: #eceff3;
+
+  float: left;
+
+  width: @box-width;
+  padding: 5px;
+  margin-top: 15px;
+
+  cursor: pointer;
+
+  .lh-box-shadow(0 1px 1px rgba(0,0,0,1));
+  .lh-border-radius(5px);
+}
+
+dd {
+  display: none;
+
+  float: left;
+  width: @box-width;
+
+  padding: 10px 10px 15px 10px;
+
+  .lh-box-shadow(0 1px 1px rgba(0,0,0,1));
+  .lh-border-radius(0 0 5px 5px);
+}
+
+#button {
+  float: right;
+  display: block;
+  height: 18px;
+  width: 17px;
+  text-indent: -9999px;
+  &.closed { 
+    background: url("#{resource['images:temp/accordion.png']}") left no-repeat; 
+  }
+  &.open {
+    background: url("#{resource['images:temp/accordion.png']}") right no-repeat; 
+  }
+}

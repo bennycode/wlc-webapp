@@ -6,8 +6,27 @@
   <h:body>
     <ui:composition template="/WEB-INF/templates/frontend/main.xhtml">
 
+      <ui:define name="extra-stylesheets">
+        <h:outputStylesheet library="css/generated/frontend/grids" name="grid-videos.css" />
+      </ui:define>
+
       <ui:define name="center-unit-1">
         <ui:include src="/WEB-INF/templates/frontend/grids/grid-videos.xhtml" />
+      </ui:define>
+
+      <ui:define name="before-closing-body">
+        <script>
+          /* <![CDATA[ */
+
+          $(document).ready(function() {
+            $("dt").click(function() {
+              $(this).next("dd").slideToggle("fast");
+              $(this).children("a").toggleClass("closed open");
+            });
+          });
+
+          /* ]]> */
+        </script>
       </ui:define>
 
     </ui:composition>
