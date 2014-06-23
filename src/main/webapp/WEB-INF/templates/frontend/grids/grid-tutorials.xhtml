@@ -6,9 +6,18 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
   <body>
     <ui:composition>
+      <div class="pure-g">
+        <div class="pure-u-1">
+          <div id="breadcrumb-navigation">
+            <ul>
+              <li><h:link outcome="categories.xhtml" value="Tutorials"></h:link></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <div id="grid-tutorials" class="pure-g">
         <div class="pure-u-1">
-          <h:link outcome="categories.xhtml" value="Categories"></h:link>
           <ui:repeat value="#{categoryController.orderByName()}" var="category">
             <li>
               <h:link outcome="/playlists.xhtml" value="#{category.name}">
