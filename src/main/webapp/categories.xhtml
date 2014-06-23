@@ -6,6 +6,10 @@
   <h:body>
     <ui:composition template="/WEB-INF/templates/frontend/main.xhtml">
 
+      <ui:define name="extra-stylesheets">
+        <h:outputStylesheet library="css/generated/frontend/grids" name="grid-tutorials.css" />
+      </ui:define>
+
       <ui:define name="center-unit-1">
         <ui:include src="/WEB-INF/templates/frontend/grids/grid-tutorials.xhtml" />
       </ui:define>

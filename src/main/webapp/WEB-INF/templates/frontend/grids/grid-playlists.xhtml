@@ -19,14 +19,18 @@
 
       <div id="grid-playlists" class="pure-g">
         <div class="pure-u-1">
-          <ui:repeat value="#{playlistController.getPlaylists()}" var="playlist">
-            <li>
-              <h:link outcome="/videos.xhtml" value="#{playlist.name}">
-                <f:param name="playlistId" value="#{playlist.id}" />
-                <f:param name="categoryId" value="#{playlistController.categoryId}" />
-              </h:link>
-            </li>
-          </ui:repeat>
+          <div class="container">
+            <ul>
+              <ui:repeat value="#{playlistController.getPlaylists()}" var="playlist">
+                <li>
+                  <h:link outcome="/videos.xhtml" value="#{playlist.name}">
+                    <f:param name="playlistId" value="#{playlist.id}" />
+                    <f:param name="categoryId" value="#{playlistController.categoryId}" />
+                  </h:link>
+                </li>
+              </ui:repeat>
+            </ul>
+          </div>
         </div>
       </div>
     </ui:composition>
