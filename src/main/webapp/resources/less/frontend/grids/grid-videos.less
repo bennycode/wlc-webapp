@@ -1,14 +1,15 @@
 @import "../../../libs/lesshat/3.0.2/lesshat-prefixed.less";
 @import "../../import/variables.less";
 
-@box-width: 100%;
+@grid-videos-box-width: 100%;
+@grid-videos-content-padding: 5px;
 
 #grid-videos {
   padding-bottom: 20px;
 
   .container {
     margin-top: -15px;
-    width: @box-width;
+    width: @grid-videos-box-width;
     dt {
       .lh-border-radius(5px);
       .lh-box-shadow(0 1px 1px rgba(0,0,0,1));
@@ -17,16 +18,17 @@
       cursor: pointer;
       float: left;
       margin-top: 15px;
-      padding: 5px;
-      width: @box-width;
+      padding: @grid-videos-content-padding;
+      width: @grid-videos-box-width;
     }
     dd {
       .lh-border-radius(0 0 5px 5px);
       .lh-box-shadow(0 1px 1px rgba(0,0,0,1));
       display: none;
       float: left;
-      padding: 10px 10px 15px 10px;
-      width: @box-width;
+      margin-left: 0px;
+      padding: @grid-videos-content-padding;
+      width: @grid-videos-box-width;
     }
     .button {
       float: right;
