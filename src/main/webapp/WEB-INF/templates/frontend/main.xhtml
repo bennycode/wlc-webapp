@@ -47,17 +47,19 @@
         <div id="header-unit-2" class="pure-u-1 pure-u-md-1-2 pure-u-lg-2-3">
           <div id="navigation">
             <ul>
-              <li><a href="#" class="current-menu-item">Home</a></li>
-              <li><h:link outcome="/categories.xhtml" value="Tutorials" /></li>
-              <li><a href="#{facesContext.externalContext.requestContextPath}/team.xhtml">Team</a></li>
-              <h:panelGroup rendered="#{authSessionBean.loggedIn eq true}">
-                <li>
-                  <h:form><h:commandLink value="Logout" action="#{loginBean.logout}"/></h:form>
-                </li>
-              </h:panelGroup>
-              <h:panelGroup rendered="#{authSessionBean.loggedIn eq false}">
-                <li><a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon enter"></span> Login</a></li>
-              </h:panelGroup>
+              <li><h:link 
+                  outcome="/index.xhtml" 
+                  styleClass="#{activeLink eq 'index.xhtml' ? 'current-menu-item' : ''}"
+                  value="Home" /></li>
+              <li><h:link 
+                  outcome="/categories.xhtml" 
+                  styleClass="#{activeLink eq 'categories.xhtml' ? 'current-menu-item' : ''}"
+                  value="Tutorials" /></li>
+              <li><h:link 
+                  outcome="/team.xhtml" 
+                  styleClass="#{activeLink eq 'team.xhtml' ? 'current-menu-item' : ''}"
+                  value="Team" /></li>
+              <li><a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon enter"></span> Login</a></li>              
             </ul>
           </div>
         </div>
