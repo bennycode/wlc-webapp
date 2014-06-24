@@ -1,6 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:composite="http://xmlns.jcp.org/jsf/composite"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
   <composite:interface>
     <!-- Required -->
@@ -13,11 +15,23 @@
         <div id="breadcrumb-navigation">
           <ul>
             <li><h:link outcome="categories.xhtml" value="Tutorials"></h:link></li>
-            <li>
-              <h:outputText rendered="#{cc.attrs.level == 2}" 
-                            value="#{playlistController.getLatestCategory().name}">
-              </h:outputText>
-            </li>
+            <ui:fragment rendered="#{cc.attrs.level == 2}">
+              <li>
+                <h:outputText value="#{playlistController.getLatestCategory().name}" />
+              </li>
+            </ui:fragment>
+            <ui:fragment rendered="#{cc.attrs.level == 3}">
+              <li>
+                <h:link outcome="playlists.xhtml" value="#{videoController.getLatestPlaylist().category.name}">
+                  <f:param name="categorySlug" value="#{videoController.getLatestPlaylist().category.slug}" />
+                </h:link>
+              </li>
+            </ui:fragment>
+            <ui:fragment rendered="#{cc.attrs.level == 3}">
+              <li>
+                <h:outputText value="#{videoController.getLatestPlaylist().name}" />
+              </li>
+            </ui:fragment>
           </ul>
         </div>
       </div>
