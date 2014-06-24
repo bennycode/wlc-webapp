@@ -16,21 +16,15 @@
           <ul>
             <li><h:link outcome="categories.xhtml" value="Tutorials"></h:link></li>
             <ui:fragment rendered="#{cc.attrs.level == 2}">
-              <li>
-                <h:outputText value="#{playlistController.getLatestCategory().name}" />
-              </li>
+              <li><h:outputText value="#{playlistController.getLatestCategory().name}" /></li>
             </ui:fragment>
             <ui:fragment rendered="#{cc.attrs.level == 3}">
-              <li>
-                <h:link outcome="playlists.xhtml" value="#{videoController.getLatestPlaylist().category.name}">
+              <li><h:link outcome="playlists.xhtml" value="#{videoController.getLatestPlaylist().category.name}">
                   <f:param name="categorySlug" value="#{videoController.getLatestPlaylist().category.slug}" />
-                </h:link>
-              </li>
+                </h:link></li>
             </ui:fragment>
             <ui:fragment rendered="#{cc.attrs.level == 3}">
-              <li>
-                <h:outputText value="#{videoController.getLatestPlaylist().name}" />
-              </li>
+              <li><h:outputText value="#{videoController.getLatestPlaylist().name}" /></li>
             </ui:fragment>
           </ul>
         </div>
