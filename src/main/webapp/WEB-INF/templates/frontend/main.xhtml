@@ -119,6 +119,30 @@
 
       </div>
       <ui:insert name="before-closing-body"></ui:insert>
+      <script>
+        /* <![CDATA[ */
+        /* Google Analytics */
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39724752-1']);
+        _gaq.push(['_setDomainName', 'welovecoding.com']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_setClientInfo', true]);
+        _gaq.push(['_setAllowHash', false]);
+        _gaq.push(['_setDetectFlash', true]);
+        _gaq.push(['_gat._anonymizeIp']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script');
+          ga.type = 'text/javascript';
+          ga.async = true;
+          ga.src = ('https:' === document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(ga, s);
+        })();
+
+        /* ]]> */
+      </script>
       <h:outputScript name="js/wlc/main.js" />
     </f:view>
   </h:body>
