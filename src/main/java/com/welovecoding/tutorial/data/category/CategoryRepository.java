@@ -1,7 +1,6 @@
 package com.welovecoding.tutorial.data.category;
 
 import com.welovecoding.tutorial.data.base.BaseRepository;
-import com.welovecoding.tutorial.data.category.Category;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,4 +24,11 @@ public class CategoryRepository extends BaseRepository<Category> {
   public List<Category> orderByName() {
     return em.createNamedQuery(Category.ORDER_BY_NAME, Category.class).getResultList();
   }
+
+  public Category getBySlug(String slug) {
+    return em.createNamedQuery(Category.FIND_BY_SLUG, Category.class).
+            setParameter("categoryslug", slug).
+            getSingleResult();
+  }
+
 }

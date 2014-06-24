@@ -1,5 +1,6 @@
 package com.welovecoding.tutorial.data.base;
 
+import com.welovecoding.tutorial.data.Slugify;
 import com.welovecoding.tutorial.data.user.entity.User;
 import java.io.Serializable;
 import java.util.Date;
@@ -32,6 +33,11 @@ public class BaseEntity implements Serializable {
   @Basic(optional = false)
   private String name;
 
+  @NotNull
+  @Size(min = 1, max = 255)
+  @Basic(optional = false)
+  private String slug;
+
   @Temporal(value = TemporalType.TIMESTAMP)
   private Date created;
 
@@ -63,7 +69,16 @@ public class BaseEntity implements Serializable {
   }
 
   public void setName(String name) {
+    this.slug = Slugify.slugify(name);
     this.name = name;
+  }
+
+  public String getSlug() {
+    return slug;
+  }
+
+  public void setSlug(String slug) {
+    this.slug = slug;
   }
 
   public Date getCreated() {

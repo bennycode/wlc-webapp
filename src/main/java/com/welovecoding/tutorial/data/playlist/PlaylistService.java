@@ -49,6 +49,10 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
     return repository.findByCode(code);
   }
 
+  public Playlist getByCategoryAndSlug(long categoryid, String slug) {
+    return repository.getByCategoryAndSlug(categoryid, slug);
+  }
+
   @Override
   protected Set<String> typesToClear() {
     return new HashSet<>(Arrays.asList(

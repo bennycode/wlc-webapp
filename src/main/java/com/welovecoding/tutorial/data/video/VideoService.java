@@ -56,6 +56,10 @@ public class VideoService extends BaseService<Video, VideoRepository> {
     return repository.findInPlaylist(playlistid, videoid);
   }
 
+  public Video getByPlaylistAndSlug(long playlistid, String slug) {
+    return repository.getByPlaylistAndSlug(playlistid, slug);
+  }
+
   @Override
   protected Set<String> typesToClear() {
     return new HashSet<>(Arrays.asList(

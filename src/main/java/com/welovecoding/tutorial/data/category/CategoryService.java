@@ -40,6 +40,10 @@ public class CategoryService extends BaseService<Category, CategoryRepository> {
     return repository.orderByName();
   }
 
+  public Category getBySlug(String slug) {
+    return repository.getBySlug(slug);
+  }
+
   @Override
   protected Set<String> typesToClear() {
     return new HashSet<>(Arrays.asList(

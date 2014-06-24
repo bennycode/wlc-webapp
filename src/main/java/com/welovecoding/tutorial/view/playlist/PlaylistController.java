@@ -27,7 +27,8 @@ public class PlaylistController
   private CategoryController categoryController;
   @EJB
   private PlaylistService service;
-  private long categoryId;
+  private String categorySlug;
+  private Category latestCategory;
 
   @Override
   public PlaylistService getService() {
@@ -62,23 +63,34 @@ public class PlaylistController
   }
 
   public List<Playlist> getPlaylists() {
-    return getService().findAllInCategory(categoryId);
+    return getLatestCategory().getPlaylists();
   }
 
   public Category getLatestCategory() {
-    return categoryController.getCategory(categoryId);
+    if (latestCategory == null) {
+      latestCategory = categoryController.getCategoryBySlug(categorySlug);
+    }
+    return latestCategory;
   }
 
   public Playlist getPlaylist(long playlistId) {
     return getService().find(playlistId);
   }
 
-  public long getCategoryId() {
-    return categoryId;
+  public Playlist getPlaylistByCategoryAndSlug(long categoryId, String slug) {
+    return getService().getByCategoryAndSlug(categoryId, slug);
   }
 
-  public void setCategoryId(long categoryId) {
-    this.categoryId = categoryId;
+  public void setLatestCategory(Category latestCategory) {
+    this.latestCategory = latestCategory;
+  }
+
+  public String getCategorySlug() {
+    return categorySlug;
+  }
+
+  public void setCategorySlug(String categorySlug) {
+    this.categorySlug = categorySlug;
   }
 
 }

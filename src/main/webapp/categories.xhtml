@@ -13,7 +13,7 @@
           <ui:repeat value="#{categoryController.orderByName()}" var="category">
             <li>
               <h:link outcome="/playlists.xhtml" value="#{category.name}">
-                <f:param name="categoryId" value="#{category.id}" />
+                <f:param name="categorySlug" value="#{category.slug}" />
               </h:link>
             </li>
           </ui:repeat>

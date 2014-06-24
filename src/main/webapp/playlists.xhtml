@@ -16,8 +16,8 @@
           <ui:repeat value="#{playlistController.getPlaylists()}" var="playlist">
             <li>
               <h:link outcome="/videos.xhtml" value="#{playlist.name}">
-                <f:param name="playlistId" value="#{playlist.id}" />
-                <f:param name="categoryId" value="#{playlistController.categoryId}" />
+                <f:param name="playlistSlug" value="#{playlist.slug}" />
+                <f:param name="categorySlug" value="#{playlistController.categorySlug}" />
               </h:link>
             </li>
           </ui:repeat>

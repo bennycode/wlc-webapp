@@ -38,13 +38,11 @@
     <view-id value="/categories.xhtml" />
   </url-mapping>
   <url-mapping id="playlists" parentId="tutorials">
-    <!--<pattern value="/#{categorySlug: playlistController.category.slug}/playlists" />-->
-    <pattern value="/#{categoryId : playlistController.categoryId}/playlists" />
+    <pattern value="/#{categorySlug : playlistController.categorySlug}" />
     <view-id value="/playlists.xhtml" />
   </url-mapping>
   <url-mapping id="videos" parentId="playlists">
-    <!--<pattern value="/#{playlistSlug}-#{playlistId}/videos" />-->
-    <pattern value="/#{playlistId : videoController.playlistId}/videos" />
+    <pattern value="/#{playlistSlug : videoController.playlistSlug}" />
     <view-id value="/videos.xhtml" />
   </url-mapping>
 </pretty-config>

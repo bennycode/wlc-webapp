@@ -21,7 +21,8 @@ public class VideoController extends GenFormBaseController<Video, VideoService> 
   private PlaylistController playlistController;
   @EJB
   private VideoService service;
-  private long playlistId;
+  private String playlistSlug;
+  private Playlist latestPlaylist;
 
   @PostConstruct
   public void init() {
@@ -48,19 +49,22 @@ public class VideoController extends GenFormBaseController<Video, VideoService> 
   }
 
   public List<Video> getVideos() {
-    return getService().getVideosByPlaylistId(playlistId);
+    return getLatestPlaylist().getVideos();
   }
 
   public Playlist getLatestPlaylist() {
-    return playlistController.getPlaylist(playlistId);
+    if (latestPlaylist == null) {
+      latestPlaylist = playlistController.getPlaylistByCategoryAndSlug(playlistController.getLatestCategory().getId(), playlistSlug);
+    }
+    return latestPlaylist;
   }
 
-  public long getPlaylistId() {
-    return playlistId;
+  public String getPlaylistSlug() {
+    return playlistSlug;
   }
 
-  public void setPlaylistId(long playlistId) {
-    this.playlistId = playlistId;
+  public void setPlaylistSlug(String playlistSlug) {
+    this.playlistSlug = playlistSlug;
   }
 
 }

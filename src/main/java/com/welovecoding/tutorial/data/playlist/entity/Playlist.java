@@ -1,17 +1,16 @@
 package com.welovecoding.tutorial.data.playlist.entity;
 
-import com.welovecoding.tutorial.data.Slugify;
 import com.welovecoding.tutorial.data.author.Author;
 import com.welovecoding.tutorial.data.base.BaseEntity;
 import com.welovecoding.tutorial.data.category.Category;
 import static com.welovecoding.tutorial.data.playlist.entity.Playlist.FIND_ALL_IN_CATEGORY;
+import static com.welovecoding.tutorial.data.playlist.entity.Playlist.FIND_BY_CATEGORY_AND_SLUG;
 import static com.welovecoding.tutorial.data.playlist.entity.Playlist.FIND_BY_CODE;
 import static com.welovecoding.tutorial.data.playlist.entity.Playlist.FIND_IN_CATEGORY;
 import static com.welovecoding.tutorial.data.playlist.entity.Playlist.LIKE_NAME;
 import com.welovecoding.tutorial.data.video.Video;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -30,7 +29,8 @@ import javax.validation.constraints.Size;
   @NamedQuery(name = FIND_BY_CODE, query = "SELECT p FROM Playlist p WHERE p.code = :code"),
   @NamedQuery(name = FIND_ALL_IN_CATEGORY, query = "SELECT p FROM Playlist p WHERE p.category.id = :categoryid"),
   @NamedQuery(name = LIKE_NAME, query = "SELECT p FROM Playlist p WHERE UPPER(p.name) LIKE UPPER(:keyword)"),
-  @NamedQuery(name = FIND_IN_CATEGORY, query = "SELECT p FROM Playlist p WHERE p.id = :playlistid AND p.category.id = :categoryid")
+  @NamedQuery(name = FIND_IN_CATEGORY, query = "SELECT p FROM Playlist p WHERE p.id = :playlistid AND p.category.id = :categoryid"),
+  @NamedQuery(name = FIND_BY_CATEGORY_AND_SLUG, query = "SELECT p FROM Playlist p WHERE p.slug = :playlistslug AND p.category.id = :categoryid")
 })
 public class Playlist extends BaseEntity {
 
@@ -38,6 +38,7 @@ public class Playlist extends BaseEntity {
   public static final String LIKE_NAME = "Playlist.likeName";
   public static final String FIND_IN_CATEGORY = "Playlist.findInCategory";
   public static final String FIND_ALL_IN_CATEGORY = "Playlist.findAllInCategory";
+  public static final String FIND_BY_CATEGORY_AND_SLUG = "Playlist.findByCategoryAndSlug";
 
   @Embedded @Enumerated(EnumType.STRING)
   private Provider provider;
@@ -65,11 +66,6 @@ public class Playlist extends BaseEntity {
 
   private boolean enabled;
 
-  @NotNull
-  @Size(min = 1, max = 255)
-  @Basic(optional = false)
-  private String slug;
-
   public Playlist() {
     this.enabled = true;
     this.videos = new ArrayList<>();
@@ -87,15 +83,6 @@ public class Playlist extends BaseEntity {
   @Override
   public void setName(String name) {
     super.setName(name);
-    this.slug = Slugify.slugify(name);
-  }
-
-  public String getSlug() {
-    return Slugify.slugify(this.getName());
-  }
-
-  public void setSlug(String slug) {
-    this.slug = slug;
   }
 
   public Category getCategory() {

@@ -71,4 +71,11 @@ public class VideoRepository extends BaseRepository<Video> {
     return em.createNamedQuery(Video.FIND_ALL_IN_PLAYLIST, Video.class).
             setParameter("playlistid", playlistId).getResultList();
   }
+
+  public Video getByPlaylistAndSlug(long playlistid, String slug) {
+    return em.createNamedQuery(Video.FIND_BY_PLAYLIST_AND_SLUG, Video.class).
+            setParameter("playlistid", playlistid).
+            setParameter("categoryslug", slug).
+            getSingleResult();
+  }
 }
