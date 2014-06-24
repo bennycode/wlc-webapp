@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+      xmlns:h="http://java.sun.com/jsf/html">
   <body>
     <ui:composition>
       <!-- Welcome teaser -->
       <div id="grid-welcome-teaser" class="pure-g">
         <div id="welcome-teaser-unit-1" class="pure-u-1 pure-u-md-1-2">
           <div id="welcome-teaser">
-            <h1>Informatik Tutorials</h1>
-            <p>We Love Coding bietet eine zahlreiche Sammlung von kostenlosen Video-Tutorials für Entwickler.</p>
-            <p>Das Spektrum reicht von der Einführung in objektorientierte Programmiersprachen wie C#, Java, Ruby und C++ über Themen der Webentwicklung mit HTML5 und JavaScript bis hin zur Entwicklung von Apps für iOS, Android und Windows Phone.</p>           
+            <h1>#{frontend['main.title']}</h1>
+            <h:outputText 
+              escape="false" 
+              value="#{frontend['welcome.teaser']}" />            
           </div>
         </div>
         <div id="welcome-teaser-unit-2" class="pure-u-1 pure-u-md-1-2">

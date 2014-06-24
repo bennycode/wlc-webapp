@@ -1,4 +1,12 @@
+@import "../../libs/lesshat/3.0.2/lesshat-prefixed.less";
+
 @pure-sm: ~"screen and (min-width: 35.5em)";  // ≥ 568px
 @pure-md: ~"screen and (min-width: 48em)";    // ≥ 768px
 @pure-lg: ~"screen and (min-width: 64em)";    // ≥ 1024px
 @pure-xl: ~"screen and (min-width: 80em)";    // ≥ 1280px
+
+.vertical-align() {
+  position: relative;
+  top: 50%;
+  .lh-translateY(-50%);
+}
