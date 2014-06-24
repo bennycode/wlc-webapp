@@ -1,8 +1,10 @@
-<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
-                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+<pretty-config xmlns="http://ocpsoft.com/prettyfaces/3.3.0" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.0
+                                   		http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.0.xsd">
 
+  
+  <rewrite match="^(?!.*\.[a-z]*.*).*" trailingSlash="append" redirect="301" />
   <!-- Error pages -->
   <!--  <url-mapping id="404">
     <pattern value="/404" />
@@ -34,15 +36,15 @@
   <!-- Tutorials -->
   <!-- http://ocpsoft.org/docs/prettyfaces/3.3.3/en-US/html/Configuration.html#config.mapping.parents -->
   <url-mapping id="tutorials">
-    <pattern value="/tutorials" />
+    <pattern value="/tutorials/" />
     <view-id value="/categories.xhtml" />
   </url-mapping>
   <url-mapping id="playlists" parentId="tutorials">
-    <pattern value="/#{categorySlug : playlistController.categorySlug}" />
+    <pattern value="#{categorySlug : playlistController.categorySlug}/" />
     <view-id value="/playlists.xhtml" />
   </url-mapping>
   <url-mapping id="videos" parentId="playlists">
-    <pattern value="/#{playlistSlug : videoController.playlistSlug}" />
+    <pattern value="#{playlistSlug : videoController.playlistSlug}/" />
     <view-id value="/videos.xhtml" />
   </url-mapping>
 </pretty-config>
