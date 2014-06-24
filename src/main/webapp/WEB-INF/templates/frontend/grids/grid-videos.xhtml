@@ -11,7 +11,9 @@
           <div id="breadcrumb-navigation">
             <ul>
               <li><h:link outcome="categories.xhtml" value="Tutorials"></h:link></li>
-              <li><h:link outcome="playlists.xhtml" value="#{videoController.getLatestPlaylist().category.name}"><f:param name="categoryId" value="#{videoController.getLatestPlaylist().category.id}" /></h:link></li>
+              <li><h:link outcome="playlists.xhtml" value="#{videoController.getLatestPlaylist().category.name}">
+                  <f:param name="categorySlug" value="#{videoController.getLatestPlaylist().category.slug}" />
+                </h:link></li>
               <li>#{videoController.getLatestPlaylist().name}</li>
             </ul>
           </div>
