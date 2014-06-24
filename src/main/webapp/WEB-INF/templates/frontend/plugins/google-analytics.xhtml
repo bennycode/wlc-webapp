@@ -5,27 +5,27 @@
   <body>
     <ui:composition>
 
-      <div id="fb-root"></div>
       <script>
         /* <![CDATA[ */
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39724752-1']);
+        _gaq.push(['_setDomainName', 'welovecoding.com']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_setClientInfo', true]);
+        _gaq.push(['_setAllowHash', false]);
+        _gaq.push(['_setDetectFlash', true]);
+        _gaq.push(['_gat._anonymizeIp']);
+        _gaq.push(['_trackPageview']);
 
-        /* Facebook */
-        var showLikeBox = function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id))
-            return;
-          js = d.createElement(s);
-          js.id = id;
-          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=345838572194372";
-          var navigatorLanguage = navigator.language;
-          var locale = navigatorLanguage.split('-');
-          if (locale[0] === 'de') {
-            js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1&appId=345838572194372";
-          }
-          fjs.parentNode.insertBefore(js, fjs);
-        };
+        (function() {
+          var ga = document.createElement('script');
+          ga.type = 'text/javascript';
+          ga.async = true;
+          ga.src = ('https:' === document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(ga, s);
+        })();
 
-        showLikeBox(document, 'script', 'facebook-jssdk');
         /* ]]> */
       </script>
 
