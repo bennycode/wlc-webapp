@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+  <body>
+    <ui:composition>
+      <div class="pure-g">
+        <div class="pure-u-1">
+          <div id="breadcrumb-navigation">
+            <ul>
+              <li><h:link outcome="categories.xhtml" value="Tutorials"></h:link></li>
+              <li>#{playlistController.getLatestCategory().name}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="grid-playlists" class="pure-g">
+        <div class="pure-u-1">
+          <div class="container">
+            <ul>
+              <ui:repeat value="#{playlistController.getPlaylists()}" var="playlist">
+                <li>
+                  <h:link outcome="/videos.xhtml" value="#{playlist.name}">
+                    <f:param name="playlistSlug" value="#{playlist.slug}" />
+                    <f:param name="categorySlug" value="#{playlistController.categorySlug}" />
+                  </h:link>
+                </li>
+              </ui:repeat>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ui:composition>
+  </body>
+</html>

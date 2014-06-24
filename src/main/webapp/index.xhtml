@@ -1,26 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       >
   <h:body>
-    <ui:composition template="/WEB-INF/frontend/jsf-templates/main.xhtml">
+    <ui:composition template="/WEB-INF/templates/frontend/main.xhtml">
 
-      <ui:define name="top-unit-2">
-        <div id="top-unit-2" class="pure-u-1">
-          <ui:include src="/WEB-INF/frontend/jsf-templates/main/top/welcome-teaser.xhtml" />
-        </div>
+      <ui:define name="extra-stylesheets">
+        <h:outputStylesheet library="css/generated/frontend" name="index.css" />
       </ui:define>
 
       <ui:define name="center-unit-1">
-        <div id="center-unit-1" class="pure-u-1"></div>
+        <ui:include src="/WEB-INF/frontend/jsf-templates/main/top/welcome-teaser.xhtml" />
       </ui:define>
 
       <ui:define name="center-unit-2">
-        <div id="center-unit-2" class="pure-u-1"></div>
+        <ui:include src="/WEB-INF/templates/frontend/grids/grid-welcome-app-teaser.xhtml" />
       </ui:define>
 
+      <ui:define name="before-closing-body">
+        <div id="fb-root"></div>
+        <script>
+          /* <![CDATA[ */
+
+          /* Facebook */
+          var showLikeBox = function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id))
+              return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=345838572194372";
+            var navigatorLanguage = navigator.language;
+            var locale = navigatorLanguage.split('-');
+            if (locale[0] === 'de') {
+              js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1&appId=345838572194372";
+            }
+            fjs.parentNode.insertBefore(js, fjs);
+          };
+
+          showLikeBox(document, 'script', 'facebook-jssdk');
+          /* ]]> */
+        </script>
+      </ui:define>
 
     </ui:composition>
   </h:body>

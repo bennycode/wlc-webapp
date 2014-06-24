@@ -1,29 +1,14 @@
-@import "../libs/lesshat/3.0.2/lesshat-prefixed.less";
-@import "colors.less";
-@import "mixins.less";
+@import "../../import/mixins.less";
+@import "../../import/fonts.less";
+@import "../../import/variables.less";
 
-// Pure CSS customization
-body,
-.pure-g [class *= "pure-u"],
-.pure-g-r [class *= "pure-u"] {
-  // http://purecss.io/grids/#using-grids-with-custom-fonts
-  font-family: "Open Sans", sans-serif;
-}
-
-.pure-g div[class^="pure-u"] {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-// Basic Grid layout
-.layout-wrapper {
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-#header-grid {
+#grid-header {
 
   #header-unit-1 {
+    text-align: center;
+    @media @pure-md {
+      text-align: left;
+    }
     #title {
       .font-title();
       .dot {
@@ -34,8 +19,15 @@ body,
 
   #header-unit-2 {
     #navigation {
+      width: 80%;
+      margin: 0 auto;
+      @media @pure-md {
+        width: 100%;
+      }
       ul {
-        float: right;
+        @media @pure-md {
+          float: right;
+        }
         list-style: none;
         li {
           float: left;
@@ -44,6 +36,10 @@ body,
             display: block;
             padding: 6px;
             margin-left: 6px;
+            margin-bottom: 10px;
+            @media @pure-md {
+              margin-bottom: 0px;
+            }
             &.current-menu-item {
               background-color: @color-navigation-off;
               .box-shadow-standard();
@@ -63,19 +59,4 @@ body,
     }
   }
 
-}
-
-body {
-  @media @pure-sm {
-    background-color: #0078e7;
-  }
-  @media @pure-md {
-    background-color: #61B842;
-  }
-  @media @pure-lg {
-    background-color: #f74d37;
-  }
-  @media @pure-xl {
-    background-color: darkorchid;
-  }
 }

@@ -1,0 +1,54 @@
+// Pure CSS customization
+body,
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"] {
+  // http://purecss.io/grids/#using-grids-with-custom-fonts
+  font-family: "Open Sans", sans-serif;
+}
+
+.pure-g div[class^="pure-u"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+// Basic Grid layout
+.layout-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+#center {
+  background-color: white;
+}
+
+html {
+  background-image: url("#{resource['images:chalkboard-gray-500_compressed.png']}");
+}
+
+body {
+  a {
+    text-decoration: none;
+  }
+}
+
+hr {
+  background: url("#{resource['images:divider.png']}") center no-repeat;
+  border: 0;
+  height: 16px;
+}
+
+.clear-both {
+  clear: both;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.inline-block {
+  display: inline-block;
+}

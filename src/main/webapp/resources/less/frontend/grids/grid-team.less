@@ -1,19 +1,14 @@
-#author-grid,
-#team-grid {
+@import "../../../libs/lesshat/3.0.2/lesshat-prefixed.less";
+
+#grid-team {
   .team-member {
     .images {
       width: 106px;
       overflow: hidden;
     }
     .picture {
-      box-shadow: 0 0 8px rgba(0,0,0,0.15); 
-      -moz-box-shadow: 0 0 8px rgba(0,0,0,0.15);
-      -webkit-box-shadow: 0 0 8px rgba(0,0,0,0.15);
-
-      border-radius: 3px;
-      -moz-border-radius: 3px;
-      -webkit-border-radius: 3px;
-
+      .lh-border-radius(3px);
+      .lh-box-shadow(0 0 8px rgba(0,0,0,0.15));
       background: #fff;
       border: 1px solid #e1e1e1;
       padding: 3px 3px 6px 3px;
@@ -22,14 +17,8 @@
       width: 96px;
       text-align: center;
       .link-icon {
-        border-radius: 3px;
-        -moz-border-radius: 3px;
-        -webkit-border-radius: 3px;
-
-        box-shadow: 0 0 7px rgba(0,0,0,0.17) inset;
-        -moz-box-shadow: 0 0 7px rgba(0,0,0,0.17) inset;
-        -webkit-box-shadow: 0 0 7px rgba(0,0,0,0.17) inset;
-
+        .lh-border-radius(3px);
+        .lh-box-shadow(0 0 7px rgba(0,0,0,0.17) inset);
         background: #f0f0f0;
         color: #999999;
         display: inline-block;
