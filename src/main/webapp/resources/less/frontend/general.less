@@ -1,3 +1,6 @@
+@import "../../libs/lesshat/3.0.2/lesshat-prefixed.less";
+@import "../import/variables.less";
+
 // Pure CSS customization
 body,
 .pure-g [class *= "pure-u"],
@@ -9,6 +12,15 @@ body,
 .pure-g div[class^="pure-u"] {
   padding-left: 10px;
   padding-right: 10px;
+}
+
+* {
+  .lh-box-sizing(border-box);
+}
+
+
+*:before, *:after {
+  .lh-box-sizing(border-box);
 }
 
 // Basic Grid layout
@@ -27,7 +39,11 @@ html {
 
 body {
   a {
+    color: @color-text-link;
     text-decoration: none;
+  }
+  p {
+    line-height: 1.6;
   }
 }
 

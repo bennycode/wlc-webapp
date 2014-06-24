@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+  <composite:interface>
+    <!-- Required -->
+    <composite:attribute name="level" required="true" type="java.lang.Integer" />
+  </composite:interface>
+
+  <composite:implementation>
+    <div class="pure-g">
+      <div class="pure-u-1">
+        <div id="breadcrumb-navigation">
+          <ul>
+            <li><h:link outcome="categories.xhtml" value="Tutorials"></h:link></li>
+            <li>
+              <h:outputText rendered="#{cc.attrs.level == 2}" 
+                            value="#{playlistController.getLatestCategory().name}">
+              </h:outputText>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </composite:implementation>
+</html>

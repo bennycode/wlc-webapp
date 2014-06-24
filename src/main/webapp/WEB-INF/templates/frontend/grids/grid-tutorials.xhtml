@@ -3,18 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:wlc="http://xmlns.jcp.org/jsf/composite/wlc">
   <body>
     <ui:composition>
-      <div class="pure-g">
-        <div class="pure-u-1">
-          <div id="breadcrumb-navigation">
-            <ul>
-              <li><h:link outcome="categories.xhtml" value="Tutorials"></h:link></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <wlc:frontend-breadcrumbs level="1" />
 
       <div id="grid-tutorials" class="pure-g">
         <div class="pure-u-1">
