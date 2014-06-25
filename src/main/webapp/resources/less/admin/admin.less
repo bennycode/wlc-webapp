@@ -1,3 +1,5 @@
+@import "../../libs/lesshat/3.0.2/lesshat-prefixed.less";
+
 /* Variables */
 @imagePath: "../images/admin";
 
@@ -124,25 +126,11 @@ body.admin {
 }
 
 .btn-default {
-  background: #3b6998; color: #fff; text-shadow: 1px 1px rgba(0,0,0,0.1);
-  background: -moz-linear-gradient(top,  #3b6998 0%, #0b4073 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3b6998), color-stop(100%,#0b4073));
-  background: -webkit-linear-gradient(top,  #3b6998 0%,#0b4073 100%);
-  background: -o-linear-gradient(top,  #3b6998 0%,#0b4073 100%);
-  background: -ms-linear-gradient(top,  #3b6998 0%,#0b4073 100%);
-  background: linear-gradient(to bottom,  #3b6998 0%,#0b4073 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b6998', endColorstr='#0b4073',GradientType=0 );
+  .lh-background-image(linear-gradient(top, #3b6998 0%, #0b4073 100%));
 }
 
 .btn-default:hover {
-  background: #4e86b7; color: #fff; text-shadow: 1px 1px rgba(0,0,0,0.1);
-  background: -moz-linear-gradient(top,  #4e86b7 0%, #035f9a 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4e86b7), color-stop(100%,#035f9a));
-  background: -webkit-linear-gradient(top,  #4e86b7 0%,#035f9a 100%);
-  background: -o-linear-gradient(top,  #4e86b7 0%,#035f9a 100%);
-  background: -ms-linear-gradient(top,  #4e86b7 0%,#035f9a 100%);
-  background: linear-gradient(to bottom,  #4e86b7 0%,#035f9a 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e86b7', endColorstr='#035f9a',GradientType=0 );
+  .lh-background-image(linear-gradient(top, #4e86b7 0%, #035f9a 100%));
 }
 
 .loginwrap {
