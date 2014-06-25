@@ -11,7 +11,16 @@
     <view-id value="/404.xhtml" />
   </url-mapping>-->
 
-
+  <!-- Home -->
+  <url-mapping id="home">
+    <pattern value="/" />
+    <view-id value="/index.xhtml" />
+  </url-mapping>
+  <!-- Team -->
+  <url-mapping id="team">
+    <pattern value="/team/" />
+    <view-id value="/team.xhtml" />
+  </url-mapping>
   <!-- Imprint -->
   <!--  <url-mapping id="imprint_en">
     <pattern value="/imprint" />
