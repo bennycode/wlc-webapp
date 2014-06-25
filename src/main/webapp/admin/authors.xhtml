@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:wlc="http://java.sun.com/jsf/composite/wlc">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:wlc="http://xmlns.jcp.org/jsf/composite/wlc">
   <h:body>    
-    <ui:composition template="/WEB-INF/backend/xhtml/main.xhtml">
+    <ui:composition template="/WEB-INF/templates/admin/main.xhtml">
       <ui:define name="title">
         <h:outputText value="#{backend['admin.form.title.authors']}" />
       </ui:define>
