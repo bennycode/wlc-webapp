@@ -5,17 +5,26 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
                                   http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
   <application>
+    
     <locale-config>
       <default-locale>de</default-locale>
       <supported-locale>en</supported-locale>
-    </locale-config>
+    </locale-config> 
+    
     <resource-bundle>
       <base-name>com.welovecoding.resources.text.backend</base-name>
       <var>backend</var>
     </resource-bundle>
+    
     <resource-bundle>
       <base-name>com.welovecoding.resources.text.frontend</base-name>
       <var>frontend</var>
     </resource-bundle>
+    
+    <resource-bundle>
+      <base-name>com.welovecoding.resources.text.welcome_teaser</base-name>
+      <var>welcome_teaser</var>
+    </resource-bundle>    
+    
   </application>
 </faces-config>
