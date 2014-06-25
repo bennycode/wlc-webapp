@@ -4,7 +4,7 @@
 
   <groupId>com.welovecoding.web</groupId>
   <artifactId>wlc-webapp</artifactId>
-  <version>0.0.5-SNAPSHOT</version>
+  <version>0.0.5</version>
   <packaging>war</packaging>
 
   <name>We Love Coding (webapp)</name>
@@ -37,7 +37,7 @@
     <connection>scm:git:git@github.com:bennyn/wlc-webapp.git</connection>
     <developerConnection>scm:git:git@github.com:bennyn/wlc-webapp.git</developerConnection>
     <url>https://github.com/bennyn/wlc-webapp</url>
-    <tag>HEAD</tag>
+    <tag>wlc-webapp/0.0.5</tag>
   </scm>
   <issueManagement>
     <system>GitHub Issue Management</system>
@@ -360,24 +360,24 @@
                 <echo>project.basedir......................: ${project.basedir}</echo>
                 <echo>project.build.directory..............: ${project.build.directory}</echo>
                 <echo>project.build.outputDirectory........: ${project.build.outputDirectory}</echo>
-                <echo></echo>
+                <echo />
                 <echo>-- Remote Deploy Information --</echo>
                 <echo>gf.remote.address....................: ${gf.remote.address}</echo>
                 <echo>gf.remote.port.......................: ${gf.remote.port}</echo>
                 <echo>gf.remote.username...................: ${gf.remote.username}</echo>
                 <echo>gf.remote.password...................: ${gf.remote.password}</echo>
                 <echo>gf.remote.deployable.type............: ${gf.remote.deployable.type}</echo>
-                <echo></echo>
+                <echo />
                 <echo>-- Database Information --</echo>
                 <echo>jdbc.url.............................: ${jdbc.url}</echo>
                 <echo>jdbc.username........................: ${jdbc.username}</echo>
                 <echo>jdbc.password........................: ${jdbc.password}</echo>
                 <echo>sql.driver.version...................: ${sql.driver.version}</echo>
-                <echo></echo>
+                <echo />
                 <echo>-- Google Information --</echo>
                 <echo>auth.google.client.id................: ${auth.google.client.id}</echo>
                 <echo>auth.google.client.secret............: ${auth.google.client.secret}</echo>
-                <echo></echo>
+                <echo />
                 <echo>-- Other Information --</echo>
                 <echo>test.secured.url.....................: ${test.secured.url}</echo>
                 <echo>test.generate.data...................: ${test.generate.data}</echo>
