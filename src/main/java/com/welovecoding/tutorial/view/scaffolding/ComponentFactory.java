@@ -3,6 +3,7 @@ package com.welovecoding.tutorial.view.scaffolding;
 import com.welovecoding.StringUtils;
 import com.welovecoding.tutorial.data.base.BaseEntity;
 import com.welovecoding.tutorial.view.JSFUtils;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +30,7 @@ import javax.faces.model.SelectItem;
  *
  * @author Michael Koppen
  */
-public class ComponentFactory {
+public class ComponentFactory implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(ComponentFactory.class.getName());
 
