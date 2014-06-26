@@ -47,6 +47,35 @@ body {
   p {
     line-height: 1.6em;
   }
+  .table {
+    display: table;
+    border-spacing: 2px;
+    &.center {
+      margin: 0 auto;
+    }
+    .thead {
+      display: table-header-group;
+      vertical-align: middle;
+      border-color: inherit;
+    }
+    .tbody {
+      display: table-row-group;
+      vertical-align: middle;
+      border-color: inherit;
+    }
+    .th {
+      font-weight: bold;
+    }
+    .tr {
+      display: table-row;
+      vertical-align: inherit;
+      border-color: inherit;
+    }
+    .td, .th {
+      display: table-cell;
+      vertical-align: inherit;
+    }
+  }
 }
 
 .content.container {
