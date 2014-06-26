@@ -14,7 +14,9 @@
               <ui:repeat value="#{videoController.getVideos()}" var="video">
                 <dt>#{video.name}<div class="button closed"></div></dt>
                 <dd>
-                  <iframe width="1280" height="720" src="//www.youtube-nocookie.com/embed/#{video.code}?rel=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>                  
+                  <div class="video"
+                       data-video-code="#{video.code}"
+                       data-video-provider="#{video.playlist.provider}"></div>
                 </dd>
               </ui:repeat>
             </dl>
