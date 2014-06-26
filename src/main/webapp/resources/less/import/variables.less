@@ -1,11 +1,25 @@
+@import "../../libs/lesshat/3.0.2/lesshat-prefixed.less";
+@import "font-families.less";
+
+// Media Queries
+@pure-sm: ~"screen and (min-width: 35.5em)";  // ≥ 568px
+@pure-md: ~"screen and (min-width: 48em)";    // ≥ 768px
+@pure-lg: ~"screen and (min-width: 64em)";    // ≥ 1024px
+@pure-xl: ~"screen and (min-width: 80em)";    // ≥ 1280px
+
+// Colors
 @color-text-light: #f8f8f8;
 @color-text-highlight: #f2412e;
 @color-text-link: #265778;
 @color-navigation-off: #f2412e;
 @color-navigation-hover: #f2412e;
 
-@font-size-lg: 34px;
+// Font sizes
+@font-size-large: 34px;
+@font-size-medium: 16px;
+@font-size-small: 14px;
 
+// Mixins
 .border-radius-standard() {
   .lh-border-radius(3px);
 }
@@ -14,24 +28,30 @@
   .lh-box-shadow(0 1px 1px rgba(0,0,0,0.15) inset);
 }
 
-.text-shadow-standard() {
-  text-shadow: 1px -1px 1px rgba(0,0,0,.22);
-}
-
-.font-title() {
-  color: @color-text-light;
-  font-weight: bold;
-  font-size: @font-size-lg;
-  line-height: 65px;
-  .text-shadow-standard();
-}
-
 .font-size (@size) {
   font-size: @size;
   line-height: @size;
 }
 
+.font-title() {
+  color: @color-text-light;
+  font-weight: bold;
+  font-size: @font-size-large;
+  line-height: 65px;
+  .text-shadow-standard();
+}
+
 .height (@size: 42px) {
   height: @size;
   line-height: @size;
+}
+
+.text-shadow-standard() {
+  text-shadow: 1px -1px 1px rgba(0,0,0,.22);
+}
+
+.vertical-align() {
+  position: relative;
+  top: 50%;
+  .lh-translateY(-50%);
 }

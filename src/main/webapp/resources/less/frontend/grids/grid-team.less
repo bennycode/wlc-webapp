@@ -1,7 +1,12 @@
 @import "../../../libs/lesshat/3.0.2/lesshat-prefixed.less";
+@import "../../import/variables.less";
 
 #grid-team {
   .team-member {
+    padding-top: 10px;
+    @media @pure-md {
+      padding-top: 0px;
+    }
     .images {
       width: 106px;
       overflow: hidden;
@@ -39,7 +44,7 @@
         color: #777;
       }
       p {
-        font-size: 14px;
+        font-size: @font-size-small;
       }
     }
   }

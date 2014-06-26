@@ -1,12 +1,9 @@
-@import "../../import/mixins.less";
 @import "../../import/variables.less";
 @import "../../../libs/lesshat/3.0.2/lesshat-prefixed.less";
 
 .hello-button-outline {
   background-color: rgba(255,255,255,0);
-  box-shadow: inset 0 2px 32px rgba(0,0,0,.93);
-  -moz-box-shadow: inset 0 2px 32px rgba(0,0,0,.93);
-  -webkit-box-shadow: inset 0 2px 32px rgba(0,0,0,.93);
+  .lh-box-shadow(inset 0 2px 32px rgba(0,0,0,.93));
   .lh-border-radius(20px);
 }
 
