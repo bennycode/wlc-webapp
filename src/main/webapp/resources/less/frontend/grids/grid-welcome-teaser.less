@@ -9,11 +9,13 @@
 
 #grid-welcome-teaser {
   color: white;
-
+  margin-top: 30px;
   #welcome-teaser-unit-1 {
+    padding-right: -1em;
     #welcome-teaser {
       color: @color-text-light;
       margin-top: 0;
+
       h1 {
         color: @color-text-light;
         font-weight: bold;
@@ -26,10 +28,13 @@
         }
       }
     }
+    p {
+      display: block;
+    }
   }
   #welcome-teaser-unit-2 {
     #nerd {
-      margin-left: 1em;
+      /*margin-left: 1em;*/
       margin-top: 1em;
       margin-bottom: 1em;
       background-image: url("#{resource['images:nerd_compressed.png']}");
