@@ -14,11 +14,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- SEO -->
     <meta name="robots" content="index, follow" />
-    <h:panelGroup rendered="#{fn:containsIgnoreCase(request.requestURL, '.de')}">
+    <h:panelGroup rendered="#{facesContext.viewRoot.locale eq 'de'}">
       <meta name="description" lang="de" content="Kostenlose Screencasts und Video-Tutorials zur Programmierung und weiteren Themen aus der Informatik." />
       <meta name="keywords" lang="de" content="Tutorials, Programmierung, Programmieren, Screencasts, Videos, Apps, Anleitungen, Grundlagen, Howtos, Tools" />
     </h:panelGroup>
-    <h:panelGroup rendered="#{fn:containsIgnoreCase(request.requestURL, '.com')}">
+    <h:panelGroup rendered="#{facesContext.viewRoot.locale eq 'en'}">
       <meta name="description" lang="en" content="Free screencasts and video tutorials on topics in computer science and programming." />
       <meta name="keywords" lang="en" content="tutorials, programming, screencasts, videos, apps, basics, howtos, tools" />
     </h:panelGroup>
@@ -36,7 +36,7 @@
           sizes="16x16 32x32" 
           type="image/vnd.microsoft.icon"
           />
-    <!-- Facebook -->
+    <!-- Facebook -->    
     <link rel="image_src" href="#{facesContext.externalContext.requestContextPath}/resources/images/icons/touch-icon-100-100.png" />
     <!-- http://developer.apple.com/library/ios/#documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
     <link rel="apple-touch-icon" href="#{facesContext.externalContext.requestContextPath}/resources/images/icons/touch-icon-57-57.png" />
@@ -109,7 +109,7 @@
         </div>
         <h:panelGroup rendered="#{facesContext.isProjectStage('Development')}">
           <div id="debug-info" class="pure-u-1-1">
-            <p class="text">Development stage.</p>
+            <p class="text"><b>Development stage.</b> Locale: #{facesContext.viewRoot.locale}, Screen:</p>
           </div>
         </h:panelGroup>
       </div>    
