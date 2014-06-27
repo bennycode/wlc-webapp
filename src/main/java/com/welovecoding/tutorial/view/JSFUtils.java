@@ -382,6 +382,21 @@ public class JSFUtils implements Serializable {
     return htmlCommandButton;
   }
 
+  public static String getLocaleFromDomain(final FacesContext facesContext) {
+    String locale = "en";
+
+    Object request = facesContext.getExternalContext().getRequest();
+    if (request instanceof HttpServletRequest) {
+      HttpServletRequest servletRequest = (HttpServletRequest) request;
+      String header = servletRequest.getHeader("host");
+      if (header.contains(".de")) {
+        locale = "de";
+      }
+    }
+
+    return locale;
+  }
+
   /**
    * <p>
    * Determines the Base URL, e.g.,
