@@ -7,6 +7,24 @@
 #grid-videos {
   padding-bottom: 20px;
 
+  .share-videos {
+    margin-top: 15px;
+    .fb-share-button-wrapper {
+      height: 24px;
+      width: 90px;
+      text-align: center;
+      .background-color-facebook();      
+      .fb-like {
+        display: none;
+      }
+      &.on {
+        .fb-like {
+          display: block;
+        }
+      }
+    }
+  }
+
   .container {
     width: @grid-videos-box-width;
     a {

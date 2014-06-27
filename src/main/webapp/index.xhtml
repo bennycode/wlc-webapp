@@ -23,6 +23,14 @@
 
       <ui:define name="before-closing-body">
         <h:outputScript library="js/wlc/config" name="Facebook.js" />
+        <script>
+          /* <![CDATA[ */
+          (function() {
+            var facebook = new wlc.config.Facebook();
+            facebook.loadLikeBox();
+          })();
+          /* ]]> */
+        </script>
       </ui:define>
 
     </ui:composition>

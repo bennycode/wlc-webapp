@@ -9,7 +9,7 @@ window.wlc.config.Facebook = (function() {
   function Facebook() {
     this.config = {
       app: {
-        id: '245151515509317',
+        id: '345838572194372',
         url: 'https://www.facebook.com/welovecoding'
       }
     };
@@ -53,10 +53,10 @@ window.wlc.config.Facebook = (function() {
     return sdkLocale;
   };
 
-  Facebook.prototype.initCallback = function(onPluginRendered) {
+  Facebook.prototype.initCallback = function(callback, phase) {
     window.fbAsyncInit = function() {
-      FB.Event.subscribe('xfbml.render', function(response) {
-        onPluginRendered();
+      FB.Event.subscribe(phase, function(response) {
+        callback();
       });
     };
   };
@@ -69,24 +69,39 @@ window.wlc.config.Facebook = (function() {
             + this.config.app.id + "&version=v2.0";
   };
 
-  Facebook.prototype.applyCustomStyle = function() {
+  Facebook.prototype.customizeLikeBox = function() {
     $('.fb-like').toggleClass('off');
   };
 
-  Facebook.prototype.loadSDK = function() {
-    var self = this;
-    this.initCallback(function() {
-      self.applyCustomStyle();
-    });
+  Facebook.prototype.loadSDK = function(callback, phase) {
+    this.initCallback(callback, phase);
     this.injectSDKElement();
     this.injectSDKScript();
   };
 
+  Facebook.prototype.loadLikeBox = function() {
+    var callback = this.customizeLikeBox();
+    this.loadSDK(callback, 'xfbml.render');
+  };
+
+  Facebook.prototype.getShareUrl = function() {
+    return document.URL.substr(0, document.URL.indexOf('#'));
+  };
+
+  Facebook.prototype.injectLikeButton = function() {
+    var url = this.getShareUrl();
+    var button = $('<div class="fb-like" data-href="' + url + '" data-layout="button" data-action="recommend" data-show-faces="true" data-share="false"></div>');
+    console.log(button.get(0));
+    $('.fb-share-button-wrapper').append(button);
+  };
+
+  Facebook.prototype.loadLikeButton = function() {
+    this.injectLikeButton();
+    this.loadSDK(function() {
+      $('.fb-share-button-wrapper').addClass('on');
+    }, 'xfbml.render');
+  };
+
   return Facebook;
 
-})();
-
-(function() {
-  var facebook = new wlc.config.Facebook();
-  facebook.loadSDK();
 })();
