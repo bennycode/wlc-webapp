@@ -12,7 +12,9 @@
           <div class="container">
             <dl>
               <ui:repeat value="#{videoController.getVideos()}" var="video">
-                <dt>#{video.name}<div class="button closed"></div></dt>
+                <dt name="#{video.slug}">#{video.name}<a 
+                    href="##{video.slug}"
+                    class="button closed"></a></dt>
                 <dd>
                   <div class="video"
                        data-video-code="#{video.code}"
