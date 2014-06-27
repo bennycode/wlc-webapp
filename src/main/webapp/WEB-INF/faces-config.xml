@@ -12,17 +12,17 @@
     </locale-config> 
     
     <resource-bundle>
-      <base-name>com.welovecoding.resources.text.backend</base-name>
+      <base-name>com.welovecoding.texts.backend</base-name>
       <var>backend</var>
     </resource-bundle>
     
     <resource-bundle>
-      <base-name>com.welovecoding.resources.text.frontend</base-name>
+      <base-name>com.welovecoding.texts.frontend</base-name>
       <var>frontend</var>
     </resource-bundle>
     
     <resource-bundle>
-      <base-name>com.welovecoding.resources.text.welcome_teaser</base-name>
+      <base-name>com.welovecoding.texts.welcome_teaser</base-name>
       <var>welcome_teaser</var>
     </resource-bundle>    
     
