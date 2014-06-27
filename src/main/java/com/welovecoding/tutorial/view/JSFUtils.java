@@ -3,6 +3,7 @@ package com.welovecoding.tutorial.view;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.el.ELContext;
@@ -382,15 +383,15 @@ public class JSFUtils implements Serializable {
     return htmlCommandButton;
   }
 
-  public static String getLocaleFromDomain(final FacesContext facesContext) {
-    String locale = "en";
+  public static Locale getLocaleFromDomain(final FacesContext facesContext) {
+    Locale locale = Locale.ENGLISH;
 
     Object request = facesContext.getExternalContext().getRequest();
     if (request instanceof HttpServletRequest) {
       HttpServletRequest servletRequest = (HttpServletRequest) request;
       String header = servletRequest.getHeader("host");
       if (header.contains(".de")) {
-        locale = "de";
+        locale = Locale.GERMAN;
       }
     }
 
