@@ -9,8 +9,12 @@
 
 // Facebook Likebox
 .fb-like { 
-  background-color: whitesmoke !important;
+  background-color: whitesmoke;
   padding: 4px;
+  visibility: visible;
+  &.off {
+    visibility: hidden;
+  }
   > span {
     max-width: 100%;
   }
