@@ -56,7 +56,9 @@ window.wlc.config.Facebook = (function() {
   Facebook.prototype.initCallback = function(callback, phase) {
     window.fbAsyncInit = function() {
       FB.Event.subscribe(phase, function(response) {
-        callback();
+        if (typeof callback === 'function') {
+          callback();
+        }
       });
     };
   };
