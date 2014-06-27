@@ -10,19 +10,20 @@
       <div id="grid-videos" class="pure-g">
         <div class="pure-u-1">
           <div class="container">
-            <dl>
-              <ui:repeat value="#{videoController.getVideos()}" var="video">
-                <dt id="#{video.slug}"
-                    name="#{video.slug}">#{video.name}<a 
-                    href="##{video.slug}"
-                    class="button closed"></a></dt>
-                <dd>
-                  <div class="video"
-                       data-video-code="#{video.code}"
-                       data-video-provider="#{video.playlist.provider}"></div>
-                </dd>
-              </ui:repeat>
-            </dl>
+            <ui:repeat value="#{videoController.getVideos()}" var="video">
+              <a 
+                id="#{video.slug}"
+                name="#{video.slug}"
+                href="##{video.slug}"
+                class="video-title"
+                >#{video.name}<span class="button closed"></span>
+              </a>
+              <dd>
+                <div class="video"
+                     data-video-code="#{video.code}"
+                     data-video-provider="#{video.playlist.provider}"></div>
+              </dd>
+            </ui:repeat>
           </div>
         </div>
       </div>

@@ -21,8 +21,12 @@
           /* <![CDATA[ */
 
           $(document).ready(function() {
-            $('dt').click(function() {
-              $(this).children('.button').toggleClass('closed');
+            $('.video-title').click(function() {
+              var openButton = $(this).children('.button');
+              var other = $('.button.open').not(openButton);
+              
+              other.parent().click();
+              openButton.toggleClass('closed open');
 
               var content = $(this).next('dd');
               content.slideToggle('fast');

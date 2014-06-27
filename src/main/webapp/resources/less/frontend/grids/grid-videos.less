@@ -8,18 +8,18 @@
   padding-bottom: 20px;
 
   .container {
-    margin-top: -15px;
     width: @grid-videos-box-width;
-    dt {
+    a {
       .lh-border-radius(5px);
       .lh-box-shadow(0 1px 1px rgba(0,0,0,1));
       .lh-user-select(none);
-      background: #eceff3;
+      background-color: #eceff3;
       cursor: pointer;
       float: left;
-      margin-top: 15px;
       padding: @grid-videos-content-padding;
       width: @grid-videos-box-width;
+      margin-top: 15px;
+      outline: 0;
     }
     dd {
       .lh-border-radius(0 0 5px 5px);
@@ -30,12 +30,11 @@
       padding: @grid-videos-content-padding;
       width: @grid-videos-box-width;
     }
-    a.button {
+    .button {
       float: right;
       display: block;
       height: 18px;
       width: 17px;
-      text-indent: -9999px;
       background: url("#{resource['images:temp/accordion.png']}") right no-repeat; 
       &.closed { 
         background: url("#{resource['images:temp/accordion.png']}") left no-repeat; 
