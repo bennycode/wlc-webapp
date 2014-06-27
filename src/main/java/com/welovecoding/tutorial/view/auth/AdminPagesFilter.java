@@ -51,11 +51,11 @@ public class AdminPagesFilter implements Filter {
 
   @Override
   public void init(FilterConfig config) throws ServletException {
-    // Nothing to do here!
+    // NOP
   }
 
   @Override
   public void destroy() {
-    // Nothing to do here!
+    // NOP
   }
 }
