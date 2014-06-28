@@ -8,49 +8,61 @@
     <ui:composition>
       <div id="grid-welcome-app-teaser" class="pure-g">
         <div class="pure-u-1 pure-u-md-1-2">
-          <p>Unsere Informatik-Tutorials gibt es auch als Apps:</p>
+          <p><h:outputText value="#{index.app_teaser}" /></p>
           <div class="table center">
             <div class="tr">
               <div class="td">
-                <h:graphicImage name="/images/badges/google/google_play_android_app_129x45.png" 
-                                alt="Android App on Google Play" 
-                                title="Android App" 
-                                width="129"
-                                height="45"
-                                />
+                <a href="#{index.link_android_app}" target="_blank">
+                  <h:graphicImage 
+                    alt="Android App on Google Play" 
+                    height="45"
+                    title="Android App" 
+                    width="129"
+                    name="/images/badges/google/google_play_android_app_129x45.png" 
+                    />
+                </a>
               </div>
               <div class="td">
-                <h:graphicImage name="/images/badges/microsoft/windows-store/WindowsStore_badge_en_English_Black_med_258x67.png" 
-                                alt="Download from Windows Store" 
-                                title="Windows Store-App" 
-                                width="173"
-                                height="45"
-                                />
+                <a href="#{index.link_windows_store}" target="_blank">
+                  <h:graphicImage 
+                    alt="Download from Windows Store" 
+                    height="45"
+                    title="Windows Store-App" 
+                    width="173"
+                    name="/images/badges/microsoft/windows-store/WindowsStore_badge_en_English_Black_med_258x67.png" 
+                    />
+                </a>
               </div>
             </div>
             <div class="tr">
               <div class="td">
-                <h:graphicImage name="/images/badges/apple/apple-app-store-135-40.svg" 
-                                alt="Download on the AppStore"
-                                title="iOS App"
-                                width="152" 
-                                height="45" 
-                                />
+                <a href="#{index.link_itunes}" target="_blank">
+                  <h:graphicImage 
+                    alt="Download on the AppStore"
+                    height="45" 
+                    title="iOS App"
+                    width="152" 
+                    name="/images/badges/apple/apple-app-store-135-40.svg" 
+                    />
+                </a>
               </div>
               <div class="td">
-                <h:graphicImage name="/images/badges/microsoft/windows-phone/258x67_WPS_Download_blk.png" 
-                                alt="Download from Windows Phone Store" 
-                                title="Windows Phone-App" 
-                                width="173"
-                                height="45"
-                                />
+                <a href="#{index.link_windows_phone}" target="_blank">
+                  <h:graphicImage 
+                    alt="Download from Windows Phone Store" 
+                    height="45"
+                    title="Windows Phone-App" 
+                    width="173"
+                    name="/images/badges/microsoft/windows-phone/258x67_WPS_Download_blk.png" 
+                    />
+                </a>
               </div>
             </div>
           </div> <!-- /table -->
 
         </div>
         <div class="pure-u-1 pure-u-md-1-2">
-          <p>Möchtest du über neue Tutorials informiert werden, dann folge uns auf Facebook:</p>
+          <p><h:outputText value="#{index.follow_on_facebook}" /></p>
 
           <div class="fb-like off" 
                data-href="https://www.facebook.com/welovecoding" 

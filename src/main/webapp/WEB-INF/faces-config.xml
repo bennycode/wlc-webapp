@@ -21,8 +21,8 @@
     </resource-bundle>
     
     <resource-bundle>
-      <base-name>com.welovecoding.texts.welcome_teaser</base-name>
-      <var>welcome_teaser</var>
+      <base-name>com.welovecoding.texts.index</base-name>
+      <var>index</var>
     </resource-bundle>    
   </application>
   
