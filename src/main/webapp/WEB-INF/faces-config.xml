@@ -9,6 +9,7 @@
     <locale-config>
       <default-locale>de</default-locale>
       <supported-locale>en</supported-locale>
+      <supported-locale>de</supported-locale>
     </locale-config> 
     
     <resource-bundle>
@@ -48,10 +49,10 @@
     
   </application>
   
-  <!--
+  
   <lifecycle>
     <phase-listener>com.welovecoding.tutorial.view.filter.LanguageFilter</phase-listener>
   </lifecycle>
-  -->
+  
   
 </faces-config>

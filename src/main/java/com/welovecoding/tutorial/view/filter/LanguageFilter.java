@@ -18,15 +18,14 @@ public class LanguageFilter implements PhaseListener {
 
   @Override
   public void afterPhase(PhaseEvent event) {
-
-  }
-
-  @Override
-  public void beforePhase(PhaseEvent event) {
     FacesContext facesContext = event.getFacesContext();
     Locale locale = JSFUtils.getLocaleFromDomain(facesContext);
     LOG.log(Level.INFO, "View content locale: {0}", locale.getLanguage());
     facesContext.getViewRoot().setLocale(locale);
+  }
+
+  @Override
+  public void beforePhase(PhaseEvent event) {
 
   }
 
