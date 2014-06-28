@@ -9,8 +9,12 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import javax.faces.FactoryFinder;
+import javax.faces.component.UIViewRoot;
+import javax.faces.context.FacesContext;
+import javax.faces.context.FacesContextFactory;
+import javax.faces.lifecycle.Lifecycle;
+import javax.faces.lifecycle.LifecycleFactory;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -43,53 +47,78 @@ public class URLFilter implements Filter {
   private void doAfterProcessing(ServletRequest request, ServletResponse response)
           throws IOException, ServletException {
 
+    // Get current FacesContext.
+    FacesContext facesContext = FacesContext.getCurrentInstance();
+
+    // Check current FacesContext.
+    if (facesContext == null) {
+
+      // Create new Lifecycle.
+      LifecycleFactory lifecycleFactory = (LifecycleFactory) FactoryFinder.getFactory(FactoryFinder.LIFECYCLE_FACTORY);
+      Lifecycle lifecycle = lifecycleFactory.getLifecycle(LifecycleFactory.DEFAULT_LIFECYCLE);
+
+      // Create new FacesContext.
+      FacesContextFactory contextFactory = (FacesContextFactory) FactoryFinder.getFactory(FactoryFinder.FACES_CONTEXT_FACTORY);
+      facesContext = contextFactory.getFacesContext(
+              ((HttpServletRequest) request).getSession().getServletContext(), request, response, lifecycle);
+
+      // Create new View.
+      UIViewRoot view = facesContext.getApplication().getViewHandler().createView(
+              facesContext, "");
+      facesContext.setViewRoot(view);
+
+      // Set current FacesContext.
+      FacesContextWrapper.setCurrentInstance(facesContext);
+    }
+
     if (request instanceof HttpServletRequest) {
       String url = ((HttpServletRequest) request).getRequestURL().toString();
       String uri = ((HttpServletRequest) request).getRequestURI();
       String queryString = ((HttpServletRequest) request).getQueryString();
       System.out.println("Requested URL: " + url);
+      System.out.println("FacesLocale: " + facesContext.getViewRoot().getLocale().toString());
       System.out.println("URI: " + uri);
       System.out.println("QueryString: " + queryString);
 
-      if (uri.startsWith("/wlc-webapp/tutorials")) {
-        System.out.println("Tutorials Site");
-
-        uri = uri.replaceAll("/wlc-webapp/tutorials", "");
-        System.out.println("URI: " + uri);
-
-        Pattern pattern;
-        Matcher matcher;
-
-        if (uri.matches("/[a-z0-9-]*/[a-z0-9-]*/#[a-z0-9-]*")) {
-          // its a video
-          System.out.println("It's a Video!");
-          pattern = Pattern.compile("/[a-z0-9-]*/[a-z0-9-]*/#([a-z0-9-]*)");
-          matcher = pattern.matcher(uri);
-          while (matcher.find()) {
-            System.out.println("VideoSlug: " + matcher.group());
-          }
-        } else if (uri.matches("/[a-z0-9-]*/[a-z0-9-]*/")) {
-          // its a playlist
-          System.out.println("It's a Playlist!");
-          pattern = Pattern.compile("/[a-z0-9-]*/([a-z0-9-]*)/");
-          matcher = pattern.matcher(uri);
-          while (matcher.find()) {
-            System.out.println("PlaylistSlug: " + matcher.group());
-          }
-        } else if (uri.matches("/[a-z0-9-]*/")) {
-          // its a category
-          System.out.println("It's a Category!");
-          pattern = Pattern.compile("/([a-z0-9-]*)/");
-          matcher = pattern.matcher(uri);
-          while (matcher.find()) {
-            System.out.println("CategorySlug: " + matcher.group());
-          }
-        }
-      } else if (uri.startsWith("/wlc-webapp/rest/service/v2/categories")) {
-        System.out.println("REST Categories");
-        uri = uri.replaceAll("/wlc-webapp/rest/service/v2/categories", "");
-        System.out.println("URI: " + uri);
-      }
+//      if (uri.startsWith("/wlc-webapp/tutorials")) {
+//        System.out.println("Tutorials Site");
+//
+//        uri = uri.replaceAll("/wlc-webapp/tutorials", "");
+//        System.out.println("URI: " + uri);
+//
+//        Pattern pattern;
+//        Matcher matcher;
+//
+//        if (uri.matches("/[a-z0-9-]*/[a-z0-9-]*/#[a-z0-9-]*")) {
+//          // its a video
+//          System.out.println("It's a Video!");
+//          pattern = Pattern.compile("/[a-z0-9-]*/[a-z0-9-]*/#([a-z0-9-]*)");
+//          matcher = pattern.matcher(uri);
+//          while (matcher.find()) {
+//            System.out.println("VideoSlug: " + matcher.group());
+//          }
+//        } else if (uri.matches("/[a-z0-9-]*/[a-z0-9-]*/")) {
+//          // its a playlist
+//          System.out.println("It's a Playlist!");
+//          pattern = Pattern.compile("/[a-z0-9-]*/([a-z0-9-]*)/");
+//          matcher = pattern.matcher(uri);
+//          while (matcher.find()) {
+//            System.out.println("PlaylistSlug: " + matcher.group());
+//          }
+//        } else if (uri.matches("/[a-z0-9-]*/")) {
+//          // its a category
+//          System.out.println("It's a Category!");
+//          pattern = Pattern.compile("/([a-z0-9-]*)/");
+//          matcher = pattern.matcher(uri);
+//          while (matcher.find()) {
+//            System.out.println("CategorySlug: " + matcher.group());
+//          }
+//        }
+//      } else if (uri.startsWith("/wlc-webapp/rest/service/v2/categories")) {
+//        System.out.println("REST Categories");
+//        uri = uri.replaceAll("/wlc-webapp/rest/service/v2/categories", "");
+//        System.out.println("URI: " + uri);
+//      }
     }
   }
 
@@ -106,7 +135,7 @@ public class URLFilter implements Filter {
           FilterChain chain)
           throws IOException, ServletException {
 
-//    doBeforeProcessing(request, response);
+    doBeforeProcessing(request, response);
 //    Throwable problem = null;
 //    try {
     chain.doFilter(request, response);
@@ -118,7 +147,7 @@ public class URLFilter implements Filter {
 //      t.printStackTrace();
 //    }
 
-//    doAfterProcessing(request, response);
+    doAfterProcessing(request, response);
     // If there was a problem, we want to rethrow it if it is
     // a known type, otherwise log it.
 //    if (problem != null) {
@@ -225,4 +254,11 @@ public class URLFilter implements Filter {
     filterConfig.getServletContext().log(msg);
   }
 
+  // Wrap the protected FacesContext.setCurrentInstance() in a inner class.
+  private static abstract class FacesContextWrapper extends FacesContext {
+
+    protected static void setCurrentInstance(FacesContext facesContext) {
+      FacesContext.setCurrentInstance(facesContext);
+    }
+  }
 }
