@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:wlc="http://java.sun.com/jsf/composite/wlc">
+  <h:body>
+    <ui:composition template="/WEB-INF/templates/frontend/main.xhtml">
+
+      <ui:param name="activeLink" value="team.xhtml" />
+
+      <ui:define name="extra-stylesheets">
+        <h:outputStylesheet library="css/generated/frontend/grids" name="grid-team.css" />
+      </ui:define>
+
+      <ui:define name="center-unit-1">
+        <div class="pure-u-1">
+          <div id="team">
+            <!-- Developers -->
+            <h1>Entwickler</h1>
+
+            <div id="grid-team" class="pure-g">
+              <wlc:team-member 
+                picture="benny-neugebauer.png"
+                firstname="Benny"
+                lastname="Neugebauer"
+                position="Initiator"
+                homepage="http://www.bennyn.de/"
+                facebook="benny.neugebauer"
+                google="BennyNeugebauer"
+                twitter="apfelbenny"
+                about="Benny hat Informatik an der Fachhochschule Brandenburg studiert und ist fit in Java, JavaScript und CoffeeScript."
+                /> 
+
+              <wlc:team-member 
+                picture="michael-koppen.png"
+                firstname="Michael" 
+                lastname="Koppen"
+                position="Initiator"
+                homepage="http://www.beanbelt.blogspot.de/"
+                facebook=""
+                google="MichaelKDev"
+                twitter=""
+                about="Michael hat Informatik an der Fachhochschule Brandenburg studiert und ist fit in Java und auf der Konsole."
+                /> 
+            </div>
+
+          </div>
+        </div>
+      </ui:define>
+
+    </ui:composition>
+  </h:body>
+</html>
