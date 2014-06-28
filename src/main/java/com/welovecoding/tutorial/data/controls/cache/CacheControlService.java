@@ -3,6 +3,7 @@ package com.welovecoding.tutorial.data.controls.cache;
 import static com.welovecoding.tutorial.data.base.BaseRepository.PERSISTENCE_UNIT_NAME;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -10,6 +11,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author Michael Koppen
  */
+@Stateless
 public class CacheControlService {
 
   @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
