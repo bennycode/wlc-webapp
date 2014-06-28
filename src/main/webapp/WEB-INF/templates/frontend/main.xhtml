@@ -113,8 +113,32 @@
       </div>    
 
     </div>
+
     <ui:insert name="before-closing-body"></ui:insert>
     <ui:include src="/WEB-INF/templates/frontend/plugins/google-analytics.xhtml" />
-    <h:outputScript name="js/wlc/main.js" />
+
+    <script>
+      /* <![CDATA[ */
+
+      $(document).ready(function() {
+        var faviconDirectory = '#{facesContext.externalContext.requestContextPath}/resources/images/favicon/';
+        var activeFavicon = faviconDirectory + 'heart-16.ico?ver=1';
+        var inactiveFavicon = faviconDirectory + 'heart-broken.ico?ver=1';
+
+        var faviconConfig = {
+          id: 'favicon',
+          favicons: {
+            active: activeFavicon,
+            inactive: inactiveFavicon
+          }
+        };
+
+        var documentHandler = new wlc.DocumentHandler(faviconConfig);
+        documentHandler.init();
+      });
+
+      /* ]]> */
+    </script>
+
   </h:body>
 </html>
