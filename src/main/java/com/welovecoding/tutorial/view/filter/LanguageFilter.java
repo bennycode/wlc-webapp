@@ -13,25 +13,26 @@ import javax.faces.event.PhaseListener;
  * http://nnisansala.blogspot.de/p/how-to-change-locale-of-jsf-web.html
  */
 public class LanguageFilter implements PhaseListener {
-  
+
   private static final Logger LOG = Logger.getLogger(LanguageFilter.class.getName());
-  
+
   @Override
   public void afterPhase(PhaseEvent event) {
+
+  }
+
+  @Override
+  public void beforePhase(PhaseEvent event) {
     FacesContext facesContext = event.getFacesContext();
     Locale locale = JSFUtils.getLocaleFromDomain(facesContext);
     LOG.log(Level.INFO, "View content locale: {0}", locale.getLanguage());
     facesContext.getViewRoot().setLocale(locale);
+
   }
-  
-  @Override
-  public void beforePhase(PhaseEvent event) {
-    
-  }
-  
+
   @Override
   public PhaseId getPhaseId() {
     return PhaseId.RESTORE_VIEW;
   }
-  
+
 }
