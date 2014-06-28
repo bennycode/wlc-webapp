@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 public class JSFUtils implements Serializable {
 
   private static final long serialVersionUID = 4005663315445526130L;
+  private static final Logger LOG = Logger.getLogger(JSFUtils.class.getName());
 
   public static void addErrorMessage(String msg) {
     FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg);
@@ -390,6 +391,7 @@ public class JSFUtils implements Serializable {
     if (request instanceof HttpServletRequest) {
       HttpServletRequest servletRequest = (HttpServletRequest) request;
       String header = servletRequest.getHeader("host");
+      LOG.log(Level.INFO, "View host: {0}", header);
       if (header.contains(".de")) {
         locale = Locale.GERMAN;
       }
