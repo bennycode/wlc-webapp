@@ -13,38 +13,47 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class CategoryController extends GenFormBaseController<Category, CategoryService> {
-  
+
   @EJB
   private CategoryService service;
-  
+
   @PostConstruct
   public void init() {
     super.item = new Category();
   }
-  
+
   @Override
   public String edit() {
     super.edit();
     this.item = new Category();
     return Pages.ADMIN_CATEGORY;
   }
-  
+
   @Override
   public String remove() {
     super.remove();
     this.item = new Category();
     return Pages.ADMIN_CATEGORY;
   }
-  
+
   @Override
   public CategoryService getService() {
     return service;
   }
-  
-  public List<Category> orderByName() {
-    return service.orderByName();
+
+  private List<Category> categoriesOrderedByName;
+
+  private void loadCategoriesOrderedByName() {
+    categoriesOrderedByName = getService().orderByName();
   }
-  
+
+  public List<Category> getCategoriesOrderedByName() {
+    if (categoriesOrderedByName == null) {
+      loadCategoriesOrderedByName();
+    }
+    return categoriesOrderedByName;
+  }
+
   public Category getCategory(long categoryId) {
     return getService().find(categoryId);
   }

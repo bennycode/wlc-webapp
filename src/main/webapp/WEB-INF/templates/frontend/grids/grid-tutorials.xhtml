@@ -14,7 +14,7 @@
         <div class="pure-u-1">
           <div class="content container">
             <ul class="clickable-list">
-              <ui:repeat value="#{categoryController.orderByName()}" var="category">
+              <ui:repeat value="#{categoryController.categoriesOrderedByName}" var="category">
                 <li>
                   <h:link outcome="/playlists.xhtml" value="#{category.name}">
                     <f:param name="categorySlug" value="#{category.slug}" />

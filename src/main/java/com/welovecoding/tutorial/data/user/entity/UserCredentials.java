@@ -1,8 +1,6 @@
 package com.welovecoding.tutorial.data.user.entity;
 
-import com.welovecoding.tutorial.data.user.entity.User;
 import static com.welovecoding.tutorial.data.user.entity.UserCredentials.CREDENTIAL_TYPE_COLUMN_NAME;
-import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -24,7 +22,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @DiscriminatorColumn(name = CREDENTIAL_TYPE_COLUMN_NAME)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class UserCredentials implements Serializable {
+public abstract class UserCredentials {
 
   private static final long serialVersionUID = 1L;
   public static final String CREDENTIAL_TYPE_COLUMN_NAME = "CRED_TYPE";

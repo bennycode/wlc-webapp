@@ -1,6 +1,8 @@
 package com.welovecoding.tutorial.data.video;
 
 import com.welovecoding.tutorial.data.base.BaseService;
+import com.welovecoding.tutorial.data.base.EJBLoggerInterceptor;
+import com.welovecoding.tutorial.data.monitor.MonitorInterceptor;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -10,8 +12,10 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 
 @Stateless
+@Interceptors({EJBLoggerInterceptor.class, MonitorInterceptor.class})
 public class VideoService extends BaseService<Video, VideoRepository> {
 
   @EJB private VideoRepository repository;

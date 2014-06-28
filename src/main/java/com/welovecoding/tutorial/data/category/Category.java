@@ -2,7 +2,6 @@ package com.welovecoding.tutorial.data.category;
 
 import com.welovecoding.tutorial.data.base.BaseEntity;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
@@ -20,7 +19,7 @@ import javax.validation.constraints.Size;
   @NamedQuery(name = "Category.findBySlug", query = "SELECT c FROM Category c WHERE c.slug = :categoryslug"),
   @NamedQuery(name = "Category.orderByName", query = "SELECT c FROM Category c ORDER BY c.name")
 })
-public class Category extends BaseEntity implements Serializable {
+public class Category extends BaseEntity {
 
   public static final String FIND_BY_ID = "Category.findById";
   public static final String FIND_BY_SLUG = "Category.findBySlug";

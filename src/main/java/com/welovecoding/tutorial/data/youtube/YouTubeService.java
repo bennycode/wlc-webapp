@@ -7,6 +7,8 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.PlaylistItem;
+import com.welovecoding.tutorial.data.base.EJBLoggerInterceptor;
+import com.welovecoding.tutorial.data.monitor.MonitorInterceptor;
 import com.welovecoding.tutorial.data.playlist.PlaylistService;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import com.welovecoding.tutorial.data.video.Video;
@@ -17,8 +19,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 
 @Stateless
+@Interceptors({EJBLoggerInterceptor.class, MonitorInterceptor.class})
 public class YouTubeService {
 
   private static final Logger LOG = Logger.getLogger(YouTubeService.class.getName());

@@ -1,7 +1,9 @@
 package com.welovecoding.tutorial.data.base;
 
 import java.util.List;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -14,6 +16,8 @@ import javax.persistence.criteria.Root;
  * @author Michael Koppen <michael.koppen@googlemail.com>
  * @param <T extends BaseEntity>
  */
+@MappedSuperclass
+@Interceptors({EJBLoggerInterceptor.class})
 public abstract class BaseRepository<T extends BaseEntity> {
 
   public static final String PERSISTENCE_UNIT_NAME = "com.welovecoding.web_wlc-webapp_war_1.0-SNAPSHOTPU";

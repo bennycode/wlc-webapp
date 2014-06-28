@@ -16,7 +16,6 @@
  */
 package com.welovecoding.tutorial.data.base;
 
-import com.welovecoding.tutorial.data.base.BaseEntity;
 import java.util.Date;
 import javax.interceptor.ExcludeClassInterceptors;
 import javax.persistence.PostLoad;

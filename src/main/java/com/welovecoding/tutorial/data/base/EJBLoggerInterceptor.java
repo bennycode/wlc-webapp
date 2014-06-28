@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2013 Michael Koppen
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.welovecoding.tutorial.data.base;
 
 import java.lang.annotation.Annotation;
@@ -29,7 +13,7 @@ import javax.interceptor.InvocationContext;
  * responsible for logging genaral information about actual classname methodname
  * and params.
  *
- * @author Michael Koppen <michael.koppen@googlemail.com>
+ * @author Michael Koppen
  */
 public class EJBLoggerInterceptor {
 
@@ -48,7 +32,7 @@ public class EJBLoggerInterceptor {
    */
   @AroundInvoke
   public Object logCall(InvocationContext context) throws Exception {
-    Logger.getLogger(context.getMethod().getDeclaringClass().getName());
+    LOG = Logger.getLogger(context.getMethod().getDeclaringClass().getName());
     // EJB will not be accessable if the Interceptor is called from outside of the backend-module
     StringBuilder log = new StringBuilder("---------------------------------------------------------\n");
 
@@ -76,16 +60,6 @@ public class EJBLoggerInterceptor {
     Object retVal = context.proceed();
 
     log.append(" -       ReturnValue ").append(": ").append(retVal).append("\n");
-//    if (retVal != null) {
-//      Field[] retValFields = retVal.getClass().getDeclaredFields();
-//      for (Field field : retValFields) {
-//        System.out.println("Fieldname: " + field.getName() + " Fieldtype: " + field.getType());
-//        Object retVal2 = invokeGetter(retVal, field);
-//        System.out.println("FieldValue: " + retVal2);
-//      }
-//    } else {
-//      System.out.println("skipping values");
-//    }
 
     LOG.log(Level.INFO, log.toString());
 

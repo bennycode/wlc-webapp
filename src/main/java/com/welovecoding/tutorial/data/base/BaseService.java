@@ -1,19 +1,22 @@
 package com.welovecoding.tutorial.data.base;
 
 import com.welovecoding.tutorial.data.ConstraintViolationBagException;
+import com.welovecoding.tutorial.data.monitor.MonitorCacheHook;
 import de.yser.ownsimplecache.OwnCacheServerService;
+import de.yser.ownsimplecache.util.hook.Hook;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.interceptor.Interceptors;
 import javax.persistence.MappedSuperclass;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
 @MappedSuperclass
-//@Interceptors({EJBLoggerInterceptor.class})
+@Interceptors({EJBLoggerInterceptor.class})
 public abstract class BaseService<T extends BaseEntity, E extends BaseRepository<T>> {
 
   private static final Logger LOG = Logger.getLogger(BaseService.class.getName());
@@ -25,6 +28,14 @@ public abstract class BaseService<T extends BaseEntity, E extends BaseRepository
   protected abstract OwnCacheServerService getCache();
 
   protected abstract Set<String> typesToClear();
+
+  static {
+    try {
+      OwnCacheServerService.registerHooks(Hook.class, MonitorCacheHook.class);
+    } catch (Exception ex) {
+      Logger.getLogger(BaseService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
 
   public BaseService(Class<T> entityClass) {
     this.entityClass = entityClass;
