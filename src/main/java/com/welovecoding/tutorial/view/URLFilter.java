@@ -9,12 +9,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import javax.faces.FactoryFinder;
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
-import javax.faces.context.FacesContextFactory;
-import javax.faces.lifecycle.Lifecycle;
-import javax.faces.lifecycle.LifecycleFactory;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -23,6 +18,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -47,36 +43,33 @@ public class URLFilter implements Filter {
   private void doAfterProcessing(ServletRequest request, ServletResponse response)
           throws IOException, ServletException {
 
-    // Get current FacesContext.
-    FacesContext facesContext = FacesContext.getCurrentInstance();
-
-    // Check current FacesContext.
-    if (facesContext == null) {
-
-      // Create new Lifecycle.
-      LifecycleFactory lifecycleFactory = (LifecycleFactory) FactoryFinder.getFactory(FactoryFinder.LIFECYCLE_FACTORY);
-      Lifecycle lifecycle = lifecycleFactory.getLifecycle(LifecycleFactory.DEFAULT_LIFECYCLE);
-
-      // Create new FacesContext.
-      FacesContextFactory contextFactory = (FacesContextFactory) FactoryFinder.getFactory(FactoryFinder.FACES_CONTEXT_FACTORY);
-      facesContext = contextFactory.getFacesContext(
-              ((HttpServletRequest) request).getSession().getServletContext(), request, response, lifecycle);
-
-      // Create new View.
-      UIViewRoot view = facesContext.getApplication().getViewHandler().createView(
-              facesContext, "");
-      facesContext.setViewRoot(view);
-
-      // Set current FacesContext.
-      FacesContextWrapper.setCurrentInstance(facesContext);
+    HttpServletRequest httpRequest = null;
+    HttpServletResponse httpResponse = null;
+    if (request instanceof HttpServletRequest) {
+      httpRequest = (HttpServletRequest) request;
+    }
+    if (response instanceof HttpServletResponse) {
+      httpResponse = (HttpServletResponse) response;
     }
 
-    if (request instanceof HttpServletRequest) {
-      String url = ((HttpServletRequest) request).getRequestURL().toString();
-      String uri = ((HttpServletRequest) request).getRequestURI();
+    if (httpRequest != null) {
+
+      FacesContext context = null;
+      if (httpResponse != null) {
+        try {
+          context = JSFUtils.getFacesContext(httpRequest, httpResponse);
+        } catch (IllegalStateException ise) {
+          System.out.println("cannot create session after resp.");
+        }
+      }
+
+      String url = httpRequest.getRequestURL().toString();
+      String uri = httpRequest.getRequestURI();
       String queryString = ((HttpServletRequest) request).getQueryString();
       System.out.println("Requested URL: " + url);
-      System.out.println("FacesLocale: " + facesContext.getViewRoot().getLocale().toString());
+      if (context != null) {
+        System.out.println("FacesLocale: " + context.getViewRoot().getLocale().toString());
+      }
       System.out.println("URI: " + uri);
       System.out.println("QueryString: " + queryString);
 

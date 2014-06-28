@@ -11,18 +11,24 @@ import javax.el.ELException;
 import javax.el.MethodExpression;
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
+import javax.faces.FactoryFinder;
 import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIViewRoot;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlCommandLink;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.context.FacesContextFactory;
 import javax.faces.convert.Converter;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
 import javax.faces.event.MethodExpressionActionListener;
+import javax.faces.lifecycle.Lifecycle;
+import javax.faces.lifecycle.LifecycleFactory;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * A collection of utility methods that handle repetitive boilerplate code.
@@ -455,5 +461,50 @@ public class JSFUtils implements Serializable {
             request.getContextPath());
 
     return url.toString();
+  }
+
+  /**
+   * Provides access to FacesContext out of Servlets and Filters.
+   *
+   * @param request
+   * @param response
+   * @return
+   */
+  public static FacesContext getFacesContext(HttpServletRequest request, HttpServletResponse response) {
+    // Get current FacesContext.
+    FacesContext facesContext = FacesContext.getCurrentInstance();
+
+    // Check current FacesContext.
+    if (facesContext == null) {
+
+      // Create new Lifecycle.
+      LifecycleFactory lifecycleFactory = (LifecycleFactory) FactoryFinder.getFactory(FactoryFinder.LIFECYCLE_FACTORY);
+      Lifecycle lifecycle = lifecycleFactory.getLifecycle(LifecycleFactory.DEFAULT_LIFECYCLE);
+
+      // Create new FacesContext.
+      FacesContextFactory contextFactory = (FacesContextFactory) FactoryFinder.getFactory(FactoryFinder.FACES_CONTEXT_FACTORY);
+      facesContext = contextFactory.getFacesContext(
+              request.getSession().getServletContext(), request, response, lifecycle);
+
+      // Create new View.
+      UIViewRoot view = facesContext.getApplication().getViewHandler().createView(
+              facesContext, "");
+      facesContext.setViewRoot(view);
+
+      // Set current FacesContext.
+      FacesContextWrapper.setCurrentInstance(facesContext);
+    }
+
+    return facesContext;
+  }
+
+  /**
+   * Helper class for JSFUtils#getFacesContext()
+   */
+  private static abstract class FacesContextWrapper extends FacesContext {
+
+    protected static void setCurrentInstance(FacesContext facesContext) {
+      FacesContext.setCurrentInstance(facesContext);
+    }
   }
 }
