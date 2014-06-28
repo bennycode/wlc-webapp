@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
-  <f:view locale="#{facesContext.viewRoot.locale}" encoding="UTF-8" contentType="text/html">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+  <f:view locale="${fn:containsIgnoreCase(request.requestURL, '.de') ? 'de' : 'en'}" encoding="UTF-8" contentType="text/html">
     <h:head>
       <!-- Page title -->
       <title><ui:insert name="title">#{index.title}</ui:insert></title>
@@ -14,11 +15,11 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <!-- SEO -->
       <meta name="robots" content="index, follow" />
-      <h:panelGroup rendered="#{facesContext.viewRoot.locale eq 'de'}">
+      <h:panelGroup rendered="#{fn:containsIgnoreCase(request.requestURL, '.de')}">
         <meta name="description" lang="de" content="Kostenlose Screencasts und Video-Tutorials zur Programmierung und weiteren Themen aus der Informatik." />
         <meta name="keywords" lang="de" content="Tutorials, Programmierung, Programmieren, Screencasts, Videos, Apps, Anleitungen, Grundlagen, Howtos, Tools" />
       </h:panelGroup>
-      <h:panelGroup rendered="#{facesContext.viewRoot.locale eq 'en'}">
+     	<h:panelGroup rendered="#{fn:containsIgnoreCase(request.requestURL, '.com')}">
         <meta name="description" lang="en" content="Free screencasts and video tutorials on topics in computer science and programming." />
         <meta name="keywords" lang="en" content="tutorials, programming, screencasts, videos, apps, basics, howtos, tools" />
       </h:panelGroup>

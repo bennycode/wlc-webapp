@@ -10,7 +10,7 @@
       <ui:define name="title">#{imprint.title}</ui:define>
 
       <ui:define name="center-unit-1">
-        <h:panelGroup rendered="#{facesContext.viewRoot.locale eq 'de'}">
+        <h:panelGroup rendered="#{fn:containsIgnoreCase(request.requestURL, '.de')}">
           <h1>Impressum</h1>
           <p>
             <strong>Webseiten-Team:</strong><br/>
@@ -94,7 +94,7 @@
           </p><p><a href="http://rechtsanwalt-schwenke.de/smmr-buch/datenschutz-muster-generator-fuer-webseiten-blogs-und-social-media/"><strong>Datenschutz-Muster von Rechtsanwalt Thomas Schwenke - I LAW it</strong></a></p>
         </h:panelGroup>
 
-        <h:panelGroup rendered="#{facesContext.viewRoot.locale eq 'en'}">
+        <h:panelGroup rendered="#{fn:containsIgnoreCase(request.requestURL, '.com')}">
           <h1>Imprint</h1>
 
           <p>
