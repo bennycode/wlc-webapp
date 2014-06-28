@@ -31,9 +31,8 @@
       display: block;
     }
   }
-  #welcome-teaser-unit-2 {
+  #welcome-teaser-unit-2 {    
     #nerd {
-      /*margin-left: 1em;*/
       margin-top: 1em;
       margin-bottom: 1em;
       background-image: url("#{resource['images:nerd_compressed.png']}");
@@ -41,7 +40,10 @@
       background-size: contain;
       width: 100%; 
       height: 355px;
-      background-position: center top;
+      background-position: center center;
+      @media @pure-lg {
+        background-position: center top;
+      }
     }
   }
 }
