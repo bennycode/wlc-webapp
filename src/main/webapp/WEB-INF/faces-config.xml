@@ -5,6 +5,7 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
                                   http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
   <application>
+    
     <locale-config>
       <default-locale>de</default-locale>
       <supported-locale>en</supported-locale>
@@ -24,6 +25,27 @@
       <base-name>com.welovecoding.texts.index</base-name>
       <var>index</var>
     </resource-bundle>    
+    
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.tutorials</base-name>
+      <var>tutorials</var>
+    </resource-bundle>
+    
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.playlists</base-name>
+      <var>playlists</var>
+    </resource-bundle>
+    
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.team</base-name>
+      <var>team</var>
+    </resource-bundle>
+    
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.imprint</base-name>
+      <var>imprint</var>
+    </resource-bundle>
+    
   </application>
   
   <lifecycle>

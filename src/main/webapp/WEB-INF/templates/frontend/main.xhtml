@@ -2,9 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
   <h:head>
     <!-- Page title -->
     <title><ui:insert name="title">#{frontend['main.title']}</ui:insert></title>
@@ -104,7 +102,7 @@
       <div id="grid-footer" class="pure-g">
         <div class="pure-u-1">
           <p>
-            <a href="#">Impressum</a> | <a href="#">Kontakt</a> | © 2013 <a href="http://www.bennyn.de/" target="_blank">Benny Neugebauer</a>
+            <h:link outcome="pretty:imprint"><h:outputText value="#{imprint.title}" /></h:link> | © 2014 <a href="http://www.bennyn.de/" target="_blank">Benny Neugebauer</a> &amp; <a href="http://beanbelt.blogspot.de/" target="_blank">Michael Koppen</a>
           </p>
         </div>
         <h:panelGroup rendered="#{facesContext.isProjectStage('Development')}">
