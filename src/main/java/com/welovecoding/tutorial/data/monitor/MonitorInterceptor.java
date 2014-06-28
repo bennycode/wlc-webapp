@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2013 Michael Koppen
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.welovecoding.tutorial.data.monitor;
 
 import java.lang.annotation.Annotation;
@@ -29,7 +13,7 @@ import javax.interceptor.InvocationContext;
 import javax.ws.rs.PathParam;
 
 /**
- *
+ * NOTE: Monitoring deactivated for now.
  *
  * @author Michael Koppen
  */
@@ -53,38 +37,12 @@ public class MonitorInterceptor {
    */
   @AroundInvoke
   public Object logCall(InvocationContext context) throws Exception {
-    Logger.getLogger(context.getMethod().getDeclaringClass().getName());
-//    StringBuilder log = new StringBuilder("---------------------------------------------------------\n");
-//
-//    log.append(" + Class: ").append(getPureClassName(context.getMethod().getDeclaringClass())).append("\n");
-//    log.append(" -    Method: ").append(context.getMethod().getName()).append("\n");
-//
-//    if (context.getParameters() != null) {
-//      Annotation[][] annos = context.getMethod().getParameterAnnotations();
-//      Object[] params = context.getParameters();
-//      for (int i = 0; i < annos.length; i++) {
-//
-//        for (int j = 0; j < annos[i].length; j++) {
-//          Annotation annotation = annos[i][j];
-//          log.append(" -       Annotation for Param ").append(i + 1).append(": ").append(annotation.annotationType()).append("\n");
-//        }
-//
-//        if (params[i] != null) {
-//          log.append(" -       Param ").append(i + 1).append(": (").append(getPureClassName(params[i].getClass())).append(") ").append(params[i]).append("\n");
-//        } else {
-//          log.append(" -       Param ").append(i + 1).append(": () ").append(params[i]).append("\n");
-//        }
-//      }
-//    }
 
     Object retVal = context.proceed();
 
-//    log.append(" -       ReturnValue ").append(": ").append(retVal).append("\n");
-//    LOG.log(Level.INFO, log.toString());
-    Invocation invocation = new Invocation();
-    invocation.setName(generateKey(context.getMethod(), context.getParameters()));
-    monitorService.create(invocation);
-
+//    Invocation invocation = new Invocation();
+//    invocation.setName(generateKey(context.getMethod(), context.getParameters()));
+//    monitorService.create(invocation);
     return retVal;
   }
 

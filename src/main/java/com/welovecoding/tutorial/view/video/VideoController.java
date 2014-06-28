@@ -26,20 +26,20 @@ public class VideoController extends GenFormBaseController<Video, VideoService> 
 
   @PostConstruct
   public void init() {
-    this.item = new Video();
+    setItem(new Video());
   }
 
   @Override
   public String edit() {
     super.edit();
-    this.item = new Video();
+    setItem(new Video());
     return Pages.ADMIN_VIDEOS;
   }
 
   @Override
   public String remove() {
     super.remove();
-    this.item = new Video();
+    setItem(new Video());
     return Pages.ADMIN_VIDEOS;
   }
 

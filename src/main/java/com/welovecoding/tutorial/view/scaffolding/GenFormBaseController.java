@@ -19,13 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @param <T>
  * @param <E>
- * @see http://docs.oracle.com/javaee/7/tutorial/doc/jsf-page002.htm#BNARF
- *
- * TODO: java.lang.ClassCastException: cannot assign instance of
- * java.lang.String to field
- * com.welovecoding.controller.GenFormBaseController.backendText of type
- * java.util.ResourceBundle in instance of
- * com.welovecoding.controller.CategoryController.
  *
  * Example for a value expression: #{playlistController.item.category}
  */
@@ -63,14 +56,14 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
   //TODO this should be in BaseController instead of GenFormBaseController
   private void initPagination(String page) {
-    this.amount = RESULTS_PER_PAGE;
+    setAmount(RESULTS_PER_PAGE);
 
     if (page != null) {
-      this.currentPage = Integer.valueOf(page);
-      this.offset = (currentPage - 1) * this.amount;
+      setCurrentPage(Integer.valueOf(page));
+      setOffset((getCurrentPage() - 1) * getAmount());
     } else {
-      this.currentPage = 1;
-      this.offset = 0;
+      setCurrentPage(1);
+      setOffset(0);
     }
   }
 
@@ -91,14 +84,14 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
     fieldset.getChildren().add(messages);
 
     // Add labels and properies
-    Map<String, Class<?>> properties = getProperties(item);
+    Map<String, Class<?>> properties = getProperties(getItem());
     if (properties.size() > 0) {
       // Find Form model with reflection
-      ClassLoader cl = item.getClass().getClassLoader();
+      ClassLoader cl = getItem().getClass().getClassLoader();
       FormModel formModel;
 
       try {
-        Class clazz = cl.loadClass("com.welovecoding.tutorial.view." + item.getClass().getSimpleName().toLowerCase() + "." + item.getClass().getSimpleName() + FORM_MODEL_SUFFIX);
+        Class clazz = cl.loadClass("com.welovecoding.tutorial.view." + getItem().getClass().getSimpleName().toLowerCase() + "." + getItem().getClass().getSimpleName() + FORM_MODEL_SUFFIX);
         formModel = (FormModel) clazz.newInstance();
       } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
         formModel = new DefaultFormModel();
@@ -188,8 +181,7 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
    */
   private boolean isDomainType(Class<?> type) {
     String itemPackage = type.getPackage().getName();
-    //TODO HERES THE BUG...THE ENTITIES ARE NO LONGER IN THE SAME PACKAGE AS THE BASEENTITY!!!
-    // Quickfix: Assume that all entities with e.g. com.welovecoding are entities of the project (call me if u have a better and easier idea ;P)
+    // Assume that all entities with e.g. com.welovecoding are entities of the project (call me if u have a better and easier idea ;P)
     String[] packages = BaseEntity.class.getPackage().getName().split("\\.");
     String domainPackage = packages[0] + "." + packages[1];
 

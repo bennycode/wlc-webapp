@@ -2,7 +2,6 @@ package com.welovecoding.tutorial.view.filter;
 
 import com.welovecoding.tutorial.view.JSFUtils;
 import java.util.Locale;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
@@ -20,7 +19,6 @@ public class LanguageFilter implements PhaseListener {
   public void afterPhase(PhaseEvent event) {
     FacesContext facesContext = event.getFacesContext();
     Locale locale = JSFUtils.getLocaleFromDomain(facesContext);
-    LOG.log(Level.INFO, "View content locale: {0}", locale.getLanguage());
     facesContext.getViewRoot().setLocale(locale);
   }
 

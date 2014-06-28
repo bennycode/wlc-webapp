@@ -397,7 +397,6 @@ public class JSFUtils implements Serializable {
     if (request instanceof HttpServletRequest) {
       HttpServletRequest servletRequest = (HttpServletRequest) request;
       String header = servletRequest.getHeader("host");
-      LOG.log(Level.INFO, "View host: {0}", header);
       if (header.contains(".de")) {
         locale = Locale.GERMAN;
       }

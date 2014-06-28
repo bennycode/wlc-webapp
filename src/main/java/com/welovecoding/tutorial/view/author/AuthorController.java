@@ -1,9 +1,9 @@
 package com.welovecoding.tutorial.view.author;
 
-import com.welovecoding.tutorial.view.Pages;
-import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
 import com.welovecoding.tutorial.data.author.Author;
 import com.welovecoding.tutorial.data.author.AuthorService;
+import com.welovecoding.tutorial.view.Pages;
+import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -19,21 +19,21 @@ public class AuthorController
 
   @PostConstruct
   public void init() {
-    this.item = new Author();
+    setItem(new Author());
   }
 
   @Override
   public String edit() {
     super.edit();
 
-    this.item = new Author();
+    setItem(new Author());
     return Pages.ADMIN_AUTHORS;
   }
 
   @Override
   public String remove() {
     super.remove();
-    this.item = new Author();
+    setItem(new Author());
     return Pages.ADMIN_AUTHORS;
   }
 

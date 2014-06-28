@@ -28,13 +28,13 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
   private static final Logger LOG = Logger.getLogger(BaseController.class.getName());
 
   // Pagination
-  protected int offset;
-  protected int amount;
-  protected int currentPage;
-  protected int totalPages;
+  private int offset;
+  private int amount;
+  private int currentPage;
+  private int totalPages;
 
   // Data
-  protected T item;
+  private T item;
   private List<T> items;
 
   public abstract E getService();
@@ -42,20 +42,20 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
   @SuppressWarnings("unchecked")
   public String remove() {
     String template = "Deleting item: {0}";
-    LOG.log(Level.INFO, template, item.getName());
-    getService().remove(item);
+    LOG.log(Level.INFO, template, getItem().getName());
+    getService().remove(getItem());
     return "";
   }
 
   @SuppressWarnings("unchecked")
   public String edit() {
     String template = "Saving item: {0}";
-    LOG.log(Level.INFO, template, item.getName());
-    System.out.println("EDIT ITEM: " + item.toString());
+    LOG.log(Level.INFO, template, getItem().getName());
+    System.out.println("EDIT ITEM: " + getItem().toString());
 
     try {
 
-      getService().edit(item);
+      getService().edit(getItem());
 
     } catch (ConstraintViolationBagException ex) {
 
@@ -94,8 +94,8 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
    */
   @SuppressWarnings("unchecked")
   public List<T> getItems() {
-    this.items = getService().findRange(offset, amount);
-    return this.items;
+    setItems(getService().findRange(getOffset(), getAmount()));
+    return items;
   }
 
   public void setItems(List<T> items) {

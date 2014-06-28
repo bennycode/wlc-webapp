@@ -35,22 +35,21 @@ import javax.ejb.Startup;
 public class LogControlService {
 
   public LogControlService() {
-    System.out.println("######### LogControlService Constructor");
     // Service Loggers
     Logger.getLogger(BaseService.class.getName())
             .setLevel(Level.WARNING);
     Logger.getLogger(AuthorService.class.getName())
-            .setLevel(Level.INFO);
+            .setLevel(Level.WARNING);
     Logger.getLogger(CategoryService.class.getName())
-            .setLevel(Level.INFO);
+            .setLevel(Level.WARNING);
     Logger.getLogger(PlaylistService.class.getName())
-            .setLevel(Level.INFO);
+            .setLevel(Level.WARNING);
     Logger.getLogger(UserService.class.getName())
-            .setLevel(Level.INFO);
+            .setLevel(Level.WARNING);
     Logger.getLogger(VideoService.class.getName())
-            .setLevel(Level.INFO);
+            .setLevel(Level.WARNING);
     Logger.getLogger(YouTubeService.class.getName())
-            .setLevel(Level.INFO);
+            .setLevel(Level.WARNING);
 
     // Repository Loggers
     Logger.getLogger(BaseRepository.class.getName())
@@ -68,7 +67,6 @@ public class LogControlService {
     Logger.getLogger(YouTubeRepository.class.getName())
             .setLevel(Level.WARNING);
 
-    System.out.println("Setting Cache Loggers to Level.WARNING");
     // Cache Loggers
     Logger.getLogger(OwnCacheService.class.getName())
             .setLevel(Level.WARNING);

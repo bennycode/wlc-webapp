@@ -19,20 +19,20 @@ public class CategoryController extends GenFormBaseController<Category, Category
 
   @PostConstruct
   public void init() {
-    super.item = new Category();
+    setItem(new Category());
   }
 
   @Override
   public String edit() {
     super.edit();
-    this.item = new Category();
+    setItem(new Category());
     return Pages.ADMIN_CATEGORY;
   }
 
   @Override
   public String remove() {
     super.remove();
-    this.item = new Category();
+    setItem(new Category());
     return Pages.ADMIN_CATEGORY;
   }
 

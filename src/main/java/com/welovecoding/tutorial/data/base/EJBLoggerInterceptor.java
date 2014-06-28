@@ -17,8 +17,6 @@ import javax.interceptor.InvocationContext;
  */
 public class EJBLoggerInterceptor {
 
-  private static Logger LOG = Logger.getLogger(EJBLoggerInterceptor.class.getName());
-
   public EJBLoggerInterceptor() {
   }
 
@@ -32,7 +30,10 @@ public class EJBLoggerInterceptor {
    */
   @AroundInvoke
   public Object logCall(InvocationContext context) throws Exception {
-    LOG = Logger.getLogger(context.getMethod().getDeclaringClass().getName());
+    Logger LOG = Logger.getLogger(context.getMethod().getDeclaringClass().getName());
+    LOG.setLevel(Level.WARNING);
+
+//    System.out.println("Loggername: " + LOG.getName());
     // EJB will not be accessable if the Interceptor is called from outside of the backend-module
     StringBuilder log = new StringBuilder("---------------------------------------------------------\n");
 

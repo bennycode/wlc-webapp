@@ -26,7 +26,7 @@ import javax.validation.constraints.Size;
   @NamedQuery(name = FIND_ALL_IN_PLAYLIST, query = "SELECT v FROM Video v WHERE v.playlist.id = :playlistid"),
   @NamedQuery(name = FIND_ALL_IN_CATEGORY, query = "SELECT v FROM Video v WHERE v.playlist.category.id = :playlistid"),
   @NamedQuery(name = FIND_IN_PLAYLIST, query = "SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.id = :playlistid"),
-  @NamedQuery(name = FIND_IN_CATEGORY, query = "SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.category.id = :playlistid"),//TODO should be :categoryid
+  @NamedQuery(name = FIND_IN_CATEGORY, query = "SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.category.id = :categoryid"),
   @NamedQuery(name = FIND_IN_CATEGORY_AND_PLAYLIST, query = "SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.category.id = :categoryid AND v.playlist.id = :playlistid"),
   @NamedQuery(name = FIND_BY_PLAYLIST_AND_SLUG, query = "SELECT v FROM Video v WHERE v.slug = :videoslug AND v.playlist.id = :playlistid")
 })

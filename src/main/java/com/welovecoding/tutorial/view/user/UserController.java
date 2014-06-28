@@ -19,21 +19,21 @@ public class UserController
 
   @PostConstruct
   public void init() {
-    this.item = new User();
+    setItem(new User());
   }
 
   @Override
   public String edit() {
     super.edit();
 
-    this.item = new User();
+    setItem(new User());
     return Pages.ADMIN_USERS;
   }
 
   @Override
   public String remove() {
     super.remove();
-    this.item = new User();
+    setItem(new User());
     return Pages.ADMIN_USERS;
   }
 

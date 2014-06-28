@@ -9,8 +9,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
- * TODO:
- * http://stackoverflow.com/questions/197986/what-causes-javac-to-issue-the-uses-unchecked-or-unsafe-operations-warning
  *
  * @author Benny Neugebauer (bn@bennyn.de)
  * @author Michael Koppen <michael.koppen@googlemail.com>

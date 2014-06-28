@@ -37,28 +37,28 @@ public class PlaylistController
 
   @PostConstruct
   public void init() {
-    item = new Playlist();
-    item.setCode("");
+    setItem(new Playlist());
+    getItem().setCode("");
   }
 
   @Override
   public String edit() {
     // Debugger.logProperties(this.item);
-    if (this.item.getCreator() == null) {
-      this.item.setCreator(userSessionBean.getUser());
+    if (getItem().getCreator() == null) {
+      getItem().setCreator(userSessionBean.getUser());
     }
 
-    this.item.setLastEditor(userSessionBean.getUser());
+    getItem().setLastEditor(userSessionBean.getUser());
 
     super.edit();
-    this.item = new Playlist();
+    setItem(new Playlist());
     return Pages.ADMIN_PLAYLISTS;
   }
 
   @Override
   public String remove() {
     super.remove();
-    this.item = new Playlist();
+    setItem(new Playlist());
     return Pages.ADMIN_PLAYLISTS;
   }
 
