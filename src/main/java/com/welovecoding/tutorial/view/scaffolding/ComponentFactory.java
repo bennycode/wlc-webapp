@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.el.MethodExpression;
@@ -34,15 +33,12 @@ public class ComponentFactory implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(ComponentFactory.class.getName());
 
-  private final ResourceBundle backendText;
   private final String controllerBeanName;
   public static final String BACKEND_MESSAGES_NAME = "backend";
 
   public ComponentFactory(String controllerBeanName) {
     ComponentFactory.LOG.setLevel(Level.FINEST);
     this.controllerBeanName = controllerBeanName;
-    FacesContext context = FacesContext.getCurrentInstance();
-    this.backendText = context.getApplication().getResourceBundle(context, BACKEND_MESSAGES_NAME);
   }
 
   /**
@@ -149,7 +145,6 @@ public class ComponentFactory implements Serializable {
     UISelectItems items = new UISelectItems();
     items.setValue(selectItems);
     menu.getChildren().add(items);
-    // TODO: Check if the user is selected in "j_idt42:j_idt46:creator"
 
     String jsfValue = String.format("#{%s.item.%s}", controllerBeanName, key);
     ValueExpression valueExpression = JSFUtils.createValueExpression(jsfValue, expectedType);
@@ -208,7 +203,9 @@ public class ComponentFactory implements Serializable {
     button.setActionExpression(actionExpression);
     button.setId("save");
     button.setStyleClass("pure-button pure-button-primary");
-    button.setValue(backendText.getString("admin.page.tableAction.save"));
+
+    ValueExpression text = JSFUtils.createValueExpression("#{backend['admin.page.tableAction.save']}", String.class);
+    button.setValueExpression("value", text);
 
     return button;
   }
@@ -244,16 +241,16 @@ public class ComponentFactory implements Serializable {
   }
 
   public HtmlOutputLabel createLabel(FormInput property) {
-    String text = property.getKey();
+    HtmlOutputLabel label = new HtmlOutputLabel();
 
     try {
-      text = backendText.getString("admin.form.label." + property.getKey());
+      String el = String.format("#{backend['admin.form.label.%s']}", property.getKey());
+      ValueExpression text = JSFUtils.createValueExpression(el, String.class);
+      label.setValueExpression("value", text);
     } catch (java.util.MissingResourceException ex) {
+      label.setValue(property.getKey());
       LOG.log(Level.WARNING, "Missing property key for: admin.form.label.{0}", property.getKey());
     }
-
-    HtmlOutputLabel label = new HtmlOutputLabel();
-    label.setValue(text);
 
     return label;
   }

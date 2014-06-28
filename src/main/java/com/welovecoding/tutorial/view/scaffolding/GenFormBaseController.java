@@ -4,6 +4,7 @@ import com.welovecoding.StringUtils;
 import com.welovecoding.tutorial.data.base.BaseEntity;
 import com.welovecoding.tutorial.data.base.BaseService;
 import com.welovecoding.tutorial.view.base.BaseController;
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +29,9 @@ import javax.servlet.http.HttpServletRequest;
  *
  * Example for a value expression: #{playlistController.item.category}
  */
-public abstract class GenFormBaseController<T extends BaseEntity, E extends BaseService> extends BaseController<T, E> {
+public abstract class GenFormBaseController<T extends BaseEntity, E extends BaseService> extends BaseController<T, E> implements Serializable {
+
+  private static final long serialVersionUID = 4621344371123751225L;
 
   private transient HtmlForm form;
 
