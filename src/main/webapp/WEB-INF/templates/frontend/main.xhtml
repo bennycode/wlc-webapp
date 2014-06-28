@@ -2,10 +2,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
   <h:head>
     <!-- Page title -->
-    <title><ui:insert name="title">#{frontend['main.title']}</ui:insert></title>
+    <title><ui:insert name="title">#{index.title}</ui:insert></title>
     <!-- Meta tags -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,92 +54,93 @@
     <h:outputScript library="libs/jquery/2.1.1" name="jquery.min.js" />
     <h:outputScript library="js/wlc" name="DocumentHandler.js" />
   </h:head>
-
   <h:body>
-    <div id="top-wrapper" class="layout-wrapper">
+    <f:view locale="#{facesContext.viewRoot.locale}" encoding="UTF-8" contentType="text/html">
 
-      <!-- Header -->
-      <div id="grid-header" class="pure-g">
-        <div id="header-unit-1" class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
-          <a id="title" href="#{facesContext.externalContext.requestContextPath}">We Love Coding<span class="dot">.</span></a>
-        </div>
-        <div id="header-unit-2" class="pure-u-1 pure-u-md-1-2 pure-u-lg-2-3">
-          <div id="navigation">
-            <ul>
-              <li><h:link 
-                  outcome="/index.xhtml" 
-                  styleClass="#{activeLink eq 'index.xhtml' ? 'current-menu-item' : ''}"
-                  value="Home" /></li>
-              <li><h:link 
-                  outcome="/categories.xhtml" 
-                  styleClass="#{activeLink eq 'categories.xhtml' ? 'current-menu-item' : ''}"
-                  value="Tutorials" /></li>
-              <li><h:link 
-                  outcome="/team.xhtml" 
-                  styleClass="#{activeLink eq 'team.xhtml' ? 'current-menu-item' : ''}"
-                  value="Team" /></li>
-              <li><a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon enter"></span> Login</a></li>              
-            </ul>
+      <div id="top-wrapper" class="layout-wrapper">
+
+        <!-- Header -->
+        <div id="grid-header" class="pure-g">
+          <div id="header-unit-1" class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+            <a id="title" href="#{facesContext.externalContext.requestContextPath}">We Love Coding<span class="dot">.</span></a>
           </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div id="center">
-      <div id="center-wrapper" class="layout-wrapper">
-
-        <div id="grid-center" class="pure-g-r">
-          <ui:insert name="center-unit-1"></ui:insert>
-          <ui:insert name="center-unit-2"></ui:insert>
+          <div id="header-unit-2" class="pure-u-1 pure-u-md-1-2 pure-u-lg-2-3">
+            <div id="navigation">
+              <ul>
+                <li><h:link 
+                    outcome="/index.xhtml" 
+                    styleClass="#{activeLink eq 'index.xhtml' ? 'current-menu-item' : ''}"
+                    value="Home" /></li>
+                <li><h:link 
+                    outcome="/categories.xhtml" 
+                    styleClass="#{activeLink eq 'categories.xhtml' ? 'current-menu-item' : ''}"
+                    value="Tutorials" /></li>
+                <li><h:link 
+                    outcome="/team.xhtml" 
+                    styleClass="#{activeLink eq 'team.xhtml' ? 'current-menu-item' : ''}"
+                    value="Team" /></li>
+                <li><a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon enter"></span> Login</a></li>              
+              </ul>
+            </div>
+          </div>
         </div>
 
       </div>
-    </div>
 
-    <div id="bottom-wrapper" class="layout-wrapper">
+      <div id="center">
+        <div id="center-wrapper" class="layout-wrapper">
 
-      <!-- Footer -->
-      <div id="grid-footer" class="pure-g">
-        <div class="pure-u-1">
-          <p>
-            <h:link outcome="pretty:imprint"><h:outputText value="#{imprint.title}" /></h:link> | © 2014 <a href="http://www.bennyn.de/" target="_blank">Benny Neugebauer</a> &amp; <a href="http://beanbelt.blogspot.de/" target="_blank">Michael Koppen</a>
-          </p>
-        </div>
-        <h:panelGroup rendered="#{facesContext.isProjectStage('Development')}">
-          <div id="debug-info" class="pure-u-1-1">
-            <p class="text"><b>Development stage.</b> Locale: #{facesContext.viewRoot.locale}, Screen:</p>
+          <div id="grid-center" class="pure-g-r">
+            <ui:insert name="center-unit-1"></ui:insert>
+            <ui:insert name="center-unit-2"></ui:insert>
           </div>
-        </h:panelGroup>
-      </div>    
 
-    </div>
+        </div>
+      </div>
 
-    <ui:insert name="before-closing-body"></ui:insert>
-    <ui:include src="/WEB-INF/templates/frontend/plugins/google-analytics.xhtml" />
+      <div id="bottom-wrapper" class="layout-wrapper">
 
-    <script>
-      /* <![CDATA[ */
+        <!-- Footer -->
+        <div id="grid-footer" class="pure-g">
+          <div class="pure-u-1">
+            <p>
+              <h:link outcome="pretty:imprint"><h:outputText value="#{imprint.title}" /></h:link> | © 2014 <a href="http://www.bennyn.de/" target="_blank">Benny Neugebauer</a> &amp; <a href="http://beanbelt.blogspot.de/" target="_blank">Michael Koppen</a>
+            </p>
+          </div>
+          <h:panelGroup rendered="#{facesContext.isProjectStage('Development')}">
+            <div id="debug-info" class="pure-u-1-1">
+              <p class="text"><b>Development stage.</b> Locale: #{facesContext.viewRoot.locale}, Screen:</p>
+            </div>
+          </h:panelGroup>
+        </div>    
 
-      $(document).ready(function() {
-        var faviconDirectory = '#{facesContext.externalContext.requestContextPath}/resources/images/favicon/';
-        var activeFavicon = faviconDirectory + 'heart-16.ico?ver=1';
-        var inactiveFavicon = faviconDirectory + 'heart-broken.ico?ver=1';
+      </div>
 
-        var faviconConfig = {
-          id: 'favicon',
-          favicons: {
-            active: activeFavicon,
-            inactive: inactiveFavicon
-          }
-        };
+      <ui:insert name="before-closing-body"></ui:insert>
+      <ui:include src="/WEB-INF/templates/frontend/plugins/google-analytics.xhtml" />
 
-        var documentHandler = new wlc.DocumentHandler(faviconConfig);
-        documentHandler.init();
-      });
+      <script>
+        /* <![CDATA[ */
 
-      /* ]]> */
-    </script>
+        $(document).ready(function() {
+          var faviconDirectory = '#{facesContext.externalContext.requestContextPath}/resources/images/favicon/';
+          var activeFavicon = faviconDirectory + 'heart-16.ico?ver=1';
+          var inactiveFavicon = faviconDirectory + 'heart-broken.ico?ver=1';
 
+          var faviconConfig = {
+            id: 'favicon',
+            favicons: {
+              active: activeFavicon,
+              inactive: inactiveFavicon
+            }
+          };
+
+          var documentHandler = new wlc.DocumentHandler(faviconConfig);
+          documentHandler.init();
+        });
+
+        /* ]]> */
+      </script>
+    </f:view>
   </h:body>
 </html>

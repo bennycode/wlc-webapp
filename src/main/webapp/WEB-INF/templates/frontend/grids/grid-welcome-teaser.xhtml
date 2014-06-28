@@ -10,7 +10,9 @@
 
         <div id="welcome-teaser-unit-1" class="pure-u-1 pure-u-md-1-2">
           <div id="welcome-teaser">
-            <h1><h:outputText value="#{index.title}" /></h1>
+            <h:link outcome="pretty:home">
+              <h1><h:outputText value="#{index.title}" /></h1>
+            </h:link>
             <h:outputText 
               escape="false" 
               value="#{index.teaser}" />
