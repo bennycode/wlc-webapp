@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
   <f:view locale="${facesContext.viewRoot.locale eq 'de' ? 'de' : 'en'}" encoding="UTF-8" contentType="text/html">
@@ -57,10 +56,6 @@
       <h:outputScript library="js/wlc" name="DocumentHandler.js" />
     </h:head>
     <h:body>
-      RequestURL: #{request.requestURL}<br />
-      isRequestDE: #{fn:containsIgnoreCase(request.requestURL, '.de')}<br />
-      FacesLocale: #{facesContext.viewRoot.locale}<br />
-      isFacesDE: #{facesContext.viewRoot.locale eq 'de'}<br />
       <div id="top-wrapper" class="layout-wrapper">
 
         <!-- Header -->
@@ -113,7 +108,7 @@
           </div>
           <h:panelGroup rendered="#{facesContext.isProjectStage('Development')}">
             <div id="debug-info" class="pure-u-1-1">
-              <p class="text"><b>Development stage.</b> Locale: #{facesContext.viewRoot.locale}, Screen:</p>
+              <p class="text"><b>Development stage.</b> Locale: #{facesContext.viewRoot.locale}, Requested URL: #{request.requestURL} Screen:</p>
             </div>
           </h:panelGroup>
         </div>    
