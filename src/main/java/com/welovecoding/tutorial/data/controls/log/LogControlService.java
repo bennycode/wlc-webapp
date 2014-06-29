@@ -21,6 +21,8 @@ import de.yser.ownsimplecache.util.clear.ClearCacheInterceptor;
 import de.yser.ownsimplecache.util.clear.ClearCachesInterceptor;
 import de.yser.ownsimplecache.util.hook.logging.OwnSimpleCacheLoggingHook;
 import de.yser.ownsimplecache.util.jaxrs.EntityTagGenerator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Singleton;
@@ -34,62 +36,132 @@ import javax.ejb.Startup;
 @Startup
 public class LogControlService {
 
+  private static final String SERVICE_LOGGERS = "service";
+  private static final String REPOSITORY_LOGGERS = "repository";
+  private static final String CACHE_LOGGERS = "cache";
+  private static Map<String, Map> loggerTypes = new HashMap<>();
+
   public LogControlService() {
+    System.out.println("LogControlService()");
+    Map<String, Logger> serviceLoggers = new HashMap<>();
+    Map<String, Logger> repositoryLoggers = new HashMap<>();
+    Map<String, Logger> cacheLoggers = new HashMap<>();
+    loggerTypes.put(SERVICE_LOGGERS, serviceLoggers);
+    loggerTypes.put(REPOSITORY_LOGGERS, repositoryLoggers);
+    loggerTypes.put(CACHE_LOGGERS, cacheLoggers);
+
+    Logger tempLogger;
     // Service Loggers
-    Logger.getLogger(BaseService.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(AuthorService.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(CategoryService.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(PlaylistService.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(UserService.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(VideoService.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(YouTubeService.class.getName())
-            .setLevel(Level.WARNING);
+    tempLogger = Logger.getLogger(BaseService.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    serviceLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(AuthorService.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    serviceLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(CategoryService.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    serviceLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(PlaylistService.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    serviceLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(UserService.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    serviceLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(VideoService.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    serviceLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(YouTubeService.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    serviceLoggers.put(tempLogger.getName(), tempLogger);
 
     // Repository Loggers
-    Logger.getLogger(BaseRepository.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(AuthorRepository.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(CategoryRepository.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(PlaylistRepository.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(UserRepository.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(VideoRepository.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(YouTubeRepository.class.getName())
-            .setLevel(Level.WARNING);
+    tempLogger = Logger.getLogger(BaseRepository.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    repositoryLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(AuthorRepository.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    repositoryLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(CategoryRepository.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    repositoryLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(PlaylistRepository.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    repositoryLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(UserRepository.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    repositoryLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(VideoRepository.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    repositoryLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(YouTubeRepository.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    repositoryLoggers.put(tempLogger.getName(), tempLogger);
 
     // Cache Loggers
-    Logger.getLogger(OwnCacheService.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(OwnSimpleCacheLoggingHook.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(OwnCacheServerService.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(OwnCacheListener.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(de.yser.ownsimplecache.util.jaxrs.KeyGenerator.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(de.yser.ownsimplecache.util.ejb.KeyGenerator.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(EntityTagGenerator.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(de.yser.ownsimplecache.util.jaxrs.CacheInterceptor.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(de.yser.ownsimplecache.util.ejb.CacheInterceptor.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(ClearCachesInterceptor.class.getName())
-            .setLevel(Level.WARNING);
-    Logger.getLogger(ClearCacheInterceptor.class.getName())
-            .setLevel(Level.WARNING);
+    tempLogger = Logger.getLogger(OwnCacheService.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    cacheLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(OwnSimpleCacheLoggingHook.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    cacheLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(OwnCacheServerService.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    cacheLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(OwnCacheListener.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    cacheLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(de.yser.ownsimplecache.util.jaxrs.KeyGenerator.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    cacheLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(de.yser.ownsimplecache.util.ejb.KeyGenerator.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    cacheLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(EntityTagGenerator.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    cacheLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(de.yser.ownsimplecache.util.jaxrs.CacheInterceptor.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    cacheLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(de.yser.ownsimplecache.util.ejb.CacheInterceptor.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    cacheLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(ClearCachesInterceptor.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    cacheLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(ClearCacheInterceptor.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    cacheLoggers.put(tempLogger.getName(), tempLogger);
+
+  }
+
+  public static Map<String, Map> getLoggerTypes() {
+    return loggerTypes;
+  }
+
+  public static void setLoggerTypes(Map<String, Map> loggerTypes) {
+    LogControlService.loggerTypes = loggerTypes;
   }
 
 }
