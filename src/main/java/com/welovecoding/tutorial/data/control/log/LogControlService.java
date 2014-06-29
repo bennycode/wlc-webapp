@@ -1,4 +1,4 @@
-package com.welovecoding.tutorial.data.controls.log;
+package com.welovecoding.tutorial.data.control.log;
 
 import com.welovecoding.tutorial.data.author.AuthorRepository;
 import com.welovecoding.tutorial.data.author.AuthorService;
@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
@@ -34,15 +36,24 @@ import javax.ejb.Startup;
  */
 @Singleton
 @Startup
+//@DependsOn(value = "otherSingletonStartupEJB")
 public class LogControlService {
 
-  private static final String SERVICE_LOGGERS = "service";
-  private static final String REPOSITORY_LOGGERS = "repository";
-  private static final String CACHE_LOGGERS = "cache";
-  private static Map<String, Map> loggerTypes = new HashMap<>();
+  public static final String SERVICE_LOGGERS = "service";
+  public static final String REPOSITORY_LOGGERS = "repository";
+  public static final String CACHE_LOGGERS = "cache";
+  private static final Logger ROOT_LOGGER = Logger.getLogger("");
+  private static final LogHandler ROOT_LOG_HANDLER = new LogHandler();
+  private static Map<String, Map> loggerTypes;
 
   public LogControlService() {
     System.out.println("LogControlService()");
+    loggerTypes = new HashMap<>();
+  }
+
+  @PostConstruct
+  private void init() {
+    System.out.println("LogControlService#init()");
     Map<String, Logger> serviceLoggers = new HashMap<>();
     Map<String, Logger> repositoryLoggers = new HashMap<>();
     Map<String, Logger> cacheLoggers = new HashMap<>();
@@ -61,7 +72,7 @@ public class LogControlService {
     serviceLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(CategoryService.class.getName());
-    tempLogger.setLevel(Level.WARNING);
+    tempLogger.setLevel(Level.INFO);
     serviceLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(PlaylistService.class.getName());
@@ -154,6 +165,16 @@ public class LogControlService {
     tempLogger.setLevel(Level.WARNING);
     cacheLoggers.put(tempLogger.getName(), tempLogger);
 
+    addLogHandler();
+  }
+
+  private void addLogHandler() {
+    ROOT_LOGGER.addHandler(ROOT_LOG_HANDLER);
+  }
+
+  @PreDestroy
+  private void destroy() {
+    System.out.println("LogControlService#destroy()");
   }
 
   public static Map<String, Map> getLoggerTypes() {
@@ -162,6 +183,10 @@ public class LogControlService {
 
   public static void setLoggerTypes(Map<String, Map> loggerTypes) {
     LogControlService.loggerTypes = loggerTypes;
+  }
+
+  public Iterable<String> getLogs() {
+    return ROOT_LOG_HANDLER.getLogMessages();
   }
 
 }

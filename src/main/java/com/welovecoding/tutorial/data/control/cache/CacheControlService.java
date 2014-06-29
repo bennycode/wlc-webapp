@@ -1,4 +1,4 @@
-package com.welovecoding.tutorial.data.controls.cache;
+package com.welovecoding.tutorial.data.control.cache;
 
 import static com.welovecoding.tutorial.data.base.BaseRepository.PERSISTENCE_UNIT_NAME;
 import de.yser.ownsimplecache.OwnCacheServerService;

@@ -101,6 +101,20 @@
                     value="Development Test">
                   </h:link>
                 </li>
+                <li>
+                  <h:link 
+                    styleClass="#{(view.viewId.equals('/admin/logging.xhtml')) ? 'active' : ''}"
+                    outcome="/admin/logging.xhtml"
+                    value="#{backend['admin.menu.logging']}">
+                  </h:link>
+                </li>
+                <li>
+                  <h:link 
+                    styleClass="#{(view.viewId.equals('/admin/caches.xhtml')) ? 'active' : ''}"
+                    outcome="/admin/caches.xhtml"
+                    value="#{backend['admin.menu.caches']}">
+                  </h:link>
+                </li>
               </ul>
             </div>
           </div>

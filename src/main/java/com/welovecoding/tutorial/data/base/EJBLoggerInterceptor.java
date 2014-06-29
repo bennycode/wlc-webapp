@@ -31,10 +31,6 @@ public class EJBLoggerInterceptor {
   @AroundInvoke
   public Object logCall(InvocationContext context) throws Exception {
     Logger LOG = Logger.getLogger(context.getMethod().getDeclaringClass().getName());
-
-//    System.out.println("Loggername: " + LOG.getName());
-//    System.out.println("Loggerlevel: " + LOG.getLevel());
-    // EJB will not be accessable if the Interceptor is called from outside of the backend-module
     StringBuilder log = new StringBuilder("---------------------------------------------------------\n");
 
     log.append(" + Class: ").append(context.getMethod().getDeclaringClass().getSimpleName()).append("\n");
@@ -61,14 +57,13 @@ public class EJBLoggerInterceptor {
     Object retVal = null;
     try {
       retVal = context.proceed();
-      log.append(" -       ReturnValue ").append(": ").append(retVal).append("\n");
+      log.append(" -       ReturnValue ").append(": ").append(retVal);
+      LOG.log(Level.INFO, log.toString());
     } catch (Exception e) {
-      log.append(" -       Threw Exception ").append(": ").append(e.getClass().getSimpleName()).append("\n");
+      log.append(" -       Threw Exception ").append(": ").append(e.getClass().getSimpleName());
       LOG.log(Level.SEVERE, log.toString());
       throw e;
     }
-
-    LOG.log(Level.INFO, log.toString());
 
     return retVal;
   }
