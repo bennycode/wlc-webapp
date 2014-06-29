@@ -1,6 +1,5 @@
 package com.welovecoding.tutorial.data.user.entity;
 
-import com.welovecoding.tutorial.data.user.entity.UserCredentials;
 import static com.welovecoding.tutorial.data.user.entity.GoogleUserCredentials.CREDENTIAL_TYPE_COLUMN_VALUE;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
