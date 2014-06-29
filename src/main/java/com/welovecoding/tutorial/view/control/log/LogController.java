@@ -1,6 +1,7 @@
 package com.welovecoding.tutorial.view.control.log;
 
 import com.welovecoding.tutorial.data.control.log.LogControlService;
+import java.util.Iterator;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -18,17 +19,18 @@ public class LogController {
   private String latestLog;
 
   private void loadLatestLog() {
-    StringBuilder log = new StringBuilder();
-    for (String logLine : logService.getLogs()) {
-      log.append(logLine).append("\n");
+    if (latestLog == null) {
+      StringBuilder log = new StringBuilder();
+      Iterator<String> logs = logService.getDescendingLogs();
+      while (logs.hasNext()) {
+        log.append(logs.next()).append("\n");
+      }
+      latestLog = log.toString();
     }
-    latestLog = log.toString();
   }
 
   public String getLatestLog() {
-    if (latestLog == null) {
-      loadLatestLog();
-    }
+    loadLatestLog();
     return latestLog;
   }
 

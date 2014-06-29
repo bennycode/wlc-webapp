@@ -1,6 +1,9 @@
 package com.welovecoding.tutorial.data.control.log;
 
 import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
@@ -49,10 +52,27 @@ public class LogHandler extends Handler {
 
   public void setMessagesThreshold(int messagesThreshold) {
     this.messagesThreshold = messagesThreshold;
+    List<String> oldMessages = new LinkedList<>();
+    for (String string : logMessages) {
+      oldMessages.add(string);
+    }
+    logMessages = new LinkedBlockingDeque<>(messagesThreshold);
+    for (String string : oldMessages) {
+      if (logMessages.remainingCapacity() > 0) {
+        logMessages.offerLast(string);
+      } else {
+        logMessages.pollFirst();
+        logMessages.offerLast(string);
+      }
+    }
   }
 
-  public LinkedBlockingDeque<String> getLogMessages() {
-    return logMessages;
+  public Iterator<String> getLogMessages() {
+    return logMessages.iterator();
+  }
+
+  public Iterator<String> getDescendingLogMessages() {
+    return logMessages.descendingIterator();
   }
 
 }

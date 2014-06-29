@@ -10,14 +10,20 @@
       </ui:define>
       <ui:define name="content">   
         <h2 class="page-header">
-          <h:outputText value="REST Cache" />
+          <h:outputText value="REST-Cache" />
         </h2>
+        <p>
+          <strong>WARNING: </strong>Clearing the REST-Cache can cause massive impact on the database in a production environment. Please use this function with caution.
+        </p>
         <h:form>
           <h:commandButton styleClass="pure-button pure-button-primary" action="#{cacheController.clearRestCache()}" value="Clear"></h:commandButton>
         </h:form>
         <h2 class="page-header">
-          <h:outputText value="Database Cache" />
+          <h:outputText value="Database-Cache" />
         </h2>
+        <p>
+          <strong>WARNING: </strong>Clearing the Database-Cache can cause massive impact on the database in a production environment. Please use this function with caution.
+        </p>
         <h:form>
           <h:commandButton styleClass="pure-button pure-button-primary" action="#{cacheController.clearDatabaseCache()}" value="Clear"></h:commandButton>
         </h:form>

@@ -22,6 +22,7 @@ import de.yser.ownsimplecache.util.clear.ClearCachesInterceptor;
 import de.yser.ownsimplecache.util.hook.logging.OwnSimpleCacheLoggingHook;
 import de.yser.ownsimplecache.util.jaxrs.EntityTagGenerator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -185,8 +186,12 @@ public class LogControlService {
     LogControlService.loggerTypes = loggerTypes;
   }
 
-  public Iterable<String> getLogs() {
+  public Iterator<String> getLogs() {
     return ROOT_LOG_HANDLER.getLogMessages();
+  }
+
+  public Iterator<String> getDescendingLogs() {
+    return ROOT_LOG_HANDLER.getDescendingLogMessages();
   }
 
 }
