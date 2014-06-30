@@ -10,8 +10,7 @@ body,
 }
 
 .pure-g div[class^="pure-u"] {
-  padding-left: 10px;
-  padding-right: 10px;
+  .padding-content();
 }
 
 * {
@@ -40,6 +39,10 @@ html {
 }
 
 body {
+  h1 {
+    margin: 0;
+    .padding-content();
+  }
   a {
     color: @color-text-link;
     text-decoration: none;

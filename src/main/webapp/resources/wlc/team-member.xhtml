@@ -5,10 +5,10 @@
   <composite:interface>
     <!-- Required -->
     <composite:attribute name="firstname" required="true" type="java.lang.String" />
-    <composite:attribute name="lastname" required="true" type="java.lang.String" />
+    <composite:attribute name="about" required="true" type="java.lang.String" />
     <composite:attribute name="position" required="true" type="java.lang.String" />
     <!-- Optional -->
-    <composite:attribute name="about" required="false" type="java.lang.String" />
+    <composite:attribute name="lastname" required="false" type="java.lang.String" />
     <composite:attribute name="picture" required="false" type="java.lang.String" />
     <composite:attribute name="homepage" required="false" type="java.lang.String" />
     <composite:attribute name="facebook" required="false" type="java.lang.String" />
@@ -21,13 +21,14 @@
       <div class="team-member">
         <div class="float-left images">
 
-          <h:graphicImage class="picture" 
-                          name="/images/team/#{cc.attrs.picture}" 
-                          width="96" 
-                          height="96" 
-                          alt="#{cc.attrs.firstname} #{cc.attrs.lastname}" 
-                          title="#{cc.attrs.firstname} #{cc.attrs.lastname}" 
-                          />
+          <h:graphicImage 
+            class="picture" 
+            name="/images/team/#{cc.attrs.picture}" 
+            width="96" 
+            height="96" 
+            alt="#{cc.attrs.firstname} #{cc.attrs.lastname}" 
+            title="#{cc.attrs.firstname} #{cc.attrs.lastname}" 
+            />
 
           <div class="links">
 
@@ -82,12 +83,7 @@
           <h3><h:outputText value="#{cc.attrs.firstname} #{cc.attrs.lastname}"></h:outputText></h3>
           <span class="sub">#{cc.attrs.position}</span>
           <h:panelGroup rendered="#{!empty cc.attrs.about}">
-            <p>#{cc.attrs.about}</p>
-          </h:panelGroup>
-          <h:panelGroup rendered="#{empty cc.attrs.about}">
-            <p>
-              Cras a neque diam. Aenean dapibus accumsan velit eget imperdiet. Quisque sapien neque, fermentum ac pharetra ac, iaculis a elit. Morbi tincidunt, lectus et dignissim pharetra, elit leo lacinia purus, eu porta. Aenean adipiscing, sed lacinia sapien tincidunt.
-            </p>
+            <p><h:outputText value="#{cc.attrs.about}" escape="false" /></p>
           </h:panelGroup>
         </div>
 
