@@ -3,6 +3,7 @@ package com.welovecoding.tutorial.view;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Enumeration;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -396,8 +397,16 @@ public class JSFUtils implements Serializable {
     Object request = facesContext.getExternalContext().getRequest();
     if (request instanceof HttpServletRequest) {
       HttpServletRequest servletRequest = (HttpServletRequest) request;
-      String header = servletRequest.getHeader("host");
-      if (header.contains(".de")) {
+
+      String forwardedHost = servletRequest.getHeader("x-forwarded-host");
+      String directHost = servletRequest.getHeader("host");
+      String host = directHost;
+
+      if (forwardedHost != null) {
+        host = forwardedHost;
+      }
+
+      if (host.endsWith(".de")) {
         locale = Locale.GERMAN;
       }
     }
