@@ -1,13 +1,12 @@
 package com.welovecoding.entities;
 
-import com.welovecoding.tutorial.data.video.Video;
-import com.welovecoding.tutorial.data.category.Category;
-import com.welovecoding.tutorial.data.author.Author;
-import com.welovecoding.tutorial.data.playlist.entity.Provider;
-import com.welovecoding.tutorial.data.playlist.entity.LanguageCode;
-import com.welovecoding.tutorial.data.playlist.entity.Difficulty;
-import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import com.welovecoding.tutorial.api.v1.mapping.DTOMapper;
+import com.welovecoding.tutorial.data.author.Author;
+import com.welovecoding.tutorial.data.category.Category;
+import com.welovecoding.tutorial.data.playlist.entity.LanguageCode;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import com.welovecoding.tutorial.data.playlist.entity.Provider;
+import com.welovecoding.tutorial.data.video.Video;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -96,7 +95,7 @@ public class PlaylistTest {
     playlist.setProvider(Provider.YOUTUBE);
     playlist.setAuthor(author);
     playlist.setVideos(videos);
-    playlist.setDifficulty(Difficulty.MEDIUM);
+//    playlist.setDifficulty(Difficulty.MEDIUM);
 
     com.welovecoding.tutorial.api.v1.dto.PlaylistDTO dtoPlaylist = DTOMapper.mapPlaylist(playlist);
 
