@@ -36,9 +36,11 @@ public class FHBRestRedirectServlet extends HttpServlet {
   }
 
   private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    // TODO change context-path to fhb-app
-    System.out.println(req.getRequestURI().replaceAll("/fhb/", "/service/"));
-    resp.sendRedirect(req.getRequestURI().replaceAll("/fhb/", "/service/"));
+    String redirectUri = req.getRequestURI();
+    redirectUri = redirectUri.replaceAll("/wlc-webapp", "");
+    redirectUri = redirectUri.replaceAll("/rest/", "/fhb-tutorien/rest/");
+
+    resp.sendRedirect(redirectUri);
   }
 
 }
