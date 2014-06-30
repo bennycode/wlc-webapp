@@ -70,7 +70,7 @@ public class CategoryResourceIT extends IntegrationTest {
     Response resp
             = given().
             when().
-            get(ROOT + "/rest/fhb/v1/categories").then().
+            get(ROOT + "/rest/service/v1/categories").then().
             extract().response();
     System.out.println("RESPONSE: ");
     resp.prettyPrint();
