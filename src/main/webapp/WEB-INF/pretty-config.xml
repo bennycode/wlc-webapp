@@ -28,6 +28,15 @@
     <pattern value="/imprint/" />
     <view-id value="/imprint.xhtml" />
   </url-mapping>
+  
+  <url-mapping id="ebooks_en">
+    <pattern value="/free-ebooks/" />
+    <view-id value="/ebooks.xhtml" />
+  </url-mapping>
+  <url-mapping id="ebooks_de">
+    <pattern value="/kostenlose-ebooks/" />
+    <view-id value="/ebooks.xhtml" />
+  </url-mapping>
 
   <!-- Tutorials -->
   <!-- http://ocpsoft.org/docs/prettyfaces/3.3.3/en-US/html/Configuration.html#config.mapping.parents -->

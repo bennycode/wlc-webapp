@@ -73,7 +73,13 @@
                 <li><h:link 
                     outcome="/categories.xhtml" 
                     styleClass="#{activeLink eq 'categories.xhtml' ? 'current-menu-item' : ''}"
-                    value="Tutorials" /></li>
+                    value="Tutorials" />
+                </li>
+                <li>
+                  <h:link outcome="pretty:ebooks_en" 
+                          styleClass="#{activeLink eq 'ebooks.xhtml' ? 'current-menu-item' : ''}"
+                          value="E-Books" />
+                </li>
                 <li><h:link 
                     outcome="/team.xhtml" 
                     styleClass="#{activeLink eq 'team.xhtml' ? 'current-menu-item' : ''}"
