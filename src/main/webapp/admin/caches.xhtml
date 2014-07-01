@@ -16,7 +16,7 @@
           <strong>WARNING: </strong>Clearing the REST-Cache can cause massive impact on the database in a production environment. Please use this function with caution.
         </p>
         <h:form>
-          <h:commandButton styleClass="pure-button pure-button-primary" action="#{cacheController.clearRestCache()}" value="Clear"></h:commandButton>
+          <h:commandButton styleClass="pure-button button-warning" action="#{cacheController.clearRestCache()}" value="Clear"></h:commandButton>
         </h:form>
         <h2 class="page-header">
           <h:outputText value="Database-Cache" />
@@ -25,7 +25,7 @@
           <strong>WARNING: </strong>Clearing the Database-Cache can cause massive impact on the database in a production environment. Please use this function with caution.
         </p>
         <h:form>
-          <h:commandButton styleClass="pure-button pure-button-primary" action="#{cacheController.clearDatabaseCache()}" value="Clear"></h:commandButton>
+          <h:commandButton styleClass="pure-button button-warning" action="#{cacheController.clearDatabaseCache()}" value="Clear"></h:commandButton>
         </h:form>
       </ui:define>
     </ui:composition>

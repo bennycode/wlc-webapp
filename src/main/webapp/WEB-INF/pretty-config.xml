@@ -29,6 +29,7 @@
     <view-id value="/imprint.xhtml" />
   </url-mapping>
   
+<<<<<<< Updated upstream
   <url-mapping id="ebooks_en">
     <pattern value="/free-ebooks/" />
     <view-id value="/ebooks.xhtml" />
@@ -36,6 +37,12 @@
   <url-mapping id="ebooks_de">
     <pattern value="/kostenlose-ebooks/" />
     <view-id value="/ebooks.xhtml" />
+=======
+  <!-- Profile -->
+  <url-mapping id="profile">
+    <pattern value="/profile/" />
+    <view-id value="/profile.xhtml" />
+>>>>>>> Stashed changes
   </url-mapping>
 
   <!-- Tutorials -->

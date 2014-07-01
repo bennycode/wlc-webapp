@@ -47,6 +47,11 @@
       <var>imprint</var>
     </resource-bundle>
     
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.profile</base-name>
+      <var>profile</var>
+    </resource-bundle>
+    
   </application>
   
   

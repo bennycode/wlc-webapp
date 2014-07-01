@@ -27,20 +27,26 @@ import javax.servlet.http.HttpServletResponse;
  * @see https://code.google.com/p/google-api-java-client/wiki/OAuth2
  */
 public class GoogleLoginServlet extends HttpServlet {
+  
+  private static final Logger LOG = Logger.getLogger(GoogleLoginServlet.class.getName());
 
+  static {
+    LOG.setLevel(Level.INFO);
+  }
+  
   public static final String CODE_URL_PARAM_NAME = "code";
   public static final String ERROR_URL_PARAM_NAME = "error";
   public static final String URL_MAPPING = "/oauth2callback";
-
+  
   @Inject
   private GoogleLoginBean googleLoginBean;
-
+  
   @Inject
   private AuthSessionBean userSessionBean;
-
+  
   @EJB
   private UserService userService;
-
+  
   @Override
   /**
    * TODO: Catch: oauth2callback?error=access_denied&state=/profile
@@ -66,17 +72,16 @@ public class GoogleLoginServlet extends HttpServlet {
     } else {
       GoogleTokenResponse tokenResponse = googleLoginBean.convertCodeToToken(code[0]);
       String accessToken = tokenResponse.getIdToken();
-      System.out.println("Access Token: " + accessToken);
-
+      LOG.log(Level.FINE, "Access Token: {0}", accessToken);
+      
       GoogleUser gu = googleLoginBean.getUser(tokenResponse);
-
+      
       User userEntity = userService.findByEmail(gu.getEmail());
       GoogleUserCredentials credentials;
       boolean isFirstToken = false;
-
+      
       if (userEntity == null) {
         userEntity = UserMapper.convertGoogleUser(gu);
-
         isFirstToken = true;
       } else {
         List<UserCredentials> userCredentials = userEntity.getCredentials();
@@ -109,7 +114,7 @@ public class GoogleLoginServlet extends HttpServlet {
 
       // Save user in session
       userSessionBean.setUser(userEntity);
-
+      
       String redirectUrl = userSessionBean.getDeniedUrl();
       if (redirectUrl == null) {
         LOG.log(Level.INFO, "Redirect URL not found.");
@@ -117,11 +122,10 @@ public class GoogleLoginServlet extends HttpServlet {
         redirectUrl = contextPath + Pages.ADMIN_INDEX + ".xhtml";
       }
       LOG.log(Level.INFO, "Redirecting to: {0}", redirectUrl);
-
+      
       response.sendRedirect(redirectUrl);
     }
   }
-  private static final Logger LOG = Logger.getLogger(GoogleLoginServlet.class.getName());
 
   /**
    * Construct the OAuth code callback handler URL.

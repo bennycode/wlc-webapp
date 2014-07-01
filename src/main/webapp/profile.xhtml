@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:wlc="http://java.sun.com/jsf/composite/wlc"
+      xmlns:f="http://java.sun.com/jsf/core">
+  <h:body>
+    <ui:composition template="/WEB-INF/templates/frontend/main.xhtml">
+
+      <ui:define name="title">#{profile.title}</ui:define>
+
+      <ui:define name="center-unit-1">
+        <h:panelGroup rendered="#{authSessionBean.user.name != null}">     
+          <div class="pure-u-1">
+            <h:outputFormat value="#{profile.text}" escape="false">
+              <f:param  value="#{authSessionBean.user.name}" />
+            </h:outputFormat>
+          </div>
+        </h:panelGroup>
+      </ui:define>
+
+    </ui:composition>
+  </h:body>
+</html>

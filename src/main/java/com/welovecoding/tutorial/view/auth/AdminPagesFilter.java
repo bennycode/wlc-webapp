@@ -16,15 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminPagesFilter implements Filter {
 
   @Inject
-  private AuthSessionBean userSessionBean;
+  private AuthSessionBean authSessionBean;
 
   public AdminPagesFilter() {
-  }
-
-  private boolean isAllowed() {
-    User user = userSessionBean.getUser();
-
-    return user.isAdmin();
   }
 
   @Override
@@ -33,16 +27,27 @@ public class AdminPagesFilter implements Filter {
     HttpServletRequest servletRequest = (HttpServletRequest) request;
     HttpServletResponse servletResponse = (HttpServletResponse) response;
 
-    System.out.println("User is allowed: " + isAllowed());
+    User user = authSessionBean.getUser();
+    System.out.println(user.getName());
 
-    if (!isAllowed()) {
+    if (!user.isAdmin()) {
       // Deny Access
       String referrer = servletRequest.getRequestURL().toString();
-      userSessionBean.setDeniedUrl(referrer);
+      authSessionBean.setDeniedUrl(referrer);
 
       // Send redirect
       String contextPath = servletRequest.getContextPath();
-      servletResponse.sendRedirect(contextPath + Pages.LOGIN);
+
+      if (user.getName() == null) {
+        servletResponse.sendRedirect(contextPath + Pages.LOGIN);
+      } else {
+        if (user.isAdmin()) {
+          servletResponse.sendRedirect(contextPath + Pages.LOGIN);
+        } else {
+          servletResponse.sendRedirect(contextPath + Pages.PROFILE);
+        }
+      }
+
     }
 
     // Continue filtering...

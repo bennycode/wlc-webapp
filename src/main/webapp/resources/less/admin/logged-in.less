@@ -8,6 +8,36 @@
 
 html{
   background-image: url("#{resource['images:noise.png']}");
+  .pure-button {
+    &.button-success,
+    &.button-error,
+    &.button-warning,
+    &.button-secondary {
+      color: white;
+      border-radius: 4px;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    /* green */
+    &.button-success {
+      background: rgb(28, 184, 65); 
+    }
+
+    /* maroon */
+    &.button-error {
+      background: rgb(202, 60, 60); 
+    }
+
+    /* orange */
+    &.button-warning {
+      background: rgb(223, 117, 20);
+    }
+
+    /* light blue */
+    &.button-secondary {
+      background: rgb(66, 184, 221); 
+    }
+  }
 }
 
 #top-grid {
