@@ -1,6 +1,5 @@
 package com.welovecoding.tutorial.view.auth.google;
 
-import com.welovecoding.tutorial.data.user.GoogleUser;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl;
@@ -15,8 +14,9 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.plus.PlusScopes;
 import com.google.api.services.youtube.YouTubeScopes;
-import com.welovecoding.tutorial.view.auth.AuthSessionBean;
+import com.welovecoding.tutorial.data.user.GoogleUser;
 import com.welovecoding.tutorial.view.JSFUtils;
+import com.welovecoding.tutorial.view.auth.AuthSessionBean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;

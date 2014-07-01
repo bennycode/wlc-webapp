@@ -26,30 +26,33 @@ public class AdminPagesFilter implements Filter {
           throws IOException, ServletException {
     HttpServletRequest servletRequest = (HttpServletRequest) request;
     HttpServletResponse servletResponse = (HttpServletResponse) response;
-
     User user = authSessionBean.getUser();
-    System.out.println(user.getName());
 
     if (!user.isAdmin()) {
       // Deny Access
       String referrer = servletRequest.getRequestURL().toString();
       authSessionBean.setDeniedUrl(referrer);
 
-      // Send redirect
       String contextPath = servletRequest.getContextPath();
 
       if (user.getName() == null) {
+        // Send redirect and cut the chain
         servletResponse.sendRedirect(contextPath + Pages.LOGIN);
+        return;
       } else {
         if (user.isAdmin()) {
+          //TODO should never happen since the first 'if' already checks this?
+          // Send redirect and cut the chain
           servletResponse.sendRedirect(contextPath + Pages.LOGIN);
+          return;
         } else {
+          // Send redirect and cut the chain
           servletResponse.sendRedirect(contextPath + Pages.PROFILE);
+          return;
         }
       }
 
     }
-
     // Continue filtering...
     chain.doFilter(request, response);
   }

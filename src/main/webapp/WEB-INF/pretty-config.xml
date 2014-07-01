@@ -4,7 +4,7 @@
                                    		http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.0.xsd">
 
   
-  <rewrite match="^(?!.*\.[a-z]*.*).*" trailingSlash="append" redirect="301" />
+  <rewrite match="^(?!.*\.[a-z]*.*).*" trailingSlash="append" redirect="301"/>
   <!-- Error pages -->
   <!--  <url-mapping id="404">
     <pattern value="/404" />
