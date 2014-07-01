@@ -73,7 +73,7 @@ public class LogControlService {
     serviceLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(CategoryService.class.getName());
-    tempLogger.setLevel(Level.INFO);
+    tempLogger.setLevel(Level.WARNING);
     serviceLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(PlaylistService.class.getName());

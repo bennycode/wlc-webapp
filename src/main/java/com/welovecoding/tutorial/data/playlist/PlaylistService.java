@@ -1,8 +1,6 @@
 package com.welovecoding.tutorial.data.playlist;
 
 import com.welovecoding.tutorial.data.base.BaseService;
-import com.welovecoding.tutorial.data.base.EJBLoggerInterceptor;
-import com.welovecoding.tutorial.data.monitor.MonitorInterceptor;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
@@ -13,10 +11,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.interceptor.Interceptors;
 
 @Stateless
-@Interceptors({EJBLoggerInterceptor.class, MonitorInterceptor.class})
 public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
 
   @EJB private PlaylistRepository repository;

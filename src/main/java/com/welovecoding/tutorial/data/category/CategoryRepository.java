@@ -1,16 +1,13 @@
 package com.welovecoding.tutorial.data.category;
 
 import com.welovecoding.tutorial.data.base.BaseRepository;
-import com.welovecoding.tutorial.data.base.EJBLoggerInterceptor;
-import com.welovecoding.tutorial.data.monitor.MonitorInterceptor;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-@Interceptors({EJBLoggerInterceptor.class, MonitorInterceptor.class})
+//@Interceptors({EJBLoggerInterceptor.class, MonitorInterceptor.class})
 public class CategoryRepository extends BaseRepository<Category> {
 
   @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)

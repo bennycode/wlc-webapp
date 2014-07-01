@@ -16,6 +16,7 @@ public class AuthorController
 
   @EJB
   private AuthorService service;
+  private Integer authorCount;
 
   @PostConstruct
   public void init() {
@@ -42,7 +43,14 @@ public class AuthorController
     return service;
   }
 
+  private void loadAuthorCount() {
+    if (authorCount == null) {
+      authorCount = getService().count();
+    }
+  }
+
   public long getAuthorCount() {
-    return service.count();
+    loadAuthorCount();
+    return authorCount;
   }
 }

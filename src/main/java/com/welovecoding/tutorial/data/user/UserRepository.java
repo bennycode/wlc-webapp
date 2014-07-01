@@ -1,17 +1,13 @@
 package com.welovecoding.tutorial.data.user;
 
 import com.welovecoding.tutorial.data.base.BaseRepository;
-import com.welovecoding.tutorial.data.base.EJBLoggerInterceptor;
-import com.welovecoding.tutorial.data.monitor.MonitorInterceptor;
 import com.welovecoding.tutorial.data.user.entity.User;
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-@Interceptors({EJBLoggerInterceptor.class, MonitorInterceptor.class})
 public class UserRepository extends BaseRepository<User> {
 
   @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)

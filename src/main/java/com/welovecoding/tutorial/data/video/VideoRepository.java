@@ -1,19 +1,15 @@
 package com.welovecoding.tutorial.data.video;
 
 import com.welovecoding.tutorial.data.base.BaseRepository;
-import com.welovecoding.tutorial.data.base.EJBLoggerInterceptor;
-import com.welovecoding.tutorial.data.monitor.MonitorInterceptor;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-@Interceptors({EJBLoggerInterceptor.class, MonitorInterceptor.class})
 public class VideoRepository extends BaseRepository<Video> {
 
   private static final Logger LOG = Logger.getLogger(VideoRepository.class.getName());

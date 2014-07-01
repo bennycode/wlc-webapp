@@ -1,5 +1,6 @@
 package com.welovecoding.tutorial.data.base;
 
+import com.welovecoding.tutorial.data.monitor.MonitorInterceptor;
 import java.util.List;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
@@ -15,7 +16,7 @@ import javax.persistence.criteria.Root;
  * @param <T extends BaseEntity>
  */
 @MappedSuperclass
-@Interceptors({EJBLoggerInterceptor.class})
+@Interceptors({EJBLoggerInterceptor.class, MonitorInterceptor.class})
 public abstract class BaseRepository<T extends BaseEntity> {
 
   public static final String PERSISTENCE_UNIT_NAME = "com.welovecoding.web_wlc-webapp_war_1.0-SNAPSHOTPU";

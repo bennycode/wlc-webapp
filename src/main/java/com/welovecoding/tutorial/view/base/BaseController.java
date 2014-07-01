@@ -36,6 +36,7 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
   // Data
   private T item;
   private List<T> items;
+  private Integer itemSize;
 
   public abstract E getService();
 
@@ -84,6 +85,12 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
     return "";
   }
 
+  private void loadItems() {
+    if (items == null) {
+      setItems(getService().findRange(getOffset(), getAmount()));
+    }
+  }
+
   /**
    * TODO: Getter should be plain! Data should retrived from JPA somewhere else!
    *
@@ -94,7 +101,7 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
    */
   @SuppressWarnings("unchecked")
   public List<T> getItems() {
-    setItems(getService().findRange(getOffset(), getAmount()));
+    loadItems();
     return items;
   }
 
@@ -102,8 +109,15 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
     this.items = items;
   }
 
+  private void loadItemSize() {
+    if (itemSize == null) {
+      itemSize = getService().count();
+    }
+  }
+
   public int getItemSize() {
-    return getService().count();
+    loadItemSize();
+    return itemSize;
   }
 
   public int getOffset() {

@@ -16,6 +16,8 @@ public class CategoryController extends GenFormBaseController<Category, Category
 
   @EJB
   private CategoryService service;
+  private Category category;
+  private Category categoryBySlug;
 
   @PostConstruct
   public void init() {
@@ -54,11 +56,25 @@ public class CategoryController extends GenFormBaseController<Category, Category
     return categoriesOrderedByName;
   }
 
+  private void loadCategoryById(long categoryId) {
+    if (category == null) {
+      category = getService().find(categoryId);
+    }
+  }
+
   public Category getCategory(long categoryId) {
-    return getService().find(categoryId);
+    loadCategoryById(categoryId);
+    return category;
+  }
+
+  private void loadCategoryBySlug(String categorySlug) {
+    if (categoryBySlug == null) {
+      categoryBySlug = getService().getBySlug(categorySlug);
+    }
   }
 
   public Category getCategoryBySlug(String categorySlug) {
-    return getService().getBySlug(categorySlug);
+    loadCategoryBySlug(categorySlug);
+    return categoryBySlug;
   }
 }

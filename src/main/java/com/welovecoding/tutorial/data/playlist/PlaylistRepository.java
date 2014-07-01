@@ -1,18 +1,14 @@
 package com.welovecoding.tutorial.data.playlist;
 
 import com.welovecoding.tutorial.data.base.BaseRepository;
-import com.welovecoding.tutorial.data.base.EJBLoggerInterceptor;
-import com.welovecoding.tutorial.data.monitor.MonitorInterceptor;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-@Interceptors({EJBLoggerInterceptor.class, MonitorInterceptor.class})
 public class PlaylistRepository extends BaseRepository<Playlist> {
 
   public PlaylistRepository() {
