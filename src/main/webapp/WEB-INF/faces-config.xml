@@ -52,6 +52,11 @@
       <var>profile</var>
     </resource-bundle>
     
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.ebooks</base-name>
+      <var>ebooks</var>
+    </resource-bundle>
+    
   </application>
   
   

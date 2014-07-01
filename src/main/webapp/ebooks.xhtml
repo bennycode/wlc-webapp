@@ -7,19 +7,87 @@
   <h:body>
     <ui:composition template="/WEB-INF/templates/frontend/main.xhtml">
 
-      <ui:define name="title">E-Books</ui:define>
+      <ui:define name="title">#{ebooks.title}</ui:define>
       <ui:param name="activeLink" value="ebooks.xhtml" />
 
       <ui:define name="center-unit-1">
-        <br />
-        <p>
-          <h3>Coming back soon!</h3>
-        </p>
-        <br />
-        <br />
-        <br />
-        <br />
-
+        <div class="pure-u-1">
+          <h1>#{ebooks.title}</h1>
+          <ul class="clickable-list">
+            <li>
+              <a href="http://www.amazon.de/JavaScript-and-HTML5-Now-EBOOK/dp/B0084HJE0S/ref=pd_cp_kinc_0" target="_blank">JavaScript and HTML5 Now
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/HTML5-for-Publishers-EBOOK/dp/B005XE2CAO/ref=pd_cp_kinc_2" target="_blank">HTML5 for Publishers
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/CSS-and-Documents-EBOOK/dp/B008RBQHTW/ref=pd_cp_kinc_3" target="_blank">CSS and Documents
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/What-Is-HTML5-EBOOK/dp/B005ISQ7JM/ref=pd_sxp_grid_i_1_1" target="_blank">What is HTML5?
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/Whats-New-Java-7-EBOOK/dp/B005XSS8VC/ref=pd_sxp_grid_i_1_2" target="_blank">What's New in Java 7?
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/Past-Present-Future-JavaScript-EBOOK/dp/B008MYLN3Y/ref=pd_sxp_grid_i_2_0" target="_blank">The Past, Present, and Future of JavaScript
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/What-Is-Node-EBOOK/dp/B005ISQ7JC/ref=pd_sim_kinc_49" target="_blank">What Is Node?
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/Problem-Native-JavaScript-APIs-EBOOK/dp/B008MYLMHG/ref=pd_sim_kinc_54" target="_blank">The Problem with Native JavaScript APIs
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/What-is-Dart-EBOOK/dp/B007K0T824/ref=pd_sim_kinc_57" target="_blank">What is Dart?
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/Beginning-Software-Architecture-EBOOK/dp/B00AQUUQ4Y/ref=pd_sim_kinc_61" target="_blank">Beginning Software Architecture
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/Intermediate-Software-Architecture-EBOOK/dp/B00AQUUQ5S/ref=pd_sim_kinc_6" target="_blank">Intermediate Software Architecture
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/Advanced-Software-Architecture-EBOOK/dp/B00AQUUQ5I/ref=pd_sim_kinc_5" target="_blank">Advanced Software Architecture
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/What-is-Web-2-0-EBOOK/dp/B008EQ0ZE8/ref=pd_sim_kinc_62" target="_blank">What is Web 2.0
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/Introducing-Starling-EBOOK/dp/B006YWRVIC/ref=pd_sim_kinc_92" target="_blank">Introducing Starling
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/Whats-New-Flash-Player-EBOOK/dp/B006JARZR6/ref=pd_sim_kinc_90" target="_blank">What's New in Flash Player 11
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/Big-Data-Now-Perspectives-EBOOK/dp/B005KDPILI/ref=pd_sim_kinc_89" target="_blank">Big Data Now: Current Perspectives from O'Reilly Radar
+              </a>
+            </li>
+            <li>
+              <a href="http://www.amazon.de/Accessible-EPUB-3-EBOOK/dp/B0078X1JHU/ref=pd_sim_kinc_83" target="_blank">Accessible EPUB 3
+              </a>
+            </li>
+            <li>
+              <a href="http://javascriptenlightenment.com/JavaScript_Enlightenment.pdf" target="_blank">JavaScript Enlightenment
+              </a>
+            </li>
+          </ul>
+        </div>
       </ui:define>
 
     </ui:composition>
