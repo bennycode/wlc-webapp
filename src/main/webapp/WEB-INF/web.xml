@@ -130,12 +130,14 @@
   <!-- Homepages -->
   <welcome-file-list>
     <welcome-file>index.xhtml</welcome-file>
-    <welcome-file>List.xhtml</welcome-file>
-    <welcome-file>index.html</welcome-file>
   </welcome-file-list>
   <!-- http://stackoverflow.com/a/3642969/451634 -->
   <error-page>
     <exception-type>javax.faces.application.ViewExpiredException</exception-type>
-    <location>/admin/index.xhtml</location>
+    <location>/index.xhtml</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/index.xhtml</location>
   </error-page>
 </web-app>
