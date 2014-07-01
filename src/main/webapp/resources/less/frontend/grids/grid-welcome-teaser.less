@@ -15,12 +15,15 @@
     #welcome-teaser {
       color: @color-text-light;
       margin-top: 0;
-
       h1 {
         color: @color-text-light;
+        margin: 0;
         font-weight: bold;
-        .font-size(52px);
+        font-size: 42px;
         text-align: center;
+        @media @pure-sm {
+          .font-size(52px);
+        }
         @media @pure-lg {
           .font-size(68px);
           text-align: left;
@@ -44,6 +47,31 @@
       @media @pure-lg {
         background-position: center top;
       }
+    }
+  }
+}
+
+#grid-welcome-app-teaser {
+  .app-badge {
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    height: 45px;
+    &.google-play {
+      width: 129px;
+      background-image: url("#{resource['images/badges/google:google_play_android_app_129x45.png']}");
+    }
+    &.itunes {
+      width: 152px;
+      background-image: url("#{resource['images/badges/apple:apple-app-store-135-40.svg']}");
+    }
+    &.windows-store {
+      width: 173px;
+      background-image: url("#{resource['images/badges/microsoft/windows-store:WindowsStore_badge_en_English_Black_med_258x67.png']}");
+    }
+    &.windows-phone {
+      width: 173px;
+      background-image: url("#{resource['images/badges/microsoft/windows-phone:258x67_WPS_Download_blk.png']}");
     }
   }
 }

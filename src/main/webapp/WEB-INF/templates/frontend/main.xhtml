@@ -4,7 +4,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-  <f:view locale="${facesContext.viewRoot.locale eq 'de' ? 'de' : 'en'}" encoding="UTF-8" contentType="text/html">
+  <f:view locale="${facesContext.viewRoot.locale}" encoding="UTF-8" contentType="text/html">
     <h:head>
       <!-- Page title -->
       <title><ui:insert name="title">#{index.title}</ui:insert></title>
