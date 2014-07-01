@@ -38,17 +38,20 @@ public class AdminPagesFilter implements Filter {
       if (user.getName() == null) {
         // Send redirect and cut the chain
         servletResponse.sendRedirect(contextPath + Pages.LOGIN);
-        return;
+        // return is correct for redirect but breaks the GoogleLogin
+//        return;
       } else {
         if (user.isAdmin()) {
           //TODO should never happen since the first 'if' already checks this?
           // Send redirect and cut the chain
           servletResponse.sendRedirect(contextPath + Pages.LOGIN);
-          return;
+          // return is correct for redirect but breaks the GoogleLogin
+//          return;
         } else {
           // Send redirect and cut the chain
           servletResponse.sendRedirect(contextPath + Pages.PROFILE);
-          return;
+          // return is correct for redirect but breaks the GoogleLogin
+//          return;
         }
       }
 
