@@ -9,9 +9,31 @@ body,
   font-family: "Open Sans", sans-serif;
 }
 
-.pure-g-r div[class^="pure-u"],
-.pure-g div[class^="pure-u"] {
-  .padding-content();
+div[class *= "pure-g"] {
+  > div[class *= "pure-u"] {
+    .padding-content();
+  }
+
+  &.top {
+    > div[class *= "pure-u"]:first-of-type {
+      .padding-content-top();
+    }
+  }
+
+  &.bottom {
+    > div[class *= "pure-u"]:first-of-type {
+      .padding-content-bottom();
+    }
+  }
+
+  &.top-bottom {
+    > div[class *= "pure-u"]:first-of-type {
+      .padding-content-top();
+    }
+    > div[class *= "pure-u"]:last-of-type {
+      .padding-content-bottom();
+    }
+  }
 }
 
 .pure-button {
@@ -69,9 +91,6 @@ html {
 body {
   h1 {
     margin: 0;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    .padding-content();
   }
   a {
     color: @color-text-link;

@@ -10,21 +10,19 @@
 
       <wlc:frontend-breadcrumbs level="2" />
 
-      <div class="pure-g">
-        <div class="pure-u-1">
-          <div class="content container">
-            <ul class="clickable-list">
-              <ui:repeat value="#{playlistController.getPlaylists()}" var="playlist">
-                <li>
-                  <h:link outcome="/videos.xhtml" value="#{playlist.name}">
-                    <f:param name="playlistSlug" value="#{playlist.slug}" />
-                    <f:param name="categorySlug" value="#{playlistController.categorySlug}" />
-                  </h:link>
-                </li>
-              </ui:repeat>
-            </ul>
-          </div>
-        </div>
+      <div class="pure-u-1">
+
+        <ul class="clickable-list">
+          <ui:repeat value="#{playlistController.getPlaylists()}" var="playlist">
+            <li>
+              <h:link outcome="/videos.xhtml" value="#{playlist.name}">
+                <f:param name="playlistSlug" value="#{playlist.slug}" />
+                <f:param name="categorySlug" value="#{playlistController.categorySlug}" />
+              </h:link>
+            </li>
+          </ui:repeat>
+        </ul>
+
       </div>
 
     </ui:composition>

@@ -10,20 +10,18 @@
 
       <wlc:frontend-breadcrumbs level="1" />
 
-      <div class="pure-g">
-        <div class="pure-u-1">
-          <div class="content container">
-            <ul class="clickable-list">
-              <ui:repeat value="#{categoryController.categoriesOrderedByName}" var="category">
-                <li>
-                  <h:link outcome="/playlists.xhtml" value="#{category.name}">
-                    <f:param name="categorySlug" value="#{category.slug}" />
-                  </h:link>
-                </li>
-              </ui:repeat>
-            </ul>
-          </div>
-        </div>
+      <div class="pure-u-1">
+
+        <ul class="clickable-list">
+          <ui:repeat value="#{categoryController.categoriesOrderedByName}" var="category">
+            <li>
+              <h:link outcome="/playlists.xhtml" value="#{category.name}">
+                <f:param name="categorySlug" value="#{category.slug}" />
+              </h:link>
+            </li>
+          </ui:repeat>
+        </ul>
+
       </div>
 
     </ui:composition>
