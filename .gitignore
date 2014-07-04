@@ -1,25 +1,29 @@
-/assets/sql/production/
-/assets/photoshop
-/src/main/webapp/inspiration/
-/src/main/webapp/test.*
-/src/main/webapp/resources/css/generated
+### Raw assets ###
+/assets/
+
+### Confidential data ###
 /src/main/webapp/WEB-INF/classes/production.properties
+
+### Compiled files ###
+/src/main/webapp/resources/css/generated
 /src/main/resources/META-INF/resources/css/generated
 
-### Mac OS ###
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon
-._*
-.Spotlight-V100
-.Trashes
+### Java build files ###
+*.class
+*.jar
+*.war
+*.ear
+/target/
 
-### Windows ###
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
+### JSF local configs ###
+/faces-config.NavData
+
+### Log files ###
+*.log
+
+### Maven release files ###
+*.xml.releaseBackup
+/release.properties
 
 ### NetBeans ###
 nbproject/
@@ -37,11 +41,17 @@ build.properties
 *.iws
 .idea/
 
-### Java ###
-*.class
-*.jar
-*.war
-*.ear
-/target/
-/faces-config.NavData
-*.log
+### Mac OS ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+### Windows ###
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
