@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+  <body>
+    <ui:composition>
+
+      <div id="grid-header" class="pure-g wrapper">
+        <div id="header-unit-1" class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+          <a id="title" href="#{facesContext.externalContext.requestContextPath}/">We Love Coding<span class="dot">.</span></a>
+        </div>
+        <div id="header-unit-2" class="pure-u-1 pure-u-md-1-2 pure-u-lg-2-3">
+          <div id="navigation">
+            <ul>
+              <li>
+                <h:link 
+                  outcome="pretty:home" 
+                  styleClass="#{activeLink eq 'index.xhtml' ? 'current-menu-item' : ''}"
+                  value="#{main_header.home}" />
+              </li>
+              <li>
+                <h:link 
+                  outcome="pretty:tutorials" 
+                  styleClass="#{activeLink eq 'categories.xhtml' ? 'current-menu-item' : ''}"
+                  value="#{main_header.tutorials}" />
+              </li>
+              <li>
+                <h:link 
+                  outcome="pretty:ebooks_#{facesContext.viewRoot.locale}" 
+                  styleClass="#{activeLink eq 'ebooks.xhtml' ? 'current-menu-item' : ''}"
+                  value="#{main_header.ebooks}" />
+              </li>
+              <li>
+                <h:link 
+                  outcome="pretty:team" 
+                  styleClass="#{activeLink eq 'team.xhtml' ? 'current-menu-item' : ''}"
+                  value="#{main_header.team}" />
+              </li>
+              <li>
+                <h:link 
+                  outcome="pretty:join_us_#{facesContext.viewRoot.locale}" 
+                  styleClass="#{activeLink eq 'join_us.xhtml' ? 'current-menu-item' : ''}"
+                  value="#{main_header.join_us}" />
+              </li>
+              <li>
+                <a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon enter"></span> #{main_header.login}</a>
+              </li>              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </ui:composition>
+  </body>
+</html>

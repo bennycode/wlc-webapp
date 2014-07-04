@@ -89,16 +89,31 @@ html {
 }
 
 body {
-  h1 {
-    margin: 0;
-  }
   a {
     color: @color-text-link;
     text-decoration: none;
+    &.highlight {
+      color: @color-text-highlight;
+    }
   }
+
+  h1 {
+    margin: 0;
+  }  
+
   p {
     line-height: 1.6em;
   }
+
+  span {
+    &.bold {
+      font-weight: bold;
+    }
+    &.highlight {
+      color: @color-text-highlight;
+    }    
+  }
+
   .table {
     display: table;
     border-spacing: 2px;
@@ -128,13 +143,14 @@ body {
       vertical-align: inherit;
     }
   }
+
   ul {
     li {
       line-height: 1.8em;
     }
-  }
-  ul.clickable-list li a {
-    display: block;
+    &.clickable-list li a {
+      display: block;
+    }
   }
 }
 
