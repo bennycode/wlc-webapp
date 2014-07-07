@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+  <body>
+    <ui:composition>
+
+      <div id="grid-footer" class="pure-g">
+        <div class="pure-u-1">
+          <p>
+            <h:link outcome="pretty:imprint"><h:outputText value="#{imprint.title}" /></h:link> | © 2014 <a href="http://www.bennyn.de/" target="_blank">Benny Neugebauer</a> &amp; <a href="http://beanbelt.blogspot.de/" target="_blank">Michael Koppen</a>
+          </p>
+        </div>
+        <h:panelGroup rendered="#{facesContext.isProjectStage('Development')}">
+          <div id="debug-info" class="pure-u-1-1">
+            <p class="text"><b>Development stage.</b> Locale: #{facesContext.viewRoot.locale}, Requested URL: #{request.requestURL} Screen:</p>
+          </div>
+        </h:panelGroup>
+      </div> 
+
+    </ui:composition>
+  </body>
+</html>

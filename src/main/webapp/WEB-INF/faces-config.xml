@@ -57,6 +57,16 @@
       <var>ebooks</var>
     </resource-bundle>
     
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.main_header</base-name>
+      <var>main_header</var>
+    </resource-bundle>
+    
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.join_us</base-name>
+      <var>join_us</var>
+    </resource-bundle>
+    
   </application>
   
   

@@ -9,7 +9,10 @@
 
 #grid-welcome-teaser {
   color: white;
-  margin-top: 30px;
+  margin-top: 0px;
+  @media @pure-sm {
+    margin-top: 1em;
+  }
   #welcome-teaser-unit-1 {
     padding-right: -1em;
     #welcome-teaser {
@@ -23,6 +26,7 @@
         text-align: center;
         @media @pure-sm {
           .font-size(52px);
+          padding-bottom: 16px;
         }
         @media @pure-lg {
           .font-size(68px);

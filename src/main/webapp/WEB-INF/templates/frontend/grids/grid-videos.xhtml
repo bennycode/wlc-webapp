@@ -5,13 +5,12 @@
       xmlns:wlc="http://java.sun.com/jsf/composite/wlc">
   <body>
     <ui:composition>
+
       <wlc:frontend-breadcrumbs level="3" />
 
-      <div id="grid-videos" class="pure-g">
-        <div class="pure-u-1">
-          <div class="share-videos">
-            <div class="fb-share-button-wrapper"></div>
-          </div>
+      <div class="pure-u-1">
+
+        <div id="grid-videos">          
           <div class="container">
             <ui:repeat value="#{videoController.getVideos()}" var="video">
               <a 
@@ -29,6 +28,7 @@
             </ui:repeat>
           </div>
         </div>
+
       </div>
     </ui:composition>
   </body>

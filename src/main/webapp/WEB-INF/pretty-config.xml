@@ -3,13 +3,7 @@
                xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.0
                                    		http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.0.xsd">
 
-  
   <rewrite match="^(?!.*\.[a-z]*.*).*" trailingSlash="append" redirect="301"/>
-  <!-- Error pages -->
-  <!--  <url-mapping id="404">
-    <pattern value="/404" />
-    <view-id value="/404.xhtml" />
-  </url-mapping>-->
 
   <!-- Home -->
   <url-mapping id="home">
@@ -38,6 +32,17 @@
   <url-mapping id="ebooks_de">
     <pattern value="/kostenlose-ebooks/" />
     <view-id value="/ebooks.xhtml" />
+  </url-mapping>
+  
+  <!-- Join us -->
+  <url-mapping id="join_us_en">
+    <pattern value="/join-us/" />
+    <view-id value="/join_us.xhtml" />
+  </url-mapping>
+  
+  <url-mapping id="join_us_de">
+    <pattern value="/mach-mit/" />
+    <view-id value="/join_us.xhtml" />
   </url-mapping>
   
   <!-- Profile -->

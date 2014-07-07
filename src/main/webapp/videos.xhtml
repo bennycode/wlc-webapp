@@ -18,7 +18,6 @@
       </ui:define>
 
       <ui:define name="before-closing-body">
-        <h:outputScript library="js/wlc/config" name="Facebook.js" />
         <script>
           /* <![CDATA[ */
 
@@ -44,10 +43,6 @@
                 video.html($(element));
               }
             });
-
-            // Init Facebook
-            var facebook = new wlc.config.Facebook();
-            facebook.loadLikeButton();
 
           });
 

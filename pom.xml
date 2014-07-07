@@ -4,7 +4,7 @@
 
   <groupId>com.welovecoding.web</groupId>
   <artifactId>wlc-webapp</artifactId>
-  <version>0.0.14-SNAPSHOT</version>
+  <version>0.0.15-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>We Love Coding (webapp)</name>

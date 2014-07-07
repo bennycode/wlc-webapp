@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:wlc="http://java.sun.com/jsf/composite/wlc">
+  <h:body>
+    <ui:composition template="/WEB-INF/templates/frontend/main.xhtml">
+
+      <ui:define name="title">#{join_us.title}</ui:define>
+      <ui:param name="activeLink" value="join_us.xhtml" />
+
+      <ui:define name="center-unit-1">
+        
+        <div class="pure-u-1">
+          <h1>#{join_us.title}</h1>
+          <h:outputText escape="false" value="#{join_us.text}" />
+        </div>
+      </ui:define>
+      
+
+    </ui:composition>
+  </h:body>
+</html>
