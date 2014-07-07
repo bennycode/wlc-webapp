@@ -1,6 +1,8 @@
 package com.welovecoding.tutorial.view.statistic;
 
 import com.welovecoding.tutorial.data.statistic.StatisticService;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -13,6 +15,8 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class StatisticFlushServlet implements ServletContextListener {
 
+  private static final Logger LOG = Logger.getLogger(StatisticFlushServlet.class.getName());
+
   @EJB
   private StatisticService statService;
 
@@ -23,7 +27,13 @@ public class StatisticFlushServlet implements ServletContextListener {
 
   @Override
   public void contextDestroyed(ServletContextEvent event) {
-    statService.flush();
+    try {
+      statService.flush();
+    } catch (Exception e) {
+      LOG.log(Level.WARNING, "Could not flush statistics!", e.getMessage());
+      LOG.log(Level.INFO, "FlushException: ", e);
+    }
+
   }
 
 }
