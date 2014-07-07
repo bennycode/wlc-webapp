@@ -10,6 +10,9 @@
       <!-- Please note: Line breaks are not working in "create-script-source" script -->
       <property name="javax.persistence.schema-generation.drop-source" value="metadata"/>
       <property name="javax.persistence.schema-generation-target" value="database"/>
+      <!-- Batch writing -->
+      <property name="eclipselink.jdbc.batch-writing" value="JDBC" />
+      <!--<property name="eclipselink.jdbc.batch-writing.size" value="100" />-->
       <!-- Log JPA Statements -->
       <!--<property name="eclipselink.logging.level" value="FINE"/>-->
       <!-- Log values of parameters in query -->

@@ -39,25 +39,43 @@ public class VideoRepository extends BaseRepository<Video> {
   }
 
   public Video findInCategoryAndPlaylist(Long categoryid, Long playlistid, Long videoid) {
-    return em.createNamedQuery(Video.FIND_IN_CATEGORY_AND_PLAYLIST, Video.class).
-            setParameter("videoid", videoid).
-            setParameter("playlistid", playlistid).
-            setParameter("categoryid", categoryid).
-            getSingleResult();
+    Video result = null;
+    try {
+      result = em.createNamedQuery(Video.FIND_IN_CATEGORY_AND_PLAYLIST, Video.class).
+              setParameter("videoid", videoid).
+              setParameter("playlistid", playlistid).
+              setParameter("categoryid", categoryid).
+              getSingleResult();
+    } catch (NoResultException ex) {
+      // NOP
+    }
+    return result;
   }
 
   public Video findInPlaylist(Long playlistid, Long videoid) {
-    return em.createNamedQuery(Video.FIND_IN_PLAYLIST, Video.class).
-            setParameter("videoid", videoid).
-            setParameter("playlistid", playlistid).
-            getSingleResult();
+    Video result = null;
+    try {
+      result = em.createNamedQuery(Video.FIND_IN_PLAYLIST, Video.class).
+              setParameter("videoid", videoid).
+              setParameter("playlistid", playlistid).
+              getSingleResult();
+    } catch (NoResultException ex) {
+      // NOP
+    }
+    return result;
   }
 
   public Video findInCategory(Long categoryid, Long videoid) {
-    return em.createNamedQuery(Video.FIND_IN_CATEGORY, Video.class).
-            setParameter("videoid", videoid).
-            setParameter("categoryid", categoryid).
-            getSingleResult();
+    Video result = null;
+    try {
+      result = em.createNamedQuery(Video.FIND_IN_CATEGORY, Video.class).
+              setParameter("videoid", videoid).
+              setParameter("categoryid", categoryid).
+              getSingleResult();
+    } catch (NoResultException ex) {
+      // NOP
+    }
+    return result;
   }
 
   public List<Video> findAllInCategory(Long categoryid) {
@@ -72,9 +90,15 @@ public class VideoRepository extends BaseRepository<Video> {
   }
 
   public Video getByPlaylistAndSlug(long playlistid, String slug) {
-    return em.createNamedQuery(Video.FIND_BY_PLAYLIST_AND_SLUG, Video.class).
-            setParameter("playlistid", playlistid).
-            setParameter("categoryslug", slug).
-            getSingleResult();
+    Video result = null;
+    try {
+      result = em.createNamedQuery(Video.FIND_BY_PLAYLIST_AND_SLUG, Video.class).
+              setParameter("playlistid", playlistid).
+              setParameter("categoryslug", slug).
+              getSingleResult();
+    } catch (NoResultException ex) {
+      // NOP
+    }
+    return result;
   }
 }

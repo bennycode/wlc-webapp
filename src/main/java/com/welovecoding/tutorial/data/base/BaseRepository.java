@@ -1,6 +1,9 @@
 package com.welovecoding.tutorial.data.base;
 
-import com.welovecoding.tutorial.data.monitor.MonitorInterceptor;
+import com.google.api.client.util.Lists;
+import com.welovecoding.tutorial.data.statistic.StatisticInterceptor;
+import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
@@ -12,12 +15,12 @@ import javax.persistence.criteria.Root;
 /**
  *
  * @author Benny Neugebauer (bn@bennyn.de)
- * @author Michael Koppen <michael.koppen@googlemail.com>
- * @param <T extends BaseEntity>
+ * @author Michael Koppen (michael.koppen@googlemail.com)
+ * @param <T extends Serializable>
  */
 @MappedSuperclass
-@Interceptors({EJBLoggerInterceptor.class, MonitorInterceptor.class})
-public abstract class BaseRepository<T extends BaseEntity> {
+@Interceptors({EJBLoggerInterceptor.class, StatisticInterceptor.class})
+public abstract class BaseRepository<T extends Serializable> {
 
   public static final String PERSISTENCE_UNIT_NAME = "com.welovecoding.web_wlc-webapp_war_1.0-SNAPSHOTPU";
 
@@ -40,6 +43,48 @@ public abstract class BaseRepository<T extends BaseEntity> {
 
   public void remove(T entity) {
     getEntityManager().remove(getEntityManager().merge(entity));
+  }
+
+  public void batchCreate(Iterator<T> entities) {
+    List<T> entityList = Lists.newArrayList(entities);
+    for (int i = 0; i < entityList.size(); i++) {
+      getEntityManager().persist(entityList.get(i));
+
+      // 100 is the default max batch-size. Mod 99 because we start with 0. See persistence.xml for changes
+      // TODO get batchSize out of properties
+      if (i != 0 && (i % 99) == 0) {
+        getEntityManager().flush();
+      }
+    }
+
+  }
+
+  public void batchEdit(Iterator<T> entities) {
+    List<T> entityList = Lists.newArrayList(entities);
+    for (int i = 0; i < entityList.size(); i++) {
+      getEntityManager().merge(entityList.get(i));
+
+      // 100 is the default max batch-size. Mod 99 because we start with 0. See persistence.xml for changes
+      // TODO get batchSize out of properties
+      if (i != 0 && (i % 99) == 0) {
+        getEntityManager().flush();
+      }
+    }
+
+  }
+
+  public void batchRemove(Iterator<T> entities) {
+    List<T> entityList = Lists.newArrayList(entities);
+    for (int i = 0; i < entityList.size(); i++) {
+      getEntityManager().remove(getEntityManager().merge(entityList.get(i)));
+
+      // 100 is the default max batch-size. Mod 99 because we start with 0. See persistence.xml for changes
+      // TODO get batchSize out of properties
+      if (i != 0 && (i % 99) == 0) {
+        getEntityManager().flush();
+      }
+    }
+
   }
 
   public T find(Object id) {

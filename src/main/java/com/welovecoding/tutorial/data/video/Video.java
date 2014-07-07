@@ -112,11 +112,6 @@ public class Video extends BaseEntity {
   }
 
   public void setPermalink(String permalink) {
-    /*
-     String categorySlug = Slugify.slugify(video.getPlaylist().getCategory().getName());
-     String playlistSlug = Slugify.slugify(video.getPlaylist().getName());
-     String permalink = String.format("http://www.welovecoding.com/tutorials/%s/%s?video=0", categorySlug, playlistSlug);
-     */
     this.permalink = permalink;
   }
 

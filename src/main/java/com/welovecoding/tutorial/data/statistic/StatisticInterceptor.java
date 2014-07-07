@@ -1,4 +1,4 @@
-package com.welovecoding.tutorial.data.monitor;
+package com.welovecoding.tutorial.data.statistic;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -18,14 +18,14 @@ import javax.ws.rs.PathParam;
  * @author Michael Koppen
  */
 @Stateless
-public class MonitorInterceptor {
+public class StatisticInterceptor {
 
-  private static Logger LOG = Logger.getLogger(MonitorInterceptor.class.getName());
+  private static Logger LOG = Logger.getLogger(StatisticInterceptor.class.getName());
 
   @EJB
-  private MonitorService monitorService;
+  private StatisticService statisticService;
 
-  public MonitorInterceptor() {
+  public StatisticInterceptor() {
   }
 
   /**
@@ -42,7 +42,7 @@ public class MonitorInterceptor {
 
 //    Invocation invocation = new Invocation();
 //    invocation.setName(generateKey(context.getMethod(), context.getParameters()));
-//    monitorService.create(invocation);
+//    statisticService.create(invocation);
     return retVal;
   }
 

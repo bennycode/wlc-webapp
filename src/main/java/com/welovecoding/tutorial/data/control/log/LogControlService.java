@@ -8,6 +8,10 @@ import com.welovecoding.tutorial.data.category.CategoryRepository;
 import com.welovecoding.tutorial.data.category.CategoryService;
 import com.welovecoding.tutorial.data.playlist.PlaylistRepository;
 import com.welovecoding.tutorial.data.playlist.PlaylistService;
+import com.welovecoding.tutorial.data.statistic.StatisticCacheHook;
+import com.welovecoding.tutorial.data.statistic.StatisticInterceptor;
+import com.welovecoding.tutorial.data.statistic.StatisticRepository;
+import com.welovecoding.tutorial.data.statistic.StatisticService;
 import com.welovecoding.tutorial.data.user.UserRepository;
 import com.welovecoding.tutorial.data.user.UserService;
 import com.welovecoding.tutorial.data.video.VideoRepository;
@@ -43,6 +47,7 @@ public class LogControlService {
   public static final String SERVICE_LOGGERS = "service";
   public static final String REPOSITORY_LOGGERS = "repository";
   public static final String CACHE_LOGGERS = "cache";
+  public static final String OTHER_LOGGERS = "other";
   private static final Logger ROOT_LOGGER = Logger.getLogger("");
   private static final LogHandler ROOT_LOG_HANDLER = new LogHandler();
   private static Map<String, Map> loggerTypes;
@@ -58,9 +63,11 @@ public class LogControlService {
     Map<String, Logger> serviceLoggers = new HashMap<>();
     Map<String, Logger> repositoryLoggers = new HashMap<>();
     Map<String, Logger> cacheLoggers = new HashMap<>();
+    Map<String, Logger> otherLoggers = new HashMap<>();
     loggerTypes.put(SERVICE_LOGGERS, serviceLoggers);
     loggerTypes.put(REPOSITORY_LOGGERS, repositoryLoggers);
     loggerTypes.put(CACHE_LOGGERS, cacheLoggers);
+    loggerTypes.put(OTHER_LOGGERS, otherLoggers);
 
     Logger tempLogger;
     // Service Loggers
@@ -69,26 +76,30 @@ public class LogControlService {
     serviceLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(AuthorService.class.getName());
-    tempLogger.setLevel(Level.WARNING);
+    tempLogger.setLevel(Level.INFO);
     serviceLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(CategoryService.class.getName());
-    tempLogger.setLevel(Level.WARNING);
+    tempLogger.setLevel(Level.INFO);
     serviceLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(PlaylistService.class.getName());
-    tempLogger.setLevel(Level.WARNING);
+    tempLogger.setLevel(Level.INFO);
     serviceLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(UserService.class.getName());
-    tempLogger.setLevel(Level.WARNING);
+    tempLogger.setLevel(Level.INFO);
     serviceLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(VideoService.class.getName());
-    tempLogger.setLevel(Level.WARNING);
+    tempLogger.setLevel(Level.INFO);
     serviceLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(YouTubeService.class.getName());
+    tempLogger.setLevel(Level.INFO);
+    serviceLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(StatisticService.class.getName());
     tempLogger.setLevel(Level.WARNING);
     serviceLoggers.put(tempLogger.getName(), tempLogger);
 
@@ -118,6 +129,10 @@ public class LogControlService {
     repositoryLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(YouTubeRepository.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    repositoryLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(StatisticRepository.class.getName());
     tempLogger.setLevel(Level.WARNING);
     repositoryLoggers.put(tempLogger.getName(), tempLogger);
 
@@ -165,6 +180,15 @@ public class LogControlService {
     tempLogger = Logger.getLogger(ClearCacheInterceptor.class.getName());
     tempLogger.setLevel(Level.WARNING);
     cacheLoggers.put(tempLogger.getName(), tempLogger);
+
+    // monitoring
+    tempLogger = Logger.getLogger(StatisticCacheHook.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    otherLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(StatisticInterceptor.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    otherLoggers.put(tempLogger.getName(), tempLogger);
 
     addLogHandler();
   }

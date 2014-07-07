@@ -4,6 +4,7 @@ import com.welovecoding.tutorial.data.base.BaseRepository;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 @Stateless
@@ -27,9 +28,15 @@ public class CategoryRepository extends BaseRepository<Category> {
   }
 
   public Category getBySlug(String slug) {
-    return em.createNamedQuery(Category.FIND_BY_SLUG, Category.class).
-            setParameter("categoryslug", slug).
-            getSingleResult();
+    Category result = null;
+    try {
+      result = em.createNamedQuery(Category.FIND_BY_SLUG, Category.class).
+              setParameter("categoryslug", slug).
+              getSingleResult();
+    } catch (NoResultException ex) {
+      // NOP
+    }
+    return result;
   }
 
 }

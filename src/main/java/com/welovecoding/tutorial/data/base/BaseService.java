@@ -1,8 +1,8 @@
 package com.welovecoding.tutorial.data.base;
 
 import com.welovecoding.tutorial.data.ConstraintViolationBagException;
-import com.welovecoding.tutorial.data.monitor.MonitorCacheHook;
-import com.welovecoding.tutorial.data.monitor.MonitorInterceptor;
+import com.welovecoding.tutorial.data.statistic.StatisticCacheHook;
+import com.welovecoding.tutorial.data.statistic.StatisticInterceptor;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import de.yser.ownsimplecache.util.hook.Hook;
 import java.util.Iterator;
@@ -17,7 +17,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 
 @MappedSuperclass
-@Interceptors({EJBLoggerInterceptor.class, MonitorInterceptor.class})
+@Interceptors({EJBLoggerInterceptor.class, StatisticInterceptor.class})
 public abstract class BaseService<T extends BaseEntity, E extends BaseRepository<T>> {
 
   private static final Logger LOG = Logger.getLogger(BaseService.class.getName());
@@ -32,7 +32,7 @@ public abstract class BaseService<T extends BaseEntity, E extends BaseRepository
 
   static {
     try {
-      OwnCacheServerService.registerHooks(Hook.class, MonitorCacheHook.class);
+      OwnCacheServerService.registerHooks(Hook.class, StatisticCacheHook.class);
     } catch (Exception ex) {
       Logger.getLogger(BaseService.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -49,9 +49,7 @@ public abstract class BaseService<T extends BaseEntity, E extends BaseRepository
 
   public void batchCreate(List<T> entityList) {
     invalidateRelatedCaches();
-    for (T entity : entityList) {
-      getRepository().create(entity);
-    }
+    getRepository().batchCreate(entityList.iterator());
   }
 
   public void edit(T entity) throws ConstraintViolationBagException {
@@ -78,9 +76,7 @@ public abstract class BaseService<T extends BaseEntity, E extends BaseRepository
 
   public void batchEdit(List<T> entityList) {
     invalidateRelatedCaches();
-    for (T entity : entityList) {
-      getRepository().edit(entity);
-    }
+    getRepository().batchEdit(entityList.iterator());
   }
 
   public void remove(T entity) {

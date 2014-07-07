@@ -1,6 +1,9 @@
 package com.welovecoding.tutorial.data.category;
 
 import com.welovecoding.tutorial.data.base.BaseEntity;
+import static com.welovecoding.tutorial.data.category.Category.FIND_BY_ID;
+import static com.welovecoding.tutorial.data.category.Category.FIND_BY_SLUG;
+import static com.welovecoding.tutorial.data.category.Category.ORDER_BY_NAME;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +18,9 @@ import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({
-  @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id"),
-  @NamedQuery(name = "Category.findBySlug", query = "SELECT c FROM Category c WHERE c.slug = :categoryslug"),
-  @NamedQuery(name = "Category.orderByName", query = "SELECT c FROM Category c ORDER BY c.name")
+  @NamedQuery(name = FIND_BY_ID, query = "SELECT c FROM Category c WHERE c.id = :id"),
+  @NamedQuery(name = FIND_BY_SLUG, query = "SELECT c FROM Category c WHERE c.slug = :categoryslug"),
+  @NamedQuery(name = ORDER_BY_NAME, query = "SELECT c FROM Category c ORDER BY c.name")
 })
 public class Category extends BaseEntity {
 
