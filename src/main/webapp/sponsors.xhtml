@@ -7,14 +7,30 @@
   <h:body>
     <ui:composition template="/WEB-INF/templates/frontend/main.xhtml">
 
+      <!-- Title -->
       <ui:define name="title">#{sponsors.title}</ui:define>
+      <!-- Navigation link -->
       <ui:param name="activeLink" value="sponsors.xhtml" />
+      <!-- CSS -->
+      <ui:define name="extra-stylesheets">
+        <h:outputStylesheet library="css/generated/frontend/grids" name="grid-sponsor-list.css" />
+      </ui:define>
 
       <ui:define name="center-unit-1">
 
         <div class="pure-u-1">
           <h1>#{sponsors.title}</h1>
-          <h:outputText escape="false" value="#{sponsors.description}" />
+          <p>We Love Coding wurde als studentisches Projekt gegründet, um kostenlose Nachhilfe zu Themen aus dem Informatik-Bereich zu geben. Mittlerweile stehen hinter dem Projekt vier Entwickler, die in ihrer Freizeit die Entwicklung unserer Apps und die Aufnahme von weiteren Video-Tutorials vorantreiben.</p>
+          <p>Wir freuen uns sehr, dass wir bei unserem Vorhaben auf sehr positives Feedback stoßen und auch Unterstützung von Firmen finden. Wir möchten uns daher auf dieser Seite bei unseren Sponsoren bedanken:</p>
+        </div>
+
+        <div class="pure-u-1">
+          <div id="grid-sponsor-list" class="pure-g">
+            <div class="pure-u-1-5">
+              <div class="sponsor-logo intel" />
+            </div>
+            <div class="pure-u-4-5">B</div>
+          </div>
         </div>
 
       </ui:define>
