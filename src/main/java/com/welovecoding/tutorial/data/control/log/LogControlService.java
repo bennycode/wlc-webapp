@@ -59,6 +59,7 @@ public class LogControlService {
 
   @PostConstruct
   private void init() {
+    System.out.println("Project_Stage: " + System.getProperty("project_stage"));
     System.out.println("LogControlService#init()");
     Map<String, Logger> serviceLoggers = new HashMap<>();
     Map<String, Logger> repositoryLoggers = new HashMap<>();

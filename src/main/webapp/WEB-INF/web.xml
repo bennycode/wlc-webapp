@@ -4,7 +4,7 @@
   <!-- Project -->
   <context-param>
     <param-name>javax.faces.PROJECT_STAGE</param-name>
-    <param-value>${javax.faces.project.stage}</param-value>
+    <param-value>${project.stage}</param-value>
   </context-param>
   <!-- http://docs.oracle.com/javaee/6/tutorial/doc/gircz.html#gkcrg -->
   <context-param>

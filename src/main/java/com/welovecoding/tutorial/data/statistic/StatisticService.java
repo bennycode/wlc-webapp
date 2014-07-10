@@ -123,7 +123,7 @@ public class StatisticService {
     return getRepository().findAll();
   }
 
-  public List<? extends Statistic> findAllByType(Class<? extends Statistic> type) {
+  public List<Statistic> findAllByType(Class<? extends Statistic> type) {
     return getRepository().findAllByType(type);
   }
 

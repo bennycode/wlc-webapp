@@ -8,10 +8,20 @@
       <ui:define name="title">
         <h:outputText value="#{backend['admin.form.title.caches']}" />
       </ui:define>
+
       <ui:define name="content">   
         <h2 class="page-header">
           <h:outputText value="REST-Cache" />
         </h2>
+        <h3 class="page-header">
+          <h:outputText value="REST-Cache-Statistics of the last 24h" />
+        </h3>
+        <div id="cacheChart" style="width:550px;height:300px;"></div>
+        <p>
+          <span id="hoverdata"></span>
+          <br />
+          <span id="clickdata"></span>
+        </p>
         <p>
           <strong>WARNING: </strong>Clearing the REST-Cache can cause massive impact on the database in a production environment. Please use this function with caution.
         </p>
@@ -27,6 +37,95 @@
         <h:form>
           <h:commandButton styleClass="pure-button button-warning" action="#{cacheController.clearDatabaseCache()}" value="Clear"></h:commandButton>
         </h:form>
+      </ui:define>
+      <ui:define name="before-closing-body">
+        <h:outputScript library="libs/flot" name="jquery.flot.js" />
+        <h:outputScript library="libs/flot" name="jquery.flot.stack.js" />
+        <h:outputScript library="libs/flot" name="jquery.flot.time.js" />
+        <script>
+          /* <![CDATA[ */
+          $(function() {
+
+            $.plot("#cacheChart", #{cacheController.getTodayCacheHitStatJSON()}, {
+              series: {
+                stack: false,
+                lines: {
+                  show: true,
+                  fill: true,
+                  steps: true
+                },
+                points: {
+                  show: false
+                },
+                bars: {
+                  show: false,
+                  barWidth: 0.8
+                }
+              },
+              grid: {
+                hoverable: true,
+                clickable: true,
+                borderWidth: 2,
+//                backgroundColor: {colors: ["#EDF5FF", "#ffffff"]}
+              },
+              xaxis: {
+                mode: "time",
+                minTickSize: [1, "hour"]
+//                ticks: 12,
+//                tickLength: 2,
+//                color: "black",
+//                axisLabel: "Date",
+//                axisLabelUseCanvas: true,
+//                axisLabelFontSizePixels: 12,
+//                axisLabelFontFamily: 'Verdana, Arial',
+//                axisLabelPadding: 10
+              },
+              yaxis: {
+//                color: "black",
+//                axisLabel: "DNS Query Count",
+//                axisLabelUseCanvas: true,
+//                axisLabelFontSizePixels: 12,
+//                axisLabelFontFamily: 'Verdana, Arial',
+//                axisLabelPadding: 3
+//                tickFormatter: function(v, axis) {
+//                  return $.formatNumber(v, {format: "#,###", locale: "us"});
+//                }
+              }
+            });
+            $("<div id='tooltip'></div>").css({
+              color: "#000",
+              position: "absolute",
+              display: "none",
+              border: "1px solid #000",
+              padding: "2px",
+              "background-color": "#FFF",
+              opacity: 0.70
+            }).appendTo("body");
+            $("#cacheChart").bind("plothover", function(event, pos, item) {
+
+              var str = "(" + new Date(pos.x) + ", " + pos.y.toFixed(2) + ")";
+              $("#hoverdata").text(str);
+
+              if (item) {
+                var x = item.datapoint[0].toFixed(2),
+                        y = item.datapoint[1].toFixed(2);
+                $("#tooltip").html(item.series.label + " of " + new Date(item.datapoint[0]) + " = " + y)
+                        .css({top: item.pageY + 5, left: item.pageX + 5})
+                        .fadeIn(200);
+              } else {
+                $("#tooltip").hide();
+              }
+            });
+            $("#cacheChart").bind("plotclick", function(event, pos, item) {
+              if (item) {
+                $("#clickdata").text("Clicked point " + new Date(item.datapoint[0]) + " in " + item.series.label + " with value " + item.datapoint[1].toFixed(2));
+//                plot.highlight(item.series, item.datapoint);
+              }
+            });
+          });
+          /* ]]> */
+        </script>
+
       </ui:define>
     </ui:composition>
   </h:body>
