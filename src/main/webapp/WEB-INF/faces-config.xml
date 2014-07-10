@@ -67,6 +67,11 @@
       <var>join_us</var>
     </resource-bundle>
     
+    <resource-bundle>
+      <base-name>com.welovecoding.texts.sponsors</base-name>
+      <var>sponsors</var>
+    </resource-bundle>
+    
   </application>
   
   

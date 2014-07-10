@@ -44,6 +44,12 @@
                   value="#{main_header.join_us}" />
               </li>
               <li>
+                <h:link 
+                  outcome="pretty:sponsors_#{facesContext.viewRoot.locale}" 
+                  styleClass="#{activeLink eq 'sponsors.xhtml' ? 'current-menu-item' : ''}"
+                  value="#{main_header.sponsors}" />
+              </li>
+              <li>
                 <a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon enter"></span> #{main_header.login}</a>
               </li>              
             </ul>
