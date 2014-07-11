@@ -1,11 +1,37 @@
+@import "../../import/variables.less";
+
 #grid-sponsor-list {
+
+  > div[class *= "pure-u"]:nth-child(odd) {
+    text-align: center;
+  }
+
+  > div[class *= "pure-u"]:nth-child(even) {
+    
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+    p {
+      margin: 0;
+    }
+    
+    @media @pure-sm {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+  }
+
   .sponsor-logo {    
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
     display: inline-block;
+    border: 1px solid black;
 
     &.intel {
-      width: 220px;
-      height: 202px;   
+      min-width: 190px;
+      min-height: 174px;
 
       background-image: url("#{resource['images/sponsors:intel_software_logo.jpg']}");      
     }
