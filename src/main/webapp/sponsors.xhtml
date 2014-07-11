@@ -20,8 +20,7 @@
 
         <div class="pure-u-1">
           <h1>#{sponsors.title}</h1>
-          <p>We Love Coding wurde als studentisches Projekt gegründet, um kostenlose Nachhilfe zu Themen aus dem Informatik-Bereich zu geben. Mittlerweile stehen hinter dem Projekt <h:link outcome="pretty:team">vier Entwickler</h:link>, die in ihrer Freizeit die Entwicklung unserer Apps und die Aufnahme von weiteren Video-Tutorials vorantreiben.</p>
-          <p>Wir freuen uns sehr, dass wir bei unserem Vorhaben auf sehr positives Feedback stoßen und auch Unterstützung von Firmen finden. Wir möchten uns daher auf dieser Seite bei unseren Sponsoren bedanken:</p>
+          <h:outputText value="#{sponsors.description}" escape="false" />
         </div>
 
         <div class="pure-u-1">
@@ -30,7 +29,7 @@
               <div class="sponsor-logo intel" />
             </div>
             <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-2-3">
-              <p><b>Intel sponsert die Entwicklung unserer Android- und iOS-Apps,</b> die mit dem Intel XDK entwickelt werden. Wer ebenfalls an Cross-Plattform-Entwicklung mit HTML5 und JavaScript interessiert ist, der sollte ebenfalls mal einen Blick auf das kostenfreie Intel XDK werfen. Auf Channel9 gibt es tolle zum <a href="http://channel9.msdn.com/Series/Intel-XDK-Cross-Plattform-Entwicklung-mit-HTML5-und-JavaScript" target="_blank">Einstieg in das Intel App Framework</a>.</p>
+              <h:outputText value="#{sponsors.intel}" escape="false" />
             </div>
           </div>
         </div>
