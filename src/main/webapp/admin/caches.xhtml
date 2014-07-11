@@ -14,9 +14,11 @@
           <h:outputText value="REST-Cache" />
         </h2>
         <h3 class="page-header">
-          <h:outputText value="REST-Cache-Statistics of the last 24h" />
+          <h:outputText value="REST-Cache-Statistics of the last 3 days" />
         </h3>
+        <div id="overview" style="width:550px; height:125px;"></div>
         <div id="cacheChart" style="width:550px;height:300px;"></div>
+
         <p>
           <span id="hoverdata"></span>
           <br />
@@ -42,56 +44,133 @@
         <h:outputScript library="libs/flot" name="jquery.flot.js" />
         <h:outputScript library="libs/flot" name="jquery.flot.stack.js" />
         <h:outputScript library="libs/flot" name="jquery.flot.time.js" />
+        <h:outputScript library="libs/flot" name="jquery.flot.selection.js" />
+        <h:outputScript library="libs/flot" name="jquery.flot.axislabels.js" />
         <script>
           /* <![CDATA[ */
           $(function() {
 
-            $.plot("#cacheChart", #{cacheController.getCacheHitStatsOfLastThreeDaysJSON()}, {
+            var data = #{cacheController.getCacheHitStatsOfLastThreeDaysJSON()};
+            var options = {
               series: {
                 stack: false,
                 lines: {
-                  show: true,
+                  show: false,
+                  lineWidth: 0.2,
                   fill: true,
                   steps: true
                 },
                 points: {
-                  show: false
+                  show: true
                 },
                 bars: {
-                  show: false,
-                  barWidth: 0.8
+                  show: true,
+                  barWidth: 5 * 60 * 1000,
+                  fill: true
                 }
+              },
+              legend: {
+                show: false
               },
               grid: {
                 hoverable: true,
                 clickable: true,
-                borderWidth: 2,
+                borderWidth: 2
 //                backgroundColor: {colors: ["#EDF5FF", "#ffffff"]}
+              },
+              selection: {
+                mode: "xy"
+              },
+              xaxis: {
+                mode: "time",
+                minTickSize: [5, "minute"],
+                tickLength: 2,
+                axisLabel: 'Date/Time',
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: 'Verdana, Arial, Helvetica, Tahoma, sans-serif',
+                axisLabelPadding: 5
+              },
+              yaxis: {
+                axisLabel: 'Hits',
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: 'Verdana, Arial, Helvetica, Tahoma, sans-serif'
+              }
+            };
+            var plot = $.plot("#cacheChart", data, options);
+
+
+            // Create the overview plot
+            var overview = $.plot("#overview", data, {
+              series: {
+                stack: false,
+                lines: {
+                  show: false,
+                  lineWidth: 0.2,
+                  fill: true,
+                  steps: true
+                },
+                points: {
+                  show: true
+                },
+                bars: {
+                  show: true,
+                  barWidth: 0.8
+                }
+              },
+              legend: {
+                show: false
+              },
+              grid: {
+                hoverable: true,
+                clickable: true,
+                borderWidth: 2
+              },
+              selection: {
+                mode: "xy"
               },
               xaxis: {
                 mode: "time",
                 minTickSize: [1, "hour"]
-//                ticks: 12,
-//                tickLength: 2,
-//                color: "black",
-//                axisLabel: "Date",
-//                axisLabelUseCanvas: true,
-//                axisLabelFontSizePixels: 12,
-//                axisLabelFontFamily: 'Verdana, Arial',
-//                axisLabelPadding: 10
               },
               yaxis: {
-//                color: "black",
-//                axisLabel: "DNS Query Count",
-//                axisLabelUseCanvas: true,
-//                axisLabelFontSizePixels: 12,
-//                axisLabelFontFamily: 'Verdana, Arial',
-//                axisLabelPadding: 3
-//                tickFormatter: function(v, axis) {
-//                  return $.formatNumber(v, {format: "#,###", locale: "us"});
-//                }
               }
             });
+
+            // now connect the two
+
+            $("#cacheChart").bind("plotselected", function(event, ranges) {
+
+              // clamp the zooming to prevent eternal zoom
+
+              if (ranges.xaxis.to - ranges.xaxis.from < 0.00001) {
+                ranges.xaxis.to = ranges.xaxis.from + 0.00001;
+              }
+
+              if (ranges.yaxis.to - ranges.yaxis.from < 0.00001) {
+                ranges.yaxis.to = ranges.yaxis.from + 0.00001;
+              }
+
+              // do the zooming
+
+              plot = $.plot("#cacheChart", data,
+                      $.extend(true, {}, options, {
+                        xaxis: {min: ranges.xaxis.from, max: ranges.xaxis.to},
+                        yaxis: {min: ranges.yaxis.from, max: ranges.yaxis.to}
+                      })
+                      );
+
+              // don't fire event on the overview to prevent eternal loop
+
+              overview.setSelection(ranges, true);
+            });
+
+            $("#overview").bind("plotselected", function(event, ranges) {
+              plot.setSelection(ranges);
+            });
+
+
             $("<div id='tooltip'></div>").css({
               color: "#000",
               position: "absolute",
