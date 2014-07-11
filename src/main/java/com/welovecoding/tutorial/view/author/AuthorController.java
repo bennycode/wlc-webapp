@@ -4,6 +4,7 @@ import com.welovecoding.tutorial.data.author.Author;
 import com.welovecoding.tutorial.data.author.AuthorService;
 import com.welovecoding.tutorial.view.Pages;
 import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -17,6 +18,7 @@ public class AuthorController
   @EJB
   private AuthorService service;
   private Integer authorCount;
+  private List<Author> authorsOrderedByName;
 
   @PostConstruct
   public void init() {
@@ -52,5 +54,16 @@ public class AuthorController
   public long getAuthorCount() {
     loadAuthorCount();
     return authorCount;
+  }
+
+  private void loadAuthorsOrderedByName() {
+    authorsOrderedByName = getService().orderByName();
+  }
+
+  public List<Author> getAuthorsOrderedByName() {
+    if (authorsOrderedByName == null) {
+      loadAuthorsOrderedByName();
+    }
+    return authorsOrderedByName;
   }
 }

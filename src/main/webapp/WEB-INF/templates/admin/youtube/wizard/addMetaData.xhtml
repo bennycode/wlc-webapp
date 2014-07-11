@@ -31,7 +31,7 @@
             >
             <f:converter converterId="wlc.DropdownItemsConverter" />
             <f:selectItems 
-              value="#{authorController.items}" 
+              value="#{authorController.authorsOrderedByName}" 
               var="author" 
               itemValue="#{author}" 
               itemLabel="#{author.name}" 
