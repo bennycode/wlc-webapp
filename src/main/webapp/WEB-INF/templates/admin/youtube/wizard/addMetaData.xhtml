@@ -15,7 +15,7 @@
             >
             <f:converter converterId="wlc.DropdownItemsConverter" />
             <f:selectItems 
-              value="#{categoryController.items}" 
+              value="#{categoryController.categoriesOrderedByName}" 
               var="category" 
               itemValue="#{category}" 
               itemLabel="#{category.name}" 
