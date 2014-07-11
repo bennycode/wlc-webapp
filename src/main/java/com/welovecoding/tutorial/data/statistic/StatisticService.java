@@ -5,10 +5,12 @@ import com.welovecoding.tutorial.data.base.EJBLoggerInterceptor;
 import com.welovecoding.tutorial.data.statistic.entity.CacheStatistic;
 import com.welovecoding.tutorial.data.statistic.entity.Statistic;
 import de.yser.ownsimplecache.OwnCacheServerService;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Asynchronous;
@@ -123,8 +125,16 @@ public class StatisticService {
     return getRepository().findAll();
   }
 
-  public List<Statistic> findAllByType(Class<? extends Statistic> type) {
-    return getRepository().findAllByType(type);
+  public List<Statistic> findAllBetweenByTypeWithIntervall(Class<? extends Statistic> type, Date fromDate, Date toDate, int interval, TimeUnit unit) {
+
+    List<Statistic> reducedStatistics = createStatisticReduceTemplate(fromDate, toDate, interval, unit);
+    for (Statistic statistic : reducedStatistics) {
+
+      //Reducing stats just with the size of the resultList in this interval
+      statistic.setHits(statistic.getHits() + getRepository().findAllBetweenByType(type, statistic.getFromDate(), statistic.getToDate()).size());
+    }
+
+    return reducedStatistics;
   }
 
   public List<Statistic> findRange(int startPosition, int maxResult) {
@@ -133,6 +143,28 @@ public class StatisticService {
 
   public int count() {
     return getRepository().count();
+  }
+
+  private List<Statistic> createStatisticReduceTemplate(Date fromDate, Date toDate, int interval, TimeUnit unit) {
+    List<Statistic> reducedStatisticsTemplate = new ArrayList<>();
+
+    Date lastDate = fromDate;
+    while (lastDate.before(toDate)) {
+      Statistic lastStat;
+      try {
+        lastStat = new Statistic("Hits", lastDate, interval, unit, 0);
+        lastDate = lastStat.getToDate();
+        if (!lastDate.before(toDate)) {
+          lastStat.setToDate(toDate);
+          lastStat.setDuration(lastStat.getToDate().getTime() - lastStat.getFromDate().getTime());
+        }
+        reducedStatisticsTemplate.add(lastStat);
+      } catch (Exception ex) {
+        Logger.getLogger(StatisticService.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    }
+
+    return reducedStatisticsTemplate;
   }
 
 }

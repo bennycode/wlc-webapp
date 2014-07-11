@@ -46,7 +46,7 @@
           /* <![CDATA[ */
           $(function() {
 
-            $.plot("#cacheChart", #{cacheController.getTodayCacheHitStatJSON()}, {
+            $.plot("#cacheChart", #{cacheController.getCacheHitStatsOfLastThreeDaysJSON()}, {
               series: {
                 stack: false,
                 lines: {
