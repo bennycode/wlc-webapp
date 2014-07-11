@@ -53,42 +53,42 @@
               <ul>
                 <li>
                   <h:link 
-                    styleClass="#{(view.viewId.equals('/admin/authors.xhtml')) ? 'active' : ''}"
+                    styleClass="#{view.viewId.equals('/admin/authors.xhtml') ? 'active' : ''}"
                     outcome="/admin/authors.xhtml"
                     value="#{backend['admin.menu.authors']}">
                   </h:link>
                 </li>
                 <li>
                   <h:link 
-                    styleClass="#{(view.viewId.equals('/admin/categories.xhtml')) ? 'active' : ''}"
+                    styleClass="#{view.viewId.equals('/admin/categories.xhtml') ? 'active' : ''}"
                     outcome="/admin/categories.xhtml"
                     value="#{backend['admin.menu.categories']}">
                   </h:link>
                 </li>
                 <li>
                   <h:link 
-                    styleClass="#{(view.viewId.equals('/admin/playlists.xhtml')) ? 'active' : ''}"
+                    styleClass="#{view.viewId.equals('/admin/playlists.xhtml') ? 'active' : ''}"
                     outcome="/admin/playlists.xhtml"
                     value="#{backend['admin.menu.playlists']}">
                   </h:link>
                 </li>
                 <li>
                   <h:link 
-                    styleClass="#{(view.viewId.equals('/admin/videos.xhtml')) ? 'active' : ''}"
+                    styleClass="#{view.viewId.equals('/admin/videos.xhtml') ? 'active' : ''}"
                     outcome="/admin/videos.xhtml"
                     value="#{backend['admin.menu.videos']}">
                   </h:link>
                 </li>
                 <li>
                   <h:link 
-                    styleClass="#{(view.viewId.equals('/admin/youtube.xhtml')) ? 'active' : ''}"
+                    styleClass="#{view.viewId.equals('/admin/youtube.xhtml') ? 'active' : ''}"
                     outcome="/admin/youtube.xhtml"
                     value="#{backend['admin.menu.youtube']}">
                   </h:link>
                 </li>
                 <li>
                   <h:link 
-                    styleClass="#{(view.viewId.equals('/admin/users.xhtml')) ? 'active' : ''}"
+                    styleClass="#{view.viewId.equals('/admin/users.xhtml') ? 'active' : ''}"
                     outcome="/admin/users.xhtml"
                     value="#{backend['admin.menu.users']}">
                   </h:link>
@@ -96,21 +96,21 @@
                 <li>
                   <h:link 
                     rendered="#{ facesContext.isProjectStage('Development') }"
-                    styleClass="#{(view.viewId.equals('/admin/test.xhtml')) ? 'active' : ''}"
+                    styleClass="#{view.viewId.equals('/admin/test.xhtml') ? 'active' : ''}"
                     outcome="/admin/test.xhtml"
                     value="Development Test">
                   </h:link>
                 </li>
                 <li>
                   <h:link 
-                    styleClass="#{(view.viewId.equals('/admin/logging.xhtml')) ? 'active' : ''}"
+                    styleClass="#{view.viewId.equals('/admin/logging.xhtml') ? 'active' : ''}"
                     outcome="/admin/logging.xhtml"
                     value="#{backend['admin.menu.logging']}">
                   </h:link>
                 </li>
                 <li>
                   <h:link 
-                    styleClass="#{(view.viewId.equals('/admin/caches.xhtml')) ? 'active' : ''}"
+                    styleClass="#{view.viewId.equals('/admin/caches.xhtml') ? 'active' : ''}"
                     outcome="/admin/caches.xhtml"
                     value="#{backend['admin.menu.caches']}">
                   </h:link>
