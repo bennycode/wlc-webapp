@@ -216,11 +216,6 @@ public class StatisticService {
       }
     }
 
-    System.out.println("Created template:");
-    for (Statistic statistic : reducedStatisticsTemplate) {
-      System.out.println("From " + statistic.getFromDate().getTime() + " to " + statistic.getToDate().getTime());
-    }
-
     return reducedStatisticsTemplate;
   }
 
