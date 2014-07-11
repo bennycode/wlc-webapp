@@ -1,5 +1,5 @@
 package com.welovecoding.tutorial.data.playlist.entity;
 
-public interface EnumLabel {
+public interface IEnumLabel {
   public String getLabel();
 }

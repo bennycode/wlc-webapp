@@ -1,6 +1,6 @@
 package com.welovecoding.tutorial.data.playlist.entity;
 
-public enum Difficulty implements EnumLabel {
+public enum Difficulty implements IEnumLabel {
 
   EASY("admin.form.label.beginner"),
   MEDIUM("admin.form.label.advanced"),

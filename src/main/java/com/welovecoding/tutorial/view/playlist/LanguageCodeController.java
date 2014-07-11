@@ -25,9 +25,9 @@ public class LanguageCodeController implements Serializable {
 
     Arrays.sort(languageCodes, new Comparator<LanguageCode>() {
       @Override
-      public int compare(LanguageCode code1, LanguageCode code2) {
-        String key1 = code1.getLabel();
-        String key2 = code2.getLabel();
+      public int compare(LanguageCode enum1, LanguageCode enum2) {
+        String key1 = enum1.getLabel();
+        String key2 = enum2.getLabel();
 
         String translation1 = backendText.getString(key1);
         String translation2 = backendText.getString(key2);
