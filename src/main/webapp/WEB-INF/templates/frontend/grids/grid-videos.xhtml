@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:wlc="http://java.sun.com/jsf/composite/wlc">
+      xmlns:wlc="http://java.sun.com/jsf/composite/wlc"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
   <body>
     <ui:composition>
 
@@ -21,6 +22,12 @@
                 >#{video.name}<span class="button closed"></span>
               </a>
               <dd>
+                <h:outputText 
+                  class="video-description" 
+                  escape="false"
+                  rendered="#{video.description != null}" 
+                  value="#{video.description}" 
+                  />  
                 <div class="video"
                      data-video-code="#{video.code}"
                      data-video-provider="#{video.playlist.provider}"></div>
