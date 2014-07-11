@@ -7,8 +7,12 @@ import com.welovecoding.tutorial.data.statistic.entity.Statistic;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -125,16 +129,64 @@ public class StatisticService {
     return getRepository().findAll();
   }
 
-  public List<Statistic> findAllBetweenByTypeWithIntervall(Class<? extends Statistic> type, Date fromDate, Date toDate, int interval, TimeUnit unit) {
+  public Map<String, List<Statistic>> findAllBetweenByTypeWithIntervall(Class<? extends Statistic> type, Date fromDate, Date toDate, int interval, TimeUnit unit) {
 
+    Map<String, List<Statistic>> reducedStatisticsWithKey = new HashMap<>();
     List<Statistic> reducedStatistics = createStatisticReduceTemplate(fromDate, toDate, interval, unit);
-    for (Statistic statistic : reducedStatistics) {
 
-      //Reducing stats just with the size of the resultList in this interval
-      statistic.setHits(statistic.getHits() + getRepository().findAllBetweenByType(type, statistic.getFromDate(), statistic.getToDate()).size());
+    List<Statistic> allStats = getRepository().findAllBetweenByType(type, fromDate, toDate);
+    //fill map
+    Set<String> allKeys = new HashSet<>();
+    for (Statistic stat : allStats) {
+      allKeys.add(stat.getName());
     }
 
-    return reducedStatistics;
+    for (Statistic statistic : reducedStatistics) {
+
+      List<Statistic> statsInInterval = getRepository().findAllBetweenByType(type, statistic.getFromDate(), statistic.getToDate());
+
+      Map<String, Statistic> keyStatInIntervalMap = new HashMap<>();
+
+      // order stats by key values
+      for (Statistic statInInterval : statsInInterval) {
+        for (String key : allKeys) {
+          try {
+            keyStatInIntervalMap.putIfAbsent(key, new Statistic(key, statistic.getFromDate(), statistic.getToDate(), 0));
+          } catch (Exception ex) {
+            Logger.getLogger(StatisticService.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }
+
+        Statistic putIfAbsent;
+        Statistic putIfAbsentAll;
+        try {
+          putIfAbsent = keyStatInIntervalMap.putIfAbsent(statInInterval.getName(), new Statistic(statInInterval.getName(), statistic.getFromDate(), statistic.getToDate(), 1));
+          if (putIfAbsent != null) {
+            putIfAbsent.setHits(putIfAbsent.getHits() + 1);
+          }
+          putIfAbsentAll = keyStatInIntervalMap.putIfAbsent("Everything", new Statistic("Everything", statistic.getFromDate(), statistic.getToDate(), 1));
+          if (putIfAbsentAll != null) {
+            putIfAbsentAll.setHits(putIfAbsentAll.getHits() + 1);
+          }
+        } catch (Exception ex) {
+          Logger.getLogger(StatisticService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+
+      for (Map.Entry<String, Statistic> entry : keyStatInIntervalMap.entrySet()) {
+        List<Statistic> category = reducedStatisticsWithKey.get(entry.getKey());
+        if (category == null) {
+          category = new LinkedList<>();
+          reducedStatisticsWithKey.put(entry.getKey(), category);
+          category.add(entry.getValue());
+        } else {
+          category.add(entry.getValue());
+        }
+
+      }
+    }
+
+    return reducedStatisticsWithKey;
   }
 
   public List<Statistic> findRange(int startPosition, int maxResult) {
@@ -152,8 +204,8 @@ public class StatisticService {
     while (lastDate.before(toDate)) {
       Statistic lastStat;
       try {
-        lastStat = new Statistic("Hits", lastDate, interval, unit, 0);
-        lastDate = lastStat.getToDate();
+        lastStat = new Statistic("Hits", lastDate, unit.toMillis(interval) - 1, TimeUnit.MILLISECONDS, 0);
+        lastDate = new Date(lastStat.getToDate().getTime() + 1);
         if (!lastDate.before(toDate)) {
           lastStat.setToDate(toDate);
           lastStat.setDuration(lastStat.getToDate().getTime() - lastStat.getFromDate().getTime());
@@ -162,6 +214,11 @@ public class StatisticService {
       } catch (Exception ex) {
         Logger.getLogger(StatisticService.class.getName()).log(Level.SEVERE, null, ex);
       }
+    }
+
+    System.out.println("Created template:");
+    for (Statistic statistic : reducedStatisticsTemplate) {
+      System.out.println("From " + statistic.getFromDate().getTime() + " to " + statistic.getToDate().getTime());
     }
 
     return reducedStatisticsTemplate;
