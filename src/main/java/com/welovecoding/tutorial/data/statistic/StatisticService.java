@@ -164,10 +164,10 @@ public class StatisticService {
           if (putIfAbsent != null) {
             putIfAbsent.setHits(putIfAbsent.getHits() + 1);
           }
-          putIfAbsentAll = keyStatInIntervalMap.putIfAbsent("Everything", new Statistic("Everything", statistic.getFromDate(), statistic.getToDate(), 1));
-          if (putIfAbsentAll != null) {
-            putIfAbsentAll.setHits(putIfAbsentAll.getHits() + 1);
-          }
+//          putIfAbsentAll = keyStatInIntervalMap.putIfAbsent("Everything", new Statistic("Everything", statistic.getFromDate(), statistic.getToDate(), 1));
+//          if (putIfAbsentAll != null) {
+//            putIfAbsentAll.setHits(putIfAbsentAll.getHits() + 1);
+//          }
         } catch (Exception ex) {
           Logger.getLogger(StatisticService.class.getName()).log(Level.SEVERE, null, ex);
         }

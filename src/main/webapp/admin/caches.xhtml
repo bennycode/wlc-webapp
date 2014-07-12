@@ -11,10 +11,12 @@
 
       <ui:define name="content">   
         <h2 class="page-header">
+          <!--TODO I18N-->
           <h:outputText value="REST-Cache" />
         </h2>
         <h3 class="page-header">
-          <h:outputText value="REST-Cache-Statistics of the last 3 days" />
+          <!--TODO I18N-->
+          <h:outputText value="REST-Cache statistics of the last 3 days" />
         </h3>
         <div id="overview" style="width:550px; height:125px;"></div>
         <div id="cacheChart" style="width:550px;height:300px;"></div>
@@ -25,18 +27,23 @@
           <span id="clickdata"></span>
         </p>
         <p>
+          <!--TODO I18N-->
           <strong>WARNING: </strong>Clearing the REST-Cache can cause massive impact on the database in a production environment. Please use this function with caution.
         </p>
         <h:form>
+          <!--TODO I18N-->
           <h:commandButton styleClass="pure-button button-warning" action="#{cacheController.clearRestCache()}" value="Clear"></h:commandButton>
         </h:form>
         <h2 class="page-header">
+          <!--TODO I18N-->
           <h:outputText value="Database-Cache" />
         </h2>
         <p>
+          <!--TODO I18N-->
           <strong>WARNING: </strong>Clearing the Database-Cache can cause massive impact on the database in a production environment. Please use this function with caution.
         </p>
         <h:form>
+          <!--TODO I18N-->
           <h:commandButton styleClass="pure-button button-warning" action="#{cacheController.clearDatabaseCache()}" value="Clear"></h:commandButton>
         </h:form>
       </ui:define>
@@ -53,18 +60,18 @@
             var data = #{cacheController.getCacheHitStatsOfLastThreeDaysJSON()};
             var options = {
               series: {
-                stack: false,
+                stack: true,
                 lines: {
-                  show: false,
+                  show: true,
                   lineWidth: 0.2,
                   fill: true,
                   steps: true
                 },
                 points: {
-                  show: true
+                  show: false
                 },
                 bars: {
-                  show: true,
+                  show: false,
                   barWidth: 5 * 60 * 1000,
                   fill: true
                 }
@@ -85,6 +92,7 @@
                 mode: "time",
                 minTickSize: [5, "minute"],
                 tickLength: 2,
+                //TODO I18N
                 axisLabel: 'Date/Time',
                 axisLabelUseCanvas: true,
                 axisLabelFontSizePixels: 12,
@@ -92,30 +100,27 @@
                 axisLabelPadding: 5
               },
               yaxis: {
+                //TODO I18N
                 axisLabel: 'Hits',
                 axisLabelUseCanvas: true,
                 axisLabelFontSizePixels: 12,
                 axisLabelFontFamily: 'Verdana, Arial, Helvetica, Tahoma, sans-serif'
               }
             };
-            var plot = $.plot("#cacheChart", data, options);
-
-
-            // Create the overview plot
-            var overview = $.plot("#overview", data, {
+            var overviewoptions = {
               series: {
-                stack: false,
+                stack: true,
                 lines: {
-                  show: false,
+                  show: true,
                   lineWidth: 0.2,
                   fill: true,
                   steps: true
                 },
                 points: {
-                  show: true
+                  show: false
                 },
                 bars: {
-                  show: true,
+                  show: false,
                   barWidth: 0.8
                 }
               },
@@ -136,14 +141,17 @@
               },
               yaxis: {
               }
-            });
+            };
+
+            //Create the mainplot
+            var plot = $.plot("#cacheChart", data, options);
+            // Create the overview plot
+            var overview = $.plot("#overview", data, overviewoptions);
 
             // now connect the two
-
             $("#cacheChart").bind("plotselected", function(event, ranges) {
 
               // clamp the zooming to prevent eternal zoom
-
               if (ranges.xaxis.to - ranges.xaxis.from < 0.00001) {
                 ranges.xaxis.to = ranges.xaxis.from + 0.00001;
               }
@@ -153,7 +161,6 @@
               }
 
               // do the zooming
-
               plot = $.plot("#cacheChart", data,
                       $.extend(true, {}, options, {
                         xaxis: {min: ranges.xaxis.from, max: ranges.xaxis.to},
@@ -162,15 +169,16 @@
                       );
 
               // don't fire event on the overview to prevent eternal loop
-
               overview.setSelection(ranges, true);
             });
 
+            //rectangle-listener for the overview-plot
             $("#overview").bind("plotselected", function(event, ranges) {
               plot.setSelection(ranges);
             });
 
 
+            //tooltip-div
             $("<div id='tooltip'></div>").css({
               color: "#000",
               position: "absolute",
@@ -180,6 +188,8 @@
               "background-color": "#FFF",
               opacity: 0.70
             }).appendTo("body");
+
+            //hovering-listener for tooltip
             $("#cacheChart").bind("plothover", function(event, pos, item) {
 
               var str = "(" + new Date(pos.x) + ", " + pos.y.toFixed(2) + ")";
@@ -188,17 +198,19 @@
               if (item) {
                 var x = item.datapoint[0].toFixed(2),
                         y = item.datapoint[1].toFixed(2);
-                $("#tooltip").html(item.series.label + " of " + new Date(item.datapoint[0]) + " = " + y)
+                //TODO I18N
+                $("#tooltip").html(item.series.label + " of <br />" + new Date(item.datapoint[0]) + " = " + y)
                         .css({top: item.pageY + 5, left: item.pageX + 5})
                         .fadeIn(200);
               } else {
                 $("#tooltip").hide();
               }
             });
+            //click-listener for clickinfo
             $("#cacheChart").bind("plotclick", function(event, pos, item) {
               if (item) {
+                //TODO I18N
                 $("#clickdata").text("Clicked point " + new Date(item.datapoint[0]) + " in " + item.series.label + " with value " + item.datapoint[1].toFixed(2));
-//                plot.highlight(item.series, item.datapoint);
               }
             });
           });
