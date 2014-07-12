@@ -137,9 +137,7 @@ public class StatisticService {
     List<Statistic> allStats = getRepository().findAllBetweenByType(type, fromDate, toDate);
     //fill map
     Set<String> allKeys = new HashSet<>();
-    System.out.println("All Keys");
     for (Statistic stat : allStats) {
-      System.out.println(stat.getName());
       allKeys.add(stat.getName());
     }
 
