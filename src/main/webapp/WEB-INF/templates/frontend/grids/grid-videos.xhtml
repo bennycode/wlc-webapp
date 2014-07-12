@@ -33,12 +33,16 @@
                 >#{video.name}<span class="button closed"></span>
               </a>
               <dd>
-                <h:outputText 
-                  class="video-description" 
-                  escape="false"
-                  rendered="#{video.description != null}" 
-                  value="#{video.description}" 
-                  />  
+                <ui:fragment rendered="#{video.description != null}">
+                  <p>
+                    <h:outputText 
+                      class="video-description" 
+                      escape="false"
+                      value="#{video.description}" 
+                      />  
+                  </p>
+                </ui:fragment>
+
                 <div class="video"
                      data-video-code="#{video.code}"
                      data-video-provider="#{video.playlist.provider}"></div>
