@@ -13,11 +13,13 @@
       <div class="pure-u-1">
 
         <ui:fragment rendered="#{playlist.description != null}">
-          <h:outputText 
-            class="playlist-description" 
-            escape="false"
-            value="#{playlist.description}" 
-            />
+          <p>
+            <h:outputText 
+              class="playlist-description" 
+              escape="false"
+              value="#{playlist.description}" 
+              />
+          </p>
         </ui:fragment>
 
         <div id="grid-videos">          
