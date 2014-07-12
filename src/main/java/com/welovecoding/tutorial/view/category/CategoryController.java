@@ -18,6 +18,7 @@ public class CategoryController extends GenFormBaseController<Category, Category
   private CategoryService service;
   private Category category;
   private Category categoryBySlug;
+  private List<Category> categoriesOrderedByName;
 
   @PostConstruct
   public void init() {
@@ -42,8 +43,6 @@ public class CategoryController extends GenFormBaseController<Category, Category
   public CategoryService getService() {
     return service;
   }
-
-  private List<Category> categoriesOrderedByName;
 
   private void loadCategoriesOrderedByName() {
     categoriesOrderedByName = getService().orderByName();

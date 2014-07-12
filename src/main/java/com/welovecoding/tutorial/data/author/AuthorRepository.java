@@ -1,6 +1,7 @@
 package com.welovecoding.tutorial.data.author;
 
 import com.welovecoding.tutorial.data.base.BaseRepository;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,6 +19,10 @@ public class AuthorRepository extends BaseRepository<Author> {
 
   public AuthorRepository() {
     super(Author.class);
+  }
+
+  public List<Author> orderByName() {
+    return em.createNamedQuery(Author.ORDER_BY_NAME, Author.class).getResultList();
   }
 
 }

@@ -1,6 +1,6 @@
 package com.welovecoding.tutorial.data.playlist.entity;
 
-public enum Difficulty {
+public enum Difficulty implements IEnumLabel {
 
   EASY("admin.form.label.beginner"),
   MEDIUM("admin.form.label.advanced"),
@@ -12,6 +12,7 @@ public enum Difficulty {
     this.label = label;
   }
 
+  @Override
   public String getLabel() {
     return label;
   }

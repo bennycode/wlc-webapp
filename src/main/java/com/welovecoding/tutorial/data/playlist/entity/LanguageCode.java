@@ -6,7 +6,7 @@ package com.welovecoding.tutorial.data.playlist.entity;
  * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
  * http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html
  */
-public enum LanguageCode {
+public enum LanguageCode implements IEnumLabel {
 
   de("admin.locale.de"),
   en("admin.locale.en");
@@ -17,6 +17,7 @@ public enum LanguageCode {
     this.label = label;
   }
 
+  @Override
   public String getLabel() {
     return label;
   }

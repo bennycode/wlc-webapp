@@ -28,12 +28,15 @@
     display: inline-block;
 
     &.intel {
+      background-image: url("#{resource['images/sponsors:intel_software_logo_190_174.png']}");
+
       width: 190px;
       height: 174px;
 
-      background-image: url("#{resource['images/sponsors:intel_logo.svg']}");
-      background-color: white;
-      background-size: 190px 174px;
+      @media @retina {
+        background-image: url("#{resource['images/sponsors:intel_software_logo_380_348.png']}");
+        background-size: 190px 174px;
+      }
     }
   }
 }

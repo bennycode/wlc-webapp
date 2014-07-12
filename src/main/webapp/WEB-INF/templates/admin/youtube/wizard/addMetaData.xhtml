@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
   <body>
@@ -15,7 +15,7 @@
             >
             <f:converter converterId="wlc.DropdownItemsConverter" />
             <f:selectItems 
-              value="#{categoryController.items}" 
+              value="#{categoryController.categoriesOrderedByName}" 
               var="category" 
               itemValue="#{category}" 
               itemLabel="#{category.name}" 
@@ -31,7 +31,7 @@
             >
             <f:converter converterId="wlc.DropdownItemsConverter" />
             <f:selectItems 
-              value="#{authorController.items}" 
+              value="#{authorController.authorsOrderedByName}" 
               var="author" 
               itemValue="#{author}" 
               itemLabel="#{author.name}" 

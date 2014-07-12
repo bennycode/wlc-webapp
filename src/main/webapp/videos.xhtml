@@ -37,10 +37,19 @@
               var video = $('.video', content);
               var attributes = video.data();
 
-              var element = '<iframe width="1280" height="720" src="//www.youtube-nocookie.com/embed/' + attributes.videoCode + '?rel=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>';
 
-              if (attributes.videoProvider === 'YOUTUBE') {
-                video.html($(element));
+              switch (attributes.videoProvider) {
+                case 'YOUTUBE':
+                  var element = '<iframe width="1280" height="720" src="//www.youtube-nocookie.com/embed/' + attributes.videoCode + '?rel=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>';
+                  video.html($(element));
+                  break;
+                case 'CHANNEL9':
+                  var element = '<video width="1280" height="720" controls autoplay><source src="' + attributes.videoCode + '" type="video/mp4" /></video>';
+                  video.html($(element));
+                  break;
+                default:
+                  console.warn('Provider "' + attributes.videoProvider + '" not supported.');
+                  break;
               }
             });
 

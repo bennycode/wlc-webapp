@@ -4,6 +4,7 @@ import com.welovecoding.tutorial.data.base.BaseService;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -15,10 +16,8 @@ public class AuthorService extends BaseService<Author, AuthorRepository> {
 
   private static final Logger LOG = Logger.getLogger(AuthorService.class.getName());
 
-  @EJB
-  private AuthorRepository repository;
-  @EJB
-  private OwnCacheServerService cacheService;
+  @EJB private AuthorRepository repository;
+  @EJB private OwnCacheServerService cacheService;
 
   public AuthorService() {
     super(Author.class);
@@ -37,6 +36,10 @@ public class AuthorService extends BaseService<Author, AuthorRepository> {
   @Override
   protected OwnCacheServerService getCache() {
     return cacheService;
+  }
+
+  public List<Author> orderByName() {
+    return repository.orderByName();
   }
 
   @Override
