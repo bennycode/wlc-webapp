@@ -11,6 +11,13 @@
 
       <div class="pure-u-1">
 
+        <h:outputText 
+          class="playlist-description" 
+          escape="false"
+          rendered="#{video.playlist.description != null}" 
+          value="#{video.playlist.description}" 
+          />
+
         <div id="grid-videos">          
           <div class="container">
             <ui:repeat value="#{videoController.getVideos()}" var="video">
