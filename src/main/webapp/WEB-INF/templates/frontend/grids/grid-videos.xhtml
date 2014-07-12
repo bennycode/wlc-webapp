@@ -13,10 +13,9 @@
       <div class="pure-u-1">
 
         <ui:fragment rendered="#{playlist.description != null}">
-          <p>
+          <p class="playlist-description">
             <h:outputText 
-              class="playlist-description" 
-              escape="false"
+              escape="true"
               value="#{playlist.description}" 
               />
           </p>
@@ -34,10 +33,9 @@
               </a>
               <dd>
                 <ui:fragment rendered="#{video.description != null}">
-                  <p>
+                  <p class="video-description">
                     <h:outputText 
-                      class="video-description" 
-                      escape="false"
+                      escape="true"
                       value="#{video.description}" 
                       />  
                   </p>
