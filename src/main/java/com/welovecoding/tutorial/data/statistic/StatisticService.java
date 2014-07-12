@@ -137,7 +137,9 @@ public class StatisticService {
     List<Statistic> allStats = getRepository().findAllBetweenByType(type, fromDate, toDate);
     //fill map
     Set<String> allKeys = new HashSet<>();
+    System.out.println("All Keys");
     for (Statistic stat : allStats) {
+      System.out.println(stat.getName());
       allKeys.add(stat.getName());
     }
 
@@ -146,16 +148,16 @@ public class StatisticService {
       List<Statistic> statsInInterval = getRepository().findAllBetweenByType(type, statistic.getFromDate(), statistic.getToDate());
 
       Map<String, Statistic> keyStatInIntervalMap = new HashMap<>();
+      for (String key : allKeys) {
+        try {
+          keyStatInIntervalMap.putIfAbsent(key, new Statistic(key, statistic.getFromDate(), statistic.getToDate(), 0));
+        } catch (Exception ex) {
+          Logger.getLogger(StatisticService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
 
       // order stats by key values
       for (Statistic statInInterval : statsInInterval) {
-        for (String key : allKeys) {
-          try {
-            keyStatInIntervalMap.putIfAbsent(key, new Statistic(key, statistic.getFromDate(), statistic.getToDate(), 0));
-          } catch (Exception ex) {
-            Logger.getLogger(StatisticService.class.getName()).log(Level.SEVERE, null, ex);
-          }
-        }
 
         Statistic putIfAbsent;
         Statistic putIfAbsentAll;
@@ -164,10 +166,10 @@ public class StatisticService {
           if (putIfAbsent != null) {
             putIfAbsent.setHits(putIfAbsent.getHits() + 1);
           }
-//          putIfAbsentAll = keyStatInIntervalMap.putIfAbsent("Everything", new Statistic("Everything", statistic.getFromDate(), statistic.getToDate(), 1));
-//          if (putIfAbsentAll != null) {
-//            putIfAbsentAll.setHits(putIfAbsentAll.getHits() + 1);
-//          }
+          putIfAbsentAll = keyStatInIntervalMap.putIfAbsent("Everything", new Statistic("Everything", statistic.getFromDate(), statistic.getToDate(), 1));
+          if (putIfAbsentAll != null) {
+            putIfAbsentAll.setHits(putIfAbsentAll.getHits() + 1);
+          }
         } catch (Exception ex) {
           Logger.getLogger(StatisticService.class.getName()).log(Level.SEVERE, null, ex);
         }

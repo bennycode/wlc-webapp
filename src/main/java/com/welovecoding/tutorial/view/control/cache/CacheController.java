@@ -74,7 +74,12 @@ public class CacheController {
         }
       }
       json.append("],\n");
-      json.append("label: 'Hits of ").append(entry.getKey()).append("'");
+      json.append("label: 'Hits of ").append(entry.getKey()).append("',");
+      if (entry.getKey().equalsIgnoreCase("getCategories")) {
+        json.append("color: '#3333FF'");
+      } else if (entry.getKey().equalsIgnoreCase("Everything")) {
+        json.append("color: '#0099CC'");
+      }
       json.append("},");
 
     }

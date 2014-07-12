@@ -60,9 +60,10 @@
             var data = #{cacheController.getCacheHitStatsOfLastThreeDaysJSON()};
             var options = {
               series: {
-                stack: true,
+                stack: false,
+                shadowSize: 5,
                 lines: {
-                  show: true,
+                  show: false,
                   lineWidth: 0.2,
                   fill: true,
                   steps: true
@@ -71,9 +72,10 @@
                   show: false
                 },
                 bars: {
-                  show: false,
-                  barWidth: 5 * 60 * 1000,
-                  fill: true
+                  show: true,
+                  barWidth: (5 * 60 * 1000) - 50000,
+                  fill: true,
+                  align: "center"
                 }
               },
               legend: {
@@ -91,7 +93,6 @@
               xaxis: {
                 mode: "time",
                 minTickSize: [5, "minute"],
-//                tickLength: 2,
                 //TODO I18N
                 axisLabel: 'Date/Time',
                 axisLabelUseCanvas: true,
@@ -109,9 +110,10 @@
             };
             var overviewoptions = {
               series: {
-                stack: true,
+                stack: false,
+                shadowSize: 5,
                 lines: {
-                  show: true,
+                  show: false,
                   lineWidth: 0.2,
                   fill: true,
                   steps: true
@@ -120,8 +122,10 @@
                   show: false
                 },
                 bars: {
-                  show: false,
-                  barWidth: 0.8
+                  show: true,
+                  barWidth: (5 * 60 * 1000) - 50000,
+                  fill: true,
+                  align: "center"
                 }
               },
               legend: {
@@ -131,6 +135,7 @@
                 hoverable: true,
                 clickable: true,
                 borderWidth: 2
+//                backgroundColor: {colors: ["#EDF5FF", "#ffffff"]}
               },
               selection: {
                 mode: "xy"
