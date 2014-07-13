@@ -53,7 +53,6 @@ public class LogControlService {
   private static Map<String, Map> loggerTypes;
 
   public LogControlService() {
-    System.out.println("LogControlService()");
     loggerTypes = new HashMap<>();
   }
 

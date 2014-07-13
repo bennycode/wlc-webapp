@@ -56,7 +56,7 @@ public abstract class BaseRepository<T extends Serializable> {
         getEntityManager().flush();
       }
     }
-
+    getEntityManager().flush();
   }
 
   public void batchEdit(Iterator<T> entities) {
@@ -70,7 +70,7 @@ public abstract class BaseRepository<T extends Serializable> {
         getEntityManager().flush();
       }
     }
-
+    getEntityManager().flush();
   }
 
   public void batchRemove(Iterator<T> entities) {
@@ -84,6 +84,7 @@ public abstract class BaseRepository<T extends Serializable> {
         getEntityManager().flush();
       }
     }
+    getEntityManager().flush();
 
   }
 

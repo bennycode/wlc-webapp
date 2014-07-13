@@ -1,18 +1,18 @@
 package com.welovecoding.tutorial.api.v2.mapping;
 
-import static com.welovecoding.tutorial.view.Pages.REST_CATEGORY;
-import static com.welovecoding.tutorial.view.Pages.REST_PLAYLIST;
-import static com.welovecoding.tutorial.view.Pages.REST_VIDEO;
-import com.welovecoding.tutorial.data.author.Author;
-import com.welovecoding.tutorial.data.category.Category;
-import com.welovecoding.tutorial.data.playlist.entity.LanguageCode;
-import com.welovecoding.tutorial.data.playlist.entity.Playlist;
-import com.welovecoding.tutorial.data.video.Video;
 import com.welovecoding.tutorial.api.v2.dto.AuthorDTO;
 import com.welovecoding.tutorial.api.v2.dto.CategoryDTO;
 import com.welovecoding.tutorial.api.v2.dto.PlaylistDTO;
 import com.welovecoding.tutorial.api.v2.dto.StatusDTO;
 import com.welovecoding.tutorial.api.v2.dto.VideoDTO;
+import com.welovecoding.tutorial.data.author.Author;
+import com.welovecoding.tutorial.data.category.Category;
+import com.welovecoding.tutorial.data.playlist.entity.LanguageCode;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import com.welovecoding.tutorial.data.video.Video;
+import static com.welovecoding.tutorial.view.Pages.REST_CATEGORY;
+import static com.welovecoding.tutorial.view.Pages.REST_PLAYLIST;
+import static com.welovecoding.tutorial.view.Pages.REST_VIDEO;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -54,7 +54,7 @@ public class DTOMapper {
   private static String mapCategoryAddress(String root, Category e) {
     if (e != null) {
       return MessageFormat.format(root + REST_CATEGORY, new Object[]{
-        e.getId()});
+        Long.toString(e.getId())});
     } else {
       return null;
     }
@@ -106,8 +106,8 @@ public class DTOMapper {
   private static String mapPlaylistAddress(String root, Playlist e) {
     if (e != null) {
       return MessageFormat.format(root + REST_PLAYLIST, new Object[]{
-        e.getCategory().getId(),
-        e.getId()});
+        Long.toString(e.getCategory().getId()),
+        Long.toString(e.getId())});
     } else {
       return null;
     }
@@ -165,9 +165,9 @@ public class DTOMapper {
   private static String mapVideoAddress(String root, Video e) {
     if (e != null) {
       return MessageFormat.format(root + REST_VIDEO, new Object[]{
-        e.getPlaylist().getCategory().getId(),
-        e.getPlaylist().getId(),
-        e.getId()});
+        Long.toString(e.getPlaylist().getCategory().getId()),
+        Long.toString(e.getPlaylist().getId()),
+        Long.toString(e.getId())});
     } else {
       return null;
     }

@@ -38,9 +38,10 @@ public class GFInstance {
     glassfish = GlassFishRuntime.bootstrap().newGlassFish(glassfishProperties);
 
     // Set the log levels. For example, set 'deployment' and 'server' log levels to FINEST 
-    Logger.getLogger("").getHandlers()[0].setLevel(Level.WARNING);
+//    Logger.getLogger("").getHandlers()[0].setLevel(Level.WARNING);
     Logger.getLogger("javax.enterprise.system.tools.deployment").setLevel(Level.WARNING);
     Logger.getLogger("javax.enterprise.system").setLevel(Level.WARNING);
+//    Logger.getLogger("java.util.logging.ConsoleHandler.level").setLevel(Level.INFO);
 
     glassfish.start();
 

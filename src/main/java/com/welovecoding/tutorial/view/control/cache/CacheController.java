@@ -84,7 +84,9 @@ public class CacheController {
 
     }
     // delete last ,
-    json.deleteCharAt(json.length() - 1);
+    if (json.charAt(json.length() - 1) == ',') {
+      json.deleteCharAt(json.length() - 1);
+    }
 
     json.append("]");
     return json.toString();

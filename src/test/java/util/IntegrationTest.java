@@ -11,8 +11,7 @@ public class IntegrationTest {
 
   protected static final String HOST = "http://localhost";
   protected static final String PORT = "9090";
-  protected static final String APP_NAME = "WeLoveCodingTest";
-  protected static final String ROOT = HOST + ":" + PORT + "/" + APP_NAME;
+  protected static final String ROOT = HOST + ":" + PORT + "/" + GFInstance.APP_NAME;
 
   @Before
   public void setUp() throws Exception {

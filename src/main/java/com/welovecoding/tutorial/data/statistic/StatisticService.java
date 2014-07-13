@@ -59,7 +59,7 @@ public class StatisticService {
   public void flush() {
     LOG.log(Level.INFO, "Saving Statistics before destroying Service.");
     try {
-      getRepository().batchCreate(CacheStatistic.statisticCache.iterator());
+      getRepository().batchEdit(CacheStatistic.statisticCache.iterator());
       LOG.log(Level.INFO, "Successfully saved Statistics before destroyed Service.");
     } catch (Exception e) {
       LOG.log(Level.WARNING, "Failed to preserve Cache Statistics!");
@@ -81,7 +81,7 @@ public class StatisticService {
         if (new Date(startdate.getTime() + CacheStatistic.SAVE_INTERVAL).before(lastDate)) {
           LOG.log(Level.INFO, "Time to save {0} Statistics to database.", new Object[]{CacheStatistic.statisticCache.size()});
 
-          getRepository().batchCreate(CacheStatistic.statisticCache.iterator());
+          getRepository().batchEdit(CacheStatistic.statisticCache.iterator());
 
           CacheStatistic.statisticCache.clear();
           CacheStatistic.statisticCache.addLast(cacheStat);

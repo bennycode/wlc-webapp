@@ -29,6 +29,7 @@ public class StatisticFlushServlet implements ServletContextListener {
   public void contextDestroyed(ServletContextEvent event) {
     try {
       statService.flush();
+      LOG.log(Level.INFO, "Successfully flushed statistics!");
     } catch (Exception e) {
       LOG.log(Level.WARNING, "Could not flush statistics!", e.getMessage());
       LOG.log(Level.INFO, "FlushException: ", e);

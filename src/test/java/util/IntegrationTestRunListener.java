@@ -44,7 +44,6 @@ public class IntegrationTestRunListener extends RunListener {
   public void testRunFinished(Result result) throws Exception {
     LOG.log(Level.INFO, "testRunFinished was called!");
     LOG.log(Level.INFO, "Stopping embedded GlassFish!");
-    Thread.sleep(20000);
     GFInstance.stopInstance();
   }
 
