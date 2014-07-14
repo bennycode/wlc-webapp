@@ -3,9 +3,11 @@ package com.welovecoding.tutorial.api.v1.resource;
 import static com.welovecoding.tutorial.api.v1.RestConfig.JSON_MEDIATYPE;
 import com.welovecoding.tutorial.api.v1.dto.VideoDTO;
 import com.welovecoding.tutorial.api.v1.mapping.DTOMapper;
+import com.welovecoding.tutorial.data.playlist.PlaylistService;
+import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import com.welovecoding.tutorial.data.video.Video;
-import com.welovecoding.tutorial.data.video.VideoService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -19,7 +21,7 @@ import javax.ws.rs.Produces;
 public class VideoResource {
 
   @EJB
-  private VideoService videoService;
+  private PlaylistService playlistService;
 
   // http://welovecoding.com/rest/service/v1/playlist/8
   // http://localhost:8080/wlc-webapp/rest/fhb/v1/playlist/8
@@ -31,7 +33,11 @@ public class VideoResource {
   @Path("playlist/{playlistid}")
   @Produces(JSON_MEDIATYPE)
   public List<VideoDTO> getVideos(@PathParam("playlistid") long playlistId) {
-    List<Video> videos = videoService.getVideosByPlaylistId(playlistId);
+    List<Video> videos = new ArrayList<>();
+    Playlist find = playlistService.find(playlistId);
+    if (find != null) {
+      videos = find.getVideos();
+    }
     return DTOMapper.mapVideos(videos);
   }
 }

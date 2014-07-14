@@ -11,7 +11,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 @Stateless
-//@Interceptors({EJBLoggerInterceptor.class, MonitorInterceptor.class})
 public class CategoryService extends BaseService<Category, CategoryRepository> {
 
   @EJB

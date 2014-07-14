@@ -5,7 +5,6 @@ import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -36,14 +35,11 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
     return repository.findByCode(code);
   }
 
-  public List<Playlist> findAllInCategory(Long categoryid) {
-    return repository.findAllInCategory(categoryid);
-  }
-
   public Playlist findInCategory(Long categoryid, Long playlistid) {
     return repository.findInCategory(categoryid, playlistid);
   }
 
+  //TODO Why NOT_SUPPORTED ?
   @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
   public Playlist getDetachedPlaylistByCode(String code) {
     return repository.findByCode(code);

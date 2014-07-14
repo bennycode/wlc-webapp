@@ -2,7 +2,6 @@ package com.welovecoding.tutorial.data.playlist;
 
 import com.welovecoding.tutorial.data.base.BaseRepository;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -35,11 +34,6 @@ public class PlaylistRepository extends BaseRepository<Playlist> {
     }
 
     return playlist;
-  }
-
-  public List<Playlist> findAllInCategory(Long categoryid) {
-    return em.createNamedQuery(Playlist.FIND_ALL_IN_CATEGORY, Playlist.class).
-            setParameter("categoryid", categoryid).getResultList();
   }
 
   public Playlist findInCategory(Long categoryid, Long playlistid) {

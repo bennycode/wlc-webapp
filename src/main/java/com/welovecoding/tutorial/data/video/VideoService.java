@@ -4,7 +4,6 @@ import com.welovecoding.tutorial.data.base.BaseService;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -35,13 +34,10 @@ public class VideoService extends BaseService<Video, VideoRepository> {
     return repository.findByCode(code);
   }
 
+  //TODO Why NOT_SUPPORTED ?
   @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
   public Video getDetachedVideoByCode(String code) {
     return repository.findByCode(code);
-  }
-
-  public List<Video> getVideosByPlaylistId(Long playlistId) {
-    return repository.getVideosByPlaylistId(playlistId);
   }
 
   public Video findInCategory(Long categoryid, Long videoid) {
