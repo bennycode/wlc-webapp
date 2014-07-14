@@ -21,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -53,6 +54,7 @@ public class Playlist extends BaseEntity {
   private Author author;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist", orphanRemoval = true)
+  @OrderColumn(name = "ORDERING")
   private List<Video> videos;
 
   private String code;
