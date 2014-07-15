@@ -9,7 +9,7 @@
       <!-- Page title -->
       <title><ui:insert name="title">#{index.title}</ui:insert></title>
       <!-- Meta tags -->
-      <meta charset="UTF-8" />
+      <meta charset="UTF-8" />      
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
       <!-- SEO -->
@@ -38,6 +38,8 @@
             />
       <!-- Facebook -->    
       <link rel="image_src" href="#{facesContext.externalContext.requestContextPath}/resources/images/icons/touch-icon-100-100.png" />
+      <!-- https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html -->
+      <meta name="apple-itunes-app" content="app-id=659282498" />
       <!-- http://developer.apple.com/library/ios/#documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
       <link rel="apple-touch-icon" href="#{facesContext.externalContext.requestContextPath}/resources/images/icons/touch-icon-57-57.png" />
       <link rel="apple-touch-icon" sizes="72x72" href="#{facesContext.externalContext.requestContextPath}/resources/images/icons/touch-icon-72-72.png" />
