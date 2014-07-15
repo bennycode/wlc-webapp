@@ -128,6 +128,7 @@ In our example a blog post entity can have embedded entities. If that is the cas
 - [h:commandButton is not working](http://stackoverflow.com/a/2120183/451634)
  
 > Always strive to make code that can be modified with the least number of edits. - Lea Verou
+> Optimize only as needed. - Adam Bien
 
 Authors
 ------
