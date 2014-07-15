@@ -56,11 +56,11 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
 
   //TODO this should be in BaseController instead of GenFormBaseController
   private void initPagination(String page) {
-    setAmount(RESULTS_PER_PAGE);
+    setItemsPerPage(RESULTS_PER_PAGE);
 
     if (page != null) {
       setCurrentPage(Integer.valueOf(page));
-      setOffset((getCurrentPage() - 1) * getAmount());
+      setOffset((getCurrentPage() - 1) * getItemsPerPage());
     } else {
       setCurrentPage(1);
       setOffset(0);

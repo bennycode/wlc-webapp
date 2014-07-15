@@ -20,7 +20,7 @@ public class BaseControllerTest {
 
   @Test
   public void testTotalPages() {
-    instance.setAmount(0);
+    instance.setItemsPerPage(0);
 
     int expected = 1;
     int actual = instance.getTotalPages();

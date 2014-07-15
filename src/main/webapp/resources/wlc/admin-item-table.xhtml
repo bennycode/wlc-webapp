@@ -31,7 +31,7 @@
       <div class="pure-u-1-2" style="text-align: right;">
         <p>
           <h:outputFormat value="#{backend['admin.page.info.itemsPerPage']}" >          
-            <f:param value="#{cc.attrs.controller.amount}" />
+            <f:param value="#{cc.attrs.controller.itemsPerPage}" />
           </h:outputFormat>
         </p>
       </div>
@@ -80,6 +80,9 @@
         </ui:repeat>
       </tbody>
     </table>
+    
+    itemsPerPage: #{cc.attrs.controller.itemsPerPage}
+    totalPages: #{cc.attrs.controller.totalPages}
 
     <!-- Pagination: Bottom -->
     <ui:fragment rendered="#{cc.attrs.controller.totalPages > 1}">
@@ -87,6 +90,7 @@
     </ui:fragment>
 
     <!-- Pagination: JavaScript -->
+    <!-- http://esimakin.github.io/twbs-pagination/ -->
     <ui:fragment rendered="#{cc.attrs.controller.totalPages > 1}">
       <script>
         //<![CDATA[ 
