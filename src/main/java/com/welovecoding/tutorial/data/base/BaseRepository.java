@@ -112,6 +112,7 @@ public abstract class BaseRepository<T extends Serializable> {
 
     CriteriaQuery<T> cq = getEntityManager().getCriteriaBuilder().createQuery(entityClass);
     cq.select(cq.from(entityClass));
+    
     TypedQuery<T> query = getEntityManager().createQuery(cq);
     resultList = query.setFirstResult(startPosition).setMaxResults(maxResult).getResultList();
 

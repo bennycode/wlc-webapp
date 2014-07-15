@@ -29,7 +29,6 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
 
   // Pagination
   private int offset;
-  // Items per page
   private int itemsPerPage;
   private int currentPage;
   private int totalPages;
@@ -87,7 +86,8 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
 
   private void loadItems() {
     if (items == null) {
-      setItems(getService().findRange(getOffset(), getItemsPerPage()));
+      List retrievedItems = getService().findRange(getOffset(), getItemsPerPage());
+      setItems(retrievedItems);
     }
   }
 
