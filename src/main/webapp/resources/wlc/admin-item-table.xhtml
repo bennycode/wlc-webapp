@@ -62,7 +62,10 @@
             </td>
             <td>
               <h:form>
-                <h:commandLink value="#{backend['admin.page.tableAction.delete']}" action="#{cc.attrs.controller.remove}">
+                <h:commandLink 
+                  value="#{backend['admin.page.tableAction.delete']}" 
+                  onclick="return confirm('#{backend['admin.form.abort']}');"
+                  action="#{cc.attrs.controller.remove}">
                   <f:setPropertyActionListener value="#{item}"
                                                target="#{cc.attrs.controller.item}" />
                 </h:commandLink>
