@@ -36,8 +36,13 @@
         </p>
       </div>
     </div>
-    <ul id="pagination" class="sync-pagination pagination-sm"></ul>
-    <!-- List -->
+
+    <!-- Pagination: Top -->
+    <ui:fragment rendered="#{cc.attrs.controller.totalPages > 1}">
+      <ul id="pagination" class="sync-pagination pagination-sm"></ul>    
+    </ui:fragment>
+
+    <!-- Pagination items -->
     <table class="pure-table pure-table-horizontal" style="width: 100%;">
       <thead>
         <tr>
@@ -75,17 +80,25 @@
         </ui:repeat>
       </tbody>
     </table>
-    <ul class="sync-pagination pagination-sm"></ul>
-    <script>
-      //<![CDATA[ 
-      $(document).ready(function() {
-        $('.sync-pagination').twbsPagination({
-          href: '?page={{number}}#pagination',
-          startPage: #{cc.attrs.controller.currentPage},
-          totalPages: #{cc.attrs.controller.totalPages}
+
+    <!-- Pagination: Bottom -->
+    <ui:fragment rendered="#{cc.attrs.controller.totalPages > 1}">
+      <ul class="sync-pagination pagination-sm"></ul>
+    </ui:fragment>
+
+    <!-- Pagination: JavaScript -->
+    <ui:fragment rendered="#{cc.attrs.controller.totalPages > 1}">
+      <script>
+        //<![CDATA[ 
+        $(document).ready(function() {
+          $('.sync-pagination').twbsPagination({
+            href: '?page={{number}}#pagination',
+            startPage: #{cc.attrs.controller.currentPage},
+            totalPages: #{cc.attrs.controller.totalPages}
+          });
         });
-      });
-      //]]>
-    </script>
+        //]]>
+      </script>
+    </ui:fragment>
   </composite:implementation>
 </html>
