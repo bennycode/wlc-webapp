@@ -47,7 +47,8 @@ public class Video extends BaseEntity {
   private String description;
 
   @NotNull
-  @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+  
+  @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
   private Playlist playlist;
 
   private String previewImageUrl;

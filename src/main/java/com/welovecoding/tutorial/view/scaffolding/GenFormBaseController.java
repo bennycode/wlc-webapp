@@ -44,8 +44,6 @@ public abstract class GenFormBaseController<T extends BaseEntity, E extends Base
    * @see http://stackoverflow.com/a/4605163/451634
    */
   public GenFormBaseController() {
-    LOG.setLevel(Level.FINE);
-
     componentFactory = new ComponentFactory(StringUtils.lowerFirstChar(this.getClass().getSimpleName()));
     FacesContext context = FacesContext.getCurrentInstance();
     HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();

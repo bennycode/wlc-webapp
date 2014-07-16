@@ -37,7 +37,6 @@ public class ComponentFactory implements Serializable {
   public static final String BACKEND_MESSAGES_NAME = "backend";
 
   public ComponentFactory(String controllerBeanName) {
-    ComponentFactory.LOG.setLevel(Level.FINEST);
     this.controllerBeanName = controllerBeanName;
   }
 

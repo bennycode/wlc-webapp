@@ -47,10 +47,10 @@ public class Playlist extends BaseEntity {
   @Embedded @Enumerated(EnumType.STRING)
   private Difficulty difficulty;
 
-  @NotNull @ManyToOne(cascade = CascadeType.PERSIST)
+  @NotNull @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   private Category category;
 
-  @NotNull @ManyToOne(cascade = CascadeType.PERSIST)
+  @NotNull @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   private Author author;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist", orphanRemoval = true)

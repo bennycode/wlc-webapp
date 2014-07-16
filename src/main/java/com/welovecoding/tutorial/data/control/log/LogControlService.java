@@ -18,6 +18,15 @@ import com.welovecoding.tutorial.data.video.VideoRepository;
 import com.welovecoding.tutorial.data.video.VideoService;
 import com.welovecoding.tutorial.data.youtube.YouTubeRepository;
 import com.welovecoding.tutorial.data.youtube.YouTubeService;
+import com.welovecoding.tutorial.view.author.AuthorController;
+import com.welovecoding.tutorial.view.base.BaseController;
+import com.welovecoding.tutorial.view.category.CategoryController;
+import com.welovecoding.tutorial.view.playlist.PlaylistController;
+import com.welovecoding.tutorial.view.scaffolding.ComponentFactory;
+import com.welovecoding.tutorial.view.scaffolding.GenFormBaseController;
+import com.welovecoding.tutorial.view.user.UserController;
+import com.welovecoding.tutorial.view.video.VideoController;
+import com.welovecoding.tutorial.view.youtube.YouTubeImportWizard;
 import de.yser.ownsimplecache.OwnCacheListener;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import de.yser.ownsimplecache.OwnCacheService;
@@ -46,6 +55,7 @@ public class LogControlService {
 
   public static final String SERVICE_LOGGERS = "service";
   public static final String REPOSITORY_LOGGERS = "repository";
+  public static final String CONTROLLER_LOGGERS = "controller";
   public static final String CACHE_LOGGERS = "cache";
   public static final String OTHER_LOGGERS = "other";
   private static final Logger ROOT_LOGGER = Logger.getLogger("");
@@ -62,10 +72,12 @@ public class LogControlService {
     System.out.println("LogControlService#init()");
     Map<String, Logger> serviceLoggers = new HashMap<>();
     Map<String, Logger> repositoryLoggers = new HashMap<>();
+    Map<String, Logger> controllerLoggers = new HashMap<>();
     Map<String, Logger> cacheLoggers = new HashMap<>();
     Map<String, Logger> otherLoggers = new HashMap<>();
     loggerTypes.put(SERVICE_LOGGERS, serviceLoggers);
     loggerTypes.put(REPOSITORY_LOGGERS, repositoryLoggers);
+    loggerTypes.put(CONTROLLER_LOGGERS, controllerLoggers);
     loggerTypes.put(CACHE_LOGGERS, cacheLoggers);
     loggerTypes.put(OTHER_LOGGERS, otherLoggers);
 
@@ -136,6 +148,39 @@ public class LogControlService {
     tempLogger.setLevel(Level.WARNING);
     repositoryLoggers.put(tempLogger.getName(), tempLogger);
 
+    // Controller Loggers
+    tempLogger = Logger.getLogger(BaseController.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    controllerLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(GenFormBaseController.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    controllerLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(AuthorController.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    controllerLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(CategoryController.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    controllerLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(PlaylistController.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    controllerLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(UserController.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    controllerLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(VideoController.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    controllerLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(YouTubeImportWizard.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    controllerLoggers.put(tempLogger.getName(), tempLogger);
+
     // Cache Loggers
     tempLogger = Logger.getLogger(OwnCacheService.class.getName());
     tempLogger.setLevel(Level.WARNING);
@@ -187,6 +232,10 @@ public class LogControlService {
     otherLoggers.put(tempLogger.getName(), tempLogger);
 
     tempLogger = Logger.getLogger(StatisticInterceptor.class.getName());
+    tempLogger.setLevel(Level.WARNING);
+    otherLoggers.put(tempLogger.getName(), tempLogger);
+
+    tempLogger = Logger.getLogger(ComponentFactory.class.getName());
     tempLogger.setLevel(Level.WARNING);
     otherLoggers.put(tempLogger.getName(), tempLogger);
 
