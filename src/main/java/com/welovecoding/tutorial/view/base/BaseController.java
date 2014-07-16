@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.validation.ConstraintViolation;
 
 @Dependent
@@ -85,10 +86,8 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
   }
 
   private void loadItems() {
-    if (items == null) {
-      List retrievedItems = getService().findRange(getOffset(), getItemsPerPage());
-      setItems(retrievedItems);
-    }
+    List retrievedItems = getService().findRange(getOffset(), getItemsPerPage());
+    setItems(retrievedItems);
   }
 
   /**
@@ -173,5 +172,18 @@ public abstract class BaseController<T extends BaseEntity, E extends BaseService
 
   public void setTotalPages(int totalPages) {
     this.totalPages = totalPages;
+  }
+
+  public void changedItemsPerPage(ValueChangeEvent event) {
+    int newItemsPerPage = (int) event.getNewValue();
+
+    // Update items per page
+    itemsPerPage = newItemsPerPage;
+
+    // Update total pages
+    getTotalPages();
+
+    // Update items
+    getItems();
   }
 }
