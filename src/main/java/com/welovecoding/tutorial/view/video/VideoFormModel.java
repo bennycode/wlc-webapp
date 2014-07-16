@@ -38,12 +38,18 @@ public class VideoFormModel extends FormModel {
 
       String key = input.getKey();
 
-      if (key.equals("id") || key.equals("created") || key.equals("lastModified")) {
-        input.setReadOnly(true);
-      }
-
-      if (key.equals("playlist")) {
-        input.setRenderType(RenderType.DROPDOWN);
+      switch (key) {
+        case "id":
+        case "created":
+        case "lastModified":
+          input.setReadOnly(true);
+          break;
+        case "playlist":
+          input.setRenderType(RenderType.DROPDOWN);
+          break;
+        case "description":
+          input.setRenderType(RenderType.TEXTAREA);
+          break;
       }
 
       inputs.put(key, input);
