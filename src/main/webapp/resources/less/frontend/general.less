@@ -74,7 +74,7 @@ div[class *= "pure-g"] {
 
 // Basic Grid layout
 .layout-wrapper {
-  max-width: 960px;
+  max-width: @max-width-grid;
   margin: 0 auto; 
 }
 
@@ -86,9 +86,14 @@ div[class *= "pure-g"] {
 html {
   background-color: #FFF;
   background-image: url("#{resource['images:chalkboard-gray-500_interlaced.png']}");
+
+  position: relative;
+  min-height: 100%;
 }
 
 body {
+  margin-bottom: @height-footer;
+
   a {
     color: @color-text-link;
     text-decoration: none;
@@ -150,6 +155,28 @@ body {
     }
     &.clickable-list li a {
       display: block;
+    }
+  }
+
+  #footer {
+    .padding-wrapper();
+
+    width: 100%;
+    max-width: @max-width-grid;
+    height: @height-footer;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+
+    p {
+      line-height: @height-footer;
+      color: @color-text-light;
+      a {
+        color: @color-text-light;
+      }
     }
   }
 }

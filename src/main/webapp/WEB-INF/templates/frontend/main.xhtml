@@ -86,11 +86,16 @@
         </div>
       </div>
 
-      <div id="bottom-wrapper" class="layout-wrapper">
-
-        <!-- Footer -->
-        <ui:include src="/WEB-INF/templates/frontend/grids/grid-footer.xhtml" />
-
+      <div id="footer">
+        <p>
+          <h:link outcome="pretty:imprint"><h:outputText value="#{imprint.title}" /></h:link> | © 2014 <a href="http://www.bennyn.de/" target="_blank">Benny Neugebauer</a> &amp; <a href="http://beanbelt.blogspot.de/" target="_blank">Michael Koppen</a>
+        </p>
+        <h:panelGroup 
+          id="debug-info"
+          layout="block"
+          rendered="#{facesContext.isProjectStage('Development')}">
+          <p class="text"><b>Development stage.</b> Locale: #{facesContext.viewRoot.locale}, Requested URL: #{request.requestURL} Screen:</p>
+        </h:panelGroup>
       </div>
 
       <ui:insert name="before-closing-body"></ui:insert>
