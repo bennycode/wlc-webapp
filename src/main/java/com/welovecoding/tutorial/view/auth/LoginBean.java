@@ -1,9 +1,12 @@
 package com.welovecoding.tutorial.view.auth;
 
 import com.welovecoding.tutorial.view.Pages;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -32,9 +35,23 @@ public class LoginBean {
     }
   }
 
-  public String logout() {
+  public void logout() {
     LOGGER.log(Level.INFO, "Logout");
+
+    // Request values
+    FacesContext facesContext = FacesContext.getCurrentInstance();
+    ExternalContext externalContext = facesContext.getExternalContext();
+    String referrer = externalContext.getRequestHeaderMap().get("referer");
+
+    // Logout
+    externalContext.invalidateSession();
     userSessionBean.setIsLoggedIn(false);
-    return Pages.INDEX;
+
+    // Redirect
+    try {
+      facesContext.getExternalContext().redirect(referrer);
+    } catch (IOException ex) {
+      LOGGER.log(Level.WARNING, "Cannot redirect after logout: {0}", referrer);
+    }
   }
 }
