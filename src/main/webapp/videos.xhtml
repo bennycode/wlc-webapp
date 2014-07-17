@@ -13,7 +13,7 @@
       <!-- http://stackoverflow.com/a/13984441/451634 -->
       <ui:define name="meta-description">
         <c:if test="#{not empty playlist.description}">
-          <meta name="description" content="#{playlist.description}" />
+          <meta name="description" lang="#{playlist.languageCode}" content="#{playlist.description}" />
         </c:if>
         <c:if test="#{empty playlist.description}">
           <ui:fragment rendered="#{'de' eq facesContext.viewRoot.locale}">
@@ -31,7 +31,7 @@
         <h:outputStylesheet library="css/generated/frontend/grids" name="grid-videos.css" />
       </ui:define>
 
-      <ui:define name="center-unit-1">
+      <ui:define name="center-unit-1">        
         <ui:include src="/WEB-INF/templates/frontend/grids/grid-videos.xhtml" />
       </ui:define>
 
