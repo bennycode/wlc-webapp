@@ -12,7 +12,7 @@
 
       <div class="pure-u-1">
 
-        <ui:fragment rendered="#{playlist.description != null}">
+        <ui:fragment rendered="#{not empty playlist.description}">
           <p class="playlist-description">
             <h:outputText 
               escape="true"
@@ -32,7 +32,7 @@
                 >#{video.name}<span class="button closed"></span>
               </a>
               <dd>
-                <ui:fragment rendered="#{video.description != null}">
+                <ui:fragment rendered="#{not empty video.description}">
                   <p class="video-description">
                     <h:outputText 
                       escape="true"
