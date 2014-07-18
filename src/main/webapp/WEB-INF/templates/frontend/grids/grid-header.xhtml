@@ -50,7 +50,12 @@
                   value="#{main_header.sponsors}" />
               </li>
               <li>
-                <a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon enter"></span> #{main_header.login}</a>
+                <ui:fragment rendered="#{empty authSessionBean.user.email}">
+                  <a href="#{facesContext.externalContext.requestContextPath}/admin" target="_blank"><span class="wlc-icon enter"></span> #{main_header.login}</a>
+                </ui:fragment>   
+                <ui:fragment rendered="#{not empty authSessionBean.user.email}">
+                  <h:form><h:commandLink action="#{loginBean.logout}" value="#{main_header.logout}" /></h:form>
+                </ui:fragment>        
               </li>              
             </ul>
           </div>

@@ -2,18 +2,36 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
   <h:body>
     <ui:composition template="/WEB-INF/templates/frontend/main.xhtml">
+      <ui:param name="playlist" value="#{videoController.getLatestPlaylist()}"/>
 
-      <ui:define name="title">#{videoController.getLatestPlaylist().name}</ui:define>
+      <ui:define name="title">#{playlist.name}</ui:define>
+
+      <!-- http://stackoverflow.com/a/13984441/451634 -->
+      <ui:define name="meta-description">
+        <c:if test="#{not empty playlist.description}">
+          <meta name="description" lang="#{playlist.languageCode}" content="#{playlist.description}" />
+        </c:if>
+        <c:if test="#{empty playlist.description}">
+          <ui:fragment rendered="#{'de' eq facesContext.viewRoot.locale}">
+            <meta name="description" lang="de" content="Kostenlose Screencasts und Video-Tutorials zur Programmierung und weiteren Themen aus der Informatik." />
+          </ui:fragment>
+          <ui:fragment rendered="#{'en' eq facesContext.viewRoot.locale}">
+            <meta name="description" lang="en" content="Free screencasts and video tutorials on topics in computer science and programming." />
+          </ui:fragment>
+        </c:if>
+      </ui:define>
+
       <ui:param name="activeLink" value="categories.xhtml" />
 
       <ui:define name="extra-stylesheets">
         <h:outputStylesheet library="css/generated/frontend/grids" name="grid-videos.css" />
       </ui:define>
 
-      <ui:define name="center-unit-1">
+      <ui:define name="center-unit-1">        
         <ui:include src="/WEB-INF/templates/frontend/grids/grid-videos.xhtml" />
       </ui:define>
 
