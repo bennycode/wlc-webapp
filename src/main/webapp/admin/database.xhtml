@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+  <h:body>    
+    <ui:composition template="/WEB-INF/templates/admin/main.xhtml">
+      <ui:define name="title">
+        <h:outputText value="#{backend['admin.form.title.database']}" />
+      </ui:define>
+
+      <ui:define name="content">   
+        <h2 class="page-header">
+          <!--TODO I18N-->
+          <h:outputText value="Database Dump" />
+        </h2>
+
+        <h:form>
+          <h:commandButton styleClass="pure-button button-warning"  value="Dump" action="#{databaseController.reload}"></h:commandButton>
+          <br />
+          <h:inputTextarea style="width:550px;height:300px;" disabled="true" readonly="true" value="#{databaseController.dump}">
+          </h:inputTextarea>
+
+        </h:form>
+        <h2 class="page-header">
+          <!--TODO I18N-->
+          <h:outputText value="Database-Cache" />
+        </h2>
+        <p>
+          <!--TODO I18N-->
+          <strong>WARNING: </strong>Clearing the Database-Cache can cause massive impact on the database in a production environment. Please use this function with caution.
+        </p>
+        <h:form>
+          <!--TODO I18N-->
+          <h:commandButton styleClass="pure-button button-warning" action="#{cacheController.clearDatabaseCache()}" value="Clear"></h:commandButton>
+        </h:form>
+      </ui:define>
+      <ui:define name="before-closing-body">
+
+      </ui:define>
+    </ui:composition>
+  </h:body>
+</html>

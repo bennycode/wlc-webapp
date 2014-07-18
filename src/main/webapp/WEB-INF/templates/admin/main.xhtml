@@ -110,9 +110,16 @@
                 </li>
                 <li>
                   <h:link 
-                    styleClass="#{view.viewId.equals('/admin/caches.xhtml') ? 'active' : ''}"
-                    outcome="/admin/caches.xhtml"
-                    value="#{backend['admin.menu.caches']}">
+                    styleClass="#{view.viewId.equals('/admin/rest.xhtml') ? 'active' : ''}"
+                    outcome="/admin/rest.xhtml"
+                    value="#{backend['admin.menu.rest']}">
+                  </h:link>
+                </li>
+                <li>
+                  <h:link 
+                    styleClass="#{view.viewId.equals('/admin/database.xhtml') ? 'active' : ''}"
+                    outcome="/admin/database.xhtml"
+                    value="#{backend['admin.menu.database']}">
                   </h:link>
                 </li>
                 <li>
