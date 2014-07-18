@@ -1,4 +1,4 @@
-package com.welovecoding.controller;
+package com.welovecoding.tutorial.view.base;
 
 import com.welovecoding.tutorial.view.base.BaseController;
 import com.welovecoding.tutorial.data.author.AuthorService;

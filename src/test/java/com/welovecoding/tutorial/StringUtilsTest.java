@@ -1,4 +1,4 @@
-package com.welovecoding.util;
+package com.welovecoding.tutorial;
 
 import com.welovecoding.StringUtils;
 import com.welovecoding.tutorial.data.category.Category;

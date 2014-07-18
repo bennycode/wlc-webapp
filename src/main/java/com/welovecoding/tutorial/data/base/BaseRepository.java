@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -25,6 +26,8 @@ import javax.persistence.criteria.Root;
 @Interceptors({EJBLoggerInterceptor.class, StatisticInterceptor.class})
 public abstract class BaseRepository<T extends Serializable> {
 
+  private static final Logger LOG = Logger.getLogger(BaseRepository.class.getName());
+
   public static final String PERSISTENCE_UNIT_NAME = "com.welovecoding.web_wlc-webapp_war_1.0-SNAPSHOTPU";
 
   protected abstract EntityManager getEntityManager();
@@ -34,23 +37,58 @@ public abstract class BaseRepository<T extends Serializable> {
     this.entityClass = entityClass;
   }
 
+  /**
+   * Associates a new ID to an entity and persists it. If any exception is
+   * thrown the method will return null.
+   *
+   * @param entity entity to persist
+   * @return persisted and merged entity with new ID or null
+   */
   public T create(T entity) {
-    getEntityManager().persist(entity);
-    getEntityManager().flush();
-    evictNestedEntities(entity);
-    return this.edit(entity);
+    T result = null;
+    try {
+      getEntityManager().persist(entity);
+      getEntityManager().flush();
+      evictNestedEntities(entity);
+      result = this.edit(entity);
+    } catch (IllegalArgumentException | PersistenceException e) {
+      LOG.log(Level.SEVERE, "Could not persist entity!", e);
+    }
+    return result;
   }
 
+  /**
+   * Merges an entity with the underlying database data. If any exception is
+   * thrown the method will return null.
+   *
+   * @param entity entity to merge
+   * @return merged entity or null
+   */
   public T edit(T entity) {
-    evictNestedEntities(entity);
-    entity = getEntityManager().merge(entity);
-    evictNestedEntities(entity);
-    return entity;
+    T result = null;
+    try {
+      entity = getEntityManager().merge(entity);
+      evictNestedEntities(entity);
+      result = entity;
+    } catch (IllegalArgumentException | PersistenceException e) {
+      LOG.log(Level.SEVERE, "Could not merge entity!", e);
+    }
+    return result;
   }
 
+  /**
+   * Removes an entity from database and context. This method will silently
+   * discard the operation if an exception is thrown.
+   *
+   * @param entity entity to remove
+   */
   public void remove(T entity) {
-    getEntityManager().remove(getEntityManager().merge(entity));
-    evictNestedEntities(entity);
+    try {
+      getEntityManager().remove(getEntityManager().merge(entity));
+      evictNestedEntities(entity);
+    } catch (IllegalArgumentException | PersistenceException e) {
+      LOG.log(Level.SEVERE, "Could not remove entity!", e);
+    }
   }
 
   public void batchCreate(Iterator<T> entities) {
@@ -144,18 +182,20 @@ public abstract class BaseRepository<T extends Serializable> {
    * @param entity
    */
   private void evictNestedEntities(T entity) {
-    Logger.getLogger(this.getClass().getName()).log(Level.FINE, "Evicting nested entities");
-    for (Field field : entity.getClass().getDeclaredFields()) {
-      Logger.getLogger(this.getClass().getName()).log(Level.FINEST, "Field {0}", field.getName());
-      field.setAccessible(true);
+    if (entity != null) {
+      Logger.getLogger(this.getClass().getName()).log(Level.FINE, "Evicting nested entities");
+      for (Field field : entity.getClass().getDeclaredFields()) {
+        Logger.getLogger(this.getClass().getName()).log(Level.FINEST, "Field {0}", field.getName());
+        field.setAccessible(true);
 
-      // check if class of field is a subtype of BaseEntity
-      if (BaseEntity.class.isAssignableFrom(field.getType())) {
-        Logger.getLogger(this.getClass().getName()).log(Level.FINEST, "found nested entity");
-        try {
-          evict((BaseEntity) field.get(entity));
-        } catch (IllegalArgumentException | IllegalAccessException ex) {
-          Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        // check if class of field is a subtype of BaseEntity
+        if (BaseEntity.class.isAssignableFrom(field.getType())) {
+          Logger.getLogger(this.getClass().getName()).log(Level.FINEST, "Found nested entity");
+          try {
+            evict((BaseEntity) field.get(entity));
+          } catch (IllegalArgumentException | IllegalAccessException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+          }
         }
       }
     }
@@ -166,11 +206,11 @@ public abstract class BaseRepository<T extends Serializable> {
     if (objectToEvict != null) {
       if (objectToEvict.getId() != null) {
         // evicting one entity with id
-        Logger.getLogger(this.getClass().getName()).log(Level.INFO, "evicting one entity of type {0} with id {1} and name {2}", new Object[]{objectToEvict.getClass().getName(), objectToEvict.getId(), objectToEvict.getName()});
+        Logger.getLogger(this.getClass().getName()).log(Level.INFO, "Evicting one entity of type {0} with id {1} and name {2}", new Object[]{objectToEvict.getClass().getName(), objectToEvict.getId(), objectToEvict.getName()});
         getEntityManager().getEntityManagerFactory().getCache().evict(objectToEvict.getClass(), objectToEvict.getId());
       } else {
         // evicting all entities of type
-        Logger.getLogger(this.getClass().getName()).log(Level.INFO, "evicting all entities of type {0}", new Object[]{objectToEvict.getClass().getName()});
+        Logger.getLogger(this.getClass().getName()).log(Level.INFO, "Evicting all entities of type {0}", new Object[]{objectToEvict.getClass().getName()});
         getEntityManager().getEntityManagerFactory().getCache().evict(objectToEvict.getClass());
       }
     }

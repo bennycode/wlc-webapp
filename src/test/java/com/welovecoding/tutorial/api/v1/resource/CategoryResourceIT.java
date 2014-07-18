@@ -1,4 +1,4 @@
-package com.welovecoding.rest.v2.resource;
+package com.welovecoding.tutorial.api.v1.resource;
 
 import static com.github.fge.jsonschema.SchemaVersion.DRAFTV3;
 import com.github.fge.jsonschema.cfg.ValidationConfiguration;
@@ -8,7 +8,9 @@ import com.jayway.restassured.module.jsv.JsonSchemaValidator;
 import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static com.jayway.restassured.module.jsv.JsonSchemaValidatorSettings.settings;
 import com.jayway.restassured.response.Response;
+import java.io.File;
 import java.io.InputStream;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -22,18 +24,18 @@ import util.IntegrationTest;
  *
  * @author Michael Koppen
  */
-public class PlaylistResourceIT extends IntegrationTest {
+public class CategoryResourceIT extends IntegrationTest {
 
   @Rule
   // Get name of actual Test with test.getMethodName()
   public TestName test = new TestName();
 
-  private static final String ANY_JSON_ARRAY_SCHEMA = "json-schema/any-json-array-schema.json";
-  private static final String ANY_JSON_OBJECT_SCHEMA = "json-schema/any-json-object-schema.json";
+  private static final String CATEGORY_LIST_SCHEMA = "json-schema/categoryList-schema.json";
 
   @BeforeClass
   public static void setUpClass() throws Exception {
 
+    flatXmlDataSet = new FlatXmlDataSet(new File("src/test/resources", "full.xml"), false, true);
     JsonSchemaValidator.settings = settings().with().jsonSchemaFactory(
             JsonSchemaFactory.newBuilder().setValidationConfiguration(ValidationConfiguration.newBuilder().setDefaultVersion(DRAFTV3).freeze()).freeze()).
             and().with().checkedValidation(false);
@@ -41,6 +43,7 @@ public class PlaylistResourceIT extends IntegrationTest {
 
   @AfterClass
   public static void tearDownClass() throws Exception {
+
   }
 
   @Before
@@ -60,17 +63,17 @@ public class PlaylistResourceIT extends IntegrationTest {
   }
 
   /**
-   * Test of getVideos method, of class VideoResource.
+   * Test of getCategories method, of class CategoryResource.
    */
   @Test
-  public void testGetPlaylist() throws Exception {
+  public void testGetCategories() throws Exception {
     System.out.println(test.getMethodName());
-    InputStream schema = getSchema(ANY_JSON_OBJECT_SCHEMA);
+    InputStream schema = getSchema(CATEGORY_LIST_SCHEMA);
+
     Response resp
             = given().
-            pathParam("id", 1).
             when().
-            get(ROOT + "/rest/service/v2/playlists/{id}").then().
+            get(ROOT + "/rest/service/v1/categories").then().
             extract().response();
     System.out.println("RESPONSE: ");
     resp.prettyPrint();

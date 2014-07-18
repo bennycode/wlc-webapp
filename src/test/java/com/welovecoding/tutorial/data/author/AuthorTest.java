@@ -1,4 +1,4 @@
-package com.welovecoding.entities;
+package com.welovecoding.tutorial.data.author;
 
 import com.welovecoding.tutorial.data.author.Author;
 import com.welovecoding.tutorial.api.v1.dto.AuthorDTO;

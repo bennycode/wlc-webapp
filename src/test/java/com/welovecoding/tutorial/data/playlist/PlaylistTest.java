@@ -1,4 +1,4 @@
-package com.welovecoding.entities;
+package com.welovecoding.tutorial.data.playlist;
 
 import com.welovecoding.tutorial.api.v1.mapping.DTOMapper;
 import com.welovecoding.tutorial.data.author.Author;

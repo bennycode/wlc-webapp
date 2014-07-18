@@ -1,4 +1,4 @@
-package com.welovecoding.entities;
+package com.welovecoding.tutorial.data.video;
 
 import com.welovecoding.tutorial.data.video.Video;
 import com.welovecoding.tutorial.data.category.Category;

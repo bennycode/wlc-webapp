@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 public class CategoryRepository extends BaseRepository<Category> {
 
   @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
-  EntityManager em;
+  private EntityManager em;
 
   @Override
   protected EntityManager getEntityManager() {
@@ -24,13 +24,13 @@ public class CategoryRepository extends BaseRepository<Category> {
   }
 
   public List<Category> orderByName() {
-    return em.createNamedQuery(Category.ORDER_BY_NAME, Category.class).getResultList();
+    return getEntityManager().createNamedQuery(Category.ORDER_BY_NAME, Category.class).getResultList();
   }
 
   public Category getBySlug(String slug) {
     Category result = null;
     try {
-      result = em.createNamedQuery(Category.FIND_BY_SLUG, Category.class).
+      result = getEntityManager().createNamedQuery(Category.FIND_BY_SLUG, Category.class).
               setParameter("categoryslug", slug).
               getSingleResult();
     } catch (NoResultException ex) {

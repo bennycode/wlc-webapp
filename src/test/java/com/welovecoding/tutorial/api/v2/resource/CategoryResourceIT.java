@@ -1,4 +1,4 @@
-package com.welovecoding.rest.v1.resource;
+package com.welovecoding.tutorial.api.v2.resource;
 
 import static com.github.fge.jsonschema.SchemaVersion.DRAFTV3;
 import com.github.fge.jsonschema.cfg.ValidationConfiguration;
@@ -8,7 +8,9 @@ import com.jayway.restassured.module.jsv.JsonSchemaValidator;
 import static com.jayway.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static com.jayway.restassured.module.jsv.JsonSchemaValidatorSettings.settings;
 import com.jayway.restassured.response.Response;
+import java.io.File;
 import java.io.InputStream;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -22,17 +24,19 @@ import util.IntegrationTest;
  *
  * @author Michael Koppen
  */
-public class VideoResourceIT extends IntegrationTest {
+public class CategoryResourceIT extends IntegrationTest {
 
   @Rule
   // Get name of actual Test with test.getMethodName()
   public TestName test = new TestName();
 
-  private static final String VIDEO_LIST_SCHEMA = "json-schema/videoList-schema.json";
+  private static final String ANY_JSON_ARRAY_SCHEMA = "json-schema/any-json-array-schema.json";
+  private static final String ANY_JSON_OBJECT_SCHEMA = "json-schema/any-json-object-schema.json";
 
   @BeforeClass
   public static void setUpClass() throws Exception {
 
+    flatXmlDataSet = new FlatXmlDataSet(new File("src/test/resources", "full.xml"), false, true);
     JsonSchemaValidator.settings = settings().with().jsonSchemaFactory(
             JsonSchemaFactory.newBuilder().setValidationConfiguration(ValidationConfiguration.newBuilder().setDefaultVersion(DRAFTV3).freeze()).freeze()).
             and().with().checkedValidation(false);
@@ -40,6 +44,7 @@ public class VideoResourceIT extends IntegrationTest {
 
   @AfterClass
   public static void tearDownClass() throws Exception {
+
   }
 
   @Before
@@ -59,18 +64,31 @@ public class VideoResourceIT extends IntegrationTest {
   }
 
   /**
-   * Test of getVideos method, of class VideoResource.
+   * Test of getCategories method, of class CategoryResource.
    */
   @Test
-  public void testGetVideos() throws Exception {
+  public void testGetCategories() throws Exception {
     System.out.println(test.getMethodName());
-    InputStream schema = getSchema(VIDEO_LIST_SCHEMA);
+    InputStream schema = getSchema(ANY_JSON_ARRAY_SCHEMA);
+    Response resp
+            = given().
+            when().
+            get(ROOT + "/rest/service/v2/categories").then().
+            extract().response();
+    System.out.println("RESPONSE: ");
+    resp.prettyPrint();
+    resp.then().assertThat().body(matchesJsonSchema(schema));
+  }
 
+  @Test
+  public void testGetCategory() throws Exception {
+    System.out.println(test.getMethodName());
+    InputStream schema = getSchema(ANY_JSON_OBJECT_SCHEMA);
     Response resp
             = given().
             pathParam("id", 1).
             when().
-            get(ROOT + "/rest/service/v1/playlist/{id}").then().
+            get(ROOT + "/rest/service/v2/categories/{id}").then().
             extract().response();
     System.out.println("RESPONSE: ");
     resp.prettyPrint();
