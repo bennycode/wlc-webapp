@@ -92,50 +92,67 @@ public abstract class BaseRepository<T extends Serializable> {
   }
 
   public void batchCreate(Iterator<T> entities) {
-    List<T> entityList = Lists.newArrayList(entities);
-    for (int i = 0; i < entityList.size(); i++) {
-      getEntityManager().persist(entityList.get(i));
-      evictNestedEntities(entityList.get(i));
-      // 100 is the default max batch-size. Mod 99 because we start with 0. See persistence.xml for changes
-      // TODO get batchSize out of properties
-      if (i != 0 && (i % 99) == 0) {
-        getEntityManager().flush();
+    try {
+      List<T> entityList = Lists.newArrayList(entities);
+      for (int i = 0; i < entityList.size(); i++) {
+        getEntityManager().persist(entityList.get(i));
+        evictNestedEntities(entityList.get(i));
+        // 100 is the default max batch-size. Mod 99 because we start with 0. See persistence.xml for changes
+        // TODO get batchSize out of properties
+        if (i != 0 && (i % 99) == 0) {
+          getEntityManager().flush();
+        }
       }
+      getEntityManager().flush();
+    } catch (IllegalArgumentException | PersistenceException e) {
+      LOG.log(Level.SEVERE, "Could not persist entities!", e);
     }
-    getEntityManager().flush();
   }
 
   public void batchEdit(Iterator<T> entities) {
-    List<T> entityList = Lists.newArrayList(entities);
-    for (int i = 0; i < entityList.size(); i++) {
-      getEntityManager().merge(entityList.get(i));
-      evictNestedEntities(entityList.get(i));
-      // 100 is the default max batch-size. Mod 99 because we start with 0. See persistence.xml for changes
-      // TODO get batchSize out of properties
-      if (i != 0 && (i % 99) == 0) {
-        getEntityManager().flush();
+    try {
+      List<T> entityList = Lists.newArrayList(entities);
+      for (int i = 0; i < entityList.size(); i++) {
+        getEntityManager().merge(entityList.get(i));
+        evictNestedEntities(entityList.get(i));
+        // 100 is the default max batch-size. Mod 99 because we start with 0. See persistence.xml for changes
+        // TODO get batchSize out of properties
+        if (i != 0 && (i % 99) == 0) {
+          getEntityManager().flush();
+        }
       }
+      getEntityManager().flush();
+    } catch (IllegalArgumentException | PersistenceException e) {
+      LOG.log(Level.SEVERE, "Could not persist entities!", e);
     }
-    getEntityManager().flush();
   }
 
   public void batchRemove(Iterator<T> entities) {
-    List<T> entityList = Lists.newArrayList(entities);
-    for (int i = 0; i < entityList.size(); i++) {
-      getEntityManager().remove(getEntityManager().merge(entityList.get(i)));
-      evictNestedEntities(entityList.get(i));
-      // 100 is the default max batch-size. Mod 99 because we start with 0. See persistence.xml for changes
-      // TODO get batchSize out of properties
-      if (i != 0 && (i % 99) == 0) {
-        getEntityManager().flush();
+    try {
+      List<T> entityList = Lists.newArrayList(entities);
+      for (int i = 0; i < entityList.size(); i++) {
+        getEntityManager().remove(getEntityManager().merge(entityList.get(i)));
+        evictNestedEntities(entityList.get(i));
+        // 100 is the default max batch-size. Mod 99 because we start with 0. See persistence.xml for changes
+        // TODO get batchSize out of properties
+        if (i != 0 && (i % 99) == 0) {
+          getEntityManager().flush();
+        }
       }
+      getEntityManager().flush();
+    } catch (IllegalArgumentException | PersistenceException e) {
+      LOG.log(Level.SEVERE, "Could not persist entities!", e);
     }
-    getEntityManager().flush();
-
   }
 
   public T find(Object id) {
-    return getEntityManager().find(entityClass, id);
+    T result = null;
+    try {
+      result = getEntityManager().find(entityClass, id);
+    } catch (IllegalArgumentException e) {
+      LOG.log(Level.SEVERE, "Could not find entity!", e);
+    }
+    return result;
   }
 
   public List<T> findAll() {
@@ -174,14 +191,14 @@ public abstract class BaseRepository<T extends Serializable> {
   }
 
   /**
-   * This method iterates all fields of the given entity and evicts alls nested
+   * This method iterates all fields of the given entity and evicts all nested
    * Entities of class BaseEntity from the database cache. Note: This method
    * will not evict entities which are nested in Objects with a generic type of
    * BaseEntity due to the type-erasure
    *
    * @param entity
    */
-  private void evictNestedEntities(T entity) {
+  protected void evictNestedEntities(T entity) {
     if (entity != null) {
       Logger.getLogger(this.getClass().getName()).log(Level.FINE, "Evicting nested entities");
       for (Field field : entity.getClass().getDeclaredFields()) {
@@ -202,7 +219,7 @@ public abstract class BaseRepository<T extends Serializable> {
 
   }
 
-  private void evict(BaseEntity objectToEvict) {
+  protected void evict(BaseEntity objectToEvict) {
     if (objectToEvict != null) {
       if (objectToEvict.getId() != null) {
         // evicting one entity with id
