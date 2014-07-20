@@ -62,7 +62,7 @@ public class YouTubeService {
   }
 
   private Playlist getPlaylist(String code) {
-    Playlist playlist = playlistService.getDetachedPlaylistByCode(code);
+    Playlist playlist = playlistService.findByCodeDetached(code);
 
     if (playlist == null) {
       playlist = new Playlist();
@@ -72,7 +72,7 @@ public class YouTubeService {
   }
 
   private Video getVideo(String code) {
-    Video video = videoService.getDetachedVideoByCode(code);
+    Video video = videoService.findByCodeDetached(code);
 
     if (video == null) {
       video = new Video();

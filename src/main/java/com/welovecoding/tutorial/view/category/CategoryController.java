@@ -45,7 +45,7 @@ public class CategoryController extends GenFormBaseController<Category, Category
   }
 
   private void loadCategoriesOrderedByName() {
-    categoriesOrderedByName = getService().orderByName();
+    categoriesOrderedByName = getService().findAllOrderedByName();
   }
 
   public List<Category> getCategoriesOrderedByName() {
@@ -68,7 +68,7 @@ public class CategoryController extends GenFormBaseController<Category, Category
 
   private void loadCategoryBySlug(String categorySlug) {
     if (categoryBySlug == null) {
-      categoryBySlug = getService().getBySlug(categorySlug);
+      categoryBySlug = getService().findBySlug(categorySlug);
     }
   }
 

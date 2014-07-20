@@ -36,12 +36,12 @@ public class CategoryService extends BaseService<Category, CategoryRepository> {
     return cacheService;
   }
 
-  public List<Category> orderByName() {
-    return repository.orderByName();
+  public List<Category> findAllOrderedByName() {
+    return repository.findAllOrderedByName();
   }
 
-  public Category getBySlug(String slug) {
-    return repository.getBySlug(slug);
+  public Category findBySlug(String slug) {
+    return repository.findBySlug(slug);
   }
 
   @Override

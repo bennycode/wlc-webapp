@@ -42,7 +42,7 @@ public class CategoryResource2 {
 
     Response resp;
     try {
-      List<CategoryDTO> categoryList = DTOMapper.mapCategoryList(uriInfo.getBaseUri().toString(), categoryService.orderByName());
+      List<CategoryDTO> categoryList = DTOMapper.mapCategoryList(uriInfo.getBaseUri().toString(), categoryService.findAllOrderedByName());
       resp = Response.ok(categoryList).build();
     } catch (Exception e) {
       LOG.log(Level.SEVERE, "Exception: {0}", e);

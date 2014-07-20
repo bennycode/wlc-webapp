@@ -8,8 +8,6 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 
 @Stateless
 public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
@@ -31,7 +29,7 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
     return cacheService;
   }
 
-  public Playlist getPlaylistByCode(String code) {
+  public Playlist findByCode(String code) {
     return repository.findByCode(code);
   }
 
@@ -39,14 +37,14 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
     return repository.findInCategory(categoryid, playlistid);
   }
 
-  //TODO Why NOT_SUPPORTED ?
-  @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-  public Playlist getDetachedPlaylistByCode(String code) {
-    return repository.findByCode(code);
+  public Playlist findByCodeDetached(String code) {
+    Playlist playlist = this.findByCode(code);
+    repository.em.detach(playlist);
+    return playlist;
   }
 
-  public Playlist getByCategoryAndSlug(long categoryid, String slug) {
-    return repository.getByCategoryAndSlug(categoryid, slug);
+  public Playlist findByCategoryAndSlug(long categoryid, String slug) {
+    return repository.findByCategoryAndSlug(categoryid, slug);
   }
 
   @Override

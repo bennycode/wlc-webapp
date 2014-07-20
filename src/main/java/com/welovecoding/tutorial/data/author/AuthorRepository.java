@@ -27,7 +27,7 @@ public class AuthorRepository extends BaseRepository<Author> {
     super(Author.class);
   }
 
-  public List<Author> orderByName() {
+  public List<Author> findAllOrderedByName() {
     List<Author> result = Lists.newArrayList();
     try {
       result = getEntityManager().createNamedQuery(Author.ORDER_BY_NAME, Author.class).getResultList();

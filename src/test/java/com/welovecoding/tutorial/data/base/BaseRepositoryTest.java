@@ -123,4 +123,85 @@ public abstract class BaseRepositoryTest<T extends BaseRepository<E>, E extends 
     verify(em, times(4)).flush();
     verify(em, times(2)).merge(anyObject());
   }
+
+  @Test
+  public void testEdit() {
+    E expected = null;
+    try {
+      expected = (E) entityClass.newInstance();
+    } catch (InstantiationException | IllegalAccessException ex) {
+      Logger.getLogger(BaseRepositoryTest.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    // simulate behaviour
+    doReturn(expected).when(em).merge(anyObject());
+
+    // act
+    E result = cut.edit(expected);
+    Assert.assertEquals(result, expected);
+
+    // verify all methods are called
+    verify(em).merge(anyObject());
+  }
+
+  @Test
+  public void testEditFail() {
+    E expected = null;
+
+    // simulate behaviour
+    doThrow(new TransactionRequiredException()).
+            doThrow(new IllegalArgumentException()).
+            when(em).merge(anyObject());
+
+    // act
+    // throws TransactionRequiredException
+    E result = cut.edit(expected);
+    Assert.assertEquals(result, expected);
+
+    // throws IllegalArgumentException
+    result = cut.edit(expected);
+    Assert.assertEquals(result, expected);
+
+    // verify all methods are called
+    verify(em, times(2)).merge(anyObject());
+  }
+
+  @Test
+  public void testRemove() {
+    E expected = null;
+    try {
+      expected = (E) entityClass.newInstance();
+    } catch (InstantiationException | IllegalAccessException ex) {
+      Logger.getLogger(BaseRepositoryTest.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    // simulate behaviour
+    doNothing().when(em).remove(anyObject());
+
+    // act
+    cut.remove(expected);
+
+    // verify all methods are called
+    verify(em).remove(anyObject());
+  }
+
+  @Test
+  public void testRemoveFail() {
+    E expected = null;
+
+    // simulate behaviour
+    doThrow(new TransactionRequiredException()).
+            doThrow(new IllegalArgumentException()).
+            when(em).remove(anyObject());
+
+    // act
+    // throws TransactionRequiredException
+    cut.remove(expected);
+
+    // throws IllegalArgumentException
+    cut.remove(expected);
+
+    // verify all methods are called
+    verify(em, times(2)).remove(anyObject());
+  }
 }

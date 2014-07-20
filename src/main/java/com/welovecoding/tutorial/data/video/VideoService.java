@@ -7,8 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 
 @Stateless
 public class VideoService extends BaseService<Video, VideoRepository> {
@@ -30,14 +28,14 @@ public class VideoService extends BaseService<Video, VideoRepository> {
     return cacheService;
   }
 
-  public Video getVideoByCode(String code) {
+  public Video findByCode(String code) {
     return repository.findByCode(code);
   }
 
-  //TODO Why NOT_SUPPORTED ?
-  @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-  public Video getDetachedVideoByCode(String code) {
-    return repository.findByCode(code);
+  public Video findByCodeDetached(String code) {
+    Video video = this.findByCode(code);
+    repository.em.detach(video);
+    return video;
   }
 
   public Video findInCategory(Long categoryid, Long videoid) {
@@ -52,8 +50,8 @@ public class VideoService extends BaseService<Video, VideoRepository> {
     return repository.findInPlaylist(playlistid, videoid);
   }
 
-  public Video getByPlaylistAndSlug(long playlistid, String slug) {
-    return repository.getByPlaylistAndSlug(playlistid, slug);
+  public Video findByPlaylistAndSlug(long playlistid, String slug) {
+    return repository.findByPlaylistAndSlug(playlistid, slug);
   }
 
   @Override

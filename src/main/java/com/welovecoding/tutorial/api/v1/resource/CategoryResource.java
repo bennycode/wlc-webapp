@@ -30,7 +30,7 @@ public class CategoryResource {
   @Path("categories")
   @Produces(JSON_MEDIATYPE)
   public List<CategoryDTO> getCategories() {
-    List<Category> categories = categoryService.orderByName();
+    List<Category> categories = categoryService.findAllOrderedByName();
     return DTOMapper.mapCategories(categories);
   }
 }

@@ -57,7 +57,7 @@ public class AuthorController
   }
 
   private void loadAuthorsOrderedByName() {
-    authorsOrderedByName = getService().orderByName();
+    authorsOrderedByName = getService().findAllOrderedByName();
   }
 
   public List<Author> getAuthorsOrderedByName() {

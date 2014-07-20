@@ -84,7 +84,7 @@ public class VideoRepository extends BaseRepository<Video> {
             getResultList();
   }
 
-  public Video getByPlaylistAndSlug(long playlistid, String slug) {
+  public Video findByPlaylistAndSlug(long playlistid, String slug) {
     Video result = null;
     try {
       result = em.createNamedQuery(Video.FIND_BY_PLAYLIST_AND_SLUG, Video.class).

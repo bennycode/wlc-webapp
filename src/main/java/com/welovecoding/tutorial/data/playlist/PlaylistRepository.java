@@ -51,7 +51,7 @@ public class PlaylistRepository extends BaseRepository<Playlist> {
     return playlist;
   }
 
-  public Playlist getByCategoryAndSlug(long categoryid, String slug) {
+  public Playlist findByCategoryAndSlug(long categoryid, String slug) {
     Playlist result = null;
     try {
       result = em.createNamedQuery(Playlist.FIND_BY_CATEGORY_AND_SLUG, Playlist.class).

@@ -44,7 +44,7 @@ public class AuthorRepositoryTest extends BaseRepositoryTest<AuthorRepository, A
     when(tQuery.getResultList()).thenReturn(expected);
 
     // act
-    List<Author> result = cut.orderByName();
+    List<Author> result = cut.findAllOrderedByName();
     Assert.assertEquals(result, expected);
 
     // verify all methods are called
@@ -53,7 +53,7 @@ public class AuthorRepositoryTest extends BaseRepositoryTest<AuthorRepository, A
   }
 
   /**
-   * On fail orderByName() should return an empty list.
+   * On fail findAllOrderedByName() should return an empty list.
    */
   @Test
   public void testOrderByNameFail() {
@@ -69,27 +69,27 @@ public class AuthorRepositoryTest extends BaseRepositoryTest<AuthorRepository, A
 
     // act
     // throws IllegalStateException
-    List<Author> result = cut.orderByName();
+    List<Author> result = cut.findAllOrderedByName();
     Assert.assertThat(result, Matchers.emptyCollectionOf(Author.class));
 
     // throws QueryTimeoutException
-    result = cut.orderByName();
+    result = cut.findAllOrderedByName();
     Assert.assertThat(result, Matchers.emptyCollectionOf(Author.class));
 
     // throws TransactionRequiredException
-    result = cut.orderByName();
+    result = cut.findAllOrderedByName();
     Assert.assertThat(result, Matchers.emptyCollectionOf(Author.class));
 
     // throws PessimisticLockException
-    result = cut.orderByName();
+    result = cut.findAllOrderedByName();
     Assert.assertThat(result, Matchers.emptyCollectionOf(Author.class));
 
     // throws LockTimeoutException
-    result = cut.orderByName();
+    result = cut.findAllOrderedByName();
     Assert.assertThat(result, Matchers.emptyCollectionOf(Author.class));
 
     // throws PersistenceException
-    result = cut.orderByName();
+    result = cut.findAllOrderedByName();
     Assert.assertThat(result, Matchers.emptyCollectionOf(Author.class));
 
     // verify all methods are called 

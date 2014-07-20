@@ -38,8 +38,8 @@ public class AuthorService extends BaseService<Author, AuthorRepository> {
     return cacheService;
   }
 
-  public List<Author> orderByName() {
-    return repository.orderByName();
+  public List<Author> findAllOrderedByName() {
+    return repository.findAllOrderedByName();
   }
 
   @Override

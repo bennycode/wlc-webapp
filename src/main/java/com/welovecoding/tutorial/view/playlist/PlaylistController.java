@@ -88,7 +88,7 @@ public class PlaylistController
 
   private void loadPlaylistByCategoryAndSlug(long categoryId, String slug) {
     if (playlistByCategoryAndSlug == null) {
-      playlistByCategoryAndSlug = getService().getByCategoryAndSlug(categoryId, slug);
+      playlistByCategoryAndSlug = getService().findByCategoryAndSlug(categoryId, slug);
     }
   }
 

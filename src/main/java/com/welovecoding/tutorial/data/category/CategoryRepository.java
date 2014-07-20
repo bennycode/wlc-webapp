@@ -8,7 +8,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-//@Interceptors({EJBLoggerInterceptor.class, MonitorInterceptor.class})
 public class CategoryRepository extends BaseRepository<Category> {
 
   @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
@@ -23,11 +22,11 @@ public class CategoryRepository extends BaseRepository<Category> {
     super(Category.class);
   }
 
-  public List<Category> orderByName() {
+  public List<Category> findAllOrderedByName() {
     return getEntityManager().createNamedQuery(Category.ORDER_BY_NAME, Category.class).getResultList();
   }
 
-  public Category getBySlug(String slug) {
+  public Category findBySlug(String slug) {
     Category result = null;
     try {
       result = getEntityManager().createNamedQuery(Category.FIND_BY_SLUG, Category.class).
