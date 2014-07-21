@@ -79,9 +79,13 @@ div[class *= "pure-g"] {
 }
 
 html {
-  background-image: url("#{resource['images:noise.png']}");
+  background-image: url("#{resource['images:chalkboard-gray-500_interlaced.png']}");
   position: relative;
   min-height: 100%;
+
+  #center {
+    background-image: url("#{resource['images:noise.png']}");
+  }
 }
 
 body {
@@ -152,7 +156,6 @@ body {
   }
 
   #footer {
-    background-image: url("#{resource['images:chalkboard-gray-500_interlaced.png']}");
     .padding-wrapper();
 
     width: 100%;
