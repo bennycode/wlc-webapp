@@ -79,12 +79,13 @@ div[class *= "pure-g"] {
 }
 
 html {
-  background-image: url("#{resource['images:chalkboard-gray-500_interlaced.png']}");
+  background-image: url("#{resource['images:noise.png']}");
   position: relative;
   min-height: 100%;
 
-  #center {
-    background-image: url("#{resource['images:noise.png']}");
+  #top-wrapper,
+  #footer-wrapper {
+    background-image: url("#{resource['images:chalkboard-gray-500_interlaced.png']}");
   }
 }
 
@@ -155,21 +156,19 @@ body {
     }
   }
 
-  #footer {
+  #footer-wrapper {
     .padding-wrapper();
 
     width: 100%;
-    max-width: @max-width-grid;
     height: @height-footer;
 
     position: absolute;
     bottom: 0;
     right: 0;
     left: 0;
-    margin: auto;
 
-    p {
-      line-height: @height-footer;
+    #footer-center {
+      .vertical-align();
       color: @color-text-light;
       a {
         color: @color-text-light;

@@ -68,7 +68,7 @@
       <h:outputScript library="js/wlc" name="DocumentHandler.js" />
     </h:head>
     <h:body>
-      <div id="top-wrapper" class="layout-wrapper">
+      <div id="top-wrapper">
 
         <!-- Header -->
         <ui:include src="/WEB-INF/templates/frontend/grids/grid-header.xhtml" />
@@ -86,10 +86,12 @@
         </div>
       </div>
 
-      <div id="footer">
-        <p>
-          <h:link outcome="pretty:imprint"><h:outputText value="#{imprint.title}" /></h:link> | © 2014 <a href="http://www.bennyn.de/" target="_blank">Benny Neugebauer</a> &amp; <a href="http://beanbelt.blogspot.de/" target="_blank">Michael Koppen</a>
-        </p>
+      <div id="footer-wrapper">
+        <div id="footer-center" class="layout-wrapper">
+          <span>
+            <h:link outcome="pretty:imprint"><h:outputText value="#{imprint.title}" /></h:link> | © 2014 <a href="http://www.bennyn.de/" target="_blank">Benny Neugebauer</a> &amp; <a href="http://beanbelt.blogspot.de/" target="_blank">Michael Koppen</a>
+          </span>
+        </div>
         <h:panelGroup 
           id="debug-info"
           layout="block"
