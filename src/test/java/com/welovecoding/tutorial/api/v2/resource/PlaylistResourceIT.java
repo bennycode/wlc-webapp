@@ -35,7 +35,7 @@ public class PlaylistResourceIT extends IntegrationTest {
 
   @BeforeClass
   public static void setUpClass() throws Exception {
-
+    IntegrationTest.setUpClass();
     flatXmlDataSet = new FlatXmlDataSet(new File("src/test/resources", "full.xml"), false, true);
     JsonSchemaValidator.settings = settings().with().jsonSchemaFactory(
             JsonSchemaFactory.newBuilder().setValidationConfiguration(ValidationConfiguration.newBuilder().setDefaultVersion(DRAFTV3).freeze()).freeze()).
@@ -44,6 +44,7 @@ public class PlaylistResourceIT extends IntegrationTest {
 
   @AfterClass
   public static void tearDownClass() throws Exception {
+    IntegrationTest.tearDownClass();
   }
 
   @Before
