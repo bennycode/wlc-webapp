@@ -24,41 +24,41 @@ public class CommentBagService {
     return repository;
   }
 
-  public CommentBag getCommentBag(Attachment attachment) {
+  protected CommentBag find(Attachment attachment) {
     return repository.find(attachment);
   }
 
-  public CommentBag getCommentBag(Long id, Class<?> clazz) {
-    return getCommentBag(new Attachment(id, clazz));
+  protected CommentBag find(Long id, Class<?> clazz) {
+    return this.find(new Attachment(id, clazz));
   }
 
-  public CommentBag createCommentBag(CommentBag commentBag) {
+  protected CommentBag create(CommentBag commentBag) {
     return repository.create(commentBag);
   }
 
-  public CommentBag createCommentBag(Attachment attachment) {
+  protected CommentBag create(Attachment attachment) {
     return repository.create(new CommentBag(attachment));
   }
 
-  public void deleteCommentBag(CommentBag commentBag) {
+  protected void remove(CommentBag commentBag) {
     repository.remove(commentBag);
   }
 
-  public CommentBag editCommentBag(CommentBag commentBag) {
+  protected CommentBag edit(CommentBag commentBag) {
     return repository.edit(commentBag);
   }
 
   /**
-   * NOT FOR PUBLIC USE YET
+   * NOT FOR PUBLIC USAGE YET
    *
    * @param range
    * @return
    */
-  private List<CommentBag> getCommentBagRange(int[] range) {
+  private List<CommentBag> findRange(int[] range) {
     return repository.findRange(range);
   }
 
-  public List<CommentBag> getAllCommentBags() {
+  protected List<CommentBag> findAll() {
     return repository.findAll();
   }
 

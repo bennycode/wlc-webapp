@@ -5,7 +5,6 @@ import com.welovecoding.tutorial.data.comment.entity.Attachment;
 import com.welovecoding.tutorial.data.comment.entity.Comment;
 import com.welovecoding.tutorial.data.comment.entity.CommentBag;
 import de.yser.ownsimplecache.OwnCacheServerService;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -42,83 +41,73 @@ public class CommentService extends BaseService<Comment, CommentRepository> {
     return cacheService;
   }
 
-  public Comment getComment(Long id) {
-    return repository.find(id);
-  }
-
   /**
-   * NOT FOR PUBLIC USE YET
+   * NOT FOR PUBLIC USAGE YET
    *
    * @param commentBag
    * @param comment
    * @return
    * @throws Exception
    */
-  private Comment createComment(CommentBag commentBag, Comment comment) throws Exception {
+  private Comment create(CommentBag commentBag, Comment comment) throws Exception {
     if (commentBag == null) {
       throw new Exception("CommentBag is null");
 
     }
-    commentBag = commentBagService.getCommentBag(commentBag.getAttachment());
+    commentBag = commentBagService.find(commentBag.getAttachment());
     comment = repository.create(comment);
     commentBag.getComments().add(comment);
-    commentBagService.editCommentBag(commentBag);
+    commentBagService.edit(commentBag);
     return comment;
-  }
-
-  public Comment createComment(Long id, Class<?> clazz, Comment comment) {
-    CommentBag commentBag = commentBagService.getCommentBag(new Attachment(id, clazz));
-    if (commentBag == null) {
-      commentBag = commentBagService.createCommentBag(new Attachment(id, clazz));
-    }
-    if (commentBag.getComments() == null) {
-      commentBag.setComments(new ArrayList<Comment>());
-    }
-    comment = repository.create(comment);
-    commentBag.getComments().add(comment);
-    commentBagService.editCommentBag(commentBag);
-    return comment;
-  }
-
-  public Comment createComment(Attachment attachment, Comment comment) {
-    CommentBag commentBag = commentBagService.getCommentBag(attachment);
-    comment = repository.create(comment);
-    commentBag.getComments().add(comment);
-    commentBagService.editCommentBag(commentBag);
-    return comment;
-  }
-
-  public void deleteComment(Comment comment) {
-    repository.remove(comment);
-  }
-
-  public Comment editComment(Comment comment) {
-    return repository.edit(comment);
   }
 
   /**
-   * NOT FOR PUBLIC USE YET
+   * This method is not supported in this service.
    *
-   * @param range
-   * @return
+   * @param entity
    */
-  private List<Comment> getCommentRange(int[] range) {
-    return repository.findRange(range);
+  @Override
+  public void create(Comment entity) {
+    throw new UnsupportedOperationException("This Operation is not supported. Please consider using #createComment(Long, Class, Comment) or #createComment(Attachment, Comment).");
   }
 
-  public List<Comment> getAllComments() {
-    return repository.findAll();
+  @Override
+  public void batchCreate(List<Comment> entityList) {
+    // TODO implement batchCreate with attachment or ID and Class
+    throw new UnsupportedOperationException("This Operation is not supported. Please consider using #createComment(Long, Class, Comment) or #createComment(Attachment, Comment).");
+  }
+
+  public Comment create(Long id, Class<?> clazz, Comment comment) {
+    CommentBag commentBag = commentBagService.find(new Attachment(id, clazz));
+    if (commentBag == null) {
+      commentBag = commentBagService.create(new Attachment(id, clazz));
+    }
+    comment = repository.create(comment);
+    commentBag.getComments().add(comment);
+    commentBagService.edit(commentBag);
+    return comment;
+  }
+
+  public Comment create(Attachment attachment, Comment comment) {
+    CommentBag commentBag = commentBagService.find(attachment);
+    if (commentBag == null) {
+      commentBag = commentBagService.create(attachment);
+    }
+    comment = repository.create(comment);
+    commentBag.getComments().add(comment);
+    commentBagService.edit(commentBag);
+    return comment;
   }
 
   /**
-   * NOT FOR PUBLIC USE YET
+   * NOT FOR PUBLIC USAGE YET
    *
    * @param commentBag
    * @return
    */
-  private List<Comment> getAllCommentsOfCommentBag(CommentBag commentBag) {
+  private List<Comment> findAllAttached(CommentBag commentBag) {
     if (commentBag != null) {
-      commentBag = commentBagService.getCommentBag(commentBag.getAttachment());
+      commentBag = commentBagService.find(commentBag.getAttachment());
     }
     if (commentBag == null) {
       return null;
@@ -126,16 +115,16 @@ public class CommentService extends BaseService<Comment, CommentRepository> {
     return commentBag.getComments();
   }
 
-  public List<Comment> getAllCommentsOfCommentBag(Attachment attachment) {
-    CommentBag commentBag = commentBagService.getCommentBag(attachment);
+  public List<Comment> findAllAttached(Attachment attachment) {
+    CommentBag commentBag = commentBagService.find(attachment);
     if (commentBag == null) {
       return null;
     }
     return commentBag.getComments();
   }
 
-  public List<Comment> getAllCommentsOfCommentBag(Long id, Class<?> clazz) {
-    CommentBag commentBag = commentBagService.getCommentBag(id, clazz);
+  public List<Comment> findAllAttached(Long id, Class<?> clazz) {
+    CommentBag commentBag = commentBagService.find(id, clazz);
     if (commentBag == null) {
       return null;
     }
