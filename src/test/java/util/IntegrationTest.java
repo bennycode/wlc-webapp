@@ -13,7 +13,9 @@ import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.ext.hsqldb.HsqldbDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -21,15 +23,35 @@ import org.junit.Before;
  */
 public class IntegrationTest {
 
+  private static final Logger LOG = Logger.getLogger(IntegrationTest.class.getName());
+
   protected static final String HOST = "http://localhost";
   protected static final String PORT = "9090";
   protected static final String ROOT = HOST + ":" + PORT + "/" + GFInstance.APP_NAME;
   protected static Connection JDBC_CONNECTION;
   protected static IDatabaseConnection DATABASE_CONNECTION;
   protected static FlatXmlDataSet flatXmlDataSet;
+  protected static boolean singleIntegrationTestRunDetected = false;
 
   public IntegrationTest() {
 
+  }
+
+  @BeforeClass
+  public static void setUpClass() throws Exception {
+    LOG.info("[IntegrationTest] calling setUpClass()");
+    if (GFInstance.glassfish == null) {
+      singleIntegrationTestRunDetected = true;
+      GFInstance.startInstance();
+    }
+  }
+
+  @AfterClass
+  public static void tearDownClass() throws Exception {
+    LOG.info("[IntegrationTest] calling tearDownClass()");
+    if (singleIntegrationTestRunDetected) {
+      GFInstance.stopInstance();
+    }
   }
 
   @Before
