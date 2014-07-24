@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -32,9 +34,11 @@ public class IntegrationTest {
   protected static IDatabaseConnection DATABASE_CONNECTION;
   protected static FlatXmlDataSet flatXmlDataSet;
   protected static boolean singleIntegrationTestRunDetected = false;
+  protected static InitialContext context;
 
-  public IntegrationTest() {
-
+  public static <T> T lookupBy(Class<T> type) throws NamingException {
+    return (T) context.lookup("java:global/" + GFInstance.APP_NAME + "/"
+            + type.getSimpleName());
   }
 
   @BeforeClass
@@ -44,6 +48,7 @@ public class IntegrationTest {
       singleIntegrationTestRunDetected = true;
       GFInstance.startInstance();
     }
+    context = new InitialContext();
   }
 
   @AfterClass
