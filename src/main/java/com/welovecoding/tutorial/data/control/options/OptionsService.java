@@ -22,6 +22,11 @@ public class OptionsService {
   public static Properties SYSTEM_PROPERTIES;
 
   public OptionsService() {
+
+  }
+
+  @PostConstruct
+  private void init() {
     ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
     InputStream stream = classLoader.getResourceAsStream("production.properties");
     if (stream != null) {
@@ -33,11 +38,6 @@ public class OptionsService {
         LOG.log(Level.SEVERE, "Could not load system properties!", ex);
       }
     }
-  }
-
-  @PostConstruct
-  private void init() {
-
   }
 
   public class OptionKeys {
