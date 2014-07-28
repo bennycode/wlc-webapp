@@ -24,27 +24,27 @@ public class CommentBagService {
     return repository;
   }
 
-  protected CommentBag find(Attachment attachment) {
+  public CommentBag find(Attachment attachment) {
     return repository.find(attachment);
   }
 
-  protected CommentBag find(Long id, Class<?> clazz) {
+  public CommentBag find(Long id, Class<?> clazz) {
     return this.find(new Attachment(id, clazz));
   }
 
-  protected CommentBag create(CommentBag commentBag) {
+  public CommentBag create(CommentBag commentBag) {
     return repository.create(commentBag);
   }
 
-  protected CommentBag create(Attachment attachment) {
+  public CommentBag create(Attachment attachment) {
     return repository.create(new CommentBag(attachment));
   }
 
-  protected void remove(CommentBag commentBag) {
+  public void remove(CommentBag commentBag) {
     repository.remove(commentBag);
   }
 
-  protected CommentBag edit(CommentBag commentBag) {
+  public CommentBag edit(CommentBag commentBag) {
     return repository.edit(commentBag);
   }
 
@@ -58,7 +58,7 @@ public class CommentBagService {
     return repository.findRange(range);
   }
 
-  protected List<CommentBag> findAll() {
+  public List<CommentBag> findAll() {
     return repository.findAll();
   }
 
