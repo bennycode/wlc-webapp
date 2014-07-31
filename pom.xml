@@ -4,7 +4,7 @@
 
   <groupId>com.welovecoding.web</groupId>
   <artifactId>wlc-webapp</artifactId>
-  <version>0.0.30-SNAPSHOT</version>
+  <version>0.0.30</version>
   <packaging>war</packaging>
 
   <name>We Love Coding (webapp)</name>
@@ -37,7 +37,7 @@
     <connection>scm:git:git@github.com:bennyn/wlc-webapp.git</connection>
     <developerConnection>scm:git:git@github.com:bennyn/wlc-webapp.git</developerConnection>
     <url>https://github.com/bennyn/wlc-webapp</url>
-    <tag>HEAD</tag>
+    <tag>wlc-webapp/0.0.30</tag>
   </scm>
   <issueManagement>
     <system>GitHub Issue Management</system>
