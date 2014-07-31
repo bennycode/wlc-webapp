@@ -13,7 +13,6 @@ public class PlaylistDTO extends BaseDTO {
   private AuthorDTO author;
   private String category;
   private int numberOfVideos;
-  private StatusDTO status;
 
   public PlaylistDTO() {
   }
@@ -88,14 +87,6 @@ public class PlaylistDTO extends BaseDTO {
 
   public void setNumberOfVideos(int numberOfVideos) {
     this.numberOfVideos = numberOfVideos;
-  }
-
-  public StatusDTO getStatus() {
-    return status;
-  }
-
-  public void setStatus(StatusDTO status) {
-    this.status = status;
   }
 
 }
