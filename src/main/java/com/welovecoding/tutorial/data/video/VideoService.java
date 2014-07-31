@@ -4,6 +4,7 @@ import com.welovecoding.tutorial.data.base.BaseService;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -52,6 +53,14 @@ public class VideoService extends BaseService<Video, VideoRepository> {
 
   public Video findByPlaylistAndSlug(long playlistid, String slug) {
     return repository.findByPlaylistAndSlug(playlistid, slug);
+  }
+
+  public List<Video> findAllInPlaylist(Long playlistid) {
+    return repository.findAllInPlaylist(playlistid);
+  }
+
+  public List<Video> findAllInCategoryAndPlaylist(Long categoryid, Long playlistid) {
+    return repository.findAllInCategoryAndPlaylist(categoryid, playlistid);
   }
 
   @Override

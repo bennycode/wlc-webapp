@@ -5,6 +5,7 @@ import com.welovecoding.tutorial.api.v2.dto.VideoDTO;
 import com.welovecoding.tutorial.api.v2.mapping.DTOMapper;
 import com.welovecoding.tutorial.data.video.VideoService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -28,6 +29,27 @@ public class VideoResource2 {
   private VideoService videoService;
 
   public VideoResource2() {
+  }
+
+  @GET
+  @RESTCache(genericTypeHint = "com.welovecoding.tutorial.api.v2.dto.VideoDTO")
+  @Produces(JSON_MEDIATYPE)
+  public Response getVideos(@PathParam("categoryid") Long categoryid, @PathParam("playlistid") Long playlistid, @Context Request req, @Context UriInfo uriInfo) {
+
+    Response resp;
+    try {
+      List<VideoDTO> videoList = null;
+      if (categoryid == null) {
+        videoList = DTOMapper.mapVideoList(uriInfo.getBaseUri().toString(), videoService.findAllInPlaylist(playlistid));
+      } else {
+        videoList = DTOMapper.mapVideoList(uriInfo.getBaseUri().toString(), videoService.findAllInCategoryAndPlaylist(categoryid, playlistid));
+      }
+      resp = Response.ok(videoList).build();
+    } catch (Exception e) {
+      LOG.log(Level.SEVERE, "Exception: {0}", e);
+      resp = Response.status(500).build();
+    }
+    return resp;
   }
 
   @GET

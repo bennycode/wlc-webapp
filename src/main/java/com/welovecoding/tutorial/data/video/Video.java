@@ -3,6 +3,8 @@ package com.welovecoding.tutorial.data.video;
 import com.welovecoding.tutorial.data.base.BaseEntity;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import static com.welovecoding.tutorial.data.video.Video.FIND_ALL_IN_CATEGORY;
+import static com.welovecoding.tutorial.data.video.Video.FIND_ALL_IN_CATEGORY_AND_PLAYLIST;
+import static com.welovecoding.tutorial.data.video.Video.FIND_ALL_IN_PLAYLIST;
 import static com.welovecoding.tutorial.data.video.Video.FIND_BY_CODE;
 import static com.welovecoding.tutorial.data.video.Video.FIND_BY_PLAYLIST_AND_SLUG;
 import static com.welovecoding.tutorial.data.video.Video.FIND_IN_CATEGORY;
@@ -25,6 +27,8 @@ import javax.validation.constraints.Size;
   @NamedQuery(name = LIKE_NAME, query = "SELECT v FROM Video v WHERE UPPER(v.name) LIKE UPPER(:keyword)"),
   @NamedQuery(name = FIND_ALL_IN_CATEGORY, query = "SELECT v FROM Video v WHERE v.playlist.category.id = :playlistid"),
   @NamedQuery(name = FIND_IN_PLAYLIST, query = "SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.id = :playlistid"),
+  @NamedQuery(name = FIND_ALL_IN_PLAYLIST, query = "SELECT v FROM Video v WHERE v.playlist.id = :playlistid"),
+  @NamedQuery(name = FIND_ALL_IN_CATEGORY_AND_PLAYLIST, query = "SELECT v FROM Video v WHERE v.playlist.category.id = :categoryid AND v.playlist.id = :playlistid"),
   @NamedQuery(name = FIND_IN_CATEGORY, query = "SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.category.id = :categoryid"),
   @NamedQuery(name = FIND_IN_CATEGORY_AND_PLAYLIST, query = "SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.category.id = :categoryid AND v.playlist.id = :playlistid"),
   @NamedQuery(name = FIND_BY_PLAYLIST_AND_SLUG, query = "SELECT v FROM Video v WHERE v.slug = :videoslug AND v.playlist.id = :playlistid")
@@ -35,6 +39,8 @@ public class Video extends BaseEntity {
   public static final String LIKE_NAME = "Video.likeName";
   public static final String FIND_ALL_IN_CATEGORY = "Video.findAllInCategory";
   public static final String FIND_IN_PLAYLIST = "Video.findInPlaylist";
+  public static final String FIND_ALL_IN_PLAYLIST = "Video.findAllInPlaylist";
+  public static final String FIND_ALL_IN_CATEGORY_AND_PLAYLIST = "Video.findAllInCategoryAndPlaylist";
   public static final String FIND_IN_CATEGORY = "Video.findInCategory";
   public static final String FIND_IN_CATEGORY_AND_PLAYLIST = "Video.findInCategoryAndPlaylist";
   public static final String FIND_BY_PLAYLIST_AND_SLUG = "Video.findByPlaylistAndSlug";

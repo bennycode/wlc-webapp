@@ -20,7 +20,7 @@ import java.util.Set;
 
 /**
  *
- * @author MacYser
+ * @author Michael Koppen
  */
 public class DTOMapper {
 
@@ -91,7 +91,8 @@ public class DTOMapper {
       dto.setNumberOfVideos(e.getVideos().size());
       dto.setAuthor(mapAuthor(e.getAuthor()));
       dto.setProvider(e.getProvider().toString());
-//    dto.setSlug(e.getSlug());
+      dto.setCode(e.getCode());
+      dto.setSlug(e.getSlug());
       dto.setName(e.getName());
       dto.setVideos(mapVideoAddressList(root, e.getVideos()));
       return dto;

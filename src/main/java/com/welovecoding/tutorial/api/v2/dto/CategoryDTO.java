@@ -14,7 +14,6 @@ public class CategoryDTO extends BaseDTO {
   private List<String> playlists;
   private int numberOfVideos;
   private Set<String> languageCodes;
-  private String url;
 
   public CategoryDTO() {
   }
@@ -57,14 +56,6 @@ public class CategoryDTO extends BaseDTO {
 
   public void setLanguageCodes(Set<String> languageCodes) {
     this.languageCodes = languageCodes;
-  }
-
-  public String getUrl() {
-    return url;
-  }
-
-  public void setUrl(String url) {
-    this.url = url;
   }
 
 }

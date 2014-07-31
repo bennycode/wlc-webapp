@@ -1,6 +1,7 @@
 package com.welovecoding.tutorial.data.video;
 
 import com.welovecoding.tutorial.data.base.BaseRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 
 @Stateless
 public class VideoRepository extends BaseRepository<Video> {
@@ -61,6 +63,31 @@ public class VideoRepository extends BaseRepository<Video> {
               getSingleResult();
     } catch (NoResultException ex) {
       // NOP
+    }
+    return result;
+  }
+
+  public List<Video> findAllInPlaylist(Long playlistid) {
+    List<Video> result = new ArrayList<Video>();
+    try {
+      result = em.createNamedQuery(Video.FIND_ALL_IN_PLAYLIST, Video.class).
+              setParameter("playlistid", playlistid).
+              getResultList();
+    } catch (IllegalArgumentException | PersistenceException e) {
+      LOG.log(Level.SEVERE, "Could not find all entities!", e);
+    }
+    return result;
+  }
+
+  public List<Video> findAllInCategoryAndPlaylist(Long categoryid, Long playlistid) {
+    List<Video> result = new ArrayList<Video>();
+    try {
+      result = em.createNamedQuery(Video.FIND_ALL_IN_CATEGORY_AND_PLAYLIST, Video.class).
+              setParameter("categoryid", categoryid).
+              setParameter("playlistid", playlistid).
+              getResultList();
+    } catch (IllegalArgumentException | PersistenceException e) {
+      LOG.log(Level.SEVERE, "Could not find all entities!", e);
     }
     return result;
   }
