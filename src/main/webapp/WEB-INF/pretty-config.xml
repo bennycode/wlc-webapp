@@ -6,17 +6,17 @@
   <!-- 
       ?!                            = Negative Lookahead, q(?!u) -> q not followed by u 
       (?!.*/$)                      = Not ending with slash (/)
-      (?!.*rest.*)                  = Not containing the word 'rest'
+      (?!.*/v1/.*)                  = Not containing the word '/v1/'
       (?!.*([a-z]+)\.([a-z]*$))     = Not ending with e.g. index.xhtml
       ([a-zA-Z0-9/]*)               = Any other URL-part e.g. /bla/blub/bli
       
       TEST-URLS
-      /bla/service/v1/categories        SHOULD MATCH
-      /rest/service/v1/categories       SHOULD NOT MATCH (contains 'rest')
-      /bla/service/v1/categories/       SHOULD NOT MATCH (ends with trailing '/')
-      /bla/service/v1/categories.xhtml  SHOULD NOT MATCH (end with .xhtml)
+      /bla/service/v2/categories        SHOULD MATCH
+      /bla/service/v1/categories        SHOULD NOT MATCH (contains '/v1/')
+      /bla/service/v2/categories/       SHOULD NOT MATCH (ends with trailing '/')
+      /bla/service/v2/categories.xhtml  SHOULD NOT MATCH (end with .xhtml)
   -->
-  <rewrite match="^(?!.*/$)(?!.*rest.*)(?!.*([a-z]+)\.([a-z]*$))([a-zA-Z0-9/]*)$" trailingSlash="append" redirect="301"/>
+  <rewrite match="^(?!.*/$)(?!.*/v1/.*)(?!.*([a-z]+)\.([a-z]*$))([a-zA-Z0-9/]*)$" trailingSlash="append" redirect="301"/>
 
   <!-- Home -->
   <url-mapping id="home">
