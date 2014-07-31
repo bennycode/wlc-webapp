@@ -134,6 +134,7 @@ public class GoogleLoginServlet extends HttpServlet {
    * @param req the HttpRequest object
    * @return The constructed request's URL
    */
+  @Deprecated
   public static String getOAuthCodeCallbackHandlerUrl(HttpServletRequest req) {
     String scheme = req.getScheme() + "://";
     String serverName = req.getServerName();

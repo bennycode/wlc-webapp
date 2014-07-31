@@ -28,8 +28,6 @@ public class Category extends BaseEntity {
   public static final String FIND_BY_SLUG = "Category.findBySlug";
   public static final String ORDER_BY_NAME = "Category.orderByName";
 
-  private static final long serialVersionUID = 1L;
-
   @NotNull
   @Size(min = 1, max = 7)
   @Basic(optional = false)
