@@ -43,19 +43,19 @@ public abstract class BaseService<T extends BaseEntity, E extends BaseRepository
   }
 
   public void create(T entity) {
-    invalidateRelatedCaches();
     getRepository().create(entity);
+    invalidateRelatedCaches();
   }
 
   public void batchCreate(List<T> entityList) {
-    invalidateRelatedCaches();
     getRepository().batchCreate(entityList.iterator());
+    invalidateRelatedCaches();
   }
 
   public void edit(T entity) throws ConstraintViolationBagException {
-    validateEntity(entity);
     invalidateRelatedCaches();
     getRepository().edit(entity);
+    validateEntity(entity);
   }
 
   protected void validateEntity(T entity) throws ConstraintViolationBagException {
@@ -75,13 +75,13 @@ public abstract class BaseService<T extends BaseEntity, E extends BaseRepository
   }
 
   public void batchEdit(List<T> entityList) {
-    invalidateRelatedCaches();
     getRepository().batchEdit(entityList.iterator());
+    invalidateRelatedCaches();
   }
 
   public void remove(T entity) {
-    invalidateRelatedCaches();
     getRepository().remove(entity);
+    invalidateRelatedCaches();
   }
 
   public T find(Long id) {

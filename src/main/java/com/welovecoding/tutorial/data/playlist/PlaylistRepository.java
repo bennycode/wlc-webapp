@@ -2,13 +2,20 @@ package com.welovecoding.tutorial.data.playlist;
 
 import com.welovecoding.tutorial.data.base.BaseRepository;
 import com.welovecoding.tutorial.data.playlist.entity.Playlist;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 
 @Stateless
 public class PlaylistRepository extends BaseRepository<Playlist> {
+
+  private static final Logger LOG = Logger.getLogger(PlaylistRepository.class.getName());
 
   public PlaylistRepository() {
     super(Playlist.class);
@@ -51,7 +58,7 @@ public class PlaylistRepository extends BaseRepository<Playlist> {
     return playlist;
   }
 
-  public Playlist findByCategoryAndSlug(long categoryid, String slug) {
+  public Playlist findByCategoryAndSlug(Long categoryid, String slug) {
     Playlist result = null;
     try {
       result = em.createNamedQuery(Playlist.FIND_BY_CATEGORY_AND_SLUG, Playlist.class).
@@ -63,4 +70,17 @@ public class PlaylistRepository extends BaseRepository<Playlist> {
     }
     return result;
   }
+
+  public List<Playlist> findAllInCategory(Long categoryid) {
+    List<Playlist> result = new ArrayList<Playlist>();
+    try {
+      result = em.createNamedQuery(Playlist.FIND_ALL_IN_CATEGORY, Playlist.class).
+              setParameter("categoryid", categoryid).
+              getResultList();
+    } catch (IllegalArgumentException | PersistenceException e) {
+      LOG.log(Level.SEVERE, "Could not find all entities!", e);
+    }
+    return result;
+  }
+
 }

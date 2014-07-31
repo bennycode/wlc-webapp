@@ -5,6 +5,7 @@ import com.welovecoding.tutorial.api.v2.dto.PlaylistDTO;
 import com.welovecoding.tutorial.api.v2.mapping.DTOMapper;
 import com.welovecoding.tutorial.data.playlist.PlaylistService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -31,6 +32,23 @@ public class PlaylistResource2 {
   private VideoResource2 videoResource;
 
   public PlaylistResource2() {
+  }
+
+  @GET
+  
+  @RESTCache(genericTypeHint = "com.welovecoding.tutorial.api.v2.dto.PlaylistDTO")
+  @Produces(JSON_MEDIATYPE)
+  public Response getVideos(@PathParam("categoryid") Long categoryid, @Context Request req, @Context UriInfo uriInfo) {
+
+    Response resp;
+    try {
+      List<PlaylistDTO> playlistList = DTOMapper.mapPlaylistList(uriInfo.getBaseUri().toString(), playlistService.findAllInCategory(categoryid));
+      resp = Response.ok(playlistList).build();
+    } catch (Exception e) {
+      LOG.log(Level.SEVERE, "Exception: {0}", e);
+      resp = Response.status(500).build();
+    }
+    return resp;
   }
 
   @GET

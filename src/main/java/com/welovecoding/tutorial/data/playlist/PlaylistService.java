@@ -5,6 +5,7 @@ import com.welovecoding.tutorial.data.playlist.entity.Playlist;
 import de.yser.ownsimplecache.OwnCacheServerService;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -43,8 +44,12 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
     return playlist;
   }
 
-  public Playlist findByCategoryAndSlug(long categoryid, String slug) {
+  public Playlist findByCategoryAndSlug(Long categoryid, String slug) {
     return repository.findByCategoryAndSlug(categoryid, slug);
+  }
+
+  public List<Playlist> findAllInCategory(Long categoryid) {
+    return repository.findAllInCategory(categoryid);
   }
 
   @Override
