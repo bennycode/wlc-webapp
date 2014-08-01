@@ -1,10 +1,11 @@
 package com.welovecoding.tutorial.api;
 
+import com.google.api.client.util.IOUtils;
 import static com.welovecoding.tutorial.view.Pages.REST_FHB;
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -22,7 +23,6 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -111,8 +111,8 @@ public class FHBRestRedirectServlet extends HttpServlet {
     con.setRequestMethod(req.getMethod());
     System.out.println("Headers: ");
     for (String header : Collections.list(req.getHeaderNames())) {
-      System.out.println(header + ": " + req.getHeader(header));
       if (!"cookie".equalsIgnoreCase(header)) {
+        System.out.println(header + ": " + req.getHeader(header));
         con.setRequestProperty(header, req.getHeader(header));
       }
     }
@@ -144,25 +144,32 @@ public class FHBRestRedirectServlet extends HttpServlet {
       wr.close();
     }
 
+    con.setDoInput(true);
     int responseCode = con.getResponseCode();
     System.out.println("\nSending '" + req.getMethod() + "' request to URL : " + forwardUri);
     System.out.println("Post parameters : " + urlParameters);
     System.out.println("Response Code : " + responseCode);
 
-    BufferedReader in = new BufferedReader(
-            new InputStreamReader(con.getInputStream()));
-    String inputLine;
-    StringBuilder response1 = new StringBuilder();
+    resp.addHeader("Content-Type", con.getContentType());
+//    resp.addHeader("Content-Length", "" + con.getContentLength());
 
-    ServletOutputStream sout = resp.getOutputStream();
+    InputStream input = con.getInputStream();
+    OutputStream output = resp.getOutputStream();
+    IOUtils.copy(input, output);
 
-    while ((inputLine = in.readLine()) != null) {
-      response1.append(inputLine);
-      sout.write(inputLine.getBytes());
-    }
-    in.close();
-
-    sout.flush();
+//    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+//    String inputLine;
+//    StringBuilder response1 = new StringBuilder();
+//
+//    ServletOutputStream sout = resp.getOutputStream();
+//
+//    while ((inputLine = in.readLine()) != null) {
+//      response1.append(inputLine);
+//      sout.write(inputLine.getBytes());
+//    }
+//    in.close();
+//
+//    sout.flush();
   }
 
 }
