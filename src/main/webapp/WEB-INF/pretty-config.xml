@@ -8,7 +8,7 @@
       (?!.*/$)                      = Not ending with slash (/)
       (?!.*/v1/.*)                  = Not containing the word '/v1/'
       (?!.*([a-z]+)\.([a-z]*$))     = Not ending with e.g. index.xhtml
-      ([a-zA-Z0-9/]*)               = Any other URL-part e.g. /bla/blub/bli
+      ([a-zA-Z0-9/-]*)               = Any other URL-part e.g. /bla/bl-ub/bli
       
       TEST-URLS
       /bla/service/v2/categories        SHOULD MATCH
@@ -16,7 +16,7 @@
       /bla/service/v2/categories/       SHOULD NOT MATCH (ends with trailing '/')
       /bla/service/v2/categories.xhtml  SHOULD NOT MATCH (end with .xhtml)
   -->
-  <rewrite match="^(?!.*/$)(?!.*/v1/.*)(?!.*([a-z]+)\.([a-z]*$))([a-zA-Z0-9/]*)$" trailingSlash="append" redirect="301"/>
+  <rewrite match="^(?!.*/$)(?!.*/v1/.*)(?!.*([a-z]+)\.([a-z]*$))([a-zA-Z0-9/-]*)$" trailingSlash="append" redirect="301"/>
 
   <!-- Home -->
   <url-mapping id="home">
