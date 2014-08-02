@@ -62,7 +62,7 @@ public class YouTubeService {
   }
 
   private Playlist getPlaylist(String code) {
-    Playlist playlist = playlistService.findByCodeDetached(code);
+    Playlist playlist = playlistService.getDetachedPlaylistByCode(code);
 
     if (playlist == null) {
       playlist = new Playlist();

@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 
 @Stateless
 public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
@@ -28,6 +30,17 @@ public class PlaylistService extends BaseService<Playlist, PlaylistRepository> {
   @Override
   protected OwnCacheServerService getCache() {
     return cacheService;
+  }
+
+  /**
+   * Needed for YouTube importer.
+   *
+   * @param code Playlist ID, Example: PLpyrjJvJ7GJ4i-2v0kVohE1cWJs12TjDF
+   * @return Playlist
+   */
+  @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+  public Playlist getDetachedPlaylistByCode(String code) {
+    return repository.findByCode(code);
   }
 
   public Playlist findByCode(String code) {
