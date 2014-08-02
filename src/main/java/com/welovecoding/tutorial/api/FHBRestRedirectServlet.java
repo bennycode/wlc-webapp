@@ -98,6 +98,8 @@ public class FHBRestRedirectServlet extends HttpServlet {
 
   private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
     String forwardUri = req.getRequestURL().toString();
+    forwardUri = forwardUri.replaceAll("welovecoding.com", "informatiktutorials.de");
+    forwardUri = forwardUri.replaceAll("welovecoding.de", "informatiktutorials.de");
     forwardUri = forwardUri.replaceAll("/wlc-webapp", "");
     forwardUri = forwardUri.replaceAll("/rest/", "/fhb-tutorien/rest/");
     if (req.getQueryString() != null) {
