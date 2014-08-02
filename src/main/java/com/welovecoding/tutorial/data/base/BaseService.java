@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import javax.persistence.MappedSuperclass;
 import javax.validation.ConstraintViolation;
@@ -53,9 +55,9 @@ public abstract class BaseService<T extends BaseEntity, E extends BaseRepository
   }
 
   public void edit(T entity) throws ConstraintViolationBagException {
-    invalidateRelatedCaches();
-    getRepository().edit(entity);
     validateEntity(entity);
+    getRepository().edit(entity);
+    invalidateRelatedCaches();
   }
 
   protected void validateEntity(T entity) throws ConstraintViolationBagException {
@@ -100,6 +102,7 @@ public abstract class BaseService<T extends BaseEntity, E extends BaseRepository
     return getRepository().count();
   }
 
+  @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
   protected void invalidateRelatedCaches() {
 
     for (String type : typesToClear()) {

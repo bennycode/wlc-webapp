@@ -68,12 +68,12 @@ public class YouTubeImportWizard implements Serializable {
       playlist.setCreator(userSessionBean.getUser());
       playlist.setLastEditor(userSessionBean.getUser());
       playlistService.edit(playlist);
-    } catch (ConstraintViolationBagException ex) {
-      Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
+    } catch (ConstraintViolationBagException cve) {
+      Set<ConstraintViolation<?>> constraintViolations = cve.getConstraintViolations();
       for (ConstraintViolation<?> constraintViolation : constraintViolations) {
         String propertyPath = constraintViolation.getPropertyPath().toString();
         String message = constraintViolation.getMessage();
-        LOG.log(Level.SEVERE, null, propertyPath + ": " + message);
+        LOG.log(Level.SEVERE, "{0}: {1}", new Object[]{propertyPath, message});
       }
     } finally {
       this.playlistId = "";
