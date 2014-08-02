@@ -35,7 +35,11 @@ public class VideoService extends BaseService<Video, VideoRepository> {
 
   public Video findByCodeDetached(String code) {
     Video video = this.findByCode(code);
-    repository.em.detach(video);
+
+    if (video != null) {
+      repository.em.detach(video);
+    }
+
     return video;
   }
 
