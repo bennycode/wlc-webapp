@@ -52,9 +52,8 @@ public class Video extends BaseEntity {
   @Column(length = 1024)
   private String description;
 
-  @NotNull
-  
   @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+  @NotNull
   private Playlist playlist;
 
   private String previewImageUrl;
@@ -85,6 +84,10 @@ public class Video extends BaseEntity {
   }
 
   public void setDescription(String description) {
+    if (description.length() > 1024) {
+      description = description.substring(0, 1024);
+    }
+
     this.description = description;
   }
 
