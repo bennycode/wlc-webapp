@@ -11,6 +11,7 @@ import static com.welovecoding.tutorial.data.video.Video.FIND_IN_CATEGORY;
 import static com.welovecoding.tutorial.data.video.Video.FIND_IN_CATEGORY_AND_PLAYLIST;
 import static com.welovecoding.tutorial.data.video.Video.FIND_IN_PLAYLIST;
 import static com.welovecoding.tutorial.data.video.Video.LIKE_NAME;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -68,7 +69,7 @@ public class Video extends BaseEntity {
   public Video(String code, String name, String description) {
     this.code = code;
     this.setName(name);
-    this.description = description;
+    this.setDescription(description);
   }
 
   public String getCode() {
@@ -84,7 +85,7 @@ public class Video extends BaseEntity {
   }
 
   public void setDescription(String description) {
-    if (description.length() > 1024) {
+    if (description != null && description.length() > 1024) {
       description = description.substring(0, 1024);
     }
 
@@ -126,6 +127,32 @@ public class Video extends BaseEntity {
   @Override
   public String toString() {
     return this.getName();
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 7;
+    hash = 97 * hash + Objects.hashCode(this.code);
+    hash = 97 * hash + Objects.hashCode(this.getId());
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Video other = (Video) obj;
+    if (!Objects.equals(this.code, other.code)) {
+      return false;
+    }
+    if (!super.equals(other)) {
+      return false;
+    }
+    return true;
   }
 
 }

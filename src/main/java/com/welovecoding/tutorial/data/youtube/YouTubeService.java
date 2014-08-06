@@ -14,7 +14,9 @@ import com.welovecoding.tutorial.data.statistic.StatisticInterceptor;
 import com.welovecoding.tutorial.data.video.Video;
 import com.welovecoding.tutorial.data.video.VideoService;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -44,7 +46,7 @@ public class YouTubeService {
 
     // Convert YouTube playlist items to playlist entities
     List<PlaylistItem> playlistItems = repository.getVideos(playlistId);
-    List<Video> videos = new ArrayList<>(playlistItems.size());
+    Set<Video> videos = new HashSet<>(playlistItems.size());
 
     for (PlaylistItem playlistItem : playlistItems) {
       String videoId = playlistItem.getContentDetails().getVideoId();
@@ -56,7 +58,7 @@ public class YouTubeService {
     }
 
     // Connect videos and playlist
-    playlist.setVideos(videos);
+    playlist.setVideos(new ArrayList<>(videos));
 
     return playlist;
   }
