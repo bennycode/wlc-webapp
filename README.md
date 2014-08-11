@@ -4,6 +4,12 @@ This is an attempt to make **www.welovecoding.com** a better place...
 
 [![Build Status](http://93.180.157.228:8080/buildStatus/icon?job=WeLoveCoding_Test)](http://93.180.157.228:8080/job/WeLoveCoding_Test/)
 
+## Authors
+
+[![Benny Neugebauer on Stack Exchange][stack_exchange_flair_bennyn]][stack_exchange_link_bennyn]
+
+[![Michael Koppen on Stack Exchange][stack_exchange_flair_yser]][stack_exchange_link_yser]
+
 ## Useful resources: ##
 
 **Java**
@@ -41,46 +47,6 @@ This is an attempt to make **www.welovecoding.com** a better place...
 - [Maven Default Lifecycle Phases](http://www.avajava.com/tutorials/lessons/what-are-the-phases-of-the-maven-default-lifecycle.html)
 - [Javac XLint Options](http://www.javaworld.com/article/2073587/javac-s--xlint-options.html)
 - [Jenkins: Build on Git-Tags](http://erics-notes.blogspot.de/2013/05/jenkins-build-latest-git-tag.html)
-
-##Cool projects:##
-- [Apache Isis™](http://isis.apache.org/)
-- [Pebble - A lightweight, open source, Java EE blogging tool](https://github.com/pebbleblog/pebble)
-- [Project Lombok](http://projectlombok.org/), [Project Lombok & JEE](http://javalabor.blogspot.de/2012/01/java-verbosity-jee-and-lombok.html)
-- [Pure CSS modules](http://purecss.io/)
-
-## Web Tools ##
-- [Font Awesome subsetting tool](http://icnfnt.com/)
-
-##Website Analyzer:##
-- [SEO tools](http://www.feedthebot.com/tools/)
-- [http://developers.google.com/speed/pagespeed/insights/?url=wwww.welovecoding.com&tab=desktop](http://developers.google.com/speed/pagespeed/insights/?url=wwww.welovecoding.com&tab=desktop)
-- [http://validator.w3.org/check?uri=wwww.welovecoding.com](http://validator.w3.org/check?uri=wwww.welovecoding.com)
-- [http://tools.quicksprout.com/analyze/www.welovecoding.com](http://tools.quicksprout.com/analyze/www.welovecoding.com)
-- [SEO Tools from OnPage.org](http://de.onpage.org/about/free-tools/)
-- [Load testing from the cloud (free credits)](https://www.blitz.io/bKjFTlt40QR0nr7aXHFJ0Y)
-
-## Tools: ##
-- [CSS Unminifier](http://mrcoles.com/blog/css-unminify/)
-- [Code Search](http://code.ohloh.net/)
-
-##REST service##
-- [http://localhost:8080/wlc_webapp/rest/fhb/v1/categories](http://localhost:8080/wlc_webapp/rest/fhb/v1/categories)
-
-##Lessons learned##
-
-- Avoid using component bindings to a bean that has session scope
-- Never assign FacesContext as instance variable of a view/session/application scoped managed bean, because the FacesContext instance is request scoped 
-- [h:commandButton is not working](http://stackoverflow.com/a/2120183/451634)
- 
-> Always strive to make code that can be modified with the least number of edits. - Lea Verou
-> Optimize only as needed. - Adam Bien
-
-Authors
-------
-
-[![Benny Neugebauer on Stack Exchange][stack_exchange_flair_bennyn]][stack_exchange_link_bennyn]
-
-[![Michael Koppen on Stack Exchange][stack_exchange_flair_yser]][stack_exchange_link_yser]
 
 
 [stack_exchange_link_bennyn]: http://stackexchange.com/users/203782/benny-neugebauer?tab=accounts
