@@ -3,9 +3,9 @@ package com.welovecoding.tutorial.api.v2.resource;
 import static com.welovecoding.tutorial.api.v2.RestConfig.JSON_MEDIATYPE;
 import com.welovecoding.tutorial.api.v2.dto.CategoryDTO;
 import com.welovecoding.tutorial.api.v2.mapping.DTOMapper;
+import com.welovecoding.tutorial.api.v2.result.CategoryResult;
 import com.welovecoding.tutorial.data.category.CategoryService;
 import de.yser.ownsimplecache.util.jaxrs.RESTCache;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -42,8 +42,9 @@ public class CategoryResource2 {
 
     Response resp;
     try {
-      List<CategoryDTO> categoryList = DTOMapper.mapCategoryList(uriInfo.getBaseUri().toString(), categoryService.findAllOrderedByName());
-      resp = Response.ok(categoryList).build();
+      CategoryResult result = new CategoryResult();
+      result.categories = DTOMapper.mapCategoryList(uriInfo.getBaseUri().toString(), categoryService.findAllOrderedByName());
+      resp = Response.ok(result).build();
     } catch (Exception e) {
       LOG.log(Level.SEVERE, "Exception: {0}", e);
       resp = Response.status(500).build();
