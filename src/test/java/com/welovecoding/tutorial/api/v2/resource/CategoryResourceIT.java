@@ -15,6 +15,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -67,6 +68,7 @@ public class CategoryResourceIT extends IntegrationTest {
    * Test of getCategories method, of class CategoryResource.
    */
   @Test
+  @Ignore
   public void testGetCategories() throws Exception {
     System.out.println(test.getMethodName());
     InputStream schema = getSchema(ANY_JSON_ARRAY_SCHEMA);
