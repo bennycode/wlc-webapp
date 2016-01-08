@@ -1,6 +1,6 @@
 # We Love Coding — Web App
 
-This project contains a Java EE web application which is available in German ([www.welovecoding.de](http://www.welovecoding.de/)) and in English ([www.welovecoding.com](http://www.welovecoding.de/)).
+This project contains a Java EE web application which is available in German ([www.welovecoding.de](http://www.welovecoding.de/)) and in English ([www.welovecoding.com](http://www.welovecoding.com/)).
 
 [![Build Status](http://93.180.157.228:8080/buildStatus/icon?job=WeLoveCoding_Test)](http://93.180.157.228:8080/job/WeLoveCoding_Test/)
 
